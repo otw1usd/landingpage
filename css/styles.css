@@ -1,0 +1,38 @@
+.beranda{
+  position: absolute;
+  left: 20%;
+}
+
+.data-pribadi{
+  position: absolute;
+  left: 20%;
+  top: 7.5rem;
+  height:50rem;
+  background-color: green;
+}
+.icon {
+  position: static;
+  height: 2rem;
+  text-align: center;
+}
+
+.info-container{
+  position:absolute;
+  top:3.5rem;
+  bottom:0;
+  background-color: pink;
+}
+
+.navbar-nav {
+  position: absolute;
+  right: 10%;
+}
+
+.profil {
+  position: absolute;
+  right:1%;
+}
+
+#logo-amati{
+  font-family: 'Archivo', sans-serif;
+}
