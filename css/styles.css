@@ -1,38 +1,191 @@
-.beranda{
-  position: absolute;
-  left: 20%;
+body{
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+/* Navigaton Bar */
+#logo-amati {
+  font-family: 'Archivo', sans-serif;
+  font-size: 2rem;
 }
 
-.data-pribadi{
-  position: absolute;
-  left: 20%;
-  top: 7.5rem;
-  height:50rem;
-  background-color: green;
-}
 .icon {
   position: static;
   height: 2rem;
   text-align: center;
 }
 
-.info-container{
-  position:absolute;
-  top:3.5rem;
-  bottom:0;
-  background-color: pink;
+.navbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height:3.5rem;
 }
 
 .navbar-nav {
   position: absolute;
-  right: 10%;
+  right: 15%;
+  z-index: 1;
+}
+
+.posisi-page {
+  position: static;
+  left: 10%;
 }
 
 .profil {
   position: absolute;
-  right:1%;
+  right: 2%;
 }
 
-#logo-amati{
-  font-family: 'Archivo', sans-serif;
+
+/* Info Container */
+.info-container {
+  position: fixed;
+  top: 3.5rem;
+  bottom: 0;
+  z-index: 1;
+}
+
+
+/* Data Pribadi */
+.div-data-pribadi {
+  position: absolute;
+  left: 20.5%;
+  top: 7.5rem;
+  background-color: #fff4e7;
+  border: solid 1px;
+  border-radius: 1rem;
+  padding: 1rem;
+  z-index: -1;
+}
+
+.durasi {
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.foto-profile {
+  margin: 1rem;
+  border-radius: 50%;
+  border: solid 1px;
+  height: 12.5rem;
+  width: 12.5rem;
+}
+
+.institusi {
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+.jabatan {
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.keterampilan{
+  margin-left: 5rem;
+}
+
+.kiri {
+  position: static;
+  left: 2rem;
+}
+
+.lowongan-kerja{
+  margin-left: 5rem;
+}
+.utama {
+  position: absolute;
+  top: 3rem;
+  left: 17.5rem;
+}
+
+.pengalaman-kerja {
+  margin-left: 5rem;
+}
+
+.rentang {
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.riwayat-pendidikan {
+  margin-left: 5rem;
+}
+
+#icon-edit{
+  position: absolute;
+  top:2rem;
+  right:2rem;
+  height: 2rem;
+}
+/* Akhir Data Pribadi */
+
+/* Daftar Proyek */
+.daftar-proyek{
+  position: static;
+  background-color: #fff4e7;
+  border: solid 1px;
+  border-radius: 1rem;
+  padding: 1rem;
+  z-index: -1;
+  margin-top:1rem;
+  margin-bottom: 1rem;
+}
+
+.data-proyek{
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.div-daftar-proyek{
+  position: absolute;
+  left: 20.5%;
+  top: 7.5rem;
+
+  border-radius: 1rem;
+  padding: 1rem;
+  z-index: -1;
+}
+
+.div-data-proyek{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.div-data-proyek-besar{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.div-data-proyek-besar .row {
+  margin:0;
+}
+.logo-proyek{
+  width:100%;
+}
+
+.nama-proyek{
+  padding-left: 0;
+}
+
+.row{
+  margin-left: 0;
+  margin-right: 0;
+}
+
+
+#icon-edit-data-proyek{
+  position: absolute;
+  top:0;
+  right:0;
+  width: 4rem;
+}
+
+#link-invite{
+  position: static;
+}
+
+#notifikasi{
+  position: static;
 }
