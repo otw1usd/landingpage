@@ -196,6 +196,13 @@ body {
   width: 100%;
   margin-top: 1rem;
 }
+.button-info-container .logo {
+  display: inline-block;
+}
+.button-info-container .keterangan {
+  display: inline-block;
+  text-align: left;
+}
 
 .info-container-ringkas {
   margin-top: 1rem;
