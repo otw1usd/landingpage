@@ -1,0 +1,54 @@
+ <!-- ======= Header ======= -->
+ <header id="header">
+
+  <nav id="navigation-bar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <a class="navbar-brand" href="/"><img class="logo-amati" src="images/logo-amati.png"></a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/#main">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/#clients">Supported By</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">Contact Us</a>
+        </li>
+
+        <div class="log-in-padding">
+          <li class="nav-item log-in-button">
+            <a class="nav-link" href="/login">Log in</a>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+  </nav>
+
+  <!-- .navbar -->
+
+</header><!-- End Header -->
+<%- include('./partials/messages.ejs') %>
+<form method="post" action="/login">
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input type="text" class="form-control" id="username" name="username" required />
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password" name="password" required />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Login</button>
+  <p class="log-in-text-div">Belum memiliki akun? <a class="log-in-text" href="/">Register</a></p>
+</form>
+
+    
