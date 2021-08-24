@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="img/amatilogo.png" sizes="192x192" />
+  <title>Daftar Proyek</title>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+
+
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand col-1" id="logo-amati" href="/">AMATI</a>
+    <strong href="#" class="text-dark posisi-page">Daftar Proyek</strong>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/beranda"><img class="icon" src="img/beranda.png">Beranda</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/daftarproyek"><img class="icon" src="img/proyek.png">Daftar Proyek</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#"><img class="icon" src="img/koneksi.png">Koneksi</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#"><img class="icon" src="img/informasi.png">Informasi</a>
+        </li>
+      </ul>
+      <strong class="nav-item dropdown profil">
+        <a class="text-dark dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= name %>
+        </a>
+        <div class="profile dropdown-menu bg-warning" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Profil</a>
+          <a class="dropdown-item" href="#">Pengaturan</a>
+          <a class="dropdown-item" href="/logout">Log Out</a>
+        </div>
+      </strong>
+    </div>
+  </nav>
+
+  <!-- info-container -->
+  <div class="info-container col-2 bg-dark">
+
+  </div>
+
+
+  <!-- Daftar Proyek -->
+  <div class="div-daftar-proyek col-9">
+    <h2>Daftar Proyek</h2>
+
+    <!-- List Proyek copas sini aja -->
+    <div class="daftar-proyek col-12 row">
+      <div class="col-2">
+        <img class="logo-proyek" src="img/logo-kcic.png" alt="">
+      </div>
+      <div class="div-data-proyek-besar col-10">
+        <div class="row">
+          <h4><a href="/kcic" class="nama-proyek text-dark">
+              Proyek Kereta Cepat Jakarta Bandung
+            </a></h4>
+          <a href=""><img class="col-1" id="icon-edit-data-proyek" src="img/edit.png" alt="edit"></a>
+        </div>
+        <div class="row">
+          <div class="div-data-proyek col-4">
+            <p class="data-proyek">Rentang: 16 Oktober 2015 - Masih Berlangsung</p>
+            <p class="data-proyek">Lokasi: Tegal Luar, Bandung</p>
+            <p class="data-proyek">Luas: 80 Hektar</p>
+          </div>
+          <div class="div-data-proyek col-3">
+            <p class="data-proyek">Nilai Investasi: 86,55 Triliun Rupiah</p>
+            <p class="data-proyek">Owner: Konsorsium KCIC</p>
+            <p class="data-proyek">Konsultan: CDJO</p>
+          </div>
+          <div class="div-data-proyek col-2">
+            <p class="data-proyek">Kontraktor: PT. WIKA</p>
+            <p class="data-proyek">Anggota: 26 Orang</p>
+          </div>
+          <div class="div-data-proyek col-3">
+            <p class="data-proyek">Jabatan Anda: Staff Pengawas</p>
+            <button type="button" class="btn btn-warning btn-sm" id="notifikasi">2 Notifikasi</button>
+            <button type="button" class="btn btn-warning btn-sm" id="link-invite">Link Invite</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- List Proyek copas sampai sini -->
+    <!-- List Proyek copas sini aja -->
+    <div class="daftar-proyek col-12 row">
+      <div class="col-2">
+        <img class="logo-proyek" src="img/logo-kcic.png" alt="">
+      </div>
+      <div class="div-data-proyek-besar col-10">
+        <div class="row">
+          <h4><a href="/kcic" class="nama-proyek text-dark">
+              Proyek Kereta Cepat Jakarta Bandung
+            </a></h4>
+          <a href=""><img class="col-1" id="icon-edit-data-proyek" src="img/edit.png" alt="edit"></a>
+        </div>
+        <div class="row">
+          <div class="div-data-proyek col-4">
+            <p class="data-proyek">Rentang: 16 Oktober 2015 - Masih Berlangsung</p>
+            <p class="data-proyek">Lokasi: Tegal Luar, Bandung</p>
+            <p class="data-proyek">Luas: 80 Hektar</p>
+          </div>
+          <div class="div-data-proyek col-3">
+            <p class="data-proyek">Nilai Investasi: 86,55 Triliun Rupiah</p>
+            <p class="data-proyek">Owner: Konsorsium KCIC</p>
+            <p class="data-proyek">Konsultan: CDJO</p>
+          </div>
+          <div class="div-data-proyek col-2">
+            <p class="data-proyek">Kontraktor: PT. WIKA</p>
+            <p class="data-proyek">Anggota: 26 Orang</p>
+          </div>
+          <div class="div-data-proyek col-3">
+            <p class="data-proyek">Jabatan Anda: Staff Pengawas</p>
+            <button type="button" class="btn btn-warning btn-sm" id="notifikasi">2 Notifikasi</button>
+            <button type="button" class="btn btn-warning btn-sm" id="link-invite">Link Invite</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- List Proyek copas sampai sini -->
+    
+
+
+  </div>
+  </div>
+</body>
+
+</html>
