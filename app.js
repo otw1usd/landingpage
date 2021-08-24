@@ -1,3 +1,4 @@
+//jshint esversion:6
 // const fs = require('fs');
 const express = require ('express'); //[MASOK]
 const expressLayouts = require ('express-ejs-layouts'); //[MASOK]
@@ -39,7 +40,7 @@ app.use(
     session({
         secret:'secret',
         resave: true,
-        saveUninitialized: true, 
+        saveUninitialized: true,
     })
 );
 
@@ -57,9 +58,9 @@ app.use((req, res, next)=>{
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
     next();
-})
+});
 
-//[MASOK]ambil index.js dan users.js 
+//[MASOK]ambil index.js dan users.js
 app.use('/', require('./routes/index'));
 
 
@@ -71,7 +72,7 @@ app.get('/beranda',(req,res)=>{
     // const users = await user.find();
 
     res.render('beranda',{
-    layout : 'beranda',   
+    layout : 'beranda',
     });
 console.log('ini halaman home');
 });
@@ -80,7 +81,7 @@ console.log('ini halaman home');
 app.get('/daftarproyek',(req,res)=>{
     res.render('daftarproyek',{
     layout : 'daftarproyek',
-    
+
 });
 });
 
@@ -88,7 +89,7 @@ app.get('/daftarproyek',(req,res)=>{
 app.get('/kcic',(req,res)=>{
     res.render('kcic',{
     layout : 'kcic',
-    
+
 });
 });
 
