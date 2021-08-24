@@ -9,6 +9,9 @@ body {
   font-size: 2rem;
 }
 
+.dropdown-menu{
+left:-1.25rem;
+}
 .icon {
   position: static;
   height: 2rem;
