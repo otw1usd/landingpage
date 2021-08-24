@@ -1,52 +1,76 @@
- <!-- ======= Header ======= -->
- <header id="header">
+<!doctype html>
+<html lang="en">
 
-  <nav id="navigation-bar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title>Sign In</title>
 
-<a class="navbar-brand col-1" id="logo-amati" href="/beranda.html">AMATI</a>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/#main">Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/#clients">Supported By</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/#contact">Contact Us</a>
-        </li>
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
-        <div class="log-in-padding">
-          <li class="nav-item log-in-button">
-            <a class="nav-link" href="/login">Log in</a>
-          </li>
-        </div>
-      </ul>
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+  <!-- Custom styles for this template -->
+  <link href="/style.css" rel="stylesheet">
+</head>
+
+
+<body class="text-center">
+  <div class="row login-page">
+
+    <div class="col-lg-6 logo-div">
+      <div class="logo-div-child">
+        <img class="logo-amati" src="img/AMATI.png" alt="logo-amati">
+      </div>
     </div>
 
-  </nav>
+    <div class="col-lg-6 form-div">
+      <main class="form-signin">
+        <%- include('./partials/messages.ejs') %>
+        <form action="/login" method="post">
+          <h1 class="h3 mb-3 fw-normal">Sign In to AMATI</h1>
 
-  <!-- .navbar -->
+          <div class="form-floating">
+            <input type="text" class="form-control login-username" id="floatingInput" placeholder="Username" name="username">
+            <label for="floatingInput">Username</label>
+          </div>
 
-</header><!-- End Header -->
-<%- include('./partials/messages.ejs') %>
-<form method="post" action="/login">
-  <div class="mb-3">
-    <label for="username" class="form-label">Username</label>
-    <input type="text" class="form-control" id="username" name="username" required />
+          <div class="form-floating">
+            <input type="password" class="form-control login-password" id="floatingPassword" placeholder="Password" name="password">
+            <label for="floatingPassword">Password</label>
+          </div>
+
+          <div class="checkbox mb-3">
+            <label class="remember-me">
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
+          </div>
+          <button class="w-100 btn btn-lg btn-outline-light" type="submit">Sign in</button>
+          <p class="register-account">Belum memiliki akun? <a class="register-text" href="/">Register</a></p>
+          <p class="mt-5 mb-3 text-muted">&copy; PT Amati Teknologi Anagata</p>
+        </form>
+      </main>
+    </div>
+
   </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password" name="password" required />
-  </div>
+</body>
 
-  <button type="submit" class="btn btn-primary">Login</button>
-  <p class="log-in-text-div">Belum memiliki akun? <a class="log-in-text" href="/">Register</a></p>
-</form>
+</html>
