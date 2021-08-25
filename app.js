@@ -64,36 +64,6 @@ app.use((req, res, next)=>{
 app.use('/', require('./routes/index'));
 
 
-app.get('/beranda',(req,res)=>{
-    // user.find().then((user)=>{
-    //     res.send(user);
-    // });
-
-    // const users = await user.find();
-
-    res.render('beranda',{
-    layout : 'beranda',
-    });
-console.log('ini halaman home');
-});
-
-
-app.get('/daftarproyek',(req,res)=>{
-    res.render('daftarproyek',{
-    layout : 'daftarproyek',
-
-});
-});
-
-
-app.get('/kcic',(req,res)=>{
-    res.render('kcic',{
-    layout : 'kcic',
-
-});
-});
-
-
 app.listen (port,()=>{
     console.log(`AMATI User Database | listening at http://localhost:${port}`);
 });

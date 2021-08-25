@@ -2,6 +2,7 @@ body {
   font-family: "Open Sans", sans-serif;
   overflow-x: hidden;
   overflow-y: scroll;
+  height: 100%;
 }
 
 a, a:hover {
@@ -159,6 +160,10 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   display: block;
 }
 
+#hero .section-padding {
+  padding: 1% 10% 3%;
+}
+
 .super-big-heading {
   margin: 0;
   font-size: 8rem;
@@ -298,7 +303,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 
 /* About */
 #about {
-  background-color: #FFEAAA;
+  background-color: #fff;
   width: 100%;
   color: #334a40;
 }
@@ -383,7 +388,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   margin-top: -52px;
   height: 52px;
   pointer-events: none;
-  background-color: #FFEAAA;
+  background-color: #fff;
 }
 
 .services .icon-box {
@@ -430,7 +435,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 
 /* Clients */
 #clients {
-  background-color: #FFEAAA;
+  background-color: #fff;
 }
 
 #clients::before {
@@ -467,7 +472,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   content: " ";
   pointer-events: none;
   display: block;
-  background-color: #FFEAAA;
+  background-color: #fff;
 }
 
 .contact .info {
@@ -927,8 +932,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 /* Log In Page */
-html,
-body {
+.html-login {
   height: 100%;
 }
 

@@ -8,23 +8,33 @@ const User = require('../model/user');
 const bcrypt = require ('bcryptjs');
 
 router.get('/', (req,res) => res.render ('index'));
-router.get('/login',(req,res)=>res.render('login'));
+router.get('/login',(req,res)=>res.render('login',{
+  layout: 'layout-login',
+}));
 router.get('/beranda', ensureAuthenticated,(req,res)=>res.render('beranda',{
     name: req.user.name,
     jobs: req.user.jobs,
     company: req.user.company,
+    layout: 'layout-account',
 }));
 router.get('/daftarproyek', ensureAuthenticated,(req,res)=>res.render('daftarproyek',{
     name: req.user.name,
     jobs: req.user.jobs,
     company: req.user.company,
+    layout: 'layout-account',
+}));
+router.get('/kcic', ensureAuthenticated,(req,res)=>res.render('kcic',{
+    name: req.user.name,
+    jobs: req.user.jobs,
+    company: req.user.company,
+    layout: 'layout-account',
 }));
 
 //register handle
 router.post('/', (req,res)=>{
     const { name, username, email, password, nohp, company, jobs } = req.body;
     let errors = [];
-    
+
     //check pass length
     if(password.length<8){
         errors.push({msg:'Password should be at least 8 characters!!!'});
@@ -93,7 +103,7 @@ router.post('/login',(req,res,next)=>{
     passport.authenticate('local',{
      successRedirect: '/beranda',
      failureRedirect: '/login',
-     failureFlash: true,   
+     failureFlash: true,
     }) (req, res, next);
 });
 
