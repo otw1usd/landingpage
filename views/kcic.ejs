@@ -4,19 +4,13 @@
 <head>
   <meta charset="utf-8">
   <link rel="icon" href="img/amatilogo.png" sizes="192x192" />
-  <link rel="apple-touch-icon-precomposed" href="assets/images/amatilogo.png"/>
-    <meta name="msapplication-TileImage" content="assets/images/amatilogo.png"/>
   <title>Kereta Cepat Jakarta Bandung</title>
 
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/33f1988f52.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/style.css">
 
 
@@ -27,16 +21,16 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-warning">
     <a class="navbar-brand col-1" id="logo-amati" href="beranda.html">AMATI</a>
     <strong href="#" class="text-dark posisi-page">Kereta Cepat Jakarta Bandung</strong>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav nav-pills">
         <li class="nav-item">
-          <a class="nav-link" href="beranda.html"><img class="icon" src="img/beranda.png">Beranda</a>
+          <a class="nav-link" href="/beranda"><img class="icon" src="img/beranda.png">Beranda</a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="daftarproyek.html"><img class="icon" src="img/proyek.png">Daftar Proyek</a>
+        <li class="nav-item">
+          <a class="nav-link active" href="/daftarproyek"><img class="icon" src="img/proyek.png">Daftar Proyek</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#"><img class="icon" src="img/koneksi.png">Koneksi</a>
@@ -44,109 +38,117 @@
         <li class="nav-item">
           <a class="nav-link disabled" href="#"><img class="icon" src="img/informasi.png">Informasi</a>
         </li>
+
+        <li class="nav-item dropdown profil">
+          <strong class="text-dark dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Henry Gunawan
+          </strong>
+          <div class="profile dropdown-menu bg-warning" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Profil</a>
+            <a class="dropdown-item" href="#">Pengaturan</a>
+            <a class="dropdown-item" href="/logout">Log Out</a>
+          </div>
+        </li>
       </ul>
-      <strong class="nav-item dropdown profil">
-        <a class="text-dark dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Henry Gunawan
-        </a>
-        <div class="profile dropdown-menu bg-warning" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Profil</a>
-          <a class="dropdown-item" href="#">Pengaturan</a>
-          <a class="dropdown-item" href="#">Log Out</a>
-        </div>
-      </strong>
     </div>
   </nav>
 
   <!-- info-container -->
   <div class="info-container col-2 bg-dark">
-    <div class="alert bg-light info-container-ringkas">
-      <h5>Anda di Proyek Ini</h5>
-      <div class="row">
-
-        <div class="col-9 div-ringkas">
-          <p>Jabatan: Owner</p>
-          <p>Perusahaan: KCIC</p>
-        </div>
-        <div class="div-logo col-3">
-          <img class="logo" src="img/logo-kcic.png" alt="">
+    <!-- Info Container Ringkas -->
+    <div class="row">
+      <div class="col-1 space"> </div>
+      <div class="alert info-container-ringkas col-10">
+        <h5>Anda di Proyek Ini</h5>
+        <div class="row">
+          <div class="col-9 div-ringkas">
+            <p>Jabatan: Owner</p>
+            <p>Perusahaan: KCIC</p>
+          </div>
+          <div class="div-logo col-3">
+            <img class="logo" src="img/logo-kcic.png" alt="">
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-12">
-      <a class="btn btn-outline-warning button-info-container row active" href="kcic.html">
-        <div class="col-2 logo">
-          <i class="fas fa-file-alt"></i>
-        </div>
-        <div class="col-10 keterangan">
-          Informasi Proyek
-        </div>
-      </a>
-      <a class="btn btn-outline-warning button-info-container row" href="kcic.html">
-        <div class="col-2 logo">
-          <i class="fas fa-database"></i>
-        </div>
-        <div class="col-10 keterangan">
-          Database
-        </div>
-      </a>
-      <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
-        <div class="col-2 logo">
-          <i class="fas fa-hard-hat"></i>
-        </div>
-        <div class="col-10 keterangan">
-          Cari Pekerja
-        </div>
-      </a>
-      <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
-        <div class="col-2 logo">
-          <i class="fas fa-truck-pickup"></i>
-        </div>
-        <div class="col-10 keterangan">
-          Beli/Sewa Alat Berat
-        </div>
-      </a>
-      <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
-        <div class="col-2 logo">
-          <i class="fas fa-tools"></i>
-        </div>
-        <div class="col-10 keterangan">
-          Beli Material
-        </div>
-      </a>
-      <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
-        <div class="col-2 logo">
-          <i class="fas fa-newspaper"></i>
-        </div>
-        <div class="col-10 keterangan">
-          Berita Terkait
-        </div>
-      </a>
-      <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
-        <div class="col-2 logo">
-          <i class="fas fa-file-signature"></i>
-        </div>
-        <div class="col-10 keterangan">
-          Tender
-        </div>
-      </a>
-      <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
-        <div class="col-2 logo">
-          <i class="fas fa-briefcase-medical"></i>
-        </div>
-        <div class="col-10 keterangan">
-          Cek HSE
-        </div>
-      </a>
-      <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
-        <div class="col-2 logo">
-          <i class="fas fa-toolbox"></i>
-        </div>
-        <div class="col-10 keterangan">
-          Service AMATI
-        </div>
-      </a>
 
+    <!-- Menu kiri -->
+    <div class="row">
+      <div class="col-12">
+        <a class="btn btn-outline-warning button-info-container row active" href="kcic.html">
+          <div class="col-1 logo">
+            <i class="fas fa-file-alt"></i>
+          </div>
+          <div class="col-10 keterangan">
+            Informasi Proyek
+          </div>
+        </a>
+        <a class="btn btn-outline-warning button-info-container row" href="kcic.html">
+          <div class="col-1 logo">
+            <i class="fas fa-database"></i>
+          </div>
+          <div class="col-10 keterangan">
+            Database
+          </div>
+        </a>
+        <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
+          <div class="col-1 logo">
+            <i class="fas fa-hard-hat"></i>
+          </div>
+          <div class="col-10 keterangan">
+            Cari Pekerja
+          </div>
+        </a>
+        <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
+          <div class="col-1 logo">
+            <i class="fas fa-truck-pickup"></i>
+          </div>
+          <div class="col-10 keterangan container-fluid">
+            Beli/Sewa Alat Berat
+          </div>
+        </a>
+        <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
+          <div class="col-1 logo">
+            <i class="fas fa-tools"></i>
+          </div>
+          <div class="col-10 keterangan">
+            Beli Material
+          </div>
+        </a>
+        <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
+          <div class="col-1 logo">
+            <i class="fas fa-newspaper"></i>
+          </div>
+          <div class="col-10 keterangan">
+            Berita Terkait
+          </div>
+        </a>
+        <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
+          <div class="col-1 logo">
+            <i class="fas fa-file-signature"></i>
+          </div>
+          <div class="col-10 keterangan">
+            Tender
+          </div>
+        </a>
+        <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
+          <div class="col-1 logo">
+            <i class="fas fa-briefcase-medical"></i>
+          </div>
+          <div class="col-10 keterangan">
+            Cek HSE
+          </div>
+        </a>
+        <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
+          <div class="col-1 logo">
+            <i class="fas fa-toolbox"></i>
+          </div>
+          <div class="col-10 keterangan">
+            Service AMATI
+          </div>
+        </a>
+
+      </div>
     </div>
   </div>
 
@@ -295,6 +297,9 @@
 
     </div>
   </div>
+  <!-- Javascript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/33f1988f52.js" crossorigin="anonymous"></script>
 
 </body>
 
