@@ -1,0 +1,184 @@
+
+
+  <section id="navigation-bar">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="index.html"><img class="logo-amati" src="img/logo.png"></a>
+      <div class="logo-proyek">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link nama-proyek" href="#"><img class="logo-kcic" src="img/logo-kcic.png" alt="Logo KCIC"> Project Kereta Cepat Jakarta Bandung</a>
+          </li>
+        </ul>
+      </div>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="https://amati.co/">Beranda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Proyek</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Database</a>
+          </li>
+
+          <li class="nav-item dropdown userid">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Halo, Kevin Putra!
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Profile</a>
+              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" href="#">Logout</a>
+            </div>
+          </li>
+          <li class="navbar-item">
+            <a class="nav-link customize" href="#">Customize</a>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
+  </section>
+
+  <section id="user-tab">
+    <div class="infocontainer col-2">
+      <h6 class="fitur"><strong>Kondisi Proyek</strong></h6>
+
+      <div>
+        <h6> Progres total: </h6>
+        <h3><span class="blinking"> 50 % </span></h3>
+      </div>
+      <div>
+        <h6> Pengeluaran total: </h6>
+        <h3><span class="blinking"> 75 % </span></h3>
+      </div>
+
+
+      <h6 class="fitur"><strong>Fitur Utama</strong></h6>
+      <!-- Infocontainer Button -->
+      <div class="row">
+        <!-- Panel Tanggal -->
+        <div class="floating-panel col-lg-6">
+          <strong class="lini-masa">Lini Masa</strong>
+          <input type="radio" class="btn-check" id="radio-1" name="date" value="none" onclick="toggleOverlay(this)" />
+          <label class="btn btn-outline-dark btn-sm btn-block" for="radio-1">Pre-konstruksi</label>
+          <input type="radio" class="btn-check" id="radio-2" name="date" value="01_02_21" onclick="toggleOverlay(this)" />
+          <label class="btn btn-outline-dark btn-sm btn-block" for="radio-2">Februari 2021</label>
+          <input type="radio" class="btn-check" id="radio-3" name="date" value="01_03_21" onclick="toggleOverlay(this)" />
+          <label class="btn btn-outline-dark btn-sm btn-block" for="radio-3">Maret 2021</label>
+          <input type="radio" class="btn-check" id="radio-4" name="date" value="01_04_21" onclick="toggleOverlay(this)" />
+          <label class="btn btn-outline-dark btn-sm btn-block" for="radio-4">April 2021</label>
+          <input type="radio" class="btn-check" id="radio-5" name="date" value="01_05_21" onclick="toggleOverlay(this)" />
+          <label class="btn btn-outline-dark btn-sm btn-block" for="radio-5">Mei 2021</label>
+          <input type="radio" class="btn-check" id="radio-6" name="date" value="01_06_21" onclick="toggleOverlay(this)" />
+          <label class="btn btn-outline-dark btn-sm btn-block" for="radio-6">Juni 2021</label>
+        </div>
+
+        <div class="infocontainer-button col-lg-6">
+          <strong class="lini-masa">Fitur</strong>
+          <button class="btn btn-outline-dark btn-sm btn-block button-utama button2 popup container-fluid" onclick="myFunction()">Kurva S
+            <!-- BUAT DI LUAR GRAFIKNYA -->
+            <!-- <iframe class="popuptext" id="myPopup" seamless frameborder="0" scrolling="no"
+                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRj4oF9at_a656n6W02H8uGURmoQ2N8ZOoKQDeHyAq_AtWiuTkQeKngmqfdUDnmlufmkGG47q4Ex-fi/pubchart?oid=1071236399&amp;format=interactive"></iframe>  -->
+          </button>
+          <!-- <button class="btn btn-outline-dark btn-sm btn-block button-utama button3" >Zonasi</button></div> -->
+          <!-- <button class="btn btn-outline-dark btn-sm btn-block button-utama button3">Komentar</button></div> -->
+          <!-- <button class="button8" onclick="window.location.href='';" target=""> 360 View</button> -->
+        </div>
+      </div>
+
+      <!-- Gamtek awal -->
+      <div class="gamtek col-12" id="gamtek">
+        <div class="popupgamtek" id="daftarGamtekSaya">
+          <div class="loopingbatasgamtek">
+            <div></div> <!-- baris ini jgn diapus, emg gaada isi soalnya buat javascript -->
+          </div>
+        </div>
+      </div>
+
+      <div id="anjinglah" style="display: none;">
+        <div id="sceneList">
+          <ul class="scenes"></ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- Penutup infocontainer -->
+
+
+  <section id="viewing-tab">
+
+    <!-- Zoomin Zoomout GAMTEK FS -->
+    <div class="zoomoutbefore"><img class="imgzoomgamtek" id="zoomoutgamtekfs" src="img/z2out.png"></div>
+    <div class="zoominbefore"><img class="imgzoomgamtek" id="zoomingamtekfs" src="img/z2in.png"></div>
+    <div class="gamtekfs">
+      <div class="gamtekfsshow">
+      </div>
+      <img class="zoominbefore" src="img/z2in.png">
+      <img class="zoomoutbefore" src="img/z2out.png">
+    </div>
+
+    <!-- ----------GAMTEK ABIS----------  -->
+
+
+    <!-- ------------------360------------------ -->
+
+    <div id="bukatutup" style="display: none;">
+      <div id="pano"></div>
+      <!-- back panorama -->
+      <img class="backpano" onclick="bukatutup()" src="img/back.png">
+
+
+      <div id="titleBar">
+        <h1 class="sceneName"></h1>
+      </div>
+
+      <a href="javascript:void(0)" id="autorotateToggle">
+        <img class="icon off" src="img/play.png">
+        <img class="icon on" src="img/pause.png">
+      </a>
+
+      <a href="javascript:void(0)" id="fullscreenToggle">
+        <img class="icon off" src="img/fullscreen.png">
+        <img class="icon on" src="img/windowed.png">
+      </a>
+
+      <a href="javascript:void(0)" id="sceneListToggle">
+        <img class="icon off" src="img/expand.png">
+        <img class="icon on" src="img/collapse.png">
+      </a>
+
+
+      <a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
+        <img class="icon" src="img/up.png">
+      </a>
+      <a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
+        <img class="icon" src="img/down.png">
+      </a>
+      <a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
+        <img class="icon" src="img/left.png">
+      </a>
+      <a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
+        <img class="icon" src="img/right.png">
+      </a>
+      <a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
+        <img class="icon" src="img/plus.png">
+      </a>
+      <a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
+        <img class="icon" src="img/minus.png">
+      </a>
+
+    </div>
+
+  </section>
+  <!-- -------------360abis------------- -->
+
+
+  

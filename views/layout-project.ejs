@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+
+  <link rel="icon" href="img/amatilogo.png" sizes="32x32" />
+  <link rel="icon" href="img/amatilogo.png" sizes="192x192" />
+  <link rel="apple-touch-icon-precomposed" href="img/amatilogo.png" />
+  <meta name="msapplication-TileImage" content="img/amatilogo.png" />
+  <!-- Bootstrap CSS-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <!-- Bootstrap JS-->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbUFZJhvcv_dLJIxGJrdfpTE3YLhupiVA"></script>
+
+
+
+  <!-- Logo Fontawesome -->
+  <title>AMATI/KCIC Depo Tegal Luar</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="project/styleedited.css">
+  <link rel="stylesheet" href="project/style360.css">
+</head>
+
+<body>
+
+  <%- body %>
+
+  <!-- DIBAWAH INI UDAH JAVASCRIPT SEMUA -->
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script src="project/dataset/360/index.js"></script>
+  <script src="project/js/isipano.js"></script>
+  <script src="project/js/drawing.js"> </script>
+  <script src="project/js/maps.js"></script>
+
+  <script src="project/dataset/360/vendor/screenfull.min.js"></script>
+  <script src="project/dataset/360/vendor/bowser.min.js"></script>
+  <script src="project/dataset/360/vendor/marzipano.js"></script>
+
+
+  <script>
+    console.log('mulai');
+
+
+    fetch('data.json')
+      .then(response => response.json())
+      .then(function(response) {
+        const datascene = response.scenes;
+        let sceneName = '';
+        datascene.forEach(m => {
+          sceneName += `<a href="javascript:void(0)"class="scene btn btn-outline-dark btn-sm btn-block button-utama" data-id="${m.id}"><li class="text">${m.name}</li></a>`;
+        });
+        const isidatasceneName = document.querySelector('.scenes');
+        isidatasceneName.innerHTML = sceneName;
+      })
+
+      .then(response => {
+        let script = document.createElement('script');
+        script.src = 'dataset/360/data.js';
+        document.head.appendChild(script);
+      })
+
+  </script>
+
+
+  <div id="map"></div>
+
+</body>
+
+</html>

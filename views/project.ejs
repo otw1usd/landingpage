@@ -1,0 +1,244 @@
+  <!-- info-container -->
+  <div class="info-container col-2 bg-dark">
+    <!-- Info Container Ringkas -->
+    <div class="row">
+      <div class="col-1 space"> </div>
+      <div class="alert info-container-ringkas col-10">
+        <h5>Anda di Proyek Ini</h5>
+        <div class="row">
+          <div class="col-9 div-ringkas">
+            <p>Jabatan: <%= jobs %>></p>
+            <p>Perusahaan: KCIC</p>
+          </div>
+          <div class="div-logo col-3">
+            <img class="logo" src="../img/logo-kcic.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu kiri -->
+    <div class="row">
+      <div class="col-12">
+        <a class="btn btn-outline-warning button-info-container row active" href="/project/<%= project._id %>">
+          <div class="col-1 logo">
+            <i class="fas fa-file-alt"></i>
+          </div>
+          <div class="col-10 keterangan">
+            Informasi Proyek
+          </div>
+        </a>
+        <a class="btn btn-outline-warning button-info-container row" href="/project/<%= project._id %>">
+          <div class="col-1 logo">
+            <i class="fas fa-database"></i>
+          </div>
+          <div class="col-10 keterangan">
+            Database
+          </div>
+        </a>
+        <a class="btn btn-outline-warning button-info-container row disabled" href="/project/<%= project._id %>">
+          <div class="col-1 logo">
+            <i class="fas fa-hard-hat"></i>
+          </div>
+          <div class="col-10 keterangan">
+            Cari Pekerja
+          </div>
+        </a>
+        <a class="btn btn-outline-warning button-info-container row disabled" href="/project/<%= project._id %>">
+          <div class="col-1 logo">
+            <i class="fas fa-truck-pickup"></i>
+          </div>
+          <div class="col-10 keterangan container-fluid">
+            Beli/Sewa Alat Berat
+          </div>
+        </a>
+        <a class="btn btn-outline-warning button-info-container row disabled" href="/project/<%= project._id %>">
+          <div class="col-1 logo">
+            <i class="fas fa-tools"></i>
+          </div>
+          <div class="col-10 keterangan">
+            Beli Material
+          </div>
+        </a>
+        <a class="btn btn-outline-warning button-info-container row disabled" href="/project/<%= project._id %>">
+          <div class="col-1 logo">
+            <i class="fas fa-newspaper"></i>
+          </div>
+          <div class="col-10 keterangan">
+            Berita Terkait
+          </div>
+        </a>
+        <a class="btn btn-outline-warning button-info-container row disabled" href="/project/<%= project._id %>">
+          <div class="col-1 logo">
+            <i class="fas fa-file-signature"></i>
+          </div>
+          <div class="col-10 keterangan">
+            Tender
+          </div>
+        </a>
+        <a class="btn btn-outline-warning button-info-container row disabled" href="/project/<%= project._id %>">
+          <div class="col-1 logo">
+            <i class="fas fa-briefcase-medical"></i>
+          </div>
+          <div class="col-10 keterangan">
+            Cek HSE
+          </div>
+        </a>
+        <a class="btn btn-outline-warning button-info-container row disabled" href="/project/<%= project._id %>">
+          <div class="col-1 logo">
+            <i class="fas fa-toolbox"></i>
+          </div>
+          <div class="col-10 keterangan">
+            Service AMATI
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Informasi Proyek -->
+  <div class="div-informasi-proyek col-9">
+    <h2>Tahap: Konstruksi</h2>
+    <h6>Progress Total</h6>
+    <div class="progress">
+      <div class="progress-bar bg-dark" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+    </div>
+    <h6>Pengeluaran Total</h6>
+    <div class="progress">
+      <div class="progress-bar bg-dark" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
+    </div>
+
+    <div class="div-utama row">
+      <!-- Div Peta -->
+      <div class="div-peta col-7">
+        <h5>AMATI kondisi Proyek</h5>
+        <a href="/projectindex"><img id="peta" src="../img/peta.png" alt=""></a>
+
+        <div class="daftar-proyek col-12">
+          <div class="div-data-proyek-besar">
+            <div class="row">
+              <h4>Informasi Umum</h4>
+            </div>
+            <div class="row">
+              <div class="div-data-proyek col-3">
+                <p class="data-proyek">Rentang: 16 Oktober 2015 - Masih Berlangsung</p>
+                <p class="data-proyek">Lokasi: <%= project.projectLocation %></p>
+                <p class="data-proyek">Luas: 80 Hektar</p>
+              </div>
+              <div class="div-data-proyek col-3">
+                <p class="data-proyek">Nilai Investasi: 86,55 Triliun Rupiah</p>
+                <p class="data-proyek">Owner: Konsorsium KCIC</p>
+                <p class="data-proyek">Konsultan: CDJO</p>
+              </div>
+              <div class="div-data-proyek col-3">
+                <p class="data-proyek">Kontraktor: PT. WIKA</p>
+                <p class="data-proyek">Anggota: 26 Orang</p>
+              </div>
+              <div class="div-data-proyek col-3">
+                <p class="data-proyek">Jabatan Anda: <%= jobs %> </p>
+                <button type="button" class="btn btn-warning btn-sm" id="link-invite">Link Invite</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Div Kosong -->
+      <div class="col-1">
+      </div>
+
+      <!-- Div Notifikasi -->
+      <div class="div-div-notifikasi col-4">
+        <h5>Notifikasi Terbaru</h5>
+        <!-- Template Notifikasi -->
+        <div class="div-notifikasi alert bg-light row">
+          <div class="col-2">
+            <img class="foto-profile" src="../img/profile.png" alt="">
+          </div>
+          <div class="col-10">
+            <a class="nama" href="">Henry Gunawan</a>
+            <p class="jabatan">Jabatan: Project Manager Gedung A</p>
+            <p class="perusahaan">Perusahaan: PT. WIKA</p>
+            <p class="timestamp">29 Juli 2021 14:05:21 WIB
+              <button type="button" class="btn btn-warning btn-sm reply">Tanggapi</button>
+            </p>
+          </div>
+          <p class="keterangan">Laporan progress bulan ini sudah ada di lampiran.</p>
+          <button type="button" class="btn btn-warning btn-sm">Lampiran</button>
+        </div>
+        <!-- Template Notifikasi sampai sini -->
+        <!-- Template Notifikasi -->
+        <div class="div-notifikasi alert bg-light row">
+          <div class="col-2">
+            <img class="foto-profile" src="../img/profile.png" alt="">
+          </div>
+          <div class="col-10">
+            <a class="nama" href="">Henry Gunawan</a>
+            <p class="jabatan">Jabatan: Project Manager Gedung A</p>
+            <p class="perusahaan">Perusahaan: PT. WIKA</p>
+            <p class="timestamp">29 Juli 2021 14:05:21 WIB
+              <button type="button" class="btn btn-warning btn-sm reply">Tanggapi</button>
+            </p>
+          </div>
+          <p class="keterangan">Laporan progress bulan ini sudah ada di lampiran.</p>
+          <button type="button" class="btn btn-warning btn-sm">Lampiran</button>
+        </div>
+        <!-- Template Notifikasi sampai sini -->
+        <!-- Template Notifikasi -->
+        <div class="div-notifikasi alert bg-light row">
+          <div class="col-2">
+            <img class="foto-profile" src="../img/profile.png" alt="">
+          </div>
+          <div class="col-10">
+            <a class="nama" href="">Henry Gunawan</a>
+            <p class="jabatan">Jabatan: Project Manager Gedung A</p>
+            <p class="perusahaan">Perusahaan: PT. WIKA</p>
+            <p class="timestamp">29 Juli 2021 14:05:21 WIB
+              <button type="button" class="btn btn-warning btn-sm reply">Tanggapi</button>
+            </p>
+          </div>
+          <p class="keterangan">Laporan progress bulan ini sudah ada di lampiran.</p>
+          <button type="button" class="btn btn-warning btn-sm">Lampiran</button>
+        </div>
+        <!-- Template Notifikasi sampai sini -->
+        <!-- Template Notifikasi -->
+        <div class="div-notifikasi alert bg-light row">
+          <div class="col-2">
+            <img class="foto-profile" src="../img/profile.png" alt="">
+          </div>
+          <div class="col-10">
+            <a class="nama" href="">Henry Gunawan</a>
+            <p class="jabatan">Jabatan: Project Manager Gedung A</p>
+            <p class="perusahaan">Perusahaan: PT. WIKA</p>
+            <p class="timestamp">29 Juli 2021 14:05:21 WIB
+              <button type="button" class="btn btn-warning btn-sm reply">Tanggapi</button>
+            </p>
+          </div>
+          <p class="keterangan">Laporan progress bulan ini sudah ada di lampiran.</p>
+          <button type="button" class="btn btn-warning btn-sm">Lampiran</button>
+        </div>
+        <!-- Template Notifikasi sampai sini -->
+        <!-- Template Notifikasi -->
+        <div class="div-notifikasi alert bg-light row">
+          <div class="col-2">
+            <img class="foto-profile" src="../img/profile.png" alt="">
+          </div>
+          <div class="col-10">
+            <a class="nama" href="">Henry Gunawan</a>
+            <p class="jabatan">Jabatan: Project Manager Gedung A</p>
+            <p class="perusahaan">Perusahaan: PT. WIKA</p>
+            <p class="timestamp">29 Juli 2021 14:05:21 WIB
+              <button type="button" class="btn btn-warning btn-sm reply">Tanggapi</button>
+            </p>
+          </div>
+          <p class="keterangan">Laporan progress bulan ini sudah ada di lampiran.</p>
+          <button type="button" class="btn btn-warning btn-sm">Lampiran</button>
+        </div>
+        <!-- Template Notifikasi sampai sini -->
+
+      </div>
+
+    </div>
+  </div>

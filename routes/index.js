@@ -4,7 +4,8 @@ const { body, validationResult, check } = require ('express-validator');
 
 const passport = require('passport');
 
-const {ensureAuthenticated, adminEnsureAuthenticated} = require('../config/auth')
+const { ensureAuthenticated } = require('../config/auth')
+const { adminEnsureAuthenticated } = require('../config/adminauth')
 
 const User = require('../model/user');
 const Project = require('../model/project');
@@ -38,12 +39,12 @@ router.get('/daftarproyek', ensureAuthenticated, async(req,res)=> {
         });
 });
 
-router.get('/project/:oit', async (req,res,next)=>{
+router.get('/project/:oit', ensureAuthenticated,async (req,res,next)=>{
     try{
      console.log('cek:'+req.params.oit);
-    const project = await Project.findOne({_id: req.params.oit}).catch(error => { throw error});     
+     const project = await Project.findOne({_id: req.params.oit}).catch(error => { throw error});     
      console.log(project);
-     res.render('project/project',{
+     res.render('project',{
         name: req.user.name,
         jobs: req.user.jobs,
         company: req.user.company,
@@ -64,6 +65,7 @@ router.get('/registeradmin', (req,res) => res.render ('registeradmin'));
 
 router.get('/admin', adminEnsureAuthenticated, async (req,res) => {
     const listaccounts = await Project.find();
+    console.log('tesuseradmin:'+req.user);
     res.render ('admin',{
         listaccounts,
     }); 
@@ -318,6 +320,11 @@ router.put('/admin',[
 });
 
 
+//project
+
+router.get('/projectindex',ensureAuthenticated,(req,res)=>res.render('projectindex',{
+    layout: 'layout-project',
+}));
 
 
 

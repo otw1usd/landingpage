@@ -1,0 +1,443 @@
+body {
+  height: 100%;
+  padding: 0;
+  background-color: #F9F7F7;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 1.1rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+h3, h6 {
+  text-align: center;
+}
+
+/* Navigation Bar */
+.navbar {
+  position: fixed;
+  height: 4rem;
+  left: 0;
+  right: 0;
+  z-index: 15;
+}
+
+.navbar-brand {
+  margin-left: 1rem;
+  padding-top: 0;
+}
+
+.logo-proyek {
+  position: fixed;
+  height: 4rem;
+  left: 37%;
+}
+
+.nama-proyek {
+  padding: 0;
+  top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.userid {
+  position: fixed;
+  right: 10%;
+}
+
+.customize {
+  position: fixed;
+  right: 1%;
+}
+
+.logo-kcic {
+  margin: auto;
+  height: 4rem;
+  margin-right: 1rem;
+}
+
+.logo-amati {
+  height: 1.2rem;
+}
+
+/* User Tab (seluruh isi panel di bagian kiri) */
+.infocontainer {
+  position: fixed;
+  z-index: 10;
+  border-right: solid 1px;
+  top: 4rem;
+  bottom: 0;
+  overflow-x: hidden;
+}
+
+.blinking {
+  animation: blinkingText 1.2s infinite;
+}
+
+@keyframes blinkingText {
+  0% {
+    color: #000;
+  }
+
+  49% {
+    color: #c10060;
+  }
+
+  60% {
+    color: #000;
+  }
+
+  99% {
+    color: #c10060;
+  }
+
+  100% {
+    color: #000;
+  }
+}
+
+.fitur {
+  width: 100%;
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  margin-bottom: 0;
+}
+
+.row {
+  margin: 0;
+}
+
+.floating-panel {
+  text-align: left;
+  font-size: 0.8rem;
+  border-bottom: solid 1px;
+  padding: 0.8rem;
+}
+
+.lini-masa {
+  font-size: 1rem;
+}
+
+.infocontainer-button {
+  border-bottom: solid 1px;
+  padding: 0.8rem;
+}
+
+/* atur tabel fitur */
+.button-utama {
+  position: static;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn {
+  margin-bottom: 5%;
+  font-size: 0.8rem;
+}
+
+/*
+            .button5: hover{
+                background-color: #c10060;
+                color: #c10060;
+
+            }*/
+/* .button6 {
+   position: absolute;
+   left: 20px;
+   top: 555px;
+   width: 100px;
+   height: 30px;
+   cursor: pointer;
+   z-index: 2;
+   font-size: 10px;
+ }
+
+ .button8 {
+   position: absolute;
+   left: 20px;
+   top: 635px;
+   width: 100px;
+   height: 30px;
+   cursor: pointer;
+   z-index: 2;
+ } */
+
+
+/* View Tab */
+
+#map {
+  position: fixed !important;
+  top: 4rem;
+  left: 16.66667%;
+  bottom: 0;
+  width: 83.3333%;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  border: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+#pano {
+  position: absolute;
+  top: 0;
+  left: 16.66667%;
+  height: 100%;
+  width: 83.3333%;
+  overflow: hidden;
+  z-index: 11;
+}
+
+#myPopup {
+  width: 27.1875rem;
+  height: 12.5rem;
+}
+
+ .popup {
+  visibility: hidden;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index: 12;
+}
+
+.popup .popuptext {
+  position: fixed;
+  visibility: hidden;
+  top: 0;
+  right: 0;
+  margin-left: 125%;
+  background-color: #2f2f2f;
+  text-align: center;
+  border-radius: solid 1px;
+  padding: 1px;
+  position: static;
+  z-index: 10;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+  bottom: 0px;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* atur posisi gamtek */
+.gamtek {
+  visibility: hidden;
+  position: absolute;
+  margin: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index: 0;
+  height: auto;
+  left: 0;
+}
+
+.popupgamtek {
+  visibility: hidden;
+  background-color: #fff;
+  z-index: -15;
+  border-radius: 6px;
+  height: auto;
+}
+
+/* Popup arrow */
+.gamtek .popupgamtek::after {
+  content: "";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+  height: auto;
+}
+
+/* Toggle this class - hide and show the popup */
+.gamtek .buka {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+  z-index: 5;
+}
+
+.list {
+  width: 100%;
+  height: auto;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  border: 1px solid #2f2f2f;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2f2f2f;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2f2f2f;
+}
+
+.gamtek .buka img {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.gamtek .buka img:hover {
+  opacity: 2;
+}
+
+.zoominbefore {
+  visibility: hidden;
+  position: absolute;
+  width: 2rem;
+  z-index: -11;
+}
+
+.zoominafter {
+  position: fixed;
+  visibility: visible;
+  z-index: 15;
+  text-align: right;
+  left: 16.6667%;
+  top: 5rem;
+  cursor: pointer;
+}
+
+.zoomoutbefore {
+  visibility: hidden;
+  position: absolute;
+  width: 2rem;
+  z-index: -11;
+}
+
+.zoomoutafter {
+  position: fixed;
+  visibility: visible;
+  z-index: 15;
+  top: 8rem;
+  left: 16.6667%;
+  cursor: pointer;
+}
+
+.imgzoomgamtek {
+  height: 2rem;
+}
+
+.backpano {
+  position: fixed;
+  cursor: pointer;
+  height: 2rem;
+  left: 16.6667%;
+  top: 11rem;
+  z-index: 11;
+}
+
+.gamtekfsshow {
+  position: fixed;
+  visibility: visible;
+  overflow: scroll;
+  z-index: 11;
+  left: 16.66667%;
+  top: 4rem;
+  max-height: 100%;
+  max-width: 83.333%;
+  border: 0;
+  cellpadding: 0;
+  cellspacing: 0;
+}
+
+.row {
+  --bs-gutter-x: 0;
+  --bs-gutter-y: 0;
+}
+
+.div-logo-kecil {
+  position: static;
+  display: inline;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.logo-kecil {
+  width: 100%;
+  padding: 20%;
+}
+
+.card-body {
+  padding: 0;
+  left: 0;
+}
