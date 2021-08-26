@@ -663,7 +663,6 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   position: absolute;
   left: 20.5%;
   top: 7.5rem;
-
   z-index: -1;
 }
 
@@ -742,6 +741,108 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   height: 2rem;
 }
 
+.comment-form {
+  margin: 0 0 2rem;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.comment-form .row {
+  margin-top: 1rem;
+}
+
+.comment-form .foto-profile {
+  border-radius: 100%;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.comment-form .col-2 {
+  padding: 0;
+}
+
+.comment-form .nama {
+  font-weight: bold;
+  color: black;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.comment-box {
+  border-radius: 3px;
+  border: solid 1px;
+  height: 5rem;
+  width: 100%;
+}
+
+.comment-box-div {
+  padding-left: 0;
+}
+
+.submit-comment-div {
+  margin-top: 1rem;
+  ;
+  text-align: right;
+}
+
+.reply-comment-form {
+  padding: 0;
+  text-align: center;
+}
+
+.reply-comment-hidden {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.reply-comment-active {
+  max-height: 100%;
+  padding: 2rem 0 0 0;
+}
+
+.div-notifikasi .reply-comment-hidden .col-1 {
+  padding: 0;
+  margin: auto;
+}
+
+.div-notifikasi .reply-comment-hidden .foto-profile {
+  border-radius: 100%;
+  width: 125%;
+  height: auto;
+  margin: 0;
+}
+
+.reply-comment-box-div {
+  padding-left: 1.25rem;
+}
+
+.reply-comment-box {
+  width: 100%;
+  border-radius: 3px;
+  border: solid 1px;
+}
+
+.send-icon {
+  font-size: 1.5rem;
+}
+
+.reply-others-div {
+  padding: 0.5rem 0 0 0;
+}
+
+.div-notifikasi .reply-comment-hidden .col-1.reply-others-pic-div {
+  margin: auto 0;
+}
+
+.reply-others-name-div {
+  padding-left: 1.25rem;
+}
+
+.reply-others-text {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
 /* Akhir Data Pribadi */
 /* Daftar Proyek */
 .daftar-proyek {
@@ -876,8 +977,6 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   padding: 0;
 }
 
-.div-notifikasi {}
-
 .div-notifikasi .col-2 {
   padding: 0;
 }
@@ -915,7 +1014,6 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   top: 0;
   right: 0;
   font-size: 0.6rem;
-  margin-bottom: 0;
 }
 
 .div-notifikasi .keterangan {
@@ -1031,5 +1129,5 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 .log-in-admin-div-child {
-width: 30%;
+  width: 30%;
 }

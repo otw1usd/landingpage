@@ -123,7 +123,7 @@
             <div class="row">
               <div class="div-data-proyek col-3">
                 <p class="data-proyek">Rentang: 16 Oktober 2015 - Masih Berlangsung</p>
-                <p class="data-proyek">Lokasi:  <%= project.location %></p>
+                <p class="data-proyek">Lokasi: <%= project.location %></p>
                 <p class="data-proyek">Luas: 80 Hektar</p>
               </div>
               <div class="div-data-proyek col-3">
@@ -153,40 +153,96 @@
       <div class="div-div-notifikasi col-4">
         <h5>Notifikasi Terbaru</h5>
         <!-- Template Notifikasi -->
-        <form class="sign-up-form" action="/projectcomment" method="POST">
+        <form class="comment-form bg-light" action="/projectcomment" method="POST">
           <p class="nama">Beri Komentar</p>
-          <input type="hidden" name="username" value="<%= user.username %>" required/>
-          <input type="hidden" name="jobs" value="<%= jobs %>" required/>
-          <input type="hidden" name="company" value="<%= company %>" required/>
-          <input type="hidden" name="projectid" value="<%= project._id %>" required/>
-          <input class="sign-up-box" type="text" name="isicomment" placeholder="komentar" id="isicomment" value="<%= typeof isicomment != 'undefined' ? isicomment : '' %>" required/>
-          
-          <button type="submit" class="btn btn-dark">Komentar</button>
-          <%- include('./partials/messages.ejs') %>
-        </form>
-        <!-- Template Notifikasi sampai sini -->
-        <% commentprojects.reverse().forEach((commentproject) => { %>
-          <div class="div-notifikasi alert bg-light row">
+          <div class="row">
             <div class="col-2">
               <img class="foto-profile" src="../img/profile.png" alt="">
             </div>
             <div class="col-10">
-              <a class="nama" href=""><%= commentproject.username %> </a>
-              <p class="jabatan">Jabatan: <%= commentproject.jobs %></p>
-              <p class="perusahaan">Perusahaan: <%= commentproject.company %></p>
-              <p class="timestamp"><%= commentproject.tanggal %>
-                <form method="POST" action="/comment?_method=DELETE">
-                  <input type="hidden" name="projectid" value="<%= project._id %>">
-                  <input type="hidden" name="commentprojectid" value="<%= commentproject._id %>">
-                  <button type="submit" class="btn btn-danger badge" >Delete Comment</button>
-                </form>
-                <button type="button" class="btn btn-warning btn-sm reply">Reply</button>
-              </p>
+              <p class="nama">martinamerigo</p>
+              <p>Perusahaan: KCIC</p>
+              <input type="hidden" name="username" value="<%= user.username %>" required />
+              <input type="hidden" name="jobs" value="<%= jobs %>" required />
+              <input type="hidden" name="company" value="<%= company %>" required />
+              <input type="hidden" name="projectid" value="<%= project._id %>" required />
+
             </div>
-            <p class="keterangan"><%= commentproject.isicomment %> </p>
+            <div class="comment-box-div">
+              <input class="comment-box" type="text" name="isicomment" placeholder="Komentar" id="isicomment" value="<%= typeof isicomment != 'undefined' ? isicomment : '' %>" required />
+            </div>
+            <div class="submit-comment-div">
+              <button type="submit" class="btn btn-dark btn-sm">Komentar</button>
+            </div>
+            <%- include('./partials/messages.ejs') %>
           </div>
-          <!-- Template Notifikasi sampai sini -->
-          <% }) %>
+        </form>
+        <!-- Template Notifikasi sampai sini -->
+        <% commentprojects.reverse().forEach((commentproject) => { %>
+        <div class="div-notifikasi alert bg-light row">
+          <div class="col-2">
+            <img class="foto-profile" src="../img/profile.png" alt="">
+          </div>
+          <div class="col-10">
+            <a class="nama" href=""><%= commentproject.username %> </a>
+            <p class="jabatan">Jabatan: <%= commentproject.jobs %></p>
+            <p class="perusahaan">Perusahaan: <%= commentproject.company %></p>
+            <p class="timestamp"><%= commentproject.tanggal %>
+
+
+          </div>
+          <p class="keterangan"><%= commentproject.isicomment %> </p>
+          <form class="reply-comment-form" method="POST" action="/comment?_method=DELETE">
+            <input type="hidden" name="projectid" value="<%= project._id %>">
+            <input type="hidden" name="commentprojectid" value="<%= commentproject._id %>">
+            <button type="button" class="btn btn-success btn-sm reply col-3">Mark as Done</button>
+            <button type="button" class="btn btn-warning btn-sm reply col-3 toggle-comment-button">Comment</button>
+            <button type="submit" class="btn btn-danger btn-sm reply col-4">Delete Comment</button>
+          </form>
+
+          <!-- Toggle ini bisa lebih rapih pake bootstrap, tapi harus dimasukin marker di id bagian yang mau di collapse biar ada kode unik -->
+
+
+
+          <div class="reply-comment-hidden">
+            <div class="row">
+
+
+              <div class="col-1">
+                <img class="foto-profile" src="../img/profile.png" alt="">
+              </div>
+              <div class="col-10 reply-comment-box-div">
+                <input class="reply-comment-box" type="text" name="komentarbalasan" Placeholder="Komentar">
+              </div>
+              <div class="col-1">
+                <i class="fas fa-paper-plane send-icon"></i>
+              </div>
+            </div>
+
+            <div class="row reply-others-div">
+              <div class="col-1 reply-others-pic-div">
+                <img class="foto-profile" src="../img/profile.png" alt="">
+              </div>
+              <div class="col-10 reply-others-name-div">
+                <p class="nama">martinamerigo</p>
+                <p class="perusahaan">Perusahaan: KCIC</p>
+              </div>
+              <p class="reply-others-text">bapak kalo ngomong mulut dijaga ya, kok mulut kek tong sampuy.</p>
+            </div>
+            <div class="row reply-others-div">
+              <div class="col-1 reply-others-pic-div">
+                <img class="foto-profile" src="../img/profile.png" alt="">
+              </div>
+              <div class="col-10 reply-others-name-div">
+                <p class="nama">martinamerigo</p>
+                <p class="perusahaan">Perusahaan: KCIC</p>
+              </div>
+              <p class="reply-others-text">lah, kamu itu ya, mulut mulut siapa, tong sampuy nyaring bunyinya. ngomong ape si.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Template Notifikasi sampai sini -->
+        <% }) %>
 
       </div>
 
