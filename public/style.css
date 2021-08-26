@@ -60,6 +60,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 #logo-amati {
   font-family: 'Archivo', sans-serif;
   font-size: 2rem;
+  margin-left: 3rem;
 }
 
 .dropdown-menu {
@@ -114,14 +115,15 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 .profil {
-  padding: 0.5rem;
-  padding-left: 5rem;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 0.5rem 3rem;
 }
 
 .profil .profile {
   margin: 0;
   border: 0;
-  padding-top: 0;
+  padding-top: 0.5rem;
   padding-bottom: 0;
   right: 0;
 }
@@ -656,15 +658,20 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 /* Data Pribadi */
-.div-data-pribadi {
+.div-beranda {
   position: absolute;
   left: 20.5%;
   top: 7.5rem;
+
+  z-index: -1;
+}
+
+.div-data-pribadi {
   background-color: #fff4e7;
   border: solid 1px;
   border-radius: 1rem;
   padding: 1rem;
-  z-index: -1;
+  margin-bottom: 2rem;
 }
 
 .durasi {
@@ -792,7 +799,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   position: absolute;
   top: 0;
   right: 0;
-  width: 4rem;
+  width: 4%;
 }
 
 #link-invite {
@@ -1011,4 +1018,17 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 .register-text:hover {
   color: #ffc107;
   text-decoration: none;
+}
+
+/* Log In Admin */
+.log-in-admin-div {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.log-in-admin-div-child {
+width: 30%;
 }

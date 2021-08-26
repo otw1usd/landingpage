@@ -1,17 +1,38 @@
- 
+ </header><!-- End Header -->
 
-</header><!-- End Header -->
-<%- include('./partials/messages.ejs') %>
-<form method="post" action="/loginadmin">
-  <div class="mb-3">
-    <label for="username" class="form-label">Username</label>
-    <input type="text" class="form-control" id="username" name="username" required />
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password" name="password" required />
-  </div>
-  <button type="submit" class="btn btn-primary">Login</button>
-</form>
+ <div class="log-in-admin-div">
+   <div class="log-in-admin-div-child">
 
-    
+
+     <%- include('./partials/messages.ejs') %>
+     <!-- <form method="post" action="/loginadmin">
+     <div class="mb-3">
+       <label for="username" class="form-label">Username</label>
+       <input type="text" class="form-control" id="username" name="username" required />
+     </div>
+     <div class="mb-3">
+       <label for="password" class="form-label">Password</label>
+       <input type="password" class="form-control" id="password" name="password" required />
+     </div>
+     <button type="submit" class="btn btn-primary">Log In</button>
+   </form> -->
+
+     <form action="/loginadmin" method="post">
+       <h1 class="h3 mb-3 fw-normal">Log In for Administrator</h1>
+
+       <div class="form-floating">
+         <input type="text" class="form-control login-username" id="floatingInput" placeholder="Username" name="username" required>
+         <label for="floatingInput">Username</label>
+       </div>
+
+       <div class="form-floating">
+         <input type="password" class="form-control login-password" id="floatingPassword" placeholder="Password" name="password" required>
+         <label for="floatingPassword">Password</label>
+       </div>
+
+       <button class="w-100 btn btn-lg btn-dark" type="submit">Log in</button>
+
+       <p class="mt-5 mb-3 text-muted">&copy; PT Amati Teknologi Anagata</p>
+     </form>
+   </div>
+ </div>
