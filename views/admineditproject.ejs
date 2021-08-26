@@ -1,0 +1,26 @@
+<form class="sign-up-form" action="/admin?_method=PUT" method="POST">
+  <h2 class="sign-up-heading">Edit Project</h2>
+  
+  <input type="hidden" name="_id" value="<%= project._id %>" />
+  <input type="hidden" name="oldprojectUsername" value="<%= project.oldprojectUsername || project.projectUsername  %>" />
+
+  <h3 class="sign-up-sub-heading"></h3>
+  <input class="sign-up-box" type="text" name="projectName" placeholder="Nama Project" id="projectName" value="<%= project.projectName  %>" required/>
+
+  <input class="sign-up-box" type="text" name="location" placeholder="Location" id="location" value="<%= project.location  %>" required/>
+  
+  <input class="sign-up-box" type="text" name="projectDescription" placeholder="Deskripsi Project" id="projectDescription" value="<%= project.projectDescription  %>"  required/>
+  
+  <input class="sign-up-box" type="date" name="startDate" placeholder="Waktu Mulai" id="startDate" value="<%= project.startDate  %>" required/>
+
+  <input class="sign-up-box" type="date" name="endDate" placeholder="Waktu Selesai" id="endDate" value="<%= project.endDate  %>" required/>
+
+  <input class="sign-up-box" type="text" name="projectUsername" placeholder="username project" id="projectUsername" value="<%= project.projectUsername  %>" required/>
+
+  <input class="sign-up-box" type="text" name="projectPassword" placeholder="password project" id="projectPassword" value="<%= project.projectPassword  %>" required/>
+
+  <input class="sign-up-box" type="text" name="username" placeholder="username owner" id="username" value="<%= project.username  %>" required/>
+  
+  <button type="submit" class="btn btn-dark">Ubah Data Project</button>
+  
+</form>

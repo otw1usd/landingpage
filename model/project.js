@@ -1,59 +1,63 @@
 const mongoose = require ('mongoose');
 
 //Membuat schema
-const userschema = new mongoose.Schema({
-    fullname : {
-        type: String,
-        // required:true, //artinya harus diisi
-        //tambah validasi
-    },
-    name : {
+const projectschema = new mongoose.Schema({
+    projectName : {
         type: String,
         required:true, //artinya harus diisi
         //tambah validasi
     },
-    email : {
+    location : {
         type: String,
         required:true, //artinya harus diisi
         //tambah validasi
     },
-    company : {
+    projectDescription : {
+        type: String,
+        required:true, //artinya harus diisi
+        //tambah validasi
+    },
+    startDate : {
         type: String,
         required:true, //artinya harus diisi
         //tambah validasi
         //next level pake api pupr
     },
 
-    jobs : {
+    endDate : {
         type: String,
         // required:true, //artinya harus diisi
         //tambah validasi
         //next level pake api pupr
+    },
+    projectUsername : {
+        type: String,
+        required:true, //artinya harus diisi
+        //tambah validasi
+    },
+    projectPassword : {
+        type: String,
+        required:true, //artinya harus diisi
+        //tambah validasi
     },
     username : {
         type: String,
         required:true, //artinya harus diisi
         //tambah validasi
+        //owner username
     },
-    password : {
-        type: String,
-        required:true, //artinya harus diisi
-        //tambah validasi
-    },
-    nohp : {
-        type: String,
-        // required:true, //artinya harus diisi
-        //tambah validasi
-    },
-    date:{
-        type: Date,
-        default: Date.now
+
+    comment:{
+        username : {},
+        tanggal : {},
+        isicomment: {},
     }
+    
 
 })
 
 
-const User = mongoose.model ('user',userschema)
-console.log('Database user is connected');
+const Project = mongoose.model ('project',projectschema)
+console.log('mantap');
 
-module.exports = User;
+module.exports = Project;

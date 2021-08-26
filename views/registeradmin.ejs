@@ -1,0 +1,9 @@
+<form class="sign-up-form" action="/" method="POST">
+  <h2 class="sign-up-heading">Sign Up Now</h2>
+  <p class="sign-up-heading-text">Nikmati fitur AMATI sekarang juga!</p>
+  <h3 class="sign-up-sub-heading">Data Personal</h3>
+  <input class="sign-up-box" type="text" name="username" placeholder="Username" id="username" value="<%= typeof username != 'undefined' ? username : '' %>" required/>
+  <input class="sign-up-box" type="password" name="password" placeholder="Password" id="password" value="<%= typeof password != 'undefined' ? password : '' %>" required/>
+  <button type="submit" class="btn btn-dark">Sign Up</button>
+  <%- include('./partials/messages.ejs') %>
+</form>

@@ -7,4 +7,4 @@ mongoose.connect('mongodb+srv://martin:caa1fNJCdQsgFYS5@client-login.uojse.mongo
 
 
 
-console.log('mantapbanget');
+console.log('database connected');

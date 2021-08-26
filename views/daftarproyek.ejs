@@ -7,79 +7,41 @@
   <!-- Daftar Proyek -->
   <div class="div-daftar-proyek col-9">
     <h2>Daftar Proyek</h2>
-
-
-    <!-- List Proyek copas sini aja -->
-      <div class="daftar-proyek col-12 row">
-    <div class="col-2">
-      <img class="logo-proyek" src="img/logo-kcic.png" alt="">
-    </div>
-    <div class="div-data-proyek-besar col-10">
-      <div class="row">
-        <h4><a href="/kcic" class="nama-proyek text-dark">
-            Proyek Kereta Cepat Jakarta Bandung
-          </a></h4>
-        <a href=""><img class="col-1" id="icon-edit-data-proyek" src="img/edit.png" alt="edit"></a>
+    <h4>Hubungi <a href="/#contact">Admin AMATI</a> untuk mendaftar </h4>
+    <% listprojects.forEach((listproject) => { %>
+    <div class="daftar-proyek col-12 row">
+      <div class="col-2">
+        <img class="logo-proyek" src="img/logo-kcic.png" alt="">
       </div>
-      <div class="row">
-        <div class="div-data-proyek col-4">
-          <p class="data-proyek">Rentang: 16 Oktober 2015 - Masih Berlangsung</p>
-          <p class="data-proyek">Lokasi: Tegal Luar, Bandung</p>
-          <p class="data-proyek">Luas: 80 Hektar</p>
+      <div class="div-data-proyek-besar col-10">
+        <div class="row">
+          <h4><a href="/project/<%= listproject._id %>" class="nama-proyek text-dark">
+            <%= listproject.projectName %>
+            </a></h4>
+          <a href="/project/<%= listproject._id %>"><img class="col-1" id="icon-edit-data-proyek" src="img/edit.png" alt="edit"></a>
         </div>
-        <div class="div-data-proyek col-3">
-          <p class="data-proyek">Nilai Investasi: 86,55 Triliun Rupiah</p>
-          <p class="data-proyek">Owner: Konsorsium KCIC</p>
-          <p class="data-proyek">Konsultan: CDJO</p>
-        </div>
-        <div class="div-data-proyek col-2">
-          <p class="data-proyek">Kontraktor: PT. WIKA</p>
-          <p class="data-proyek">Anggota: 26 Orang</p>
-        </div>
-        <div class="div-data-proyek col-3">
-          <p class="data-proyek">Jabatan Anda: Staff Pengawas</p>
-          <button type="button" class="btn btn-warning btn-sm" id="notifikasi">2 Notifikasi</button>
-          <button type="button" class="btn btn-warning btn-sm" id="link-invite">Link Invite</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- List Proyek copas sampai sini -->
-  <!-- List Proyek copas sini aja -->
-  <div class="daftar-proyek col-12 row">
-    <div class="col-2">
-      <img class="logo-proyek" src="img/logo-kcic.png" alt="">
-    </div>
-    <div class="div-data-proyek-besar col-10">
-      <div class="row">
-        <h4><a href="kcic.html" class="nama-proyek text-dark">
-            Proyek Kereta Cepat Jakarta Bandung
-      </div>
-      <div class="row">
-        <div class="div-data-proyek col-4">
-          <p class="data-proyek">Rentang: 16 Oktober 2015 - Masih Berlangsung</p>
-          <p class="data-proyek">Lokasi: Tegal Luar, Bandung</p>
-          <p class="data-proyek">Luas: 80 Hektar</p>
-        </div>
-        <div class="div-data-proyek col-3">
-          <p class="data-proyek">Nilai Investasi: 86,55 Triliun Rupiah</p>
-          <p class="data-proyek">Owner: Konsorsium KCIC</p>
-          <p class="data-proyek">Konsultan: CDJO</p>
-        </div>
-        <div class="div-data-proyek col-2">
-          <p class="data-proyek">Kontraktor: PT. WIKA</p>
-          <p class="data-proyek">Anggota: 26 Orang</p>
-        </div>
-        <div class="div-data-proyek col-3">
-          <p class="data-proyek">Jabatan Anda: Staff Pengawas</p>
-          <button type="button" class="btn btn-warning btn-sm" id="notifikasi-2">2 Notifikasi</button>
-          <button type="button" class="btn btn-warning btn-sm" id="link-invite-2">Link Invite</button>
+        <div class="row">
+          <div class="div-data-proyek col-4">
+            <p class="data-proyek">Rentang: <%= listproject.startDate %> - <%= listproject.endDate %></p>
+            <p class="data-proyek">Lokasi: <%= listproject.projectLocation %></p>
+            <p class="data-proyek">Luas: 80 Hektar</p>
+          </div>
+          <div class="div-data-proyek col-3">
+            <p class="data-proyek">Nilai Investasi: 86,55 Triliun Rupiah</p>
+            <p class="data-proyek">Owner: <%= listproject.username %></p>
+            <p class="data-proyek">Konsultan: CDJO</p>
+          </div>
+          <div class="div-data-proyek col-2">
+            <p class="data-proyek">Kontraktor: PT. WIKA</p>
+            <p class="data-proyek">Anggota: 26 Orang</p>
+          </div>
+          <div class="div-data-proyek col-3">
+            <p class="data-proyek">Jabatan Anda: <%= jobs %></p>
+            <a href="/project/<%= listproject._id %>" class="btn btn-warning btn-sm"> Notifikasi</a>
+            <a href="/project/<%= listproject._id %>" class="btn btn-warning btn-sm"> Link Invite</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- List Proyek copas sampai sini -->
-
-
+    <% }) %>
   </div>

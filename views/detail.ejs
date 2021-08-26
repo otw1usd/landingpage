@@ -1,0 +1,44 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Project</th>
+        <th scope="col">Content</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Project Username</th>
+        <td><%= listproject.projectUsername %></td>
+      </tr>
+      <tr>
+        <th scope="row">Project Location</th>
+        <td><%= listproject.location %></td>
+      </tr>
+      <tr>
+        <th scope="row">Project Description</th>
+        <td><%= listproject.projectDescription %></td>
+      </tr>
+      <tr>
+        <th scope="row">Project Start</th>
+        <td><%= listproject.startDate %></td>
+      </tr>
+      <tr>
+        <th scope="row">Project End</th>
+        <td><%= listproject.endDate %></td>
+      </tr>
+      <tr>
+        <th scope="row">Owner Username</th>
+        <td><%= listproject.username %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a href="/admin/edit/<%= listproject.projectUsername %>" class ="btn btn-danger badge"> Edit Project </a>
+
+
+  <form method="POST" action="/admin?_method=DELETE">
+    <input type="hidden" name="projectUsername" value="<%= listproject.projectUsername %>">
+    <button type="submit" class="btn btn-danger badge" onclick="return confirm('yakin??')">Delete Project</button>
+  </form>
+
+  <a href ="/admin">&laquo; kembali ke layar admin</a>

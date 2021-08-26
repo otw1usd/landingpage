@@ -1,40 +1,88 @@
 const express = require ('express');
 const router = express.Router();
-// const { body, validationResult, check } = require ('express-validator');
+const { body, validationResult, check } = require ('express-validator');
+
 const passport = require('passport');
-const {ensureAuthenticated} = require('../config/auth')
+
+const {ensureAuthenticated, adminEnsureAuthenticated} = require('../config/auth')
 
 const User = require('../model/user');
+const Project = require('../model/project');
+const Admin = require('../model/admin');
 const bcrypt = require ('bcryptjs');
 
 router.get('/', (req,res) => res.render ('index'));
 router.get('/login',(req,res)=>res.render('login',{
-  layout: 'layout-login',
+    layout: 'layout-login',
 }));
-router.get('/beranda', ensureAuthenticated,(req,res)=>res.render('beranda',{
+router.get('/beranda', ensureAuthenticated,async(req,res)=>{
+    const listprojects = await Project.find({username: 'contoh'});
+    res.render('beranda',{
     name: req.user.name,
     jobs: req.user.jobs,
     company: req.user.company,
+    listprojects,
     layout: 'layout-account',
-}));
-router.get('/daftarproyek', ensureAuthenticated,(req,res)=>res.render('daftarproyek',{
+    });
+});
+
+router.get('/daftarproyek', ensureAuthenticated, async(req,res)=> {
+    console.log(req.user.username);
+    const listprojects = await Project.find({username: req.user.username});
+    res.render('daftarproyek',{
     name: req.user.name,
     jobs: req.user.jobs,
     company: req.user.company,
-    layout: 'layout-account',
+    listprojects,
+    layout: 'layout-account',  
+        });
+});
+
+router.get('/project/:oit', async (req,res,next)=>{
+    try{
+     console.log('cek:'+req.params.oit);
+    const project = await Project.findOne({_id: req.params.oit}).catch(error => { throw error});     
+     console.log(project);
+     res.render('project/project',{
+        name: req.user.name,
+        jobs: req.user.jobs,
+        company: req.user.company,
+        user: req.user,
+        project,
+        layout: 'layout-account',
+    });
+        } catch (err) {
+            next(err);
+                };  
+});
+
+//ADMIN
+router.get('/loginadmin',(req,res)=>res.render('loginadmin',{
+    layout: 'layout-login',
 }));
-router.get('/kcic', ensureAuthenticated,(req,res)=>res.render('kcic',{
-    name: req.user.name,
-    jobs: req.user.jobs,
-    company: req.user.company,
-    layout: 'layout-account',
-}));
+router.get('/registeradmin', (req,res) => res.render ('registeradmin'));
+
+router.get('/admin', adminEnsureAuthenticated, async (req,res) => {
+    const listaccounts = await Project.find();
+    res.render ('admin',{
+        listaccounts,
+    }); 
+});
+
+router.get('/admin/:projectUsername',adminEnsureAuthenticated, async (req,res) => {
+    
+    const listproject = await Project.findOne({projectUsername: req.params.projectUsername});
+    console.log(listproject);
+    res.render ('detail',{
+        listproject,
+    });
+});
 
 //register handle
 router.post('/', (req,res)=>{
     const { name, username, email, password, nohp, company, jobs } = req.body;
     let errors = [];
-
+    
     //check pass length
     if(password.length<8){
         errors.push({msg:'Password should be at least 8 characters!!!'});
@@ -100,10 +148,10 @@ router.post('/', (req,res)=>{
 
 //Login handle
 router.post('/login',(req,res,next)=>{
-    passport.authenticate('local',{
+    passport.authenticate('local-client',{
      successRedirect: '/beranda',
      failureRedirect: '/login',
-     failureFlash: true,
+     failureFlash: true,   
     }) (req, res, next);
 });
 
@@ -113,6 +161,164 @@ router.get('/logout',(req,res)=>{
     req.flash('success_msg', 'You are logged out');
     res.redirect('/login');
 });
+
+//ADMIN
+//register project handle
+router.post('/admin', (req,res)=>{
+    const { projectName, location, projectDescription, startDate, endDate, projectUsername, projectPassword, username } = req.body;
+    let errors = [];
+
+        //validation passed
+        Project.findOne({ projectUsername: projectUsername })
+        .then(project => {
+            if(project) {
+                // Project exists
+                req.flash('error_msg','Project is Already Registered');
+                res.render('admin',{
+                    projectName, location, projectDescription, startDate, endDate, projectUsername, projectPassword, username 
+                });
+            } else {
+                const newProject = new Project({
+                    projectName, location, projectDescription, startDate, endDate, projectUsername, projectPassword, username 
+                });
+                
+                newProject.save()
+                    .then(project=>{
+                        req.flash('success_msg','Project are now registered');
+                        res.redirect('/admin');
+                    });
+            }
+        });
+});
+
+
+//register handle
+router.post('/registeradmin', (req,res)=>{
+    const {username, password } = req.body;
+    let errors = [];
+    
+    //check pass length
+    if(password.length<8){
+        errors.push({msg:'Password should be at least 8 characters!!!'});
+    }
+
+    if (errors.length>0){
+        res.render('',{
+            errors,
+            username,
+            password
+        });
+        console.log(errors);
+    } else {
+        //validation passed
+        Admin.findOne({ username: username })
+        .then(user => {
+            if(user) {
+                // User exists
+                errors.push({msg: "username is already registered"});
+                res.render('',{
+                    errors,
+                    username,
+                    password
+                });
+            } else {
+                const newAdmin = new Admin({
+                    username,
+                    password
+
+                });
+                //hash password
+                bcrypt.genSalt(10, (err, salt)=> bcrypt.hash(newAdmin.password, salt,(err, hash)=>{
+                    if(err) throw err;
+                    //set password to ahshed
+                    newAdmin.password = hash;
+                    //save user
+                    newAdmin.save()
+                    .then(admin=>{
+                        req.flash('success_msg','You are now registered and can log in');
+                        res.redirect('/loginadmin');
+                    })
+                    .catch(err=>console.log(err));
+                }))
+            }
+        });
+    }
+});
+
+//Admin Login handle
+router.post('/loginadmin',(req,res,next)=>{
+    passport.authenticate('local-admin',{
+     successRedirect: '/admin',
+     failureRedirect: '/loginadmin',
+     failureFlash: true,   
+    }) (req, res, next);
+});
+
+//Admin logout handle
+router.get('/logoutadmin',(req,res)=>{
+    req.logout();
+    req.flash('success_msg', 'You are logged out');
+    res.redirect('/loginadmin');
+});
+
+//delete project
+router.delete('/admin', async (req,res)=>{
+    await Project.deleteOne({projectUsername: req.body.projectUsername})
+    .then((result)=>{
+    req.flash('success_msg','Project berhasil dihapus!');
+    res.redirect('/admin');
+    });
+});
+
+//edit project
+router.get('/admin/edit/:projectUsername', async (req,res)=>{
+    console.log(req.params.projectUsername);   
+    const project = await Project.findOne({projectUsername: req.params.projectUsername});
+    res.render('admineditproject',{
+        project,
+    });
+});
+
+
+router.put('/admin',[
+    body('projectUsername').custom(async(value,{ req })=>{
+        const duplikat = await Project.findOne({projectUsername: value});
+        if(value!== req.body.oldprojectUsername && duplikat){
+            throw new Error ('Nama kontak sudah digunakan');
+        }
+        return true;
+    }),
+],
+(req,res)=>{
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        res.render('admineditproject',{
+            errors:errors.array(),
+            project:req.body,
+        }); 
+    } else{
+        Project.updateOne({ _id: req.body._id },
+            {
+                $set : {
+                    projectName : req.body.projectName,
+                    location : req.body.location,
+                    projectDescription : req.body.projectDescription,
+                    startDate : req.body.startDate,
+                    endDate : req.body.endDate,
+                    username : req.body.username,
+                    projectUsername : req.body.projectUsername,
+                    projectPassword : req.body.projectPassword,
+                },
+            }
+        ).then((result)=>{
+        req.flash('success_msg','Data Project berhasil diubah!');
+        res.redirect('/admin');
+        });
+    };
+});
+
+
+
 
 
 module.exports = router;

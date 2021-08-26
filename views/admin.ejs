@@ -1,0 +1,50 @@
+<form class="sign-up-form" action="/admin" method="POST">
+  <h2 class="sign-up-heading">Edit Project</h2>
+  <%- include('./partials/messages.ejs') %>
+  <h3 class="sign-up-sub-heading"></h3>
+  <input class="sign-up-box" type="text" name="projectName" placeholder="Nama Project" id="projectName" value="<%= typeof projectName != 'undefined' ? projectName : '' %>" required/>
+
+  <input class="sign-up-box" type="text" name="location" placeholder="Location" id="location" value="<%= typeof location != 'undefined' ? location : '' %>" required/>
+  
+  <input class="sign-up-box" type="text" name="projectDescription" placeholder="Deskripsi Project" id="projectDescription" value="<%= typeof projectDescription != 'undefined' ? projectDescription : '' %>" required/>
+  
+  <input class="sign-up-box" type="date" name="startDate" placeholder="Waktu Mulai" id="startDate" value="<%= typeof startDate != 'undefined' ? startDate : '' %>" required/>
+
+  <input class="sign-up-box" type="date" name="endDate" placeholder="Waktu Selesai" id="endDate" value="<%= typeof endDate != 'undefined' ? endDate : '' %>" required/>
+
+  <input class="sign-up-box" type="text" name="projectUsername" placeholder="username project" id="projectUsername" value="<%= typeof projectUsername != 'undefined' ? projectUsername : '' %>" required/>
+
+  <input class="sign-up-box" type="text" name="projectPassword" placeholder="password project" id="projectPassword" value="<%= typeof projectPassword != 'undefined' ? projectPassword : '' %>" required/>
+
+  <input class="sign-up-box" type="text" name="username" placeholder="username owner" id="username" value="<%= typeof username != 'undefined' ? username : '' %>" required/>
+  
+  <button type="submit" class="btn btn-dark">Register</button>
+  
+</form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">projectUsername</th>
+      <th scope="col">Owner Username</th>
+      <th scope="col">Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% listaccounts.forEach((listaccount,i) => { i++ %>
+      <tr>
+        <th scope="row"><%= i++ %></th>
+        <td><%= listaccount.projectUsername %> </td>
+        <td><%= listaccount.username %></td>
+        <td>
+          <a href="/admin/<%= listaccount.projectUsername %>" class="btn btn-success"> detail</a>
+        </td>
+      </tr>
+    <% }) %>
+    
+  </tbody>
+</table>
+
+<a href="/logoutadmin" class="btn btn-success"> logout</a>
+

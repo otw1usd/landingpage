@@ -7,11 +7,11 @@
         <h5>Anda di Proyek Ini</h5>
         <div class="row">
           <div class="col-9 div-ringkas">
-            <p>Jabatan: Owner</p>
+            <p>Jabatan: <%= jobs %>></p>
             <p>Perusahaan: KCIC</p>
           </div>
           <div class="div-logo col-3">
-            <img class="logo" src="img/logo-kcic.png" alt="">
+            <img class="logo" src="../img/logo-kcic.png" alt="">
           </div>
         </div>
       </div>
@@ -20,7 +20,7 @@
     <!-- Menu kiri -->
     <div class="row">
       <div class="col-12">
-        <a class="btn btn-outline-warning button-info-container row active" href="kcic.html">
+        <a class="btn btn-outline-warning button-info-container row active" href="/project/<%= project._id %>">
           <div class="col-1 logo">
             <i class="fas fa-file-alt"></i>
           </div>
@@ -28,7 +28,7 @@
             Informasi Proyek
           </div>
         </a>
-        <a class="btn btn-outline-warning button-info-container row" href="kcic.html">
+        <a class="btn btn-outline-warning button-info-container row" href="/project/<%= project._id %>">
           <div class="col-1 logo">
             <i class="fas fa-database"></i>
           </div>
@@ -36,7 +36,7 @@
             Database
           </div>
         </a>
-        <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
+        <a class="btn btn-outline-warning button-info-container row disabled" href="/project/<%= project._id %>">
           <div class="col-1 logo">
             <i class="fas fa-hard-hat"></i>
           </div>
@@ -44,7 +44,7 @@
             Cari Pekerja
           </div>
         </a>
-        <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
+        <a class="btn btn-outline-warning button-info-container row disabled" href="/project/<%= project._id %>">
           <div class="col-1 logo">
             <i class="fas fa-truck-pickup"></i>
           </div>
@@ -52,7 +52,7 @@
             Beli/Sewa Alat Berat
           </div>
         </a>
-        <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
+        <a class="btn btn-outline-warning button-info-container row disabled" href="/project/<%= project._id %>">
           <div class="col-1 logo">
             <i class="fas fa-tools"></i>
           </div>
@@ -60,7 +60,7 @@
             Beli Material
           </div>
         </a>
-        <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
+        <a class="btn btn-outline-warning button-info-container row disabled" href="/project/<%= project._id %>">
           <div class="col-1 logo">
             <i class="fas fa-newspaper"></i>
           </div>
@@ -68,7 +68,7 @@
             Berita Terkait
           </div>
         </a>
-        <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
+        <a class="btn btn-outline-warning button-info-container row disabled" href="/project/<%= project._id %>">
           <div class="col-1 logo">
             <i class="fas fa-file-signature"></i>
           </div>
@@ -76,7 +76,7 @@
             Tender
           </div>
         </a>
-        <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
+        <a class="btn btn-outline-warning button-info-container row disabled" href="/project/<%= project._id %>">
           <div class="col-1 logo">
             <i class="fas fa-briefcase-medical"></i>
           </div>
@@ -84,7 +84,7 @@
             Cek HSE
           </div>
         </a>
-        <a class="btn btn-outline-warning button-info-container row disabled" href="kcic.html">
+        <a class="btn btn-outline-warning button-info-container row disabled" href="/project/<%= project._id %>">
           <div class="col-1 logo">
             <i class="fas fa-toolbox"></i>
           </div>
@@ -113,7 +113,7 @@
       <!-- Div Peta -->
       <div class="div-peta col-7">
         <h5>AMATI kondisi Proyek</h5>
-        <a href=""><img id="peta" src="img/peta.png" alt=""></a>
+        <a href=""><img id="peta" src="../img/peta.png" alt=""></a>
 
         <div class="daftar-proyek col-12">
           <div class="div-data-proyek-besar">
@@ -123,7 +123,7 @@
             <div class="row">
               <div class="div-data-proyek col-3">
                 <p class="data-proyek">Rentang: 16 Oktober 2015 - Masih Berlangsung</p>
-                <p class="data-proyek">Lokasi: Tegal Luar, Bandung</p>
+                <p class="data-proyek">Lokasi: <%= project.projectLocation %></p>
                 <p class="data-proyek">Luas: 80 Hektar</p>
               </div>
               <div class="div-data-proyek col-3">
@@ -136,7 +136,7 @@
                 <p class="data-proyek">Anggota: 26 Orang</p>
               </div>
               <div class="div-data-proyek col-3">
-                <p class="data-proyek">Jabatan Anda: Staff Pengawas</p>
+                <p class="data-proyek">Jabatan Anda: <%= jobs %> </p>
                 <button type="button" class="btn btn-warning btn-sm" id="link-invite">Link Invite</button>
               </div>
             </div>
@@ -155,7 +155,7 @@
         <!-- Template Notifikasi -->
         <div class="div-notifikasi alert bg-light row">
           <div class="col-2">
-            <img class="foto-profile" src="img/profile.png" alt="">
+            <img class="foto-profile" src="../img/profile.png" alt="">
           </div>
           <div class="col-10">
             <a class="nama" href="">Henry Gunawan</a>
@@ -172,7 +172,7 @@
         <!-- Template Notifikasi -->
         <div class="div-notifikasi alert bg-light row">
           <div class="col-2">
-            <img class="foto-profile" src="img/profile.png" alt="">
+            <img class="foto-profile" src="../img/profile.png" alt="">
           </div>
           <div class="col-10">
             <a class="nama" href="">Henry Gunawan</a>
@@ -189,7 +189,7 @@
         <!-- Template Notifikasi -->
         <div class="div-notifikasi alert bg-light row">
           <div class="col-2">
-            <img class="foto-profile" src="img/profile.png" alt="">
+            <img class="foto-profile" src="../img/profile.png" alt="">
           </div>
           <div class="col-10">
             <a class="nama" href="">Henry Gunawan</a>
@@ -206,7 +206,7 @@
         <!-- Template Notifikasi -->
         <div class="div-notifikasi alert bg-light row">
           <div class="col-2">
-            <img class="foto-profile" src="img/profile.png" alt="">
+            <img class="foto-profile" src="../img/profile.png" alt="">
           </div>
           <div class="col-10">
             <a class="nama" href="">Henry Gunawan</a>
@@ -223,7 +223,7 @@
         <!-- Template Notifikasi -->
         <div class="div-notifikasi alert bg-light row">
           <div class="col-2">
-            <img class="foto-profile" src="img/profile.png" alt="">
+            <img class="foto-profile" src="../img/profile.png" alt="">
           </div>
           <div class="col-10">
             <a class="nama" href="">Henry Gunawan</a>
