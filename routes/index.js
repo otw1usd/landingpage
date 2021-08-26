@@ -47,8 +47,10 @@ router.get('/daftarproyek', ensureAuthenticated, async(req,res)=> {
 router.get('/project/:oit', ensureAuthenticated, async(req,res,next)=>{
     try{
      console.log('cek:'+req.params.oit);
+
      const commentprojects = await Comment.find({projectid: req.params.oit});
      const project = await Project.findOne({_id: req.params.oit}).catch(error => { throw error});     
+
      console.log(project);
      res.render('project',{
         name: req.user.name,
@@ -332,6 +334,8 @@ router.put('/admin',[
 //project
 router.get('/projectindex',ensureAuthenticated,(req,res)=>res.render('projectindex',{
     layout: 'layout-project',
+    name: req.user.name,
+    jobs: req.user.jobs,
 }));
 
 // submit comment handle

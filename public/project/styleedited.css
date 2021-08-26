@@ -16,61 +16,145 @@ h3, h6 {
 }
 
 /* Navigation Bar */
+/* Navigaton Bar */
+#logo-amati {
+  font-family: 'Archivo', sans-serif;
+  font-size: 2rem;
+  margin-left: 3rem;
+}
+
+.dropdown-menu {
+  left: -1.25rem;
+}
+
+.dropdown-item:hover {
+  background-color: orange;
+}
+
+.icon {
+  position: static;
+  height: 2rem;
+  text-align: center;
+}
+
 .navbar {
   position: fixed;
-  height: 4rem;
   left: 0;
   right: 0;
-  z-index: 15;
-}
-
-.navbar-brand {
-  margin-left: 1rem;
-  padding-top: 0;
-}
-
-.logo-proyek {
-  position: fixed;
-  height: 4rem;
-  left: 37%;
-}
-
-.nama-proyek {
+  height: 3.5rem;
   padding: 0;
-  top: 0;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
+  z-index: 9999;
 }
 
-.userid {
-  position: fixed;
-  right: 10%;
+.navbar-collapse.show .navbar-nav {
+  top: 3.4rem;
 }
 
-.customize {
-  position: fixed;
-  right: 1%;
+.navbar-collapse.collapsing .navbar-nav {
+  top: 3.4rem;
 }
 
-.logo-kcic {
-  margin: auto;
-  height: 4rem;
-  margin-right: 1rem;
+.navbar-nav {
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  background-color: #ffc107;
 }
 
-.logo-amati {
-  height: 1.2rem;
+.navbar-nav .dropdown-menu {
+  position: absolute;
+}
+
+.nav-pills .nav-link.active {
+  background-color: orange;
+}
+
+.posisi-page {
+  position: static;
+  left: 10%;
+}
+
+.profil {
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 0.5rem 3rem;
+}
+
+.profil .profile {
+  margin: 0;
+  border: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0;
+  right: 0;
+}
+
+.nav-log-in-btn {
+  border-radius: 20px;
+  height: 75%;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+.nav-log-in-text {
+  color: #ffc107;
+  padding: 0 1.5rem;
+}
+
+.nav-log-in-text:hover {
+  color: #ffc107;
 }
 
 /* User Tab (seluruh isi panel di bagian kiri) */
-.infocontainer {
+/* .infocontainer {
   position: fixed;
   z-index: 10;
   border-right: solid 1px;
   top: 4rem;
   bottom: 0;
   overflow-x: hidden;
+  color: #fff;
+} */
+
+.space {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.info-container-ringkas {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  text-align: left;
+  background-color: #ffeaaa;
+}
+
+.info-container-ringkas .div-logo {
+  padding: 0;
+}
+
+.info-container-ringkas .div-ringkas {
+  padding: 0;
+}
+
+.info-container-ringkas .logo {
+  width: 100%;
+  margin: auto;
+}
+
+.info-container-ringkas p {
+  margin: 0;
+  font-size: 0.75rem;
+}
+
+.info-container {
+  position: fixed;
+  top: 3.5rem;
+  bottom: 0;
+  z-index: 1;
+  overflow-y: scroll;
+}
+
+.fitur-div {
+  color: #ffc107;
 }
 
 .blinking {
@@ -83,7 +167,7 @@ h3, h6 {
   }
 
   49% {
-    color: #c10060;
+    color: #ffc107;
   }
 
   60% {
@@ -91,7 +175,7 @@ h3, h6 {
   }
 
   99% {
-    color: #c10060;
+    color: #ffc107;
   }
 
   100% {
@@ -104,6 +188,7 @@ h3, h6 {
   border-top: solid 1px;
   border-bottom: solid 1px;
   margin-bottom: 0;
+  margin-top: 1rem;
 }
 
 .row {
@@ -143,36 +228,7 @@ h3, h6 {
   font-size: 0.8rem;
 }
 
-/*
-            .button5: hover{
-                background-color: #c10060;
-                color: #c10060;
-
-            }*/
-/* .button6 {
-   position: absolute;
-   left: 20px;
-   top: 555px;
-   width: 100px;
-   height: 30px;
-   cursor: pointer;
-   z-index: 2;
-   font-size: 10px;
- }
-
- .button8 {
-   position: absolute;
-   left: 20px;
-   top: 635px;
-   width: 100px;
-   height: 30px;
-   cursor: pointer;
-   z-index: 2;
- } */
-
-
 /* View Tab */
-
 #map {
   position: fixed !important;
   top: 4rem;
@@ -202,7 +258,7 @@ h3, h6 {
   height: 12.5rem;
 }
 
- .popup {
+.popup {
   visibility: hidden;
   display: inline-block;
   cursor: pointer;
