@@ -5,7 +5,7 @@
 
    <nav id="navigation-bar" class="navbar navbar-expand-lg navbar-light bg-warning">
 
-     <a class="navbar-brand col-1" id="logo-amati" href="/">AMATI</a>
+     <a class="navbar-brand" id="logo-amati" href="/">AMATI</a>
 
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
        <span class="navbar-toggler-icon"></span>
@@ -248,24 +248,24 @@
            </div>
 
            <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-             <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+             <form action="mailto:support@amati.co" method="get" role="form" class="php-email-form">
                <div class="row">
                  <div class="form-group col-md-6 contact-name-div">
-                   <label for="name">Your Name</label>
-                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                   <label for="contact-us-name">Your Name</label>
+                   <input type="text" name="name" class="form-control" id="contact-us-name" placeholder="Your Name" required>
                  </div>
                  <div class="form-group col-md-6 mt-3 mt-md-0 contact-email-div">
-                   <label for="name">Your Email</label>
-                   <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                   <label for="contact-us-email">Your Email</label>
+                   <input type="email" class="form-control" name="contact-us-email" placeholder="Your Email" required>
                  </div>
                </div>
                <div class="form-group mt-3">
-                 <label for="name">Subject</label>
-                 <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                 <label for="contact-us-subject">Subject</label>
+                 <input type="text" class="form-control" name="contact-us-subject" placeholder="Subject" required>
                </div>
                <div class="form-group mt-3">
-                 <label for="name">Message</label>
-                 <textarea class="form-control" name="message" rows="10" required></textarea>
+                 <label for="contact-us-message">Message</label>
+                 <textarea class="form-control" name="contact-us-message" rows="10" required></textarea>
                </div>
                <div class="text-center"><button type="submit">Send Message</button></div>
              </form>

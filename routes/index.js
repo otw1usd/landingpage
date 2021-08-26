@@ -1,3 +1,5 @@
+//jshint esversion:8
+
 const express = require ('express');
 const router = express.Router();
 const { body, validationResult, check } = require ('express-validator');
@@ -6,6 +8,8 @@ const passport = require('passport');
 
 const { ensureAuthenticated } = require('../config/auth')
 const { adminEnsureAuthenticated } = require('../config/adminauth')
+
+
 
 const User = require('../model/user');
 const Project = require('../model/project');
@@ -35,7 +39,7 @@ router.get('/daftarproyek', ensureAuthenticated, async(req,res)=> {
     jobs: req.user.jobs,
     company: req.user.company,
     listprojects,
-    layout: 'layout-account',  
+    layout: 'layout-account',
         });
 });
 
@@ -43,6 +47,8 @@ router.get('/project/:oit', ensureAuthenticated,async (req,res,next)=>{
     try{
      console.log('cek:'+req.params.oit);
      const project = await Project.findOne({_id: req.params.oit}).catch(error => { throw error});     
+
+
      console.log(project);
      res.render('project',{
         name: req.user.name,
@@ -54,7 +60,7 @@ router.get('/project/:oit', ensureAuthenticated,async (req,res,next)=>{
     });
         } catch (err) {
             next(err);
-                };  
+                }
 });
 
 //ADMIN
@@ -68,11 +74,12 @@ router.get('/admin', adminEnsureAuthenticated, async (req,res) => {
     console.log('tesuseradmin:'+req.user);
     res.render ('admin',{
         listaccounts,
-    }); 
+        layout: 'layout-login',
+    });
 });
 
 router.get('/admin/:projectUsername',adminEnsureAuthenticated, async (req,res) => {
-    
+
     const listproject = await Project.findOne({projectUsername: req.params.projectUsername});
     console.log(listproject);
     res.render ('detail',{
@@ -84,7 +91,7 @@ router.get('/admin/:projectUsername',adminEnsureAuthenticated, async (req,res) =
 router.post('/', (req,res)=>{
     const { name, username, email, password, nohp, company, jobs } = req.body;
     let errors = [];
-    
+
     //check pass length
     if(password.length<8){
         errors.push({msg:'Password should be at least 8 characters!!!'});
@@ -142,7 +149,7 @@ router.post('/', (req,res)=>{
                         res.redirect('/login');
                     })
                     .catch(err=>console.log(err));
-                }))
+                }));
             }
         });
     }
@@ -153,7 +160,7 @@ router.post('/login',(req,res,next)=>{
     passport.authenticate('local-client',{
      successRedirect: '/beranda',
      failureRedirect: '/login',
-     failureFlash: true,   
+     failureFlash: true,
     }) (req, res, next);
 });
 
@@ -177,13 +184,13 @@ router.post('/admin', (req,res)=>{
                 // Project exists
                 req.flash('error_msg','Project is Already Registered');
                 res.render('admin',{
-                    projectName, location, projectDescription, startDate, endDate, projectUsername, projectPassword, username 
+                    projectName, location, projectDescription, startDate, endDate, projectUsername, projectPassword, username
                 });
             } else {
                 const newProject = new Project({
-                    projectName, location, projectDescription, startDate, endDate, projectUsername, projectPassword, username 
+                    projectName, location, projectDescription, startDate, endDate, projectUsername, projectPassword, username
                 });
-                
+
                 newProject.save()
                     .then(project=>{
                         req.flash('success_msg','Project are now registered');
@@ -198,7 +205,7 @@ router.post('/admin', (req,res)=>{
 router.post('/registeradmin', (req,res)=>{
     const {username, password } = req.body;
     let errors = [];
-    
+
     //check pass length
     if(password.length<8){
         errors.push({msg:'Password should be at least 8 characters!!!'});
@@ -241,7 +248,7 @@ router.post('/registeradmin', (req,res)=>{
                         res.redirect('/loginadmin');
                     })
                     .catch(err=>console.log(err));
-                }))
+                }));
             }
         });
     }
@@ -252,7 +259,7 @@ router.post('/loginadmin',(req,res,next)=>{
     passport.authenticate('local-admin',{
      successRedirect: '/admin',
      failureRedirect: '/loginadmin',
-     failureFlash: true,   
+     failureFlash: true,
     }) (req, res, next);
 });
 
@@ -274,7 +281,7 @@ router.delete('/admin', async (req,res)=>{
 
 //edit project
 router.get('/admin/edit/:projectUsername', async (req,res)=>{
-    console.log(req.params.projectUsername);   
+    console.log(req.params.projectUsername);
     const project = await Project.findOne({projectUsername: req.params.projectUsername});
     res.render('admineditproject',{
         project,
@@ -297,7 +304,7 @@ router.put('/admin',[
         res.render('admineditproject',{
             errors:errors.array(),
             project:req.body,
-        }); 
+        });
     } else{
         Project.updateOne({ _id: req.body._id },
             {
@@ -316,7 +323,7 @@ router.put('/admin',[
         req.flash('success_msg','Data Project berhasil diubah!');
         res.redirect('/admin');
         });
-    };
+    }
 });
 
 
