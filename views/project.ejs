@@ -7,8 +7,8 @@
         <h5>Anda di Proyek Ini</h5>
         <div class="row">
           <div class="col-9 div-ringkas">
-            <p>Jabatan: <%= jobs %>></p>
-            <p>Perusahaan: KCIC</p>
+            <p>Jabatan: <%= jobs %> </p>
+            <p>Perusahaan: <%= company %></p>
           </div>
           <div class="div-logo col-3">
             <img class="logo" src="../img/logo-kcic.png" alt="">
@@ -102,11 +102,11 @@
     <h2>Tahap: Konstruksi</h2>
     <h6>Progress Total</h6>
     <div class="progress">
-      <div class="progress-bar bg-dark" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+      <div class="progress-bar bg-dark" role="progressbar" style="width: <%= project.progrestotal %>%;" aria-valuenow="<%= project.progrestotal %>" aria-valuemin="0" aria-valuemax="100"><%= project.progrestotal %> %</div>
     </div>
     <h6>Pengeluaran Total</h6>
     <div class="progress">
-      <div class="progress-bar bg-dark" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
+      <div class="progress-bar bg-dark" role="progressbar" style="width: 75%;" aria-valuenow="75>" aria-valuemin="0" aria-valuemax="100">dirahasiakan</div>
     </div>
 
     <div class="div-utama row">
@@ -123,7 +123,7 @@
             <div class="row">
               <div class="div-data-proyek col-3">
                 <p class="data-proyek">Rentang: 16 Oktober 2015 - Masih Berlangsung</p>
-                <p class="data-proyek">Lokasi: <%= project.projectLocation %></p>
+                <p class="data-proyek">Lokasi:  <%= project.location %></p>
                 <p class="data-proyek">Luas: 80 Hektar</p>
               </div>
               <div class="div-data-proyek col-3">
@@ -153,90 +153,40 @@
       <div class="div-div-notifikasi col-4">
         <h5>Notifikasi Terbaru</h5>
         <!-- Template Notifikasi -->
-        <div class="div-notifikasi alert bg-light row">
-          <div class="col-2">
-            <img class="foto-profile" src="../img/profile.png" alt="">
-          </div>
-          <div class="col-10">
-            <a class="nama" href="">Henry Gunawan</a>
-            <p class="jabatan">Jabatan: Project Manager Gedung A</p>
-            <p class="perusahaan">Perusahaan: PT. WIKA</p>
-            <p class="timestamp">29 Juli 2021 14:05:21 WIB
-              <button type="button" class="btn btn-warning btn-sm reply">Tanggapi</button>
-            </p>
-          </div>
-          <p class="keterangan">Laporan progress bulan ini sudah ada di lampiran.</p>
-          <button type="button" class="btn btn-warning btn-sm">Lampiran</button>
-        </div>
+        <form class="sign-up-form" action="/projectcomment" method="POST">
+          <p class="nama">Beri Komentar</p>
+          <input type="hidden" name="username" value="<%= user.username %>" required/>
+          <input type="hidden" name="jobs" value="<%= jobs %>" required/>
+          <input type="hidden" name="company" value="<%= company %>" required/>
+          <input type="hidden" name="projectid" value="<%= project._id %>" required/>
+          <input class="sign-up-box" type="text" name="isicomment" placeholder="komentar" id="isicomment" value="<%= typeof isicomment != 'undefined' ? isicomment : '' %>" required/>
+          
+          <button type="submit" class="btn btn-dark">Komentar</button>
+          <%- include('./partials/messages.ejs') %>
+        </form>
         <!-- Template Notifikasi sampai sini -->
-        <!-- Template Notifikasi -->
-        <div class="div-notifikasi alert bg-light row">
-          <div class="col-2">
-            <img class="foto-profile" src="../img/profile.png" alt="">
+        <% commentprojects.reverse().forEach((commentproject) => { %>
+          <div class="div-notifikasi alert bg-light row">
+            <div class="col-2">
+              <img class="foto-profile" src="../img/profile.png" alt="">
+            </div>
+            <div class="col-10">
+              <a class="nama" href=""><%= commentproject.username %> </a>
+              <p class="jabatan">Jabatan: <%= commentproject.jobs %></p>
+              <p class="perusahaan">Perusahaan: <%= commentproject.company %></p>
+              <p class="timestamp"><%= commentproject.tanggal %>
+                <form method="POST" action="/comment?_method=DELETE">
+                  <input type="hidden" name="projectid" value="<%= project._id %>">
+                  <input type="hidden" name="commentprojectid" value="<%= commentproject._id %>">
+                  <button type="submit" class="btn btn-danger badge" >Delete Comment</button>
+                </form>
+                <button type="button" class="btn btn-warning btn-sm reply">Reply</button>
+              </p>
+            </div>
+            <p class="keterangan"><%= commentproject.isicomment %> </p>
           </div>
-          <div class="col-10">
-            <a class="nama" href="">Henry Gunawan</a>
-            <p class="jabatan">Jabatan: Project Manager Gedung A</p>
-            <p class="perusahaan">Perusahaan: PT. WIKA</p>
-            <p class="timestamp">29 Juli 2021 14:05:21 WIB
-              <button type="button" class="btn btn-warning btn-sm reply">Tanggapi</button>
-            </p>
-          </div>
-          <p class="keterangan">Laporan progress bulan ini sudah ada di lampiran.</p>
-          <button type="button" class="btn btn-warning btn-sm">Lampiran</button>
-        </div>
-        <!-- Template Notifikasi sampai sini -->
-        <!-- Template Notifikasi -->
-        <div class="div-notifikasi alert bg-light row">
-          <div class="col-2">
-            <img class="foto-profile" src="../img/profile.png" alt="">
-          </div>
-          <div class="col-10">
-            <a class="nama" href="">Henry Gunawan</a>
-            <p class="jabatan">Jabatan: Project Manager Gedung A</p>
-            <p class="perusahaan">Perusahaan: PT. WIKA</p>
-            <p class="timestamp">29 Juli 2021 14:05:21 WIB
-              <button type="button" class="btn btn-warning btn-sm reply">Tanggapi</button>
-            </p>
-          </div>
-          <p class="keterangan">Laporan progress bulan ini sudah ada di lampiran.</p>
-          <button type="button" class="btn btn-warning btn-sm">Lampiran</button>
-        </div>
-        <!-- Template Notifikasi sampai sini -->
-        <!-- Template Notifikasi -->
-        <div class="div-notifikasi alert bg-light row">
-          <div class="col-2">
-            <img class="foto-profile" src="../img/profile.png" alt="">
-          </div>
-          <div class="col-10">
-            <a class="nama" href="">Henry Gunawan</a>
-            <p class="jabatan">Jabatan: Project Manager Gedung A</p>
-            <p class="perusahaan">Perusahaan: PT. WIKA</p>
-            <p class="timestamp">29 Juli 2021 14:05:21 WIB
-              <button type="button" class="btn btn-warning btn-sm reply">Tanggapi</button>
-            </p>
-          </div>
-          <p class="keterangan">Laporan progress bulan ini sudah ada di lampiran.</p>
-          <button type="button" class="btn btn-warning btn-sm">Lampiran</button>
-        </div>
-        <!-- Template Notifikasi sampai sini -->
-        <!-- Template Notifikasi -->
-        <div class="div-notifikasi alert bg-light row">
-          <div class="col-2">
-            <img class="foto-profile" src="../img/profile.png" alt="">
-          </div>
-          <div class="col-10">
-            <a class="nama" href="">Henry Gunawan</a>
-            <p class="jabatan">Jabatan: Project Manager Gedung A</p>
-            <p class="perusahaan">Perusahaan: PT. WIKA</p>
-            <p class="timestamp">29 Juli 2021 14:05:21 WIB
-              <button type="button" class="btn btn-warning btn-sm reply">Tanggapi</button>
-            </p>
-          </div>
-          <p class="keterangan">Laporan progress bulan ini sudah ada di lampiran.</p>
-          <button type="button" class="btn btn-warning btn-sm">Lampiran</button>
-        </div>
-        <!-- Template Notifikasi sampai sini -->
+          <!-- Template Notifikasi sampai sini -->
+          <% }) %>
 
       </div>
 

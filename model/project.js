@@ -47,17 +47,19 @@ const projectschema = new mongoose.Schema({
         //owner username
     },
 
-    comment:{
-        username : {},
-        tanggal : {},
-        isicomment: {},
-    }
+    progrestotal : {
+        type: String,
+        required:true, //artinya harus diisi
+        //tambah validasi
+        //owner username
+    },
+
     
 
 })
 
 
 const Project = mongoose.model ('project',projectschema)
-console.log('mantap');
+console.log('Database project connected');
 
 module.exports = Project;

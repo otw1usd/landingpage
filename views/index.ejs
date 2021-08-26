@@ -64,7 +64,7 @@
              <input class="sign-up-box" type="text" name="nohp" placeholder="Nomor HP" id="nohp" value="<%= typeof nohp != 'undefined' ? nohp : '' %>" required />
              <h3 class="sign-up-sub-heading">Status dan Pengalaman Kerja</h3>
              <input class="sign-up-box" type="text" name="company" placeholder="Nama Perusahaan/Proyek" id="company" value="<%= typeof company != 'undefined' ? company : '' %>" required />
-             <input class="sign-up-box" type="text" name="jobs" placeholder="Posisi" id="job" value="<%= typeof jobs != 'undefined' ? jobs : '' %>" />
+             <input class="sign-up-box" type="text" name="jobs" placeholder="Posisi" id="job" value="<%= typeof jobs != 'undefined' ? jobs : '' %>" required />
              <button type="submit" class="btn btn-warning sign-up-btn-style">Sign Up</button>
              <%- include('./partials/messages.ejs') %>
              <p class="log-in-text-div">Sudah memiliki akun? <a class="log-in-text" href="/login">Log in</a></p>

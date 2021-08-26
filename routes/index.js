@@ -14,6 +14,7 @@ const { adminEnsureAuthenticated } = require('../config/adminauth')
 const User = require('../model/user');
 const Project = require('../model/project');
 const Admin = require('../model/admin');
+const Comment = require('../model/comment');
 const bcrypt = require ('bcryptjs');
 
 router.get('/', (req,res) => res.render ('index'));
@@ -43,12 +44,11 @@ router.get('/daftarproyek', ensureAuthenticated, async(req,res)=> {
         });
 });
 
-router.get('/project/:oit', ensureAuthenticated,async (req,res,next)=>{
+router.get('/project/:oit', ensureAuthenticated, async(req,res,next)=>{
     try{
      console.log('cek:'+req.params.oit);
+     const commentprojects = await Comment.find({projectid: req.params.oit});
      const project = await Project.findOne({_id: req.params.oit}).catch(error => { throw error});     
-
-
      console.log(project);
      res.render('project',{
         name: req.user.name,
@@ -56,6 +56,7 @@ router.get('/project/:oit', ensureAuthenticated,async (req,res,next)=>{
         company: req.user.company,
         user: req.user,
         project,
+        commentprojects,
         layout: 'layout-account',
     });
         } catch (err) {
@@ -317,6 +318,7 @@ router.put('/admin',[
                     username : req.body.username,
                     projectUsername : req.body.projectUsername,
                     projectPassword : req.body.projectPassword,
+                    progrestotal : req.body.progrestotal,
                 },
             }
         ).then((result)=>{
@@ -328,11 +330,37 @@ router.put('/admin',[
 
 
 //project
-
 router.get('/projectindex',ensureAuthenticated,(req,res)=>res.render('projectindex',{
     layout: 'layout-project',
 }));
 
+// submit comment handle
+router.post('/projectcomment', async (req,res,next)=>{
+    const { username, isicomment, projectid, jobs, company } = req.body;
+    console.log(req.body);
+    const newComment = new Comment ({
+        username : username,
+        isicomment : isicomment,
+        projectid : projectid,
+        jobs : jobs,
+        company : company,
+    });
+    newComment.save()
+                    .then(project=>{
+                        req.flash('success_msg','Your comment has posted');
+                        res.redirect('/project/'+projectid);
+                    });
+});
+
+//show comment
+router.delete('/comment', async (req,res)=>{
+    const { commentprojectid, projectid } = req.body;
+    await Comment.deleteOne({_id: commentprojectid})
+    .then((result)=>{
+    req.flash('success_msg','Comment berhasil dihapus!');
+    res.redirect('/project/'+projectid);
+    });
+});
 
 
 module.exports = router;

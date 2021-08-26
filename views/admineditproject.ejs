@@ -5,21 +5,32 @@
   <input type="hidden" name="oldprojectUsername" value="<%= project.oldprojectUsername || project.projectUsername  %>" />
 
   <h3 class="sign-up-sub-heading"></h3>
-  <input class="sign-up-box" type="text" name="projectName" placeholder="Nama Project" id="projectName" value="<%= project.projectName  %>" required/>
+  <label for="projectName">Project Name:</label>
+  <input class="sign-up-box" type="text" name="projectName" placeholder="Nama Project" id="projectName" value="<%= project.projectName  %>" required/><br>
 
-  <input class="sign-up-box" type="text" name="location" placeholder="Location" id="location" value="<%= project.location  %>" required/>
+  <label for="location">Project Location:</label>
+  <input class="sign-up-box" type="text" name="location" placeholder="Location" id="location" value="<%= project.location  %>" required/><br>
   
-  <input class="sign-up-box" type="text" name="projectDescription" placeholder="Deskripsi Project" id="projectDescription" value="<%= project.projectDescription  %>"  required/>
+  <label for="projectDescription">Project Description:</label>
+  <input class="sign-up-box" type="text" name="projectDescription" placeholder="Deskripsi Project" id="projectDescription" value="<%= project.projectDescription  %>"  required/><br>
   
-  <input class="sign-up-box" type="date" name="startDate" placeholder="Waktu Mulai" id="startDate" value="<%= project.startDate  %>" required/>
+  <label for="startDate">Project Start Date:</label>
+  <input class="sign-up-box" type="date" name="startDate" placeholder="Waktu Mulai" id="startDate" value="<%= project.startDate  %>" required/><br>
 
-  <input class="sign-up-box" type="date" name="endDate" placeholder="Waktu Selesai" id="endDate" value="<%= project.endDate  %>" required/>
+  <label for="endDate">Project End Date:</label>
+  <input class="sign-up-box" type="date" name="endDate" placeholder="Waktu Selesai" id="endDate" value="<%= project.endDate  %>" required/><br>
 
-  <input class="sign-up-box" type="text" name="projectUsername" placeholder="username project" id="projectUsername" value="<%= project.projectUsername  %>" required/>
+  <label for="projectUsername">Project Username:</label>
+  <input class="sign-up-box" type="text" name="projectUsername" placeholder="username project" id="projectUsername" value="<%= project.projectUsername  %>" required/><br>
 
-  <input class="sign-up-box" type="text" name="projectPassword" placeholder="password project" id="projectPassword" value="<%= project.projectPassword  %>" required/>
+  <label for="projectPassword">Project Password:</label>
+  <input class="sign-up-box" type="text" name="projectPassword" placeholder="password project" id="projectPassword" value="<%= project.projectPassword  %>" required/><br>
 
-  <input class="sign-up-box" type="text" name="username" placeholder="username owner" id="username" value="<%= project.username  %>" required/>
+  <label for="username">Project Owner username: </label>
+  <input class="sign-up-box" type="text" name="username" placeholder="username owner" id="username" value="<%= project.username  %>" required/><br>
+  
+  <label for="progrestotal">Project Progress Total: </label>
+  <input class="sign-up-box" type="text" name="progrestotal" placeholder="dalam persen" id="progrestotal" value="<%= project.progrestotal  %>" required/><br>
   
   <button type="submit" class="btn btn-dark">Ubah Data Project</button>
   
