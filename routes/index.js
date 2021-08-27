@@ -54,7 +54,7 @@ router.get('/project/:oit', ensureAuthenticated, async(req,res,next)=>{
      console.log('cek:'+req.params.oit);
 
      const commentprojects = await Comment.find({projectid: req.params.oit});
-     const project = await Project.findOne({_id: req.params.oit}).catch(error => { throw error});     
+     const project = await Project.findOne({_id: req.params.oit}).catch(error => { throw error});
 
      console.log(project);
      res.render('project',{
@@ -91,7 +91,7 @@ const Storage = multer.diskStorage({
 });
 
 const upload = multer({
-    storage : Storage 
+    storage : Storage
 }).single('image');
 
 router.put('/user',[
@@ -100,7 +100,7 @@ router.put('/user',[
         if(value!== req.body.oldusername && duplikat){
             throw new Error ('Username sudah digunakan');
         }
-        
+
         return true;
     }),
 ],
@@ -113,7 +113,7 @@ async (req,res)=>{
             user:req.body,
             layout:'layout-account',
         });
-    
+
     console.log(errors);
     } else{
         console.log(req.file),
@@ -405,7 +405,7 @@ router.put('/admin',[
 router.get('/projectindex/:projectid',ensureAuthenticated,async(req,res)=>{
     try{
         const project = await Project.findOne({_id: req.params.projectid})
-                .catch(error => { throw error});     
+                .catch(error => { throw error});
         res.render('projectindex',{
         layout: 'layout-project',
         name: req.user.name,

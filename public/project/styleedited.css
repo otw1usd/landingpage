@@ -211,6 +211,24 @@ h3, h6 {
   padding: 0.8rem;
 }
 
+.field-photo-grid {
+padding: 0.5rem;
+}
+
+.field-photo {
+  width: 100%;
+  height: auto;
+}
+
+.field-photo-hidden {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.field-photo-active {
+  max-height: 100%;
+}
+
 /* atur tabel fitur */
 .button-utama {
   position: static;
@@ -231,7 +249,7 @@ h3, h6 {
 /* View Tab */
 #map {
   position: fixed !important;
-  top: 4rem;
+  top: 3.5rem;
   left: 16.66667%;
   bottom: 0;
   width: 83.3333%;

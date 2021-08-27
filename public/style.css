@@ -843,6 +843,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   margin-top: 0.5rem;
   margin-bottom: 0;
 }
+
 /* Akhir Data Pribadi */
 /* Daftar Proyek */
 .daftar-proyek {
@@ -955,6 +956,12 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 .info-container-ringkas p {
   margin: 0;
   font-size: 0.75rem;
+}
+
+.button-amati-kondisi-proyek {
+  padding: 0;
+  border: 0;
+  background-color: #fff;
 }
 
 /* Informasi Proyek KCIC */

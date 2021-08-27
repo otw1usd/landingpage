@@ -11,7 +11,7 @@
             <p>Perusahaan: <%= company %></p>
           </div>
           <div class="div-logo col-3">
-            <img class="logo" src="../img/logo-kcic.png" alt="">
+            <img class="logo" src="/img/logo-kcic.png" alt="">
           </div>
         </div>
       </div>
@@ -113,7 +113,10 @@
       <!-- Div Peta -->
       <div class="div-peta col-7">
         <h5>AMATI kondisi Proyek</h5>
-        <a href="/projectindex/<%= project.id %>"><img id="peta" src="../img/peta.png" alt=""></a>
+
+          <button class="button-amati-kondisi-proyek" type="submit" name="button">
+            <a href="/projectindex/<%= project.id %>"><img id="peta" src="../img/peta.png" alt=""></a>
+          </button>
 
         <div class="daftar-proyek col-12">
           <div class="div-data-proyek-besar">
@@ -163,7 +166,7 @@
               <p class="nama">martinamerigo</p>
               <p>Perusahaan: KCIC</p>
               <input type="hidden" name="username" value="<%= user.username %>" required />
-              <input type="hidden" name="picture" value="<%= user.image %>" required/>
+              <input type="hidden" name="picture" value="<%= user.image %>" required />
               <input type="hidden" name="jobs" value="<%= jobs %>" required />
               <input type="hidden" name="company" value="<%= company %>" required />
               <input type="hidden" name="projectid" value="<%= project._id %>" required />
@@ -197,7 +200,7 @@
             <input type="hidden" name="projectid" value="<%= project._id %>">
             <input type="hidden" name="commentprojectid" value="<%= commentproject._id %>">
             <button type="button" class="btn btn-success btn-sm reply col-3">Mark as Done</button>
-            <button type="button" class="btn btn-warning btn-sm reply col-3 toggle-comment-button">Comment</button>
+            <button type="button" class="btn btn-warning btn-sm reply col-3 toggle-comment-button">Show Comment</button>
             <button type="submit" class="btn btn-danger btn-sm reply col-4">Delete Comment</button>
           </form>
 
@@ -207,8 +210,6 @@
 
           <div class="reply-comment-hidden">
             <div class="row">
-
-
               <div class="col-1">
                 <img class="foto-profile" src="../img/profile.png" alt="">
               </div>
