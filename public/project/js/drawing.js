@@ -10,7 +10,7 @@ window.listGamtekSaya =0;
 window.rowfile = 4;
 window.colfile = 6;
 
-    
+
 
 //buka button simple
     function myFunction() {
@@ -24,16 +24,16 @@ window.colfile = 6;
     function gamtekSaya(asd) {
 
       if(window.listGamtekSaya===0){
-        
+
       window.locationOnScreen=asd;
-     
+
       window.listGamtekSaya +=1;
       console.log(listGamtekSaya);
 
       document.querySelector('.loopingbatasgamtek').remove();
       document.querySelector('.popupgamtek').innerHTML+='<div class="loopingbatasgamtek"> </div>';
 
-       
+
 
       for (i=1 ; i < 5 ; i++){
         //cari code itung jumlah file biar makin auto
@@ -45,7 +45,7 @@ window.colfile = 6;
       var gamtek = document.getElementById("daftarGamtekSaya");
       gamtek.classList.toggle("buka");
 
-      
+
     }
     //cek kalo locationonscreen sama, berarti nutup, kalo beda berarti buka
     else {
@@ -76,7 +76,7 @@ listGamtek.addEventListener('click', function(e) {
     window.zoomOnScreen =+1;
 
     munculinTabel();
-    
+
 
 
   }
@@ -85,7 +85,7 @@ listGamtek.addEventListener('click', function(e) {
   else {
     munculinTabel();
   }
- 
+
 });
 
 //fungsi general munculin gamtek
@@ -107,7 +107,7 @@ function munculinTabel (){
               path = "project/dataset/drawing/KM-"+window.locationOnScreen+"/"+window.idOnScreen+"/z" + window.zoomOnScreen + "/images/"+nomor+'.jpg';
               //kalau udah bisa perlocation, ganti
               td.innerHTML = '<img src="'+path+'">';
-              
+
           }
           table.appendChild(tr);
       }
@@ -132,35 +132,35 @@ function apusinTabel (){
     zoomout.addEventListener('click', function(e){
       window.zoomOnScreen-=1;
       if(zoomOnScreen === 2){
-           
+
            munculinTabel();
         }
         else if(zoomOnScreen === 1) {
-           
+
            munculinTabel();
         }
         else if(zoomOnScreen === 3) {
-           
+
            munculinTabel();
            //munculin zoomin class
            zoomin.classList.remove("zoominbefore");
            zoomin.classList.add("zoominafter");
         }
         else if(zoomOnScreen === 4) {
-           
+
            munculinTabel();
         }
         else if(zoomOnScreen === 0) {
-           
+
            apusinTabel();
            zoomout.classList.remove("zoomoutafter");
            zoomout.classList.add("zoomoutbefore");
            zoomin.classList.remove("zoominafter");
            zoomin.classList.add("zoominbefore");
         };
-      
-      
-      
+
+
+
 
     console.log(window.zoomOnScreen);
     });
@@ -169,33 +169,30 @@ function apusinTabel (){
 
 //fungsi zoom in
   zoomin.addEventListener('click', function(e) {
-    
+
       window.zoomOnScreen+=1;
       if(zoomOnScreen === 2){
-           
+
         }
         else if(zoomOnScreen === 1) {
-           
+
         }
         else if(zoomOnScreen === 3) {
-           
+
         }
         else if(zoomOnScreen === 4) {
-           
+
            //apus zoomin class
            zoomin.classList.remove("zoominafter");
            zoomin.classList.add("zoominbefore");
         };
-        
-        
-      
-      
+
+
+
+
       munculinTabel();
-      
-    
+
+
 
   console.log(window.zoomOnScreen);
   });
-
-
-

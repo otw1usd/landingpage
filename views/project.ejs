@@ -113,8 +113,11 @@
       <!-- Div Peta -->
       <div class="div-peta col-7">
         <h5>AMATI kondisi Proyek</h5>
-        <a href="/projectindex/<%= project.id %>"><img id="peta" src="../img/peta.png" alt=""></a>
 
+          <button class="button-amati-kondisi-proyek" type="submit" name="button">
+            <a href="/projectindex/<%= project.id %>"><img id="peta" src="../img/peta.png" alt=""></a>
+          </button>
+  
         <div class="daftar-proyek col-12">
           <div class="div-data-proyek-besar">
             <div class="row">
@@ -163,7 +166,7 @@
               <p class="nama">martinamerigo</p>
               <p>Perusahaan: KCIC</p>
               <input type="hidden" name="username" value="<%= user.username %>" required />
-              <input type="hidden" name="picture" value="<%= user.image %>" required/>
+              <input type="hidden" name="picture" value="<%= user.image %>" required />
               <input type="hidden" name="jobs" value="<%= jobs %>" required />
               <input type="hidden" name="company" value="<%= company %>" required />
               <input type="hidden" name="projectid" value="<%= project._id %>" required />
