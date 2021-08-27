@@ -958,12 +958,6 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   font-size: 0.75rem;
 }
 
-.button-amati-kondisi-proyek {
-  padding: 0;
-  border: 0;
-  background-color: #fff;
-}
-
 /* Informasi Proyek KCIC */
 .div-informasi-proyek {
   position: absolute;
