@@ -211,6 +211,24 @@ h3, h6 {
   padding: 0.8rem;
 }
 
+.field-photo-grid {
+padding: 0.5rem;
+}
+
+.field-photo {
+  width: 100%;
+  height: auto;
+}
+
+.field-photo-hidden {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.field-photo-active {
+  max-height: 100%;
+}
+
 /* atur tabel fitur */
 .button-utama {
   position: static;

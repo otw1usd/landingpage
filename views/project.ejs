@@ -11,7 +11,7 @@
             <p>Perusahaan: <%= company %></p>
           </div>
           <div class="div-logo col-3">
-            <img class="logo" src="../img/logo-kcic.png" alt="">
+            <img class="logo" src="/img/logo-kcic.png" alt="">
           </div>
         </div>
       </div>
@@ -117,7 +117,7 @@
           <button class="button-amati-kondisi-proyek" type="submit" name="button">
             <a href="/projectindex/<%= project.id %>"><img id="peta" src="../img/peta.png" alt=""></a>
           </button>
-  
+
         <div class="daftar-proyek col-12">
           <div class="div-data-proyek-besar">
             <div class="row">
@@ -200,7 +200,7 @@
             <input type="hidden" name="projectid" value="<%= project._id %>">
             <input type="hidden" name="commentprojectid" value="<%= commentproject._id %>">
             <button type="button" class="btn btn-success btn-sm reply col-3">Mark as Done</button>
-            <button type="button" class="btn btn-warning btn-sm reply col-3 toggle-comment-button">Comment</button>
+            <button type="button" class="btn btn-warning btn-sm reply col-3 toggle-comment-button">Show Comment</button>
             <button type="submit" class="btn btn-danger btn-sm reply col-4">Delete Comment</button>
           </form>
 
