@@ -16,6 +16,7 @@ const Project = require('../model/project');
 const Admin = require('../model/admin');
 const Comment = require('../model/comment');
 const bcrypt = require ('bcryptjs');
+const { populate } = require('../model/admin');
 
 
 
@@ -53,10 +54,11 @@ router.get('/project/:oit', ensureAuthenticated, async(req,res,next)=>{
     try{
      console.log('cek:'+req.params.oit);
 
-     const commentprojects = await Comment.find({projectid: req.params.oit});
+     const commentprojects = await Comment.find({projectid: req.params.oit})
+                            .populate('usernameid');
      const project = await Project.findOne({_id: req.params.oit}).catch(error => { throw error});
-
-     console.log(project);
+     console.log('ini idnya'+req.user._id);
+     console.log('iniudahpopulated'+commentprojects);
      res.render('project',{
         name: req.user.name,
         jobs: req.user.jobs,
@@ -94,6 +96,7 @@ const upload = multer({
     storage : Storage
 }).single('image');
 
+
 router.put('/user',[
     body('username').custom(async(value,{ req })=>{
         const duplikat = await Project.findOne({username: value});
@@ -116,8 +119,15 @@ async (req,res)=>{
 
     console.log(errors);
     } else{
-        console.log(req.file),
-         await User.updateOne({ _id: req.body._id },
+        console.log(req.body.oldimage);    
+
+        if(req.file === undefined ){
+                const filenamelama = req.body.oldimage;
+                console.log('kosong');
+        }else{
+            const filenamalama = req.file.filenama;
+        };
+        await User.updateOne({ _id: req.body._id },
             {
                 $set : {
                     username : req.body.username,
@@ -126,7 +136,7 @@ async (req,res)=>{
                     jobs : req.body.jobs,
                     username: req.body.username,
                     nohp : req.body.nohp,
-                    image: req.file.filename,
+                    image: filenamalama,
                 },
             }
         ).then((result)=>{
@@ -134,7 +144,8 @@ async (req,res)=>{
         res.redirect('/beranda');
         });
     }
-});
+}
+);
 
 //ADMIN
 router.get('/loginadmin',(req,res)=>res.render('loginadmin',{
@@ -391,6 +402,10 @@ router.put('/admin',[
                     projectUsername : req.body.projectUsername,
                     projectPassword : req.body.projectPassword,
                     progrestotal : req.body.progrestotal,
+                    projectzone:{
+                        zone1 : req.body.zone1,
+                        zone2 : req.body.zone2,
+                    }
                 },
             }
         ).then((result)=>{
@@ -420,10 +435,10 @@ router.get('/projectindex/:projectid',ensureAuthenticated,async(req,res,next)=>{
 
 // submit comment handle
 router.post('/projectcomment', async (req,res,next)=>{
-    const { username, isicomment, projectid, jobs, company, picture } = req.body;
-    console.log(req.body);
+    const { usernameid, isicomment, projectid, jobs, company, picture } = req.body;
+    console.log('ini id yg comment:'+req.body.usernameid);
     const newComment = new Comment ({
-        username : username,
+        usernameid : usernameid,
         isicomment : isicomment,
         projectid : projectid,
         jobs : jobs,

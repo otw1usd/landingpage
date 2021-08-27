@@ -2,9 +2,10 @@ const mongoose = require ('mongoose');
 
 //Membuat schema
 const commentschema = new mongoose.Schema({
-    username : {
-        type:String,
+    usernameid : {
+        type: mongoose.Schema.Types.ObjectId,
         required:true,
+        ref:'user',
     },
     tanggal : 
         {
