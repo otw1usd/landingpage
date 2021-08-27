@@ -163,9 +163,9 @@
               <img class="foto-profile" src="" alt="">
             </div>
             <div class="col-10">
-              <p class="nama">martinamerigo</p>
-              <p>Perusahaan: KCIC</p>
-              <input type="hidden" name="username" value="<%= user.username %>" required />
+              <p class="nama"><%= user.name %> </p>
+              <p>Perusahaan: <%= user.company %> </p>
+              <input type="hidden" name="usernameid" value="<%= user._id %>" required />
               <input type="hidden" name="picture" value="<%= user.image %>" required />
               <input type="hidden" name="jobs" value="<%= jobs %>" required />
               <input type="hidden" name="company" value="<%= company %>" required />
@@ -185,12 +185,12 @@
         <% commentprojects.reverse().forEach((commentproject) => { %>
         <div class="div-notifikasi alert bg-light row">
           <div class="col-2">
-            <img class="foto-profile" src="../user/uploads/<%= commentproject.picture %> " alt="">
+            <img class="foto-profile" src="../user/uploads/<%= commentproject.usernameid.image %> " alt="">
           </div>
           <div class="col-10">
-            <a class="nama" href=""><%= commentproject.username %> </a>
-            <p class="jabatan">Jabatan: <%= commentproject.jobs %></p>
-            <p class="perusahaan">Perusahaan: <%= commentproject.company %></p>
+            <a class="nama" href=""><%= commentproject.usernameid.username %> </a>
+            <p class="jabatan">Jabatan: <%= commentproject.usernameid.jobs %></p>
+            <p class="perusahaan">Perusahaan: <%= commentproject.usernameid.company %></p>
             <p class="timestamp"><%= commentproject.tanggal %>
 
 
