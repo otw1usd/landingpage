@@ -37,7 +37,7 @@ window.colfile = 6;
 
       for (i=1 ; i < 5 ; i++){
         //cari code itung jumlah file biar makin auto
-        document.querySelector('.loopingbatasgamtek').innerHTML+='<div class="card border-dark mb-3 row"><div class="card-header">Page'+i+'</div><div class="card-body text-dark"><div class="row"><div class="foto-gamtek col-10"><img src="project/dataset/drawing/KM-'+window.locationOnScreen+'/Original PNG/z0-Page'+i+'.png" alt="Page'+i+'"" id="Page'+i+'" class="list"></div><div class="div-logo-kecil col-2"><img class="logo-kecil" src="img/download.png" alt="download"><br><img class="logo-kecil" src="img/print.png" alt="print"><br><img class="logo-kecil" src="img/share.png" alt="share"></div></div></div></div>';
+        document.querySelector('.loopingbatasgamtek').innerHTML+='<div class="card border-dark mb-3 row"><div class="card-header">Page'+i+'</div><div class="card-body text-dark"><div class="row"><div class="foto-gamtek col-10"><img src="/project/dataset/drawing/KM-'+window.locationOnScreen+'/Original PNG/z0-Page'+i+'.png" alt="Page'+i+'"" id="Page'+i+'" class="list"></div><div class="div-logo-kecil col-2"><img class="logo-kecil" src="/img/download.png" alt="download"><br><img class="logo-kecil" src="/img/print.png" alt="print"><br><img class="logo-kecil" src="/img/share.png" alt="share"></div></div></div></div>';
       };
 
 

@@ -7,7 +7,7 @@
           <div class="row">
             <div class="col-9 div-ringkas">
               <p>Jabatan: <%= jobs %></p>
-              <p>Perusahaan: KCIC</p>
+              <p>Perusahaan: <%= company %></p>
             </div>
             <div class="div-logo col-3">
               <img class="logo" src="/img/logo-kcic.png" alt="">
@@ -20,11 +20,11 @@
 
         <div>
           <h6> Progres total: </h6>
-          <h3><span class="blinking"> 50 % </span></h3>
+          <h3><span class="blinking"> <%= project.progrestotal %> </span></h3>
         </div>
         <div>
           <h6> Pengeluaran total: </h6>
-          <h3><span class="blinking"> 75 % </span></h3>
+          <h6><span class="blinking"> dirahasiakan </span></h6>
         </div>
 
 
@@ -60,22 +60,22 @@
             <div class="field-photo-hidden">
               <div class="row">
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
               </div>
             </div>
@@ -84,34 +84,34 @@
             <div class="field-photo-hidden">
               <div class="row">
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
               </div>
             </div>
@@ -120,19 +120,19 @@
             <div class="field-photo-hidden">
               <div class="row">
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
                 <div class="col-4 field-photo-grid">
-                  <img class="field-photo" src="../img/profile.png" alt="">
+                  <img class="field-photo" src="/img/profile.png" alt="">
                 </div>
               </div>
             </div>
@@ -163,13 +163,13 @@
   <section id="viewing-tab">
 
     <!-- Zoomin Zoomout GAMTEK FS -->
-    <div class="zoomoutbefore"><img class="imgzoomgamtek" id="zoomoutgamtekfs" src="img/z2out.png"></div>
-    <div class="zoominbefore"><img class="imgzoomgamtek" id="zoomingamtekfs" src="img/z2in.png"></div>
+    <div class="zoomoutbefore"><img class="imgzoomgamtek" id="zoomoutgamtekfs" src="/img/z2out.png"></div>
+    <div class="zoominbefore"><img class="imgzoomgamtek" id="zoomingamtekfs" src="/img/z2in.png"></div>
     <div class="gamtekfs">
       <div class="gamtekfsshow">
       </div>
-      <img class="zoominbefore" src="img/z2in.png">
-      <img class="zoomoutbefore" src="img/z2out.png">
+      <img class="zoominbefore" src="/img/z2in.png">
+      <img class="zoomoutbefore" src="/img/z2out.png">
     </div>
 
     <!-- ----------GAMTEK ABIS----------  -->
@@ -180,7 +180,7 @@
     <div id="bukatutup" style="display: none;">
       <div id="pano"></div>
       <!-- back panorama -->
-      <img class="backpano" onclick="bukatutup()" src="img/back.png">
+      <img class="backpano" onclick="bukatutup()" src="/img/back.png">
 
 
       <div id="titleBar">
@@ -188,38 +188,38 @@
       </div>
 
       <a href="javascript:void(0)" id="autorotateToggle">
-        <img class="icon off" src="img/play.png">
-        <img class="icon on" src="img/pause.png">
+        <img class="icon off" src="/img/play.png">
+        <img class="icon on" src="/img/pause.png">
       </a>
 
       <a href="javascript:void(0)" id="fullscreenToggle">
-        <img class="icon off" src="img/fullscreen.png">
-        <img class="icon on" src="img/windowed.png">
+        <img class="icon off" src="/img/fullscreen.png">
+        <img class="icon on" src="/img/windowed.png">
       </a>
 
       <a href="javascript:void(0)" id="sceneListToggle">
-        <img class="icon off" src="img/expand.png">
-        <img class="icon on" src="img/collapse.png">
+        <img class="icon off" src="/img/expand.png">
+        <img class="icon on" src="/img/collapse.png">
       </a>
 
 
       <a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
-        <img class="icon" src="img/up.png">
+        <img class="icon" src="/img/up.png">
       </a>
       <a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
-        <img class="icon" src="img/down.png">
+        <img class="icon" src="/img/down.png">
       </a>
       <a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
-        <img class="icon" src="img/left.png">
+        <img class="icon" src="/img/left.png">
       </a>
       <a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
-        <img class="icon" src="img/right.png">
+        <img class="icon" src="/img/right.png">
       </a>
       <a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
-        <img class="icon" src="img/plus.png">
+        <img class="icon" src="/img/plus.png">
       </a>
       <a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
-        <img class="icon" src="img/minus.png">
+        <img class="icon" src="/img/minus.png">
       </a>
 
     </div>

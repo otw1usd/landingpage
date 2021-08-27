@@ -402,7 +402,7 @@ router.put('/admin',[
 
 
 //project
-router.get('/projectindex/:projectid',ensureAuthenticated,async(req,res)=>{
+router.get('/projectindex/:projectid',ensureAuthenticated,async(req,res,next)=>{
     try{
         const project = await Project.findOne({_id: req.params.projectid})
                 .catch(error => { throw error});
@@ -410,6 +410,7 @@ router.get('/projectindex/:projectid',ensureAuthenticated,async(req,res)=>{
         layout: 'layout-project',
         name: req.user.name,
         jobs: req.user.jobs,
+        company: req.user.company,
         project,
         });
     } catch (err) {
