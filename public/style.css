@@ -957,6 +957,10 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   font-size: 0.75rem;
 }
 
+.field-photo-div {
+  
+}
+
 /* Informasi Proyek KCIC */
 .div-informasi-proyek {
   position: absolute;
