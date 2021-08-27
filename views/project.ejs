@@ -113,7 +113,7 @@
       <!-- Div Peta -->
       <div class="div-peta col-7">
         <h5>AMATI kondisi Proyek</h5>
-        <a href="/projectindex"><img id="peta" src="../img/peta.png" alt=""></a>
+        <a href="/projectindex/<%= project.id %>"><img id="peta" src="../img/peta.png" alt=""></a>
 
         <div class="daftar-proyek col-12">
           <div class="div-data-proyek-besar">
@@ -156,6 +156,7 @@
         <form class="sign-up-form" action="/projectcomment" method="POST">
           <p class="nama">Beri Komentar</p>
           <input type="hidden" name="username" value="<%= user.username %>" required/>
+          <input type="hidden" name="picture" value="<%= user.image %>" required/>
           <input type="hidden" name="jobs" value="<%= jobs %>" required/>
           <input type="hidden" name="company" value="<%= company %>" required/>
           <input type="hidden" name="projectid" value="<%= project._id %>" required/>
@@ -168,7 +169,7 @@
         <% commentprojects.reverse().forEach((commentproject) => { %>
           <div class="div-notifikasi alert bg-light row">
             <div class="col-2">
-              <img class="foto-profile" src="../img/profile.png" alt="">
+              <img class="foto-profile" src="../user/uploads/<%= commentproject.picture %> " alt="">
             </div>
             <div class="col-10">
               <a class="nama" href=""><%= commentproject.username %> </a>

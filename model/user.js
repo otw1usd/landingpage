@@ -48,6 +48,11 @@ const userschema = new mongoose.Schema({
     date:{
         type: Date,
         default: Date.now
+    },
+    
+    image: {
+        type: String,
+        required:true,
     }
 
 })
