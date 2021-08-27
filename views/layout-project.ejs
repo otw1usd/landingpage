@@ -92,7 +92,7 @@
         const datascene = response.scenes;
         let sceneName = '';
         datascene.forEach(m => {
-          sceneName += `<a href="javascript:void(0)"class="scene btn btn-outline-dark btn-sm btn-block button-utama" data-id="${m.id}"><li class="text">${m.name}</li></a>`;
+          sceneName += `<a href="javascript:void(0)" class="scene btn btn-outline-warning btn-sm btn-block" data-id="${m.id}"><li class="text">${m.name}</li></a>`;
         });
         const isidatasceneName = document.querySelector('.scenes');
         isidatasceneName.innerHTML = sceneName;

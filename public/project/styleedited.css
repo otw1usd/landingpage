@@ -105,16 +105,6 @@ h3, h6 {
 }
 
 /* User Tab (seluruh isi panel di bagian kiri) */
-/* .infocontainer {
-  position: fixed;
-  z-index: 10;
-  border-right: solid 1px;
-  top: 4rem;
-  bottom: 0;
-  overflow-x: hidden;
-  color: #fff;
-} */
-
 .space {
   padding-left: 0;
   padding-right: 0;
@@ -212,7 +202,7 @@ h3, h6 {
 }
 
 .field-photo-grid {
-padding: 0.5rem;
+  padding: 0.5rem;
 }
 
 .field-photo {
@@ -227,6 +217,16 @@ padding: 0.5rem;
 
 .field-photo-active {
   max-height: 100%;
+}
+
+/* Bagian hotspot 360 */
+.scenes-padding {
+  padding: 0;
+}
+
+#sceneList.infocontainer-button {
+  border: 0;
+  padding: 0.8rem;
 }
 
 /* atur tabel fitur */

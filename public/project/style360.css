@@ -13,16 +13,13 @@
   -webkit-user-drag: none;
   -webkit-touch-callout: none;
   -ms-content-zooming: none;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
-
 
 a, a:hover, a:active, a:visited {
   text-decoration: none;
   color: inherit;
 }
-
 
 #titleBar {
   position: absolute;
@@ -66,7 +63,6 @@ body.multiple-scenes.mobile #titleBar {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
   -moz-user-select: text;
   -webkit-user-select: text;
   -ms-user-select: text;
@@ -182,8 +178,6 @@ body.fullscreen-enabled.mobile #autorotateToggle {
   display: none;
 }
 
-
-
 #sceneListToggle {
   position: absolute;
   top: 0;
@@ -239,7 +233,7 @@ body.fullscreen-enabled.mobile #autorotateToggle {
   display: none;
 }
 
-#projectdesc{
+#projectdesc {
   position: absolute;
   top: 40px;
   left: -10px;
@@ -252,24 +246,22 @@ body.fullscreen-enabled.mobile #autorotateToggle {
   background-color: #2f2f2f;
 }
 
-
 .mobile #projectdesc {
   top: 10%;
   width: 30%;
   height: 25%;
 }
 
-#projectdesc  .text {
+#projectdesc .text {
   width: 100%;
   font-size: 15px;
-
   line-height: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.mobile #projectdesc  .text {
+.mobile #projectdesc .text {
   line-height: 15px;
   font-size: 10px;
 }
@@ -291,7 +283,7 @@ body.fullscreen-enabled.mobile #autorotateToggle {
   width: 25%;
   height: 40px;
   left: 5px;
-  top :36%;
+  top: 36%;
 }
 
 /* If there is a fullscreen button, autorotate must placed a bit to the left */
@@ -311,10 +303,7 @@ body.fullscreen-enabled.mobile #agentbutton {
 .mobile #agentbutton .icon {
   top: 2%;
   left: 5%;
-
   width: 90%;
-
-
 }
 
 #agentbutton .icon.on {
@@ -333,30 +322,21 @@ body.fullscreen-enabled.mobile #agentbutton {
   display: none;
 }
 
-
 #sceneList {
   position: absolute;
   left: 0;
   width: 100%;
   max-height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
   margin-left: 0;
   z-index: 1000;
   -webkit-transition: margin-left 0.5s ease-in-out;
   transition: margin-left 0.5s ease-in-out;
 }
 
-
 #sceneList .scenes {
   width: 100%;
   background-color: transparent;
-  background-color: transparent;
   z-index: 11;
-}
-
-.scenes {
-  padding-left: 0;
 }
 
 .mobile #sceneList {
@@ -377,12 +357,6 @@ body.fullscreen-enabled.mobile #agentbutton {
   margin-left: 0;
 }
 
-#sceneList .scene {
-  display: block;
-  width: 100%;
-  height: 30px;
-}
-
 .mobile #sceneList .scene {
   height: 40px;
 }
@@ -391,7 +365,6 @@ body.fullscreen-enabled.mobile #agentbutton {
   width: 100%;
   height: 100%;
   padding: 0 15px;
-  line-height: 30px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -401,23 +374,12 @@ body.fullscreen-enabled.mobile #agentbutton {
   line-height: 40px;
 }
 
-.no-touch #sceneList .scene:hover {
-  background-color: #C10060;
-  background-color: #C10060;
-}
-
-#sceneList .scene.current {
-  background-color: #C10060;
-  background-color: #C10060;
-}
-
 /* Hide scene list when only a single scene exists */
 body.single-scene #sceneList, body.single-scene #sceneListToggle {
   display: none;
 }
 
 /* Link hotspot */
-
 .link-hotspot {
   width: 60px;
   height: 60px;
@@ -446,47 +408,37 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 .link-hotspot-tooltip {
   position: absolute;
   left: 100%;
-  top: 14px; /* ( 60 - (16 + 2*8) ) / 2 */
-
+  top: 14px;
+  /* ( 60 - (16 + 2*8) ) / 2 */
   margin-left: 3px;
-
   font-size: 16px;
-
   max-width: 300px;
-
   padding: 8px 10px;
-
   border-radius: 5px;
-
-  background-color:  #c10060;
-  background-color:  #c10060;
-
+  background-color: #c10060;
+  background-color: #c10060;
   color: #fff;
-
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-
   cursor: pointer;
-
   opacity: 0;
-
   -ms-transform: translateX(-8px);
   -webkit-transform: translateX(-8px);
   transform: translateX(-8px);
-
   -webkit-transition: -ms-transform 0.3s,
-                      -webkit-transform 0.3s,
-                      transform 0.3s,
-                      opacity 0.3s;
+    -webkit-transform 0.3s,
+    transform 0.3s,
+    opacity 0.3s;
   transition: -ms-transform 0.3s,
-              -webkit-transform 0.3s,
-              transform 0.3s,
-              opacity 0.3s;
+    -webkit-transform 0.3s,
+    transform 0.3s,
+    opacity 0.3s;
 }
 
 .mobile .link-hotspot {
-  top: 19px; /* ( 70 - (16 + 2*8) ) / 2 */
+  top: 19px;
+  /* ( 70 - (16 + 2*8) ) / 2 */
 }
 
 .no-touch .link-hotspot:hover .link-hotspot-tooltip {
@@ -500,6 +452,7 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 .link-hotspot-tooltip {
   pointer-events: none;
 }
+
 .no-touch .link-hotspot:hover .link-hotspot-tooltip {
   pointer-events: all;
 }
@@ -508,12 +461,12 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 .tooltip-fallback .link-hotspot-tooltip {
   display: none;
 }
+
 .no-touch .tooltip-fallback .link-hotspot:hover .link-hotspot-tooltip {
   display: block;
 }
 
 /* Info hotspot */
-
 .info-hotspot {
   line-height: 1.2em;
   opacity: 0.9;
@@ -536,12 +489,12 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  background-color:  #2f2f2f;
+  background-color: #2f2f2f;
   cursor: pointer;
   -webkit-transition: width 0.3s ease-in-out 0.5s,
-                      border-radius 0.3s ease-in-out 0.5s;
+    border-radius 0.3s ease-in-out 0.5s;
   transition: width 0.3s ease-in-out 0.5s,
-              border-radius 0.3s ease-in-out 0.5s;
+    border-radius 0.3s ease-in-out 0.5s;
 }
 
 .mobile .info-hotspot .info-hotspot-header {
@@ -554,9 +507,9 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
   width: 260px;
   border-radius: 5px;
   -webkit-transition: width 0.3s ease-in-out,
-                      border-radius 0.3s ease-in-out;
+    border-radius 0.3s ease-in-out;
   transition: width 0.3s ease-in-out,
-              border-radius 0.3s ease-in-out;
+    border-radius 0.3s ease-in-out;
 }
 
 .desktop .info-hotspot.visible .info-hotspot-header,
@@ -567,9 +520,9 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   -webkit-transition: width 0.3s ease-in-out,
-                      border-radius 0.3s ease-in-out;
+    border-radius 0.3s ease-in-out;
   transition: width 0.3s ease-in-out,
-              border-radius 0.3s ease-in-out;
+    border-radius 0.3s ease-in-out;
 }
 
 .info-hotspot .info-hotspot-icon-wrapper {
@@ -597,9 +550,9 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
   padding: 0;
   overflow: hidden;
   -webkit-transition: width 0s 0.4s,
-                      padding 0s 0.4s;
+    padding 0s 0.4s;
   transition: width 0s 0.4s,
-              padding 0s 0.4s;
+    padding 0s 0.4s;
 }
 
 .desktop .info-hotspot.visible .info-hotspot-title-wrapper,
@@ -607,9 +560,9 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
   width: 220px;
   padding: 0 5px;
   -webkit-transition: width 0s 0.4s,
-                      padding 0s 0.4s;
+    padding 0s 0.4s;
   transition: width 0s 0.4s,
-              padding 0s 0.4s;
+    padding 0s 0.4s;
 }
 
 .info-hotspot .info-hotspot-title-wrapper:before {
@@ -622,7 +575,6 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 .info-hotspot .info-hotspot-title {
   display: inline-block;
   vertical-align: middle;
-
   -moz-user-select: text;
   -webkit-user-select: text;
   -ms-user-select: text;
@@ -636,7 +588,7 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
   height: 40px;
   width: 40px;
   border-top-right-radius: 5px;
-  background-color:  #2f2f2f;
+  background-color: #2f2f2f;
   visibility: hidden;
   -ms-transform: perspective(200px) rotateY(90deg);
   -webkit-transform: perspective(200px) rotateY(90deg);
@@ -645,13 +597,13 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
   -webkit-transform-origin: 0 50% 0;
   transform-origin: 0 50% 0;
   -webkit-transition: -ms-transform 0.3s 0.3s,
-                      -webkit-transform 0.3s 0.3s,
-                      transform 0.3s 0.3s,
-                      visibility 0s 0.6s;
+    -webkit-transform 0.3s 0.3s,
+    transform 0.3s 0.3s,
+    visibility 0s 0.6s;
   transition: -ms-transform 0.3s 0.3s,
-              -webkit-transform 0.3s 0.3s,
-              transform 0.3s 0.3s,
-              visibility 0s 0.6s;
+    -webkit-transform 0.3s 0.3s,
+    transform 0.3s 0.3s,
+    visibility 0s 0.6s;
 }
 
 .desktop .info-hotspot.visible .info-hotspot-close-wrapper {
@@ -660,13 +612,13 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
   -webkit-transform: perspective(200px) rotateY(0deg);
   transform: perspective(200px) rotateY(0deg);
   -webkit-transition: -ms-transform 0.3s,
-                      -webkit-transform 0.3s,
-                      transform 0.3s,
-                      visibility 0s 0s;
+    -webkit-transform 0.3s,
+    transform 0.3s,
+    visibility 0s 0s;
   transition: -ms-transform 0.3s,
-              -webkit-transform 0.3s,
-              transform 0.3s,
-              visibility 0s 0s;
+    -webkit-transform 0.3s,
+    transform 0.3s,
+    visibility 0s 0s;
 }
 
 .info-hotspot .info-hotspot-close-icon {
@@ -684,7 +636,7 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
   left: 0;
   padding: 10px;
   color: white;
-  background-color:  #2f2f2f;
+  background-color: #2f2f2f;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   overflow-y: auto;
@@ -697,14 +649,13 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
   -webkit-transform-origin: 50% 0 0;
   transform-origin: 50% 0 0;
   -webkit-transition: -ms-transform 0.3s,
-                      -webkit-transform 0.3s,
-                      transform 0.3s,
-                      visibility 0s 0.3s;
+    -webkit-transform 0.3s,
+    transform 0.3s,
+    visibility 0s 0.3s;
   transition: -ms-transform 0.3s,
-              -webkit-transform 0.3s,
-              transform 0.3s,
-              visibility 0s 0.3s;
-
+    -webkit-transform 0.3s,
+    transform 0.3s,
+    visibility 0s 0.3s;
   -moz-user-select: text;
   -webkit-user-select: text;
   -ms-user-select: text;
@@ -717,17 +668,16 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
   -webkit-transform: perspective(200px) rotateX(0deg);
   transform: perspective(200px) rotateX(0deg);
   -webkit-transition: -ms-transform 0.3s 0.3s,
-                      -webkit-transform 0.3s 0.3s,
-                      transform 0.3s 0.3s,
-                      visibility 0s 0s;
+    -webkit-transform 0.3s 0.3s,
+    transform 0.3s 0.3s,
+    visibility 0s 0s;
   transition: -ms-transform 0.3s 0.3s,
-              -webkit-transform 0.3s 0.3s,
-              transform 0.3s 0.3s,
-              visibility 0s 0s;
+    -webkit-transform 0.3s 0.3s,
+    transform 0.3s 0.3s,
+    visibility 0s 0s;
 }
 
 /* Info hotspot modal */
-
 .desktop .info-hotspot-modal {
   display: none;
 }
@@ -740,24 +690,23 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
   height: 100%;
   overflow: hidden;
   z-index: 11000 !important;
-  background-color:  #2f2f2f;
-
+  background-color: #2f2f2f;
   line-height: 1.2em;
   opacity: 0;
   visibility: hidden;
   -webkit-transition: opacity 0.2s ease-in-out 0.5s,
-                      visibility 0s 0.7s;
+    visibility 0s 0.7s;
   transition: opacity 0.2s ease-in-out 0.5s,
-              visibility 0s 0.7s;
+    visibility 0s 0.7s;
 }
 
 .info-hotspot-modal.visible {
   opacity: 1;
   visibility: visible;
   -webkit-transition: opacity 0.2s ease-in-out,
-                      visibility 0s 0s;
+    visibility 0s 0s;
   transition: opacity 0.2s ease-in-out,
-              visibility 0s 0s;
+    visibility 0s 0s;
 }
 
 .info-hotspot-modal .info-hotspot-header {
@@ -767,8 +716,8 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
   right: 10px;
   width: auto;
   height: 50px;
-  background-color:  #2f2f2f;
-  background-color:  #2f2f2f;
+  background-color: #2f2f2f;
+  background-color: #2f2f2f;
   opacity: 0;
   -webkit-transition: opacity 0.3s ease-in-out 0.2s;
   transition: opacity 0.3s ease-in-out 0.2s;
@@ -811,7 +760,6 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 .info-hotspot-modal .info-hotspot-title {
   display: inline-block;
   vertical-align: middle;
-
   -moz-user-select: text;
   -webkit-user-select: text;
   -ms-user-select: text;
@@ -824,8 +772,8 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
   right: 0;
   width: 50px;
   height: 50px;
-  background-color:  #2f2f2f;
-  background-color:  #2f2f2f;
+  background-color: #2f2f2f;
+  background-color: #2f2f2f;
   cursor: pointer;
 }
 
@@ -842,13 +790,12 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
   left: 10px;
   right: 10px;
   padding: 10px;
-  background-color:  #2f2f2f;
-  background-color:  #2f2f2f;
+  background-color: #2f2f2f;
+  background-color: #2f2f2f;
   overflow-y: auto;
   opacity: 0;
   -webkit-transition: opacity 0.3s ease-in-out;
   transition: opacity 0.3s ease-in-out;
-
   -moz-user-select: text;
   -webkit-user-select: text;
   -ms-user-select: text;
@@ -862,7 +809,6 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 }
 
 /* View control buttons */
-
 .viewControlButton {
   display: none;
   position: absolute;
@@ -898,18 +844,23 @@ body.view-control-buttons .viewControlButton {
 .viewControlButton-1 {
   margin-left: -145px;
 }
+
 .viewControlButton-2 {
   margin-left: -95px;
 }
+
 .viewControlButton-3 {
   margin-left: -45px;
 }
+
 .viewControlButton-4 {
   margin-left: 5px;
 }
+
 .viewControlButton-5 {
   margin-left: 55px;
 }
+
 .viewControlButton-6 {
   margin-left: 105px;
 }
