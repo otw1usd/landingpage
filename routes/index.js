@@ -9,7 +9,7 @@ const passport = require('passport');
 const { ensureAuthenticated } = require('../config/auth')
 const { adminEnsureAuthenticated } = require('../config/adminauth')
 
-
+const multer = require('multer');
 
 const User = require('../model/user');
 const Project = require('../model/project');
@@ -17,16 +17,20 @@ const Admin = require('../model/admin');
 const Comment = require('../model/comment');
 const bcrypt = require ('bcryptjs');
 
+
+
 router.get('/', (req,res) => res.render ('index'));
 router.get('/login',(req,res)=>res.render('login',{
     layout: 'layout-login',
 }));
 router.get('/beranda', ensureAuthenticated,async(req,res)=>{
+    console.log(req.user);
     const listprojects = await Project.find({username: 'contoh'});
     res.render('beranda',{
     name: req.user.name,
     jobs: req.user.jobs,
     company: req.user.company,
+    user : req.user,
     listprojects,
     layout: 'layout-account',
     });
@@ -39,6 +43,7 @@ router.get('/daftarproyek', ensureAuthenticated, async(req,res)=> {
     name: req.user.name,
     jobs: req.user.jobs,
     company: req.user.company,
+    user : req.user,
     listprojects,
     layout: 'layout-account',
         });
@@ -64,6 +69,71 @@ router.get('/project/:oit', ensureAuthenticated, async(req,res,next)=>{
         } catch (err) {
             next(err);
                 }
+});
+
+//edit user profile
+
+router.get('/edituser',ensureAuthenticated, (req,res)=>{
+    res.render('edituser',{
+        user: req.user,
+        name : req.user.name,
+        layout:'layout-account',
+    });
+});
+
+const Storage = multer.diskStorage({
+    destination: (req, file, cb)=> {
+        cb(null, './public/user/uploads')
+      },
+    filename: (req,file,cb)=>{
+        cb(null, Date.now() + file.originalname);
+    }
+});
+
+const upload = multer({
+    storage : Storage 
+}).single('image');
+
+router.put('/user',[
+    body('username').custom(async(value,{ req })=>{
+        const duplikat = await Project.findOne({username: value});
+        if(value!== req.body.oldusername && duplikat){
+            throw new Error ('Username sudah digunakan');
+        }
+        
+        return true;
+    }),
+],
+upload,
+async (req,res)=>{
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        res.render('edituser',{
+            errors:errors.array(),
+            user:req.body,
+            layout:'layout-account',
+        });
+    
+    console.log(errors);
+    } else{
+        console.log(req.file),
+         await User.updateOne({ _id: req.body._id },
+            {
+                $set : {
+                    username : req.body.username,
+                    email : req.body.email,
+                    company : req.body.company,
+                    jobs : req.body.jobs,
+                    username: req.body.username,
+                    nohp : req.body.nohp,
+                    image: req.file.filename,
+                },
+            }
+        ).then((result)=>{
+        req.flash('success_msg','Profil berhasil diubah!');
+        res.redirect('/beranda');
+        });
+    }
 });
 
 //ADMIN
@@ -332,15 +402,24 @@ router.put('/admin',[
 
 
 //project
-router.get('/projectindex',ensureAuthenticated,(req,res)=>res.render('projectindex',{
-    layout: 'layout-project',
-    name: req.user.name,
-    jobs: req.user.jobs,
-}));
+router.get('/projectindex/:projectid',ensureAuthenticated,async(req,res)=>{
+    try{
+        const project = await Project.findOne({_id: req.params.projectid})
+                .catch(error => { throw error});     
+        res.render('projectindex',{
+        layout: 'layout-project',
+        name: req.user.name,
+        jobs: req.user.jobs,
+        project,
+        });
+    } catch (err) {
+    next(err);
+        }
+    });
 
 // submit comment handle
 router.post('/projectcomment', async (req,res,next)=>{
-    const { username, isicomment, projectid, jobs, company } = req.body;
+    const { username, isicomment, projectid, jobs, company, picture } = req.body;
     console.log(req.body);
     const newComment = new Comment ({
         username : username,
@@ -348,6 +427,7 @@ router.post('/projectcomment', async (req,res,next)=>{
         projectid : projectid,
         jobs : jobs,
         company : company,
+        picture: picture,
     });
     newComment.save()
                     .then(project=>{
