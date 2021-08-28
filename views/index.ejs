@@ -5,7 +5,8 @@
 
    <nav id="navigation-bar" class="navbar navbar-expand-lg navbar-light bg-warning">
 
-     <a class="navbar-brand" id="logo-amati" href="/">AMATI</a>
+     <a class="navbar-brand" href="/"><img class="logo-amati-navbar" src="/img/logo-amati-navbar.png" alt=""></a>
+
 
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
        <span class="navbar-toggler-icon"></span>
@@ -44,35 +45,34 @@
    <div class="section-padding">
 
 
-     <div class="container">
-       <div class="row">
-         <div class="col-lg-6 d-flex flex-column justify-content-center name-and-tagline">
-           <h1 class="super-big-heading">AMATI</h1>
-           <h2 class="sub-heading">AMATI is a platform designed to reduce inefficiencies in construction activites.</h2>
-         </div>
-
-         <div class="col-lg-6 hero-img">
-
-           <form class="sign-up-form" action="/" method="POST">
-             <h2 class="sign-up-heading">Sign Up Now</h2>
-             <p class="sign-up-heading-text">Nikmati fitur AMATI sekarang juga!</p>
-             <h3 class="sign-up-sub-heading">Data Personal</h3>
-             <input class="sign-up-box" type="text" name="name" placeholder="Nama" id="name" value="<%= typeof name != 'undefined' ? name : '' %>" required />
-             <input class="sign-up-box" type="text" name="username" placeholder="Username" id="username" value="<%= typeof username != 'undefined' ? username : '' %>" required />
-             <input class="sign-up-box" type="email" name="email" placeholder="Email" id="email" value="<%= typeof email != 'undefined' ? email : '' %>" required />
-             <input class="sign-up-box" type="password" name="password" placeholder="Password" id="password" value="<%= typeof password != 'undefined' ? password : '' %>" required />
-             <input class="sign-up-box" type="text" name="nohp" placeholder="Nomor HP" id="nohp" value="<%= typeof nohp != 'undefined' ? nohp : '' %>" required />
-             <h3 class="sign-up-sub-heading">Status dan Pengalaman Kerja</h3>
-             <input class="sign-up-box" type="text" name="company" placeholder="Nama Perusahaan/Proyek" id="company" value="<%= typeof company != 'undefined' ? company : '' %>" required />
-             <input class="sign-up-box" type="text" name="jobs" placeholder="Posisi" id="job" value="<%= typeof jobs != 'undefined' ? jobs : '' %>" required />
-             <button type="submit" class="btn btn-warning sign-up-btn-style">Sign Up</button>
-             <%- include('./partials/messages.ejs') %>
-             <p class="log-in-text-div">Sudah memiliki akun? <a class="log-in-text" href="/login">Log in</a></p>
-           </form>
-         </div>
-
+     <div class="row">
+       <div class="col-lg-6 d-flex flex-column justify-content-center name-and-tagline">
+         <h1 class="super-big-heading">AMATI</h1>
+         <h2 class="sub-heading">AMATI is a platform designed to reduce inefficiencies in construction activites.</h2>
        </div>
+
+       <div class="col-lg-6 hero-img">
+
+         <form class="sign-up-form" action="/" method="POST">
+           <h2 class="sign-up-heading">Sign Up Now</h2>
+           <p class="sign-up-heading-text">Nikmati fitur AMATI sekarang juga!</p>
+           <h3 class="sign-up-sub-heading">Data Personal</h3>
+           <input class="sign-up-box" type="text" name="name" placeholder="Nama" id="name" value="<%= typeof name != 'undefined' ? name : '' %>" required />
+           <input class="sign-up-box" type="text" name="username" placeholder="Username" id="username" value="<%= typeof username != 'undefined' ? username : '' %>" required />
+           <input class="sign-up-box" type="email" name="email" placeholder="Email" id="email" value="<%= typeof email != 'undefined' ? email : '' %>" required />
+           <input class="sign-up-box" type="password" name="password" placeholder="Password" id="password" value="<%= typeof password != 'undefined' ? password : '' %>" required />
+           <input class="sign-up-box" type="text" name="nohp" placeholder="Nomor HP" id="nohp" value="<%= typeof nohp != 'undefined' ? nohp : '' %>" required />
+           <h3 class="sign-up-sub-heading">Status dan Pengalaman Kerja</h3>
+           <input class="sign-up-box" type="text" name="company" placeholder="Nama Perusahaan/Proyek" id="company" value="<%= typeof company != 'undefined' ? company : '' %>" required />
+           <input class="sign-up-box" type="text" name="jobs" placeholder="Posisi" id="job" value="<%= typeof jobs != 'undefined' ? jobs : '' %>" required />
+           <button type="submit" class="btn btn-warning sign-up-btn-style">Sign Up</button>
+           <%- include('./partials/messages.ejs') %>
+           <p class="log-in-text-div">Sudah memiliki akun? <a class="log-in-text" href="/login">Log in</a></p>
+         </form>
+       </div>
+
      </div>
+
    </div>
  </section>
 
@@ -83,102 +83,102 @@
    <!-- ======= About Section ======= -->
    <section id="about" class="about">
      <div class="section-padding">
-       <div class="container">
 
-         <div class="row justify-content-between problem-div">
-           <div class="col-lg-5 d-flex align-items-center justify-content-center about-img order-lg-1 order-2">
-             <img src="images/problem.png" class="img-fluid" alt="" data-aos="zoom-in">
-           </div>
-           <div class="col-lg-6 pt-5 pt-lg-0 order-lg-2 order-1">
-             <h3 data-aos="fade-up">Overview of the Construction Industry</h3>
-             <p data-aos="fade-up" data-aos-delay="100">
-               Out of 22 different sectors, the construction industry is the <strong>second least</strong> digitalized sector.
-             </p>
-             <div class="row">
-               <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                 <i class="fas fa-history"></i>
-                 <h4>Wasted Time and Costs</h4>
-                 <p>Wasted resources on construction site visits, monitoring activity and unnecessary efforts searching for paper/ unarranged documents.</p>
-               </div>
-               <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-                 <i class="fas fa-chart-area"></i>
-                 <h4>Biased Data</h4>
-                 <p>Progress monitoring results which is not based on as-built and as-planned data. </p>
-               </div>
+
+       <div class="row justify-content-between problem-div">
+         <div class="col-lg-5 d-flex align-items-center justify-content-center about-img order-lg-1 order-2">
+           <img src="images/problem.png" class="img-fluid" alt="" data-aos="zoom-in">
+         </div>
+         <div class="col-lg-6 pt-5 pt-lg-0 order-lg-2 order-1">
+           <h3 data-aos="fade-up">Overview of the Construction Industry</h3>
+           <p data-aos="fade-up" data-aos-delay="100">
+             Out of 22 different sectors, the construction industry is the <strong>second least</strong> digitalized sector.
+           </p>
+           <div class="row">
+             <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+               <i class="fas fa-history"></i>
+               <h4>Wasted Time and Costs</h4>
+               <p>Wasted resources on construction site visits, monitoring activity and unnecessary efforts searching for paper/ unarranged documents.</p>
+             </div>
+             <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+               <i class="fas fa-chart-area"></i>
+               <h4>Biased Data</h4>
+               <p>Progress monitoring results which is not based on as-built and as-planned data. </p>
              </div>
            </div>
          </div>
+       </div>
 
 
-         <div class="row justify-content-between solution-div">
-           <div class="col-lg-6 pt-5 pt-lg-0 why-us-div">
-             <h3 data-aos="fade-up">Why Us?</h3>
-             <p data-aos="fade-up" data-aos-delay="100">
-               AMATI exists to disrupt the status quo in the construction industry, mainly to reduce inefficiencies. We serve as an integrated platform for construction project visualization, data warehouse, data crowdsourcing, and automated
-               progress monitoring.
-             </p>
-
-           </div>
-           <div class="col-lg-5 d-flex align-items-center justify-content-center about-img">
-             <img src="images/product.png" class="img-fluid" alt="" data-aos="zoom-in">
-           </div>
+       <div class="row justify-content-between solution-div">
+         <div class="col-lg-6 pt-5 pt-lg-0 why-us-div">
+           <h3 data-aos="fade-up">Why Us?</h3>
+           <p data-aos="fade-up" data-aos-delay="100">
+             AMATI exists to disrupt the status quo in the construction industry, mainly to reduce inefficiencies. We serve as an integrated platform for construction project visualization, data warehouse, data crowdsourcing, and automated
+             progress monitoring.
+           </p>
 
          </div>
-
+         <div class="col-lg-5 d-flex align-items-center justify-content-center about-img">
+           <img src="images/product.png" class="img-fluid" alt="" data-aos="zoom-in">
+         </div>
 
        </div>
+
+
      </div>
+
    </section>
 
    <!-- End About Section -->
 
    <!-- ======= Services Section ======= -->
    <section id="services" class="services section-bg">
-     <div class="section-padding">
-       <div class="container" data-aos="fade-up">
+     <div class="section-padding" data-aos="fade-up">
 
-         <div class="section-title-dark-bg">
-           <h2>Services</h2>
-           <p>Check out the great services we offer</p>
+
+       <div class="section-title-dark-bg">
+         <h2>Services</h2>
+         <p>Check out the great services we offer</p>
+       </div>
+
+       <div class="row">
+         <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+           <div class="icon-box">
+             <div class="service-icon"><img class="service-image" src="images/service1.png"></div>
+             <h4 class="title"><a href="">Progress Monitoring</a></h4>
+             <p class="description">Allows owners and contractors to virtually visit construction sites and provide detailed progress results.</p>
+           </div>
          </div>
 
-         <div class="row">
-           <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-             <div class="icon-box">
-               <div class="service-icon"><img class="service-image" src="images/service1.png"></div>
-               <h4 class="title"><a href="">Progress Monitoring</a></h4>
-               <p class="description">Allows owners and contractors to virtually visit construction sites and provide detailed progress results.</p>
-             </div>
+         <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
+           <div class="icon-box">
+             <div class="service-icon"><img class="service-image" src="images/service2.png"></div>
+             <h4 class="title"><a href="">Productivity Control</a></h4>
+             <p class="description">Provides productivity results based on accurate as-built data.</p>
            </div>
+         </div>
 
-           <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
-             <div class="icon-box">
-               <div class="service-icon"><img class="service-image" src="images/service2.png"></div>
-               <h4 class="title"><a href="">Productivity Control</a></h4>
-               <p class="description">Provides productivity results based on accurate as-built data.</p>
-             </div>
+         <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+           <div class="icon-box">
+             <div class="service-icon"><img class="service-image" src="images/service3.png"></div>
+             <h4 class="title"><a href="">Site Logistic Control</a></h4>
+             <p class="description">Provides real-time data of on-site materials and equipments, thus allowing optimized logistic management.</p>
            </div>
+         </div>
 
-           <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
-             <div class="icon-box">
-               <div class="service-icon"><img class="service-image" src="images/service3.png"></div>
-               <h4 class="title"><a href="">Site Logistic Control</a></h4>
-               <p class="description">Provides real-time data of on-site materials and equipments, thus allowing optimized logistic management.</p>
-             </div>
+         <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="400">
+           <div class="icon-box">
+             <div class="service-icon"><img class="service-image" src="images/service4.png"></div>
+             <h4 class="title"><a href="">Safety, Health and Environment Early Risk Identification</a></h4>
+             <p class="description">Identify and give real-time warnings about safety, health and environment risk possibilities.</p>
            </div>
-
-           <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="400">
-             <div class="icon-box">
-               <div class="service-icon"><img class="service-image" src="images/service4.png"></div>
-               <h4 class="title"><a href="">Safety, Health and Environment Early Risk Identification</a></h4>
-               <p class="description">Identify and give real-time warnings about safety, health and environment risk possibilities.</p>
-             </div>
-           </div>
-
          </div>
 
        </div>
+
      </div>
+
    </section>
 
    <!-- End Services Section -->
@@ -186,94 +186,93 @@
 
    <!-- ======= Clients Section ======= -->
    <section id="clients" class="clients">
-     <div class="section-padding">
-       <div class="container" data-aos="fade-up">
+     <div class="section-padding" data-aos="fade-up">
 
-         <div class="section-title-light-bg">
-           <h2>Supported By</h2>
-           <p>They trusted us</p>
-         </div>
 
-         <div class="clients-slider swiper-container" data-aos="fade-up" data-aos-delay="100">
-           <div class="swiper-wrapper align-items-center">
-             <div class="swiper-slide"><img src="images/logo-eidaramata.webp" class="img-fluid" alt=""></div>
-             <div class="swiper-slide"><img src="images/logo-itb.png" class="img-fluid" alt=""></div>
-             <div class="swiper-slide"><img src="images/logo-kcic.png" class="img-fluid" alt=""></div>
-           </div>
-           <div class="swiper-pagination"></div>
+       <div class="section-title-light-bg">
+         <h2>Supported By</h2>
+         <p>They trusted us</p>
+       </div>
+
+       <div class="clients-slider swiper-container" data-aos="fade-up" data-aos-delay="100">
+         <div class="swiper-wrapper align-items-center">
+           <div class="swiper-slide"><img src="images/logo-eidaramata.webp" class="img-fluid" alt=""></div>
+           <div class="swiper-slide"><img src="images/logo-itb.png" class="img-fluid" alt=""></div>
+           <div class="swiper-slide"><img src="images/logo-kcic.png" class="img-fluid" alt=""></div>
          </div>
+         <div class="swiper-pagination"></div>
        </div>
      </div>
+
    </section>
 
    <!-- End Clients Section -->
 
    <!-- ======= Contact Us Section ======= -->
    <section id="contact" class="contact section-bg">
-     <div class="section-padding">
-       <div class="container" data-aos="fade-up">
+     <div class="section-padding" data-aos="fade-up">
 
-         <div class="section-title-dark-bg">
-           <h2>Contact Us</h2>
-           <p>Contact us to get started!</p>
-         </div>
+       <div class="section-title-dark-bg">
+         <h2>Contact Us</h2>
+         <p>Contact us to get started!</p>
+       </div>
 
-         <div class="row">
+       <div class="row">
 
-           <div class="col-lg-5 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-             <div class="info">
-               <div class="address">
-                 <i class="bi bi-geo-alt"></i>
-                 <h4>Location:</h4>
-                 <p>Jl. Bangka Raya No.42A, Kel. Pela Mampang, Kec. Mampang Prapatan, Kota Jakarta Selatan, DKI Jakarta 12720.</p>
-               </div>
-
-               <div class="email">
-                 <i class="bi bi-envelope"></i>
-                 <h4>Email:</h4>
-                 <p>support@amati.co</p>
-               </div>
-
-               <div class="phone">
-                 <i class="bi bi-phone"></i>
-                 <h4>Call/WA:</h4>
-                 <p>081932529999</p>
-               </div>
-
-               <iframe
-                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.1525175009765!2d106.81354041476926!3d-6.243621895480564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f162250da8b5%3A0xc94826927cbcab0c!2sJl.%20Bangka%20Raya%20No.42A%2C%20RT.3%2FRW.5%2C%20Pela%20Mampang%2C%20Kec.%20Mampang%20Prpt.%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2012720!5e0!3m2!1sen!2sid!4v1629026013504!5m2!1sen!2sid"
-                 frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+         <div class="col-lg-5 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+           <div class="info">
+             <div class="address">
+               <i class="bi bi-geo-alt"></i>
+               <h4>Location:</h4>
+               <p>Jl. Bangka Raya No.42A, Kel. Pela Mampang, Kec. Mampang Prapatan, Kota Jakarta Selatan, DKI Jakarta 12720.</p>
              </div>
 
-           </div>
+             <div class="email">
+               <i class="bi bi-envelope"></i>
+               <h4>Email:</h4>
+               <p>support@amati.co</p>
+             </div>
 
-           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-             <form action="mailto:support@amati.co" method="get" role="form" class="php-email-form">
-               <div class="row">
-                 <div class="form-group col-md-6 contact-name-div">
-                   <label for="contact-us-name">Your Name</label>
-                   <input type="text" name="name" class="form-control" id="contact-us-name" placeholder="Your Name" required>
-                 </div>
-                 <div class="form-group col-md-6 mt-3 mt-md-0 contact-email-div">
-                   <label for="contact-us-email">Your Email</label>
-                   <input type="email" class="form-control" name="contact-us-email" placeholder="Your Email" required>
-                 </div>
-               </div>
-               <div class="form-group mt-3">
-                 <label for="contact-us-subject">Subject</label>
-                 <input type="text" class="form-control" name="contact-us-subject" placeholder="Subject" required>
-               </div>
-               <div class="form-group mt-3">
-                 <label for="contact-us-message">Message</label>
-                 <textarea class="form-control" name="contact-us-message" rows="10" required></textarea>
-               </div>
-               <div class="text-center"><button type="submit">Send Message</button></div>
-             </form>
+             <div class="phone">
+               <i class="bi bi-phone"></i>
+               <h4>Call/WA:</h4>
+               <p>081932529999</p>
+             </div>
+
+             <iframe
+               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.1525175009765!2d106.81354041476926!3d-6.243621895480564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f162250da8b5%3A0xc94826927cbcab0c!2sJl.%20Bangka%20Raya%20No.42A%2C%20RT.3%2FRW.5%2C%20Pela%20Mampang%2C%20Kec.%20Mampang%20Prpt.%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2012720!5e0!3m2!1sen!2sid!4v1629026013504!5m2!1sen!2sid"
+               frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
            </div>
 
          </div>
+
+         <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+           <form action="mailto:support@amati.co" method="get" role="form" class="php-email-form">
+             <div class="row">
+               <div class="form-group col-md-6 contact-name-div">
+                 <label for="contact-us-name">Your Name</label>
+                 <input type="text" name="name" class="form-control" id="contact-us-name" placeholder="Your Name" required>
+               </div>
+               <div class="form-group col-md-6 mt-3 mt-md-0 contact-email-div">
+                 <label for="contact-us-email">Your Email</label>
+                 <input type="email" class="form-control" name="contact-us-email" placeholder="Your Email" required>
+               </div>
+             </div>
+             <div class="form-group mt-3">
+               <label for="contact-us-subject">Subject</label>
+               <input type="text" class="form-control" name="contact-us-subject" placeholder="Subject" required>
+             </div>
+             <div class="form-group mt-3">
+               <label for="contact-us-message">Message</label>
+               <textarea class="form-control" name="contact-us-message" rows="10" required></textarea>
+             </div>
+             <div class="text-center"><button type="submit">Send Message</button></div>
+           </form>
+         </div>
+
        </div>
      </div>
+
    </section>
    <!-- End Contact Us Section -->
 

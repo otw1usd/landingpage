@@ -57,10 +57,10 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 /* Navigaton Bar */
-#logo-amati {
-  font-family: 'Archivo', sans-serif;
-  font-size: 2rem;
-  margin-left: 3rem;
+.logo-amati-navbar {
+  height: 52px;
+  width: auto;
+  padding: 0 0 0.5rem;
 }
 
 .dropdown-menu {
@@ -82,7 +82,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   left: 0;
   right: 0;
   height: 3.5rem;
-  padding: 0;
+  padding: 0 13%;
   z-index: 9999;
 }
 
@@ -99,6 +99,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   right: 0;
   z-index: 1;
   background-color: #ffc107;
+  padding-right: 4%;
 }
 
 .navbar-nav .dropdown-menu {
@@ -149,8 +150,8 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  background: #343a40;
-  color: #000;
+  background: rgb(52, 58, 64);
+  background: linear-gradient(0deg, rgba(52, 58, 64, 1) 10%, rgba(255, 193, 7, 1) 90%);
 }
 
 #hero::before {
@@ -163,7 +164,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 #hero .section-padding {
-  padding: 1% 10% 3%;
+  padding: 1% 12% 3%;
 }
 
 .super-big-heading {
@@ -173,12 +174,12 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   line-height: 56px;
   padding-bottom: 2rem;
   font-family: 'Archivo', sans-serif;
-  color: #ffc107;
+  color: #000;
 }
 
 .sub-heading {
   font-family: 'Raleway', sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   margin: 15px 0 0 0;
   font-size: 1.5rem;
   color: #ffc107;
@@ -213,14 +214,14 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   font-family: "Raleway";
   font-weight: 600;
   font-size: 2rem;
-  color: #E1E8EB;
+  color: #000;
 }
 
 .sign-up-heading-text {
   font-family: "Raleway";
   font-weight: 600;
   font-size: 1rem;
-  color: #E1E8EB;
+  color: #000;
 }
 
 .sign-up-sub-heading {
@@ -228,7 +229,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   font-weight: 500;
   font-size: 1.25rem;
   margin-top: 1.25rem;
-  color: #ffc107;
+  color: #000;
 }
 
 .sign-up-box {
@@ -267,7 +268,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 # Sections General
 --------------------------------------------------------------*/
 .section-padding {
-  padding: 3% 10%;
+  padding: 3% 12%;
 }
 
 .section-title-dark-bg, .section-title-light-bg {
@@ -311,7 +312,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 #about {
   background-color: #fff;
   width: 100%;
-  color: #334a40;
+  color: #343a40;
 }
 
 #about::before {
@@ -847,6 +848,15 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 /* Akhir Data Pribadi */
+/* Navbar Layout Account */
+.navbar.navbar-layout-account {
+  padding: 0;
+}
+
+.navbar-layout-account .navbar-brand {
+  margin-left: 3rem;
+}
+
 /* Daftar Proyek */
 .daftar-proyek {
   position: static;
