@@ -15,9 +15,9 @@ const User = require('../model/user');
 const Project = require('../model/project');
 const Admin = require('../model/admin');
 const Comment = require('../model/comment');
+const ProjectZone = require('../model/projectzone');
+const FieldPhoto = require('../model/fieldphoto');
 const bcrypt = require ('bcryptjs');
-const { populate } = require('../model/admin');
-
 
 
 router.get('/', (req,res) => res.render ('index'));
@@ -25,7 +25,6 @@ router.get('/login',(req,res)=>res.render('login',{
     layout: 'layout-login',
 }));
 router.get('/beranda', ensureAuthenticated,async(req,res)=>{
-    console.log(req.user);
     const listprojects = await Project.find({username: 'contoh'});
     res.render('beranda',{
     name: req.user.name,
@@ -38,7 +37,6 @@ router.get('/beranda', ensureAuthenticated,async(req,res)=>{
 });
 
 router.get('/daftarproyek', ensureAuthenticated, async(req,res)=> {
-    console.log(req.user.username);
     const listprojects = await Project.find({username: req.user.username});
     res.render('daftarproyek',{
     name: req.user.name,
@@ -52,13 +50,9 @@ router.get('/daftarproyek', ensureAuthenticated, async(req,res)=> {
 
 router.get('/project/:oit', ensureAuthenticated, async(req,res,next)=>{
     try{
-     console.log('cek:'+req.params.oit);
-
      const commentprojects = await Comment.find({projectid: req.params.oit})
                             .populate('usernameid');
      const project = await Project.findOne({_id: req.params.oit}).catch(error => { throw error});
-     console.log('ini idnya'+req.user._id);
-     console.log('iniudahpopulated'+commentprojects);
      res.render('project',{
         name: req.user.name,
         jobs: req.user.jobs,
@@ -88,7 +82,9 @@ const Storage = multer.diskStorage({
         cb(null, './public/user/uploads')
       },
     filename: (req,file,cb)=>{
-        cb(null, Date.now() + file.originalname);
+        const timeElapsed = Date.now();
+        const today = new Date(timeElapsed);
+        cb(null, timeElapsed +'-'+ req.body.username +'-'+ file.originalname);
     }
 });
 
@@ -103,7 +99,6 @@ router.put('/user',[
         if(value!== req.body.oldusername && duplikat){
             throw new Error ('Username sudah digunakan');
         }
-
         return true;
     }),
 ],
@@ -118,19 +113,16 @@ async (req,res)=>{
         });
 
     console.log(errors);
-    } else{
-        console.log(req.body.oldimage);    
-
+    } else{  
         if(req.file === undefined ){
-                const filenamelama = req.body.oldimage;
-                console.log('kosong');
+                var filenamalama = req.body.oldimage;
         }else{
-            const filenamalama = req.file.filenama;
+            var filenamalama = req.file.filename;
         };
         await User.updateOne({ _id: req.body._id },
             {
                 $set : {
-                    username : req.body.username,
+                    name : req.body.name,
                     email : req.body.email,
                     company : req.body.company,
                     jobs : req.body.jobs,
@@ -155,21 +147,70 @@ router.get('/registeradmin', (req,res) => res.render ('registeradmin'));
 
 router.get('/admin', adminEnsureAuthenticated, async (req,res) => {
     const listaccounts = await Project.find();
-    console.log('tesuseradmin:'+req.user);
     res.render ('admin',{
         listaccounts,
         layout: 'layout-login',
     });
 });
 
-router.get('/admin/:projectUsername',adminEnsureAuthenticated, async (req,res) => {
-
-    const listproject = await Project.findOne({projectUsername: req.params.projectUsername});
-    console.log(listproject);
+router.get('/admin/:name' , adminEnsureAuthenticated , async (req,res) => {
+    const listproject = await Project.findOne({ projectUsername: req.params.name });
+    const listzonas = await ProjectZone.find ({projectid: listproject._id});
     res.render ('detail',{
         listproject,
+        listzonas,
+        layout:'layout-login',
     });
 });
+
+//field photo zone
+const FieldPhotoStorage = multer.diskStorage({
+    destination: (req, file, cb)=> {
+        cb(null, './public/project/dataset/fieldphoto')
+      },
+    filename: (req,file,cb)=>{
+        cb(null, Date.now()  +'-'+ req.body.zonaid +'-'+ file.originalname);
+    },
+});
+
+const uploadFieldPhoto = multer({
+    storage : FieldPhotoStorage
+}).array('image',100);
+
+//post photo zone
+router.put('/tambahfieldphoto', uploadFieldPhoto,
+async (req,res,next )=>{
+    const files = req.files;
+    console.log('cek reqfiles : '+ req.files);
+    let filesArray = [];
+    const { zonaid } = req.body;
+    await req.files.forEach(element => {
+        console.log(element.filename);
+        const file ={
+            projectzone: zonaid,
+            fieldphoto: element.filename,
+        };
+        filesArray.push(file);
+        const multipleFieldPhotos = new FieldPhoto({
+            projectzone: zonaid,
+            fieldphoto: element.filename,
+        });
+        multipleFieldPhotos.save();
+    });
+    
+    res.send(files);   
+    // res.redirect('/editdatazona'); 
+    req.flash('success_msg','Images Uploaded Successfully');
+})
+
+
+
+    
+//     
+//     console.log(req.files);
+//     console.log('ini zonaid input:' +zonaid);
+// }
+// );
 
 //register handle
 router.post('/', (req,res)=>{
@@ -272,7 +313,14 @@ router.post('/admin', (req,res)=>{
                 });
             } else {
                 const newProject = new Project({
-                    projectName, location, projectDescription, startDate, endDate, projectUsername, projectPassword, username
+                    projectName, 
+                    location, 
+                    projectDescription, 
+                    startDate, 
+                    endDate, 
+                    projectUsername, 
+                    projectPassword, 
+                    username
                 });
 
                 newProject.save()
@@ -282,6 +330,45 @@ router.post('/admin', (req,res)=>{
                     });
             }
         });
+});
+
+//tambah zona
+router.post('/tambahzona', async (req,res,next)=>{
+    try{
+        const { projectUsername, projectid, detailzona } = req.body;
+        await Project.findOne({ _id: projectid })
+        .then(project =>{
+            const newZone = new ProjectZone ({
+                projectid,
+                zonename:detailzona,
+            });
+            newZone.save()
+                .then(project=>{
+                    req.flash('success_msg','Berhasil tambah zona ');
+                    res.redirect('/admin/'+projectUsername);
+                })
+        })
+        .catch(error => { throw error});
+    } catch (err){
+        next(err);
+    };
+});
+
+router.post('/editdatazona', async (req,res,next)=>{
+    try{
+        const { listzonaid }  = req.body;
+        console.log('ini adalah'+ listzonaid);
+        const listzonanows = await ProjectZone.find({ _id: listzonaid });
+        const fieldphotozonanows = await FieldPhoto.find({projectzone: listzonaid});
+        console.log('cekfieldphoto: '+fieldphotozonanows);
+            res.render('editdatazona',{
+                listzonanows,
+                zonaid : listzonaid,
+                fieldphotozonanows,
+            })
+    } catch (err){
+        next(err);
+    };
 });
 
 
@@ -365,13 +452,11 @@ router.delete('/admin', async (req,res)=>{
 
 //edit project
 router.get('/admin/edit/:projectUsername', async (req,res)=>{
-    console.log(req.params.projectUsername);
     const project = await Project.findOne({projectUsername: req.params.projectUsername});
     res.render('admineditproject',{
         project,
     });
 });
-
 
 router.put('/admin',[
     body('projectUsername').custom(async(value,{ req })=>{
@@ -402,10 +487,6 @@ router.put('/admin',[
                     projectUsername : req.body.projectUsername,
                     projectPassword : req.body.projectPassword,
                     progrestotal : req.body.progrestotal,
-                    projectzone:{
-                        zone1 : req.body.zone1,
-                        zone2 : req.body.zone2,
-                    }
                 },
             }
         ).then((result)=>{
@@ -436,7 +517,6 @@ router.get('/projectindex/:projectid',ensureAuthenticated,async(req,res,next)=>{
 // submit comment handle
 router.post('/projectcomment', async (req,res,next)=>{
     const { usernameid, isicomment, projectid, jobs, company, picture } = req.body;
-    console.log('ini id yg comment:'+req.body.usernameid);
     const newComment = new Comment ({
         usernameid : usernameid,
         isicomment : isicomment,

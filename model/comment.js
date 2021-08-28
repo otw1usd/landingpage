@@ -24,24 +24,6 @@ const commentschema = new mongoose.Schema({
         required:true,
     },
 
-    jobs :
-    {
-        type:String,
-        required:true,
-    },
-
-
-    company :
-    {
-        type:String,
-        required:true,
-    },
-
-    picture :
-    {
-        type:String,
-        required:true,
-    },
 
 
 
