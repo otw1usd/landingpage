@@ -247,6 +247,29 @@ h3, h6 {
 }
 
 /* View Tab */
+#field-photo-div {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  max-height: 0;
+  overflow: hidden;
+}
+
+#field-photo-div.field-photo-active {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  max-height: 100%;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+  background-color: #000;
+}
+
 #map {
   position: fixed !important;
   top: 3.5rem;

@@ -113,11 +113,7 @@
       <!-- Div Peta -->
       <div class="div-peta col-7">
         <h5>AMATI kondisi Proyek</h5>
-
-          <button class="button-amati-kondisi-proyek" type="submit" name="button">
-            <a href="/projectindex/<%= project.id %>"><img id="peta" src="../img/peta.png" alt=""></a>
-          </button>
-
+        <a href="/projectindex/<%= project.id %>"><img id="peta" src="/img/peta.png" alt=""></a>
         <div class="daftar-proyek col-12">
           <div class="div-data-proyek-besar">
             <div class="row">
@@ -173,7 +169,7 @@
 
             </div>
             <div class="comment-box-div">
-              <input class="comment-box" type="text" name="isicomment" placeholder="Komentar" id="isicomment" value="<%= typeof isicomment != 'undefined' ? isicomment : '' %>" required />
+              <textarea class="comment-box" name="isicomment" placeholder="Komentar" id="isicomment" value="<%= typeof isicomment != 'undefined' ? isicomment : '' %>" wrap="soft" required></textarea>
             </div>
             <div class="submit-comment-div">
               <button type="submit" class="btn btn-dark btn-sm">Komentar</button>

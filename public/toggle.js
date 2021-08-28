@@ -22,5 +22,6 @@ document.querySelectorAll(".toggle-comment-button").forEach(button => {
 document.querySelectorAll(".toggle-field-photo-button").forEach(button => {
   button.addEventListener("click", () => {
     button.nextElementSibling.classList.toggle("field-photo-active");
+    document.querySelector("#field-photo-div").classList.toggle("field-photo-active");
   });
 });

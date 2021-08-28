@@ -173,6 +173,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   line-height: 56px;
   padding-bottom: 2rem;
   font-family: 'Archivo', sans-serif;
+  color: #ffc107;
 }
 
 .sub-heading {
@@ -212,12 +213,14 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   font-family: "Raleway";
   font-weight: 600;
   font-size: 2rem;
+  color: #E1E8EB;
 }
 
 .sign-up-heading-text {
   font-family: "Raleway";
   font-weight: 600;
   font-size: 1rem;
+  color: #E1E8EB;
 }
 
 .sign-up-sub-heading {
@@ -245,11 +248,12 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 
 .log-in-text-div {
   text-align: center;
+  color: #E1E8EB;
 }
 
 .log-in-text {
   transition: all .2s;
-  color: #000;
+  color: #E1E8EB;
   text-decoration: none;
   margin: 0;
 }
@@ -273,7 +277,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 
 .section-title-dark-bg h2 {
   font-size: 2.5rem;
-  color: #000;
+  color: #E1E8EB;
   font-weight: 700;
   padding-bottom: 0;
   margin-bottom: 15px;
@@ -781,8 +785,6 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 .submit-comment-div {
-  margin-top: 1rem;
-  ;
   text-align: right;
 }
 
@@ -956,12 +958,6 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 .info-container-ringkas p {
   margin: 0;
   font-size: 0.75rem;
-}
-
-.button-amati-kondisi-proyek {
-  padding: 0;
-  border: 0;
-  background-color: #fff;
 }
 
 /* Informasi Proyek KCIC */
