@@ -34,16 +34,28 @@
         <th scope="row">Progress Total</th>
         <td><%= listproject.progrestotal %> %</td>
       </tr>
-      <tr>
-        <th scope="row">Zone1</th>
-        <td><%= listproject.projectzone.zone1 %> %</td>
-      </tr>
-      <tr>
-        <th scope="row">Zone2</th>
-        <td><%= listproject.projectzone.zone2 %> %</td>
-      </tr>
+
+      <% listzonas.forEach((listzona,i) => { i++ %>
+        <tr>
+          <th scope="row"><%= listzona.zonename %> </th>
+          <td>
+            <form class="sign-up-form" action="/editdatazona" method="POST">
+              <input type="hidden" name="listzonaid" value="<%= listzona._id %>">
+              <button type="submit" class="btn btn-dark">Tambah Data Zona</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+
+      
     </tbody>
   </table>
+  <form class="sign-up-form" action="/tambahzona" method="POST">
+    <input type="hidden" name="projectid" value="<%= listproject._id %>">
+    <input type="hidden" name="projectUsername" value="<%= listproject.projectUsername %>">
+    <input class="sign-up-box" type="text" name="detailzona" placeholder="tambah zona" id="detailzona" value="" required/>
+    <button type="submit" class="btn btn-dark">Tambah Zona</button>
+  </form>
 
   <a href="/admin/edit/<%= listproject.projectUsername %>" class ="btn btn-danger badge"> Edit Project </a>
 
@@ -52,5 +64,3 @@
     <input type="hidden" name="projectUsername" value="<%= listproject.projectUsername %>">
     <button type="submit" class="btn btn-danger badge" onclick="return confirm('yakin??')">Delete Project</button>
   </form>
-
-  <a href ="/admin">&laquo; kembali ke layar admin</a>

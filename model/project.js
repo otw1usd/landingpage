@@ -54,15 +54,6 @@ const projectschema = new mongoose.Schema({
         //owner username
     },
 
-    projectzone:{
-        zone1:{
-            type: String,
-        },
-        zone2:{
-            type: String,
-        },
-    }
-
     
 
 })
