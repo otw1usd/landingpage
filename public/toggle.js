@@ -5,7 +5,7 @@ var i = 1;
 
 document.querySelectorAll(".toggle-comment-button").forEach(button => {
   button.addEventListener("click", () => {
-    button.parentElement.nextElementSibling.classList.toggle("reply-comment-active");
+    button.parentElement.nextElementSibling.classList.toggle("reply-comm(ent-active");
 
     if (i === 1) {
       button.innerText = "Hide Comment";
@@ -22,5 +22,6 @@ document.querySelectorAll(".toggle-comment-button").forEach(button => {
 document.querySelectorAll(".toggle-field-photo-button").forEach(button => {
   button.addEventListener("click", () => {
     button.nextElementSibling.classList.toggle("field-photo-active");
+    document.querySelector("#field-photo-div").classList.toggle("field-photo-active");
   });
 });
