@@ -5,7 +5,7 @@ var i = 1;
 
 document.querySelectorAll(".toggle-comment-button").forEach(button => {
   button.addEventListener("click", () => {
-    button.parentElement.nextElementSibling.classList.toggle("reply-comm(ent-active");
+    button.parentElement.nextElementSibling.classList.toggle("reply-comment-active");
 
     if (i === 1) {
       button.innerText = "Hide Comment";
