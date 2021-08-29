@@ -184,6 +184,8 @@ async (req,res,next )=>{
     console.log('cek reqfiles : '+ req.files);
     let filesArray = [];
     const { zonaid } = req.body;
+    const listzonanows = await ProjectZone.find({ _id: zonaid });
+    const fieldphotozonanows = await FieldPhoto.find({ projectzone: zonaid });
     await req.files.forEach(element => {
         console.log(element.filename);
         const file ={
@@ -196,10 +198,12 @@ async (req,res,next )=>{
             fieldphoto: element.filename,
         });
         multipleFieldPhotos.save();
-    });
-    
-    res.send(files);   
-    // res.redirect('/editdatazona'); 
+    }); 
+    res.render('editdatazona',{
+        listzonanows,
+        zonaid,
+        fieldphotozonanows,
+    })
     req.flash('success_msg','Images Uploaded Successfully');
 })
 
@@ -490,7 +494,7 @@ router.put('/admin',[
                 },
             }
         ).then((result)=>{
-        req.flash('success_msg','Data Project berhasil diubah!');
+        req.flash('success_msg','Data Project bzoneserhasil diubah!');
         res.redirect('/admin');
         });
     }
@@ -502,17 +506,29 @@ router.get('/projectindex/:projectid',ensureAuthenticated,async(req,res,next)=>{
     try{
         const project = await Project.findOne({_id: req.params.projectid})
                 .catch(error => { throw error});
+        const projectZones = await ProjectZone.find({ projectid : req.params.projectid  });
+        console.log(projectZones);
+        let FieldPhotoArrays =  [];
+        projectZones.forEach( async element => {
+                console.log(element._id);
+                const fieldphotoarray = await FieldPhoto.find({ projectzone : element._id });
+                console.log('ini adalah  yang bakal ke ambil: '+fieldphotoarray);
+                FieldPhotoArrays.push(fieldphotoarray);
+            });
+        console.log('ini adalah semuanya yang bakal ke ambil: '+ FieldPhotoArrays);
         res.render('projectindex',{
-        layout: 'layout-project',
-        name: req.user.name,
-        jobs: req.user.jobs,
-        company: req.user.company,
-        project,
-        });
-    } catch (err) {
-    next(err);
-        }
-    });
+                layout : 'layout-project',
+                name:req.user.name,
+                jobs:req.user.jobs,
+                company:req.user.company,
+                project,
+                projectZones,
+                FieldPhotoArrays,
+            });
+
+        
+    } catch (err) {next(err);}
+})
 
 // submit comment handle
 router.post('/projectcomment', async (req,res,next)=>{

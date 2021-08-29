@@ -2,8 +2,6 @@ var map;
 var imageMapType;
 var waktuOnScreen=0;
 
-
-
             function initialize() {
                 var options = {
                     zoom: 15,
@@ -78,9 +76,6 @@ var waktuOnScreen=0;
              map.overlayMapTypes.clear();
                map.overlayMapTypes.push(imageMapType);
                marzipanoFunction();
-
-
-
 
 //nanti ini dibuat json
                 const content4 =
@@ -224,10 +219,6 @@ var waktuOnScreen=0;
 
 
 
-
-
-
-
                 const titikKCIC=[
 
 
@@ -258,9 +249,6 @@ var waktuOnScreen=0;
                         33,
                         content6,
                     ],
-
-
-
 
                 ];
 
@@ -295,17 +283,7 @@ var waktuOnScreen=0;
                             shouldFocus: false,
                         });
                     });
-                    
-
-
                 };
-
         }
 
-
-            google.maps.event.addDomListener(window, 'load', initialize);
-
-
-
-
-        // When the user clicks on div, open the popup
+google.maps.event.addDomListener(window, 'load', initialize);
