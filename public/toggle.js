@@ -1,7 +1,7 @@
 //jshint esversion:6
 
 // Bagian comment di project.ejs
-var i = 1;
+let i = 1;
 
 document.querySelectorAll(".toggle-comment-button").forEach(button => {
   button.addEventListener("click", () => {
