@@ -256,7 +256,7 @@ h3, h6 {
 }
 
 /* View Tab */
-#field-photo-div {
+.toggle-field-photo-identifier {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -265,7 +265,7 @@ h3, h6 {
   overflow: hidden;
 }
 
-#field-photo-div.field-photo-active {
+.toggle-field-photo-identifier.field-photo-active {
   position: absolute;
   left: 50%;
   top: 50%;

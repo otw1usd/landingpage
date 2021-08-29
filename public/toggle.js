@@ -19,9 +19,16 @@ document.querySelectorAll(".toggle-comment-button").forEach(button => {
 
 // Bagian field photo di project index
 
-document.querySelectorAll(".toggle-field-photo-button").forEach(button => {
-  button.addEventListener("click", () => {
-    button.nextElementSibling.classList.toggle("field-photo-active");
-    document.querySelector("#field-photo-div").classList.toggle("field-photo-active");
+for (let x = 0; x < document.querySelectorAll(".toggle-field-photo-button").length; x++) {
+  document.querySelectorAll(".toggle-field-photo-button")[x].addEventListener("click", () => {
+      var zoneName = document.querySelectorAll(".toggle-field-photo-button")[x].innerHTML;
+      var zoneNameTrimmed = zoneName.split(" ").join("");
+      console.log(zoneNameTrimmed);
+      for (let y = 0; y < document.querySelectorAll(".toggle-field-photo-identifier").length; y++) {
+        if (document.querySelectorAll(".toggle-field-photo-identifier")[y].classList.contains(zoneNameTrimmed) === true) {
+          console.log("berhasil");
+          document.querySelectorAll(".toggle-field-photo-identifier")[y].classList.toggle("field-photo-active");
+        }
+    }
   });
-});
+}
