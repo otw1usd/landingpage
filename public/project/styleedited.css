@@ -17,10 +17,10 @@ h3, h6 {
 
 /* Navigation Bar */
 /* Navigaton Bar */
-#logo-amati {
-  font-family: 'Archivo', sans-serif;
-  font-size: 2rem;
-  margin-left: 3rem;
+.logo-amati-navbar {
+  height: 52px;
+  width: auto;
+  padding: 0 0 0.5rem;
 }
 
 .dropdown-menu {
@@ -42,7 +42,7 @@ h3, h6 {
   left: 0;
   right: 0;
   height: 3.5rem;
-  padding: 0;
+  padding: 0 13%;
   z-index: 9999;
 }
 
@@ -59,6 +59,7 @@ h3, h6 {
   right: 0;
   z-index: 1;
   background-color: #ffc107;
+  padding-right: 4%;
 }
 
 .navbar-nav .dropdown-menu {
@@ -102,6 +103,14 @@ h3, h6 {
 
 .nav-log-in-text:hover {
   color: #ffc107;
+}
+
+.navbar.navbar-layout-account {
+  padding: 0;
+}
+
+.navbar-layout-account .navbar-brand {
+  margin-left: 3rem;
 }
 
 /* User Tab (seluruh isi panel di bagian kiri) */
