@@ -503,31 +503,30 @@ router.put('/admin',[
 
 //project
 router.get('/projectindex/:projectid',ensureAuthenticated,async(req,res,next)=>{
-    try{
+    
         const project = await Project.findOne({_id: req.params.projectid})
                 .catch(error => { throw error});
         const projectZones = await ProjectZone.find({ projectid : req.params.projectid  });
         console.log(projectZones);
-        let FieldPhotoArrays =  [];
+        let aaassd=  [];
         projectZones.forEach( async element => {
-                console.log(element._id);
                 const fieldphotoarray = await FieldPhoto.find({ projectzone : element._id });
-                console.log('ini adalah  yang bakal ke ambil: '+fieldphotoarray);
-                FieldPhotoArrays.push(fieldphotoarray);
+                Promise.all(fieldphotoarray).then(function(p){
+                    p.forEach( test => {
+                     aaassd.push(test);
+                });
             });
-        console.log('ini adalah semuanya yang bakal ke ambil: '+ FieldPhotoArrays);
-        res.render('projectindex',{
-                layout : 'layout-project',
-                name:req.user.name,
-                jobs:req.user.jobs,
-                company:req.user.company,
-                project,
-                projectZones,
-                FieldPhotoArrays,
             });
-
-        
-    } catch (err) {next(err);}
+        console.log('ini adalah semuanya yang bakal ke ambil: '+ aaassd);
+        // res.render('projectindex',{
+        //         layout : 'layout-project',
+        //         name:req.user.name,
+        //         jobs:req.user.jobs,
+        //         company:req.user.company,
+        //         project,
+        //         projectZones,
+        //         aaassd,
+        //     });
 })
 
 // submit comment handle
