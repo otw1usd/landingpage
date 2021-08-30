@@ -7,7 +7,6 @@ const mongoose = require ('mongoose');
 const passport=require('passport');
 const methodOverride = require('method-override');
 
-
 const session = require ('express-session'); //[MASOK]
 // const cookieParser = require ('cookie-parser');
 const flash = require ('connect-flash'); //[MASOK]
@@ -40,7 +39,7 @@ app.use(
     session({
         secret:'secret',
         resave: true,
-        saveUninitialized: true, 
+        saveUninitialized: true,
     })
 );
 
@@ -61,7 +60,7 @@ app.use((req, res, next)=>{
     next();
 })
 
-//[MASOK]ambil index.js dan users.js 
+//[MASOK]ambil index.js dan users.js
 app.use('/', require('./routes/index'));
 
 app.listen (port,()=>{

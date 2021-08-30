@@ -210,11 +210,35 @@ h3, h6 {
   padding: 0.8rem;
 }
 
+.field-photo-heading-div {
+  margin-bottom: 0.5rem;
+}
+
+.btn.close-field-photo-button {
+  height: 1rem;
+  font-size: 0.7rem;
+  padding: 0 0.5rem;
+  margin-bottom: 0;
+  margin-left: 0.5rem;
+  max-height: 0;
+  overflow: hidden;
+  border: 0;
+}
+
+.btn.close-field-photo-button.close-field-photo-button-active {
+  height: 1rem;
+  font-size: 0.7rem;
+  padding: 0 0.5rem;
+  margin-bottom: 0;
+  margin-left: 0.5rem;
+  max-height: 100%;
+}
+
 .field-photo-grid {
   padding: 0.5rem;
 }
 
-.field-photo {
+.field-photo-in-grid {
   width: 100%;
   height: auto;
 }
@@ -226,6 +250,10 @@ h3, h6 {
 
 .field-photo-active {
   max-height: 100%;
+}
+
+.field-photo {
+  max-height: 600px;
 }
 
 /* Bagian hotspot 360 */
@@ -256,7 +284,7 @@ h3, h6 {
 }
 
 /* View Tab */
-#field-photo-div {
+.toggle-field-photo-identifier {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -265,7 +293,7 @@ h3, h6 {
   overflow: hidden;
 }
 
-#field-photo-div.field-photo-active {
+.toggle-field-photo-identifier.field-photo-active {
   position: absolute;
   left: 50%;
   top: 50%;
