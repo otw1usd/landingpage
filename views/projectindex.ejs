@@ -166,9 +166,9 @@
   <%    for (let x=0 ; x<FieldPhotoArrays.length ; x++) { %>
       <div id="field-photo-div<%=x%>" class="carousel slide toggle-field-photo-identifier <%= projectZones[x].zonename.split(" ").join("");  %>" data-bs-ride="carousel">
         <div class="carousel-indicators">
-          <button type="button" data-bs-target="#field-photo-div" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#field-photo-div<%=x%>" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
           <%     for (let i=1; i<FieldPhotoArrays[x].length ; i++) { %>
-          <button type="button" data-bs-target="#field-photo-div" data-bs-slide-to="<%=i%>" aria-label="Slide <%=i%>"></button>
+          <button type="button" data-bs-target="#field-photo-div<%=x%>" data-bs-slide-to="<%=i%>" aria-label="Slide <%=i%>"></button>
           <% } %>
         </div>
         <div class="carousel-inner">
@@ -191,7 +191,8 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
-
+<% console.log("baru baru " + FieldPhotoArrays); %>
+<% console.log("baru baru 222222 " + projectZones); %>
       </div>
   <%  } %>
 

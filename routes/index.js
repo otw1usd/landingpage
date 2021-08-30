@@ -636,7 +636,10 @@ console.log("ascasca" + projectZones);
     });
 
     FieldPhotoArrays.forEach(async a => {
-      console.log('ini adalah semuanya yang bakal ke ambil: ' + a.fieldphoto);
+      a.forEach(async b => {
+          console.log('ini adalah semuanya yang bakal ke ambil: ' + b.fieldphoto);
+      })
+
     })
 
   }, 1000);
