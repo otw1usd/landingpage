@@ -617,7 +617,7 @@ router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, nex
       });
 
         FieldPhotoArrays.push(fieldphotoarray);
-console.log("ascasca" + projectZones);
+
     });
 
   } catch (err) {
