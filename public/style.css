@@ -847,6 +847,22 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   margin-bottom: 0;
 }
 
+.foto-profile-comment {
+margin-top: 0.5rem;
+  border-radius: 50%;
+  border: solid 1px;
+  height: 45px;
+  width: 45px;
+}
+
+.foto-profile-reply-comment {
+  border-radius: 50%;
+  border: solid 1px;
+  height: 30px;
+  width: 30px;
+}
+
+
 /* Akhir Data Pribadi */
 /* Navbar Layout Account */
 .navbar.navbar-layout-account {

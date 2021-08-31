@@ -156,7 +156,7 @@
           <p class="nama">Beri Komentar</p>
           <div class="row">
             <div class="col-2">
-              <img class="foto-profile" src="" alt="">
+              <img class="foto-profile-comment" src="" alt="">
             </div>
             <div class="col-10">
               <p class="nama"><%= user.name %> </p>
@@ -181,7 +181,7 @@
         <% commentprojects.reverse().forEach((commentproject) => { %>
         <div class="div-notifikasi alert bg-light row">
           <div class="col-2">
-            <img class="foto-profile" src="../user/uploads/<%= commentproject.usernameid.image %> " alt="">
+            <img class="foto-profile-comment" src="/user/uploads/<%= commentproject.usernameid.image %> " alt="">
           </div>
           <div class="col-10">
             <a class="nama" href=""><%= commentproject.usernameid.name %> </a>
@@ -207,7 +207,7 @@
           <div class="reply-comment-hidden">
             <div class="row">
               <div class="col-1">
-                <img class="foto-profile" src="../img/profile.png" alt="">
+                <img class="foto-profile-reply-comment" src="/img/profile.png" alt="">
               </div>
               <div class="col-10 reply-comment-box-div">
                 <input class="reply-comment-box" type="text" name="komentarbalasan" Placeholder="Komentar">
@@ -219,7 +219,7 @@
 
             <div class="row reply-others-div">
               <div class="col-1 reply-others-pic-div">
-                <img class="foto-profile" src="../img/profile.png" alt="">
+                <img class="foto-profile-reply-comment" src="/img/profile.png" alt="">
               </div>
               <div class="col-10 reply-others-name-div">
                 <p class="nama">martinamerigo</p>
@@ -229,7 +229,7 @@
             </div>
             <div class="row reply-others-div">
               <div class="col-1 reply-others-pic-div">
-                <img class="foto-profile" src="../img/profile.png" alt="">
+                <img class="foto-profile-reply-comment" src="/img/profile.png" alt="">
               </div>
               <div class="col-10 reply-others-name-div">
                 <p class="nama">martinamerigo</p>
