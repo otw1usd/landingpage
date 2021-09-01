@@ -156,11 +156,11 @@
           <p class="nama">Beri Komentar</p>
           <div class="row">
             <div class="col-2">
-              <img class="foto-profile-comment" src="" alt="">
+              <img class="foto-profile-comment" src="/user/uploads/<%= user.image %>" alt="">
             </div>
             <div class="col-10">
               <p class="nama"><%= user.name %> </p>
-              <p>Perusahaan: <%= user.company %> </p>
+              <p><%= user.jobs %> | <%= user.company %></p>
               <input type="hidden" name="usernameid" value="<%= user._id %>" required />
               <input type="hidden" name="picture" value="<%= user.image %>" required />
               <input type="hidden" name="jobs" value="<%= jobs %>" required />
@@ -185,11 +185,8 @@
           </div>
           <div class="col-10">
             <a class="nama" href=""><%= commentproject.usernameid.name %> </a>
-            <p class="jabatan">Jabatan: <%= commentproject.usernameid.jobs %></p>
-            <p class="perusahaan">Perusahaan: <%= commentproject.usernameid.company %></p>
+            <p class="jabatan"><%= commentproject.usernameid.jobs %> | <%= commentproject.usernameid.company %></p>
             <p class="timestamp"><%= commentproject.tanggal %>
-
-
           </div>
           <p class="keterangan"><%= commentproject.isicomment %> </p>
           <form class="reply-comment-form" method="POST" action="/comment?_method=DELETE">
@@ -200,49 +197,48 @@
             <button type="submit" class="btn btn-danger btn-sm reply col-4">Delete Comment</button>
           </form>
 
-          <!-- Toggle ini bisa lebih rapih pake bootstrap, tapi harus dimasukin marker di id bagian yang mau di collapse biar ada kode unik -->
-
-
-
           <div class="reply-comment-hidden">
-            <div class="row">
-              <div class="col-1">
-                <img class="foto-profile-reply-comment" src="/img/profile.png" alt="">
-              </div>
-              <div class="col-10 reply-comment-box-div">
-                <input class="reply-comment-box" type="text" name="komentarbalasan" Placeholder="Komentar">
-              </div>
-              <div class="col-1">
-                <i class="fas fa-paper-plane send-icon"></i>
-              </div>
-            </div>
-
-            <div class="row reply-others-div">
-              <div class="col-1 reply-others-pic-div">
-                <img class="foto-profile-reply-comment" src="/img/profile.png" alt="">
-              </div>
-              <div class="col-10 reply-others-name-div">
-                <p class="nama">martinamerigo</p>
-                <p class="perusahaan">Perusahaan: KCIC</p>
-              </div>
-              <p class="reply-others-text">bapak kalo ngomong mulut dijaga ya, kok mulut kek tong sampuy.</p>
-            </div>
-            <div class="row reply-others-div">
-              <div class="col-1 reply-others-pic-div">
-                <img class="foto-profile-reply-comment" src="/img/profile.png" alt="">
-              </div>
-              <div class="col-10 reply-others-name-div">
-                <p class="nama">martinamerigo</p>
-                <p class="perusahaan">Perusahaan: KCIC</p>
-              </div>
-              <p class="reply-others-text">lah, kamu itu ya, mulut mulut siapa, tong sampuy nyaring bunyinya. ngomong ape si.</p>
-            </div>
+            <form action="/projectcommentreply" method="post">
+              <input type="hidden" name="usernameid" value="<%= user._id %>" required />
+              <input type="hidden" name="picture" value="<%= user.image %>" required />
+              <input type="hidden" name="jobs" value="<%= jobs %>" required />
+              <input type="hidden" name="company" value="<%= company %>" required />
+              <input type="hidden" name="projectid" value="<%= project._id %>" required />
+              <input type="hidden" name="commentprojectid" value="<%= commentproject._id %>" required />
+              <div class="row">
+                <div class="col-1">
+                  <img class="foto-profile-reply-comment" src="/user/uploads/<%= user.image %>" alt="">
+                </div>
+                <div class="col-10 reply-comment-box-div">
+                  <input class="reply-comment-box" type="text" name="komentarbalasan" Placeholder="Komentar" value="<%= typeof komentarbalasan != 'undefined' ? komentarbalasan : '' %>">
+                </div>
+                <div class="col-1">
+                  <button class="fas fa-paper-plane send-icon bg-light" type="submit"></button>
+                </div>
+            </form>
           </div>
-        </div>
-        <!-- Template Notifikasi sampai sini -->
-        <% }) %>
 
+          <% commentreplyprojects.forEach((commentreplyproject) => { %>
+          <% if(String(commentreplyproject.commentprojectid) === String(commentproject._id)) { %>
+          <div class="row reply-others-div">
+            <div class="col-1 reply-others-pic-div">
+              <img class="foto-profile-reply-comment" src="/user/uploads/<%= commentreplyproject.usernameid.image %>" alt="">
+            </div>
+            <div class="col-10 reply-others-name-div">
+              <p class="nama"><%= commentreplyproject.usernameid.name %></p>
+              <p class="perusahaan"><%= commentreplyproject.usernameid.jobs %> | <%= commentreplyproject.usernameid.company %></p>
+            </div>
+            <p class="reply-others-text"><%= commentreplyproject.komentarbalasan %></p>
+          </div>
+          <% } %>
+          <% }) %>
+
+        </div>
       </div>
+      <!-- Template Notifikasi sampai sini -->
+      <% }) %>
 
     </div>
+
+  </div>
   </div>

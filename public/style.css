@@ -827,7 +827,9 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 .send-icon {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  padding: 0;
+  border: 0;
 }
 
 .reply-others-div {
@@ -848,11 +850,10 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 .foto-profile-comment {
-margin-top: 0.5rem;
   border-radius: 50%;
   border: solid 1px;
-  height: 45px;
-  width: 45px;
+  height: 50px;
+  width: 50px;
 }
 
 .foto-profile-reply-comment {
@@ -861,7 +862,6 @@ margin-top: 0.5rem;
   height: 30px;
   width: 30px;
 }
-
 
 /* Akhir Data Pribadi */
 /* Navbar Layout Account */
