@@ -206,13 +206,13 @@
               <input type="hidden" name="projectid" value="<%= project._id %>" required />
               <input type="hidden" name="commentprojectid" value="<%= commentproject._id %>" required />
               <div class="row">
-                <div class="col-1">
+                <div class="col-1 foto-profile-reply-comment-div">
                   <img class="foto-profile-reply-comment" src="/user/uploads/<%= user.image %>" alt="">
                 </div>
                 <div class="col-10 reply-comment-box-div">
-                  <input class="reply-comment-box" type="text" name="komentarbalasan" Placeholder="Komentar" value="<%= typeof komentarbalasan != 'undefined' ? komentarbalasan : '' %>">
+                  <textarea class="reply-comment-box" type="text" name="komentarbalasan" Placeholder="Komentar" value="<%= typeof komentarbalasan != 'undefined' ? komentarbalasan : '' %>"></textarea>
                 </div>
-                <div class="col-1">
+                <div class="col-1 send-icon-div">
                   <button class="fas fa-paper-plane send-icon bg-light" type="submit"></button>
                 </div>
             </form>
@@ -228,7 +228,10 @@
               <p class="nama"><%= commentreplyproject.usernameid.name %></p>
               <p class="perusahaan"><%= commentreplyproject.usernameid.jobs %> | <%= commentreplyproject.usernameid.company %></p>
             </div>
-            <p class="reply-others-text"><%= commentreplyproject.komentarbalasan %></p>
+            <div class="reply-others-text-div">
+              <p class="reply-others-text"><%= commentreplyproject.komentarbalasan %></p>
+            </div>
+
           </div>
           <% } %>
           <% }) %>

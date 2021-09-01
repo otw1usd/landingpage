@@ -804,11 +804,6 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   padding: 2rem 0 0 0;
 }
 
-.div-notifikasi .reply-comment-hidden .col-1 {
-  padding: 0;
-  margin: auto;
-}
-
 .div-notifikasi .reply-comment-hidden .foto-profile {
   border-radius: 100%;
   width: 125%;
@@ -821,27 +816,41 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 .reply-comment-box {
-  width: 100%;
   border-radius: 3px;
   border: solid 1px;
+  height: 2rem;
+  width: 100%;
 }
 
 .send-icon {
   font-size: 1.25rem;
   padding: 0;
   border: 0;
+  position: absolute;
+  bottom: 0.75rem;
+}
+
+.send-icon-div {
+  position: relative;
+  padding: 0;
 }
 
 .reply-others-div {
   padding: 0.5rem 0 0 0;
 }
 
-.div-notifikasi .reply-comment-hidden .col-1.reply-others-pic-div {
+.reply-others-pic-div {
   margin: auto 0;
+  padding: 0;
 }
 
 .reply-others-name-div {
   padding-left: 1.25rem;
+}
+
+.reply-others-text-div {
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 .reply-others-text {
@@ -861,6 +870,11 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   border: solid 1px;
   height: 30px;
   width: 30px;
+}
+
+.foto-profile-reply-comment-div {
+  padding: 0;
+  margin: 0;
 }
 
 /* Akhir Data Pribadi */
