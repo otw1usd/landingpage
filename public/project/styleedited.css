@@ -266,6 +266,31 @@ h3, h6 {
   padding: 0.8rem;
 }
 
+/* Bagian foto gamtek */
+/* .close-foto-gamtek-button-div {
+text-align: right;
+}
+
+.btn.close-foto-gamtek-button {
+  height: 1rem;
+  font-size: 0.7rem;
+  padding: 0 0.5rem;
+  margin-bottom: 0;
+  margin-left: 0.5rem; */
+  /* max-height: 0;
+  overflow: hidden;
+  border: 0; */
+/* }
+
+.btn.close-foto-gamtek-button.close-foto-gamtek-button-active {
+  height: 1rem;
+  font-size: 0.7rem;
+  padding: 0 0.5rem;
+  margin-bottom: 0;
+  margin-left: 0.5rem;
+  max-height: 100%;
+} */
+
 /* atur tabel fitur */
 .button-utama {
   position: static;

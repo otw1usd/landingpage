@@ -49,3 +49,5 @@ document.querySelectorAll(".close-field-photo-button").forEach(button => {
     });
   });
 });
+
+// Bagian gamtek di project projectindex
