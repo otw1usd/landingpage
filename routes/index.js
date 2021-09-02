@@ -25,6 +25,7 @@ const Admin = require('../model/admin');
 const Comment = require('../model/comment');
 const ProjectZone = require('../model/projectzone');
 const FieldPhoto = require('../model/fieldphoto');
+const CommentReply = require('../model/commentreply');
 const bcrypt = require('bcryptjs');
 
 
@@ -69,8 +70,12 @@ router.get('/project/:oit', ensureAuthenticated, async (req, res, next) => {
     const project = await Project.findOne({
       _id: req.params.oit
     }).catch(error => {
-      throw error
+      throw error;
     });
+    const commentreplyprojects = await CommentReply.find({
+      projectid: req.params.oit
+    })
+    .populate('usernameid');
     res.render('project', {
       name: req.user.name,
       jobs: req.user.jobs,
@@ -78,6 +83,7 @@ router.get('/project/:oit', ensureAuthenticated, async (req, res, next) => {
       user: req.user,
       project,
       commentprojects,
+      commentreplyprojects,
       layout: 'layout-account',
     });
   } catch (err) {
@@ -617,7 +623,7 @@ router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, nex
         projectzone: element._id
       });
 
-        FieldPhotoArrays.push(fieldphotoarray);
+      FieldPhotoArrays.push(fieldphotoarray);
 
     });
 
@@ -638,7 +644,7 @@ router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, nex
 
     FieldPhotoArrays.forEach(async a => {
       a.forEach(async b => {
-          console.log('ini adalah semuanya yang bakal ke ambil: ' + b.fieldphoto);
+        console.log('ini adalah semuanya yang bakal ke ambil: ' + b.fieldphoto);
       })
 
     })
@@ -657,6 +663,7 @@ router.post('/projectcomment', async (req, res, next) => {
     company,
     picture
   } = req.body;
+  console.log(req.body);
   const newComment = new Comment({
     usernameid: usernameid,
     isicomment: isicomment,
@@ -667,7 +674,33 @@ router.post('/projectcomment', async (req, res, next) => {
   });
   newComment.save()
     .then(project => {
-      req.flash('success_msg', 'Your comment has posted');
+      req.flash('success_msg', 'Your comment has been posted');
+      res.redirect('/project/' + projectid);
+    });
+});
+
+router.post('/projectcommentreply', async (req, res, next) => {
+  const {
+    usernameid,
+    projectid,
+    jobs,
+    company,
+    picture,
+    commentprojectid,
+    komentarbalasan
+  } = req.body;
+  const newCommentReply = new CommentReply({
+    usernameid: usernameid,
+    projectid: projectid,
+    jobs: jobs,
+    company: company,
+    picture: picture,
+    commentprojectid: commentprojectid,
+    komentarbalasan: komentarbalasan
+  });
+  newCommentReply.save()
+    .then(project => {
+      req.flash('success_msg', 'Your reply has been posted');
       res.redirect('/project/' + projectid);
     });
 });
