@@ -545,11 +545,19 @@ h3, h6 {
   z-index: 11;
   left: 16.66667%;
   top: 4rem;
-  max-height: 100%;
-  max-width: 83.333%;
+  max-height: 48rem;
+  max-width: 68rem;
   border: 0;
   cellpadding: 0;
   cellspacing: 0;
+  background:white;
+}
+
+#zoom-img {
+  cursor: move;
+  position: relative;
+  width: 67.5rem;
+  height: 47.5rem;
 }
 
 .row {
