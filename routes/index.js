@@ -28,6 +28,8 @@ const FieldPhoto = require('../model/fieldphoto');
 const CommentReply = require('../model/commentreply');
 const bcrypt = require('bcryptjs');
 
+const monthDiff = require('../routes/function');
+const delayfunction = require('../routes/function');
 
 router.get('/', (req, res) => res.render('index'));
 router.get('/login', (req, res) => res.render('login', {
@@ -213,7 +215,6 @@ const uploadFieldPhoto = multer({
 router.put('/tambahfieldphoto', uploadFieldPhoto,
   async (req, res, next) => {
     const files = req.files;
-    console.log('cek reqfiles : ' + req.files);
     let filesArray = [];
     const {
       zonaid
@@ -225,7 +226,6 @@ router.put('/tambahfieldphoto', uploadFieldPhoto,
       projectzone: zonaid
     });
     await req.files.forEach(element => {
-      console.log(element.filename);
       const file = {
         projectzone: zonaid,
         fieldphoto: element.filename,
@@ -241,6 +241,7 @@ router.put('/tambahfieldphoto', uploadFieldPhoto,
       listzonanows,
       zonaid,
       fieldphotozonanows,
+      layout: 'layout-login',
     })
     req.flash('success_msg', 'Images Uploaded Successfully');
   })
@@ -363,7 +364,8 @@ router.post('/admin', (req, res) => {
     endDate,
     projectUsername,
     projectPassword,
-    username
+    username,
+    progrestotal
   } = req.body;
   let errors = [];
 
@@ -383,7 +385,8 @@ router.post('/admin', (req, res) => {
           endDate,
           projectUsername,
           projectPassword,
-          username
+          username,
+          progrestotal
         });
       } else {
         const newProject = new Project({
@@ -394,7 +397,8 @@ router.post('/admin', (req, res) => {
           endDate,
           projectUsername,
           projectPassword,
-          username
+          username,
+          progrestotal
         });
 
         newProject.save()
@@ -441,18 +445,17 @@ router.post('/editdatazona', async (req, res, next) => {
     const {
       listzonaid
     } = req.body;
-    console.log('ini adalah' + listzonaid);
     const listzonanows = await ProjectZone.find({
       _id: listzonaid
     });
     const fieldphotozonanows = await FieldPhoto.find({
       projectzone: listzonaid
     });
-    console.log('cekfieldphoto: ' + fieldphotozonanows);
     res.render('editdatazona', {
       listzonanows,
       zonaid: listzonaid,
       fieldphotozonanows,
+      layout: 'layout-login',
     })
   } catch (err) {
     next(err);
@@ -550,14 +553,23 @@ router.delete('/admin', async (req, res) => {
 });
 
 //edit project
-router.get('/admin/edit/:projectUsername', async (req, res) => {
-  const project = await Project.findOne({
+router.get('/admin/edit/:projectUsername', adminEnsureAuthenticated, async (req, res) => {
+  const projectnow = await Project.findOne({
     projectUsername: req.params.projectUsername
   });
   res.render('admineditproject', {
-    project,
+    projectnow,
+    layout: 'layout-login',
   });
+  console.log('inicobacekzzz'+projectnow);
 });
+
+ 
+
+//  //examples
+//  console.log('cek1: '+monthDiff(new Date(2000, 01), new Date(2000, 02))) // 1
+//  console.log(monthDiff(new Date(1999, 02), new Date(2000, 02))) // 12 full year
+//  console.log(monthDiff(new Date(2009, 11), new Date(2010, 0))) // 1
 
 router.put('/admin', [
     body('projectUsername').custom(async (value, {
@@ -593,10 +605,23 @@ router.put('/admin', [
           projectUsername: req.body.projectUsername,
           projectPassword: req.body.projectPassword,
           progrestotal: req.body.progrestotal,
+          timestampproject1: req.body.timestampproject1
         },
       }).then((result) => {
-        req.flash('success_msg', 'Data Project bzoneserhasil diubah!');
+        return delayfunction(5000).then(function() {
+          console.log('Resolved!');
+      });
+        
+        // console.log('inibulanan: '+ monthDiff(req.body.startDate, req.body.endDate));
+        // if req.body.timestampproject1 === "Mingguan", enddate kurang startdate, trus bagi 7 berapa minggu trus + 1, trus input timestampproject2 jumlah minggu
+
+        // else if req.body.timestampproject === "Bulanan", enddate kurang stardate berapa bulan, trus +1 trus tambahin sampe bulan dari bulan itu
+
+
+        req.flash('success_msg', 'Data Project berhasil diubah!');
         res.redirect('/admin');
+        console.log('ini timestamp 1 '+req.body.timestampproject1);
+        console.log('ini timestamp 2 '+req.body.timestampproject2);
       });
     }
   });
@@ -663,7 +688,6 @@ router.post('/projectcomment', async (req, res, next) => {
     company,
     picture
   } = req.body;
-  console.log(req.body);
   const newComment = new Comment({
     usernameid: usernameid,
     isicomment: isicomment,
