@@ -28,6 +28,8 @@ const FieldPhoto = require('../model/fieldphoto');
 const CommentReply = require('../model/commentreply');
 const bcrypt = require('bcryptjs');
 
+const monthDiff = require('../routes/function');
+const delayfunction = require('../routes/function');
 
 router.get('/', (req, res) => res.render('index'));
 router.get('/login', (req, res) => res.render('login', {
@@ -562,6 +564,13 @@ router.get('/admin/edit/:projectUsername', adminEnsureAuthenticated, async (req,
   console.log('inicobacekzzz'+projectnow);
 });
 
+ 
+
+//  //examples
+//  console.log('cek1: '+monthDiff(new Date(2000, 01), new Date(2000, 02))) // 1
+//  console.log(monthDiff(new Date(1999, 02), new Date(2000, 02))) // 12 full year
+//  console.log(monthDiff(new Date(2009, 11), new Date(2010, 0))) // 1
+
 router.put('/admin', [
     body('projectUsername').custom(async (value, {
       req
@@ -596,12 +605,23 @@ router.put('/admin', [
           projectUsername: req.body.projectUsername,
           projectPassword: req.body.projectPassword,
           progrestotal: req.body.progrestotal,
+          timestampproject1: req.body.timestampproject1
         },
       }).then((result) => {
-        req.flash('success_msg', 'Data Project bzoneserhasil diubah!');
+        return delayfunction(5000).then(function() {
+          console.log('Resolved!');
+      });
+        
+        // console.log('inibulanan: '+ monthDiff(req.body.startDate, req.body.endDate));
+        // if req.body.timestampproject1 === "Mingguan", enddate kurang startdate, trus bagi 7 berapa minggu trus + 1, trus input timestampproject2 jumlah minggu
+
+        // else if req.body.timestampproject === "Bulanan", enddate kurang stardate berapa bulan, trus +1 trus tambahin sampe bulan dari bulan itu
+
+
+        req.flash('success_msg', 'Data Project berhasil diubah!');
         res.redirect('/admin');
-        console.log('ini timestamp 1'+timestampproject1);
-        console.log('ini timestamp 2'+timestampproject2);
+        console.log('ini timestamp 1 '+req.body.timestampproject1);
+        console.log('ini timestamp 2 '+req.body.timestampproject2);
       });
     }
   });

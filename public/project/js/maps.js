@@ -52,7 +52,7 @@ var waktuOnScreen=0;
             }
 
            var path = "/project/dataset/drone/" + element.value + "/";
-           window.waktuOnScreen = element.value;
+           window.waktuOnScreen = element.value; //yang butuh push
 
 
             imageMapType = new google.maps.ImageMapType({
@@ -78,6 +78,10 @@ var waktuOnScreen=0;
                marzipanoFunction();
 
 //nanti ini dibuat json
+
+//content.forEach()
+
+
                 const content4 =
                     '<div id="content">' +
                     '<div id="siteNotice">' +

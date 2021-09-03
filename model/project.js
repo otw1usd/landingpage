@@ -53,6 +53,11 @@ const projectschema = new mongoose.Schema({
         //tambah validasi
         //owner username
     },
+    
+
+    timestampproject1 : {
+        type: String,
+    }
 
     
 
