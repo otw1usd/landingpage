@@ -67,7 +67,7 @@ var waktuOnScreen=0;
                     zoom + "/" + coord.y + "/" + coord.x + ".png"]
                      .join("");
 
-                     
+
 
                 },
                     tileSize: new google.maps.Size(256, 256)

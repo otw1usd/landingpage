@@ -51,3 +51,15 @@ document.querySelectorAll(".close-field-photo-button").forEach(button => {
 });
 
 // Bagian gamtek di project projectindex
+
+document.querySelectorAll(".close-foto-gamtek-button").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelector("#zoom-img").remove();
+    document.querySelector(".zoomoutafter").classList.add("zoomoutbefore");
+    document.querySelector(".zoomoutafter").classList.remove("zoomoutafter");
+    document.querySelector(".zoominafter").classList.add("zoominbefore");
+    document.querySelector(".zoominafter").classList.remove("zoominafter");
+    document.querySelector(".close-foto-gamtek-button").classList.remove("close-foto-gamtek-button-active");
+    console.log("testestes");
+  });
+});
