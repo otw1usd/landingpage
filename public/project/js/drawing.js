@@ -18,7 +18,7 @@ window.colfile = 6;
       var popup = document.getElementById("myPopup");
       popup.classList.toggle("show");
     };
-
+nodemo
 //buka button construction drawing, nnti di upgrade ke location
 
     function gamtekSaya(asd) {

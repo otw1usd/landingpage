@@ -1,36 +1,55 @@
 <form class="sign-up-form" action="/admin?_method=PUT" method="POST">
   <h2 class="sign-up-heading">Edit Project</h2>
   
-  <input type="hidden" name="_id" value="<%= project._id %>" />
-  <input type="hidden" name="oldprojectUsername" value="<%= project.oldprojectUsername || project.projectUsername  %>" />
+  <input type="hidden" name="_id" value="<%= projectnow._id %>" />
+  <input type="hidden" name="oldprojectUsername" value="<%= projectnow.oldprojectUsername || projectnow.projectUsername  %>" />
 
   <h3 class="sign-up-sub-heading"></h3>
   <label for="projectName">Project Name:</label>
-  <input class="sign-up-box" type="text" name="projectName" placeholder="Nama Project" id="projectName" value="<%= project.projectName  %>" required/><br>
+  <input class="sign-up-box" type="text" name="projectName" placeholder="Nama Project" id="projectName" value="<%= projectnow.projectName  %>" required/><br>
 
   <label for="location">Project Location:</label>
-  <input class="sign-up-box" type="text" name="location" placeholder="Location" id="location" value="<%= project.location  %>" required/><br>
+  <input class="sign-up-box" type="text" name="location" placeholder="Location" id="location" value="<%= projectnow.location  %>" required/><br>
   
   <label for="projectDescription">Project Description:</label>
-  <input class="sign-up-box" type="text" name="projectDescription" placeholder="Deskripsi Project" id="projectDescription" value="<%= project.projectDescription  %>"  required/><br>
+  <input class="sign-up-box" type="text" name="projectDescription" placeholder="Deskripsi Project" id="projectDescription" value="<%= projectnow.projectDescription  %>"  required/><br>
   
   <label for="startDate">Project Start Date:</label>
-  <input class="sign-up-box" type="date" name="startDate" placeholder="Waktu Mulai" id="startDate" value="<%= project.startDate  %>" required/><br>
+  <input class="sign-up-box" type="date" name="startDate" placeholder="Waktu Mulai" id="startDate" value="<%= projectnow.startDate  %>" required/><br>
 
   <label for="endDate">Project End Date:</label>
-  <input class="sign-up-box" type="date" name="endDate" placeholder="Waktu Selesai" id="endDate" value="<%= project.endDate  %>" required/><br>
+  <input class="sign-up-box" type="date" name="endDate" placeholder="Waktu Selesai" id="endDate" value="<%= projectnow.endDate  %>" required/><br>
 
   <label for="projectUsername">Project Username:</label>
-  <input class="sign-up-box" type="text" name="projectUsername" placeholder="username project" id="projectUsername" value="<%= project.projectUsername  %>" required/><br>
+  <input class="sign-up-box" type="text" name="projectUsername" placeholder="username project" id="projectUsername" value="<%= projectnow.projectUsername  %>" required/><br>
 
   <label for="projectPassword">Project Password:</label>
-  <input class="sign-up-box" type="text" name="projectPassword" placeholder="password project" id="projectPassword" value="<%= project.projectPassword  %>" required/><br>
+  <input class="sign-up-box" type="text" name="projectPassword" placeholder="password project" id="projectPassword" value="<%= projectnow.projectPassword  %>" required/><br>
 
   <label for="username">Project Owner username: </label>
-  <input class="sign-up-box" type="text" name="username" placeholder="username owner" id="username" value="<%= project.username  %>" required/><br>
+  <input class="sign-up-box" type="text" name="username" placeholder="username owner" id="username" value="<%= projectnow.username  %>" required/><br>
   
   <label for="progrestotal">Project Progress Total: </label>
-  <input class="sign-up-box" type="text" name="progrestotal" placeholder="dalam persen" id="progrestotal" value="<%= project.progrestotal  %>" required/><br>
+  <input class="sign-up-box" type="text" name="progrestotal" placeholder="dalam persen" id="progrestotal" value="<%= projectnow.progrestotal  %>" required/><br>
+
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Example select</label>
+    <select class="form-control" id="timestampproject1" name="timestampproject1" required/>
+      <option>Bulanan</option>
+      <option>Mingguan</option>
+
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect2">Example multiple select</label>
+    <select multiple class="form-control" name="timestampproject2" id="timestampproject2" required/>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
   
   <button type="submit" class="btn btn-dark">Ubah Data Project</button>
   
