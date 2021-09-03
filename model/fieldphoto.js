@@ -6,13 +6,15 @@ const fieldphotoschema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required:true,
         ref:'projectzone',
-    },    
+    },
     fieldphoto : {
         type:String,
         required:true,
+    },
+    timestampproject1 : {
+        type: String,
     }
-
-})
+});
 
 
 const FieldPhoto = mongoose.model ('fieldphoto',fieldphotoschema)

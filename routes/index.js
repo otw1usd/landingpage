@@ -75,9 +75,9 @@ router.get('/project/:oit', ensureAuthenticated, async (req, res, next) => {
       throw error;
     });
     const commentreplyprojects = await CommentReply.find({
-      projectid: req.params.oit
-    })
-    .populate('usernameid');
+        projectid: req.params.oit
+      })
+      .populate('usernameid');
     res.render('project', {
       name: req.user.name,
       jobs: req.user.jobs,
@@ -561,10 +561,10 @@ router.get('/admin/edit/:projectUsername', adminEnsureAuthenticated, async (req,
     projectnow,
     layout: 'layout-login',
   });
-  console.log('inicobacekzzz'+projectnow);
+  console.log('inicobacekzzz' + projectnow);
 });
 
- 
+
 
 //  //examples
 //  console.log('cek1: '+monthDiff(new Date(2000, 01), new Date(2000, 02))) // 1
@@ -607,22 +607,28 @@ router.put('/admin', [
           progrestotal: req.body.progrestotal,
           timestampproject1: req.body.timestampproject1
         },
-      }).then((result) => {
-        return delayfunction(5000).then(function() {
-          console.log('Resolved!');
-      });
-        
-        // console.log('inibulanan: '+ monthDiff(req.body.startDate, req.body.endDate));
-        // if req.body.timestampproject1 === "Mingguan", enddate kurang startdate, trus bagi 7 berapa minggu trus + 1, trus input timestampproject2 jumlah minggu
+      })
 
-        // else if req.body.timestampproject === "Bulanan", enddate kurang stardate berapa bulan, trus +1 trus tambahin sampe bulan dari bulan itu
+      // .then((result) => {
+      //   return delayfunction(5000).then(function() {
+      //     console.log('Resolved!');
+      // });
+
+      // console.log('inibulanan: '+ monthDiff(req.body.startDate, req.body.endDate));
+      // if req.body.timestampproject1 === "Mingguan", enddate kurang startdate, trus bagi 7 berapa minggu trus + 1, trus input timestampproject2 jumlah minggu
+
+      // else if req.body.timestampproject === "Bulanan", enddate kurang stardate berapa bulan, trus +1 trus tambahin sampe bulan dari bulan itu
 
 
+
+      setTimeout(() => {
         req.flash('success_msg', 'Data Project berhasil diubah!');
         res.redirect('/admin');
-        console.log('ini timestamp 1 '+req.body.timestampproject1);
-        console.log('ini timestamp 2 '+req.body.timestampproject2);
-      });
+        console.log('ini timestamp 1 ' + req.body.timestampproject1);
+        console.log('ini timestamp 2 ' + req.body.timestampproject2);
+      }, 0);
+
+      // });
     }
   });
 
