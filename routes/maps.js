@@ -1,13 +1,14 @@
-// const Project = require('../model/project');
+const Project = require('../model/project');
 
 var map;
 var imageMapType;
 var waktuOnScreen=0;
 
-// const daftartesproject = Project.find({
-//     username: kcic
-//   });
-// console.log('tes impor ke mpas.js  '+ daftartesproject);
+const daftartesproject = Project.find({
+    username: 'kcic'
+  });
+console.log('tes impor ke mpas.js  '+ daftartesproject);
+
 
             function initialize() {
                 var options = {
@@ -46,6 +47,7 @@ var waktuOnScreen=0;
                     },
                     tileSize: new google.maps.Size(256, 256)
                 });
+                console.log('tes impor ke mpas.js 2 '+ daftartesproject);
 
                 map.overlayMapTypes.push(imageMapType);
             }
