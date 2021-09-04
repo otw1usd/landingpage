@@ -37,17 +37,23 @@ var APP_DATA = {
         }
       ],
       "infoHotspots": [
-      {
-          "yaw": 1.8549456293523967,
-          "pitch": 0.3533178949426148,
-          "title": "Pekerjaan Pengecoran",
-          "text": "0 %"
-        },
         {
           "yaw": -2.1207388256076083,
+          "pitch": 0.56016403910461214, 
+          "title": "Pekerjaan Pembesian Tie Beam",
+          "text": "100%"
+        },
+        {
+          "yaw": -2.1007388256076083,
           "pitch": 0.36016403910461214,
-          "title": "Pekerjaan Pembesian",
-          "text": "50%"
+          "title": "Pekerjaan Pembesian PileCap (1)",
+          "text": "100%"
+        },
+        {
+          "yaw": -0.2207388256076083,
+          "pitch": 0.96016403910461214,
+          "title": "Pekerjaan Pembesian PileCap (2)",
+          "text": "100%,                            Konsultan : Periksa panjang penyaluran dan laporkan kembali melalui platform ini"
         }
         ]
     },

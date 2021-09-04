@@ -236,7 +236,7 @@ var waktuOnScreen=0;
                     [
                         "KM-300",
                         -6.958979247996991, 107.73666835334447,
-                        "/img/hotspot.png",
+                        "/images/hotspot.png",
                         25,
                         33,
                         content4,
@@ -245,7 +245,7 @@ var waktuOnScreen=0;
                     [
                         "KM-299",
                         -6.9576846316832635, 107.73280808839294,
-                        "/img/hotspot.png",
+                        "/images/hotspot.png",
                         25,
                         33,
                         content5,
@@ -255,7 +255,7 @@ var waktuOnScreen=0;
                     [
                         "KM-301",
                         -6.960370735383669, 107.74107971756642,
-                        "/img/hotspot.png",
+                        "/images/hotspot.png",
                         25,
                         33,
                         content6,

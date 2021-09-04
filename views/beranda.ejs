@@ -8,7 +8,7 @@
 <div class="div-beranda col-8">
   <div class="div-data-pribadi">
     <img class="foto-profile" src="/user/uploads/<%= user.image %> " alt="">
-    <a href="/edituser"><img id="icon-edit" src="img/edit.png" alt="edit"></a>
+    <a href="/edituser"><img id="icon-edit" src="images/edit.png" alt="edit"></a>
     <div class="data-pribadi utama">
       <h2 class="nama"><%= name %></h2>
       <h5 class="jabatan-terakhir"><%= jobs %> <%= company %></h5>
@@ -79,14 +79,14 @@
     <% listprojects.forEach((listproject) => { %>
     <div class="daftar-proyek col-12 row">
       <div class="col-2">
-        <img class="logo-proyek" src="img/logo-kcic.png" alt="">
+        <img class="logo-proyek" src="images/logo-kcic.png" alt="">
       </div>
       <div class="div-data-proyek-besar col-10">
         <div class="row">
           <h4><a href="/project/<%= listproject._id %>" class="nama-proyek text-dark">
               <%= listproject.projectName %>
             </a></h4>
-          <!-- <a href="/project/<%= listproject._id %>"><img class="col-1" id="icon-edit-data-proyek" src="img/edit.png" alt="edit"></a> -->
+          <!-- <a href="/project/<%= listproject._id %>"><img class="col-1" id="icon-edit-data-proyek" src="images/edit.png" alt="edit"></a> -->
         </div>
         <div class="row">
           <div class="div-data-proyek col-4">

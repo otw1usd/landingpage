@@ -62,7 +62,6 @@ app.use((req, res, next)=>{
 
 //[MASOK]ambil index.js dan users.js
 app.use('/', require('./routes/index'));
-app.use('/', require('./routes/maps'));
 
 app.listen (port,()=>{
     console.log(`AMATI User Database | listening at http://localhost:${port}`);

@@ -82,7 +82,7 @@ function marzipanoFunction() {
       { cubeMapPreviewUrl: urlPrefix + "/" + data.id + "/preview.jpg" });
     var geometry = new Marzipano.CubeGeometry(data.levels);
 
-    var limiter = Marzipano.RectilinearView.limit.traditional(data.faceSize, 100*Math.PI/180, 120*Math.PI/180);
+    var limiter = Marzipano.RectilinearView.limit.traditional(data.faceSize, 140*Math.PI/180);
     var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
 
     var scene = viewer.createScene({
@@ -258,7 +258,7 @@ function marzipanoFunction() {
 
     // Create image element.
     var icon = document.createElement('img');
-    icon.src = '/img/link.png';
+    icon.src = '/images/link.png';
     icon.classList.add('link-hotspot-icon');
 
     // Set rotation transform.
@@ -304,7 +304,7 @@ function marzipanoFunction() {
     var iconWrapper = document.createElement('div');
     iconWrapper.classList.add('info-hotspot-icon-wrapper');
     var icon = document.createElement('img');
-    icon.src = '/img/info.png';
+    icon.src = '/images/info.png';
     icon.classList.add('info-hotspot-icon');
     iconWrapper.appendChild(icon);
 
@@ -320,7 +320,7 @@ function marzipanoFunction() {
     var closeWrapper = document.createElement('div');
     closeWrapper.classList.add('info-hotspot-close-wrapper');
     var closeIcon = document.createElement('img');
-    closeIcon.src = '/img/close.png';
+    closeIcon.src = '/images/close.png';
     closeIcon.classList.add('info-hotspot-close-icon');
     closeWrapper.appendChild(closeIcon);
 
