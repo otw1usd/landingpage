@@ -182,11 +182,6 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   color: #000;
 }
 
-.highlight-sub-heading {
-  background-color: #fff;
-  width: 85%;
-}
-
 .sub-heading {
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
@@ -199,13 +194,6 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }
 
-@media (max-width: 1260px) {
-  .highlight-sub-heading {
-    background: #fff;
-    width: 100%;
-  }
-}
-
 @media (max-width: 992px) {
   #hero {
     text-align: center;
@@ -215,11 +203,6 @@ h1, h2, h3, h4, h5, h6, .font-primary {
     padding-top: 15%;
     padding-bottom: 10%;
   }
-
-  .highlight-sub-heading {
-    background: transparent;
-    width: 100%;
-  }
 }
 
 @media (max-width: 650px) {
@@ -228,7 +211,6 @@ h1, h2, h3, h4, h5, h6, .font-primary {
     top: 4rem;
     left: 50%;
     transform: translateX(-50%);
-
   }
 
   .highlight-sub-heading {
