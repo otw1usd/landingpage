@@ -102,7 +102,7 @@ var waktuOnScreen=0;
                     "<tr>" +
                     "<th> <b> Progres </b></th>"+
                     "<th>:</th>"+
-                    "<th>100%</th>"+
+                    "<th>35%</th>"+
                     "</tr>"+
                     "</table>"+
 
@@ -145,7 +145,7 @@ var waktuOnScreen=0;
                     "<tr>" +
                     "<th> <b> Progres </b></th>"+
                     "<th>:</th>"+
-                    "<th>100%</th>"+
+                    "<th>35%</th>"+
                     "</tr>"+
                     "</table>"+
 
@@ -193,7 +193,7 @@ var waktuOnScreen=0;
                     "<tr>" +
                     "<th> <b> Progres </b></th>"+
                     "<th>:</th>"+
-                    "<th>100%</th>"+
+                    "<th>35%</th>"+
                     "</tr>"+
                     "</table>"+
 
@@ -220,6 +220,102 @@ var waktuOnScreen=0;
 
                     "<tr>" +
                     "<th><button onclick='reportSaya(301)'>Progress Report</button></th>"+
+                    "</tr>"+
+
+                    "</table>"+
+
+
+                    "</div>" +
+                    "</div>";
+
+                    const content7 =
+                    '<div id="content">' +
+                    '<div id="siteNotice">' +
+                    "</div>" +
+                    '<h1 id="firstHeading" class="firstHeading">Bangunan Depo Tegalluar</h1>' +
+
+
+                    '<div id="bodyContent">' +
+
+                    '<table style="width:100%">'+
+                    "<tr>" +
+                    "<th> <b> Progres </b></th>"+
+                    "<th>:</th>"+
+                    "<th>35%</th>"+
+                    "</tr>"+
+                    "</table>"+
+
+                    '<h6></h6>'+
+
+                    '<table style="width:100%">'+
+                    "<tr>" +
+                    // "<th> <button>Gantt Chart</button></th>"+
+                    "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>"+
+                    "</tr>"+
+
+                    "<tr>" +
+                    "<th><button>Field Photo</button></th>"+
+                    "</tr>"+
+
+                    // "<tr>" +
+                    // "<th><button>%Cost</button></th>"+
+                    // "<th><button>Video</button></th>"+
+                    // "</tr>"+
+
+                    "<tr>" +
+                    "<th><button onclick='gamtekSaya(302)'>Construction Drawing</button></th>"+
+                    "</tr>"+
+
+                    "<tr>" +
+                    "<th><button onclick='reportSaya(302)'>Progress Report</button></th>"+
+                    "</tr>"+
+
+                    "</table>"+
+
+
+                    "</div>" +
+                    "</div>";
+
+                    const content8 =
+                    '<div id="content">' +
+                    '<div id="siteNotice">' +
+                    "</div>" +
+                    '<h1 id="firstHeading" class="firstHeading">Daerah Mesin Stabilisasi</h1>' +
+
+
+                    '<div id="bodyContent">' +
+
+                    '<table style="width:100%">'+
+                    "<tr>" +
+                    "<th> <b> Progres </b></th>"+
+                    "<th>:</th>"+
+                    "<th>35%</th>"+
+                    "</tr>"+
+                    "</table>"+
+
+                    '<h6></h6>'+
+
+                    '<table style="width:100%">'+
+                    "<tr>" +
+                    // "<th> <button>Gantt Chart</button></th>"+
+                    "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>"+
+                    "</tr>"+
+
+                    "<tr>" +
+                    "<th><button>Field Photo</button></th>"+
+                    "</tr>"+
+
+                    // "<tr>" +
+                    // "<th><button>%Cost</button></th>"+
+                    // "<th><button>Video</button></th>"+
+                    // "</tr>"+
+
+                    "<tr>" +
+                    "<th><button onclick='gamtekSaya(303)'>Construction Drawing</button></th>"+
+                    "</tr>"+
+
+                    "<tr>" +
+                    "<th><button onclick='reportSaya(303)'>Progress Report</button></th>"+
                     "</tr>"+
 
                     "</table>"+
@@ -260,6 +356,24 @@ var waktuOnScreen=0;
                         33,
                         content6,
                     ],
+
+                    [
+                        "Bangunan Depo Tegalluar",
+                        -6.96426012335397, 107.7494698161802,
+                        "/images/hotspot.png",
+                        25,
+                        33,
+                        content7,
+                    ],
+
+                    [
+                        "Daerah Mesin Stabilisasi",
+                        -6.9623993260912735, 107.74568786049235,
+                        "/images/hotspot.png",
+                        25,
+                        33,
+                        content8,
+                    ]
 
                 ];
 
