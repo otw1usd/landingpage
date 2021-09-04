@@ -29,10 +29,8 @@ for (let x = 0; x < document.querySelectorAll(".toggle-field-photo-button").leng
     });
     var zoneName = document.querySelectorAll(".toggle-field-photo-button")[x].innerHTML;
     var zoneNameTrimmed = zoneName.split(" ").join("");
-    console.log(zoneNameTrimmed);
     for (let y = 0; y < document.querySelectorAll(".toggle-field-photo-identifier").length; y++) {
       if (document.querySelectorAll(".toggle-field-photo-identifier")[y].classList.contains(zoneNameTrimmed)) {
-        console.log("berhasil");
         document.querySelectorAll(".toggle-field-photo-identifier")[y].classList.toggle("field-photo-active");
       }
     }
@@ -50,4 +48,28 @@ document.querySelectorAll(".close-field-photo-button").forEach(button => {
   });
 });
 
+// Bagian toggle field photo tergantung timeline
+
+for (let i = 1; i < 7; i++) {
+  document.querySelector("#radio-" + i).addEventListener("click", function() {
+    for (let z = 1; z < 7; z++) {
+      document.querySelector(".yang-ke-" + z).classList.remove("field-photo-super-div-active");
+    }
+    document.querySelector(".yang-ke-" + i).classList.toggle("field-photo-super-div-active");
+  });
+}
+
+
 // Bagian gamtek di project projectindex
+
+document.querySelectorAll(".close-foto-gamtek-button").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelector("#zoom-img").remove();
+    document.querySelector(".zoomoutafter").classList.add("zoomoutbefore");
+    document.querySelector(".zoomoutafter").classList.remove("zoomoutafter");
+    document.querySelector(".zoominafter").classList.add("zoominbefore");
+    document.querySelector(".zoominafter").classList.remove("zoominafter");
+    document.querySelector(".close-foto-gamtek-button").classList.remove("close-foto-gamtek-button-active");
+    console.log("testestes");
+  });
+});
