@@ -5,7 +5,7 @@
 
    <nav id="navigation-bar" class="navbar navbar-expand-lg navbar-light bg-warning">
 
-     <a class="navbar-brand" href="/"><img class="logo-amati-navbar" src="/img/logo-amati-navbar.png" alt=""></a>
+     <a class="navbar-brand" href="/"><img class="logo-amati-navbar" src="/images/logo-amati-navbar.png" alt=""></a>
 
 
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,7 +48,9 @@
      <div class="row">
        <div class="col-lg-6 d-flex flex-column justify-content-center name-and-tagline">
          <h1 class="super-big-heading">AMATI</h1>
-         <h2 class="sub-heading">AMATI is a platform designed to reduce inefficiencies in construction activites.</h2>
+         <div class="highlight-sub-heading">
+           <h2 class="sub-heading">AMATI is a platform designed to reduce inefficiencies in construction activites.</h2>
+         </div>
        </div>
 
        <div class="col-lg-6 hero-img">
@@ -65,7 +67,7 @@
            <h3 class="sign-up-sub-heading">Status dan Pengalaman Kerja</h3>
            <input class="sign-up-box" type="text" name="company" placeholder="Nama Perusahaan/Proyek" id="company" value="<%= typeof company != 'undefined' ? company : '' %>" required />
            <input class="sign-up-box" type="text" name="jobs" placeholder="Posisi" id="job" value="<%= typeof jobs != 'undefined' ? jobs : '' %>" required />
-           <button type="submit" class="btn btn-warning sign-up-btn-style">Sign Up</button>
+           <button type="submit" class="btn btn-light sign-up-btn-style">Sign Up</button>
            <%- include('./partials/messages.ejs') %>
            <p class="log-in-text-div">Sudah memiliki akun? <a class="log-in-text" href="/login">Log in</a></p>
          </form>

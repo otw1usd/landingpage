@@ -72,35 +72,24 @@
                 <button type="button" class="btn btn-outline-warning btn-sm btn-block toggle-field-photo-button"> <%= projectZone.zonename  %></button>
               </div>
               <div class="col-1">
-                <button type="button" class="btn btn-outline-warning btn-sm">+</button>
+                <button type="button" class="btn btn-outline-warning btn-sm toggle-add-field-photo">+</button>
                 <!-- nanti pop up box ke form dibawah -->
               </div>
 
               <!-- form popup box -->
-              
-                <!-- <form class="sign-up-form" action="/tambahfieldphoto?_method=PUT" method="POST" enctype="multipart/form-data">                
-                  <input type="hidden" name="zonaid" value="<%= projectZone._id %>" />
-                 
-                  <label for="image">Upload Field Photos</label>
-                  <input type="file" name="image" multiple />
-                  <button type="submit" class="btn btn-dark">Tambah Data</button>
-                  
-                </form> -->
+
+              <form class="sign-up-form add-field-photo" action="/tambahfieldphoto?_method=PUT" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="zonaid" value="<%= projectZone._id %>" />
+                <label for="image">Upload Field Photos:</label>
+                <div class="add-field-photo-button-div">
+                  <input type="file" class="add-field-photo-button" name="image" multiple />
+                  <button type="submit" class="btn btn-outline-warning btn-sm">Tambah Data</button>
+                </div>
+              </form>
 
               <% }) %>
             </div>
 
-
-
-
-            
-            <!-- <div class="field-photo-hidden">
-              <div class="row">
-                <div class="col-4 field-photo-grid">
-                  <img class="field-photo-in-grid" src="/images/profile.png" alt="">
-                </div>
-              </div>
-            </div> -->
           </div>
 
           <% } %>

@@ -1,18 +1,18 @@
 //jshint esversion:6
 
 // Bagian comment di project.ejs
-let i = 1;
+let toggleCommentIndicator = 1;
 
 document.querySelectorAll(".toggle-comment-button").forEach(button => {
   button.addEventListener("click", () => {
     button.parentElement.nextElementSibling.classList.toggle("reply-comment-active");
 
-    if (i === 1) {
+    if (toggleCommentIndicator === 1) {
       button.innerText = "Hide Comment";
-      i = 0;
+      toggleCommentIndicator = 0;
     } else {
       button.innerText = "Show Comment";
-      i = 1;
+      toggleCommentIndicator = 1;
     }
   });
 });
@@ -58,6 +58,23 @@ for (let i = 1; i < 7; i++) {
     document.querySelector(".yang-ke-" + i).classList.toggle("field-photo-super-div-active");
   });
 }
+
+// Toggle bagian untuk add field photo sebagai client
+let addFieldPhotoIndicator = 1;
+
+document.querySelectorAll(".toggle-add-field-photo").forEach(button => {
+  button.addEventListener("click", () => {
+    button.parentElement.nextElementSibling.classList.toggle("add-field-photo-active");
+
+    if (addFieldPhotoIndicator === 1) {
+      button.innerText = "-";
+      addFieldPhotoIndicator = 0;
+    } else {
+      button.innerText = "+";
+      addFieldPhotoIndicator = 1;
+    }
+  });
+});
 
 
 // Bagian gamtek di project projectindex
