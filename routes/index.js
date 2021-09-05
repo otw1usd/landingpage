@@ -246,6 +246,35 @@ router.put('/tambahfieldphoto', uploadFieldPhoto,
     req.flash('success_msg', 'Images Uploaded Successfully');
   })
 
+  //tambahfieldphoto client
+  router.put('/tambahfieldphotoclient', uploadFieldPhoto,
+  async (req, res, next) => {
+    const files = req.files;
+    let filesArray = [];
+    const {
+      zonaid
+    } = req.body;
+    var listzonanows = await ProjectZone.findOne({
+      _id: zonaid
+    });
+    const fieldphotozonanows = await FieldPhoto.find({
+      projectzone: zonaid
+    });
+    await req.files.forEach(element => {
+      const file = {
+        projectzone: zonaid,
+        fieldphoto: element.filename,
+      };
+      filesArray.push(file);
+      const multipleFieldPhotos = new FieldPhoto({
+        projectzone: zonaid,
+        fieldphoto: element.filename,
+      });
+      multipleFieldPhotos.save();
+    });
+    res.redirect('/projectindex/'+listzonanows.projectid);
+    req.flash('success_msg', 'Images Uploaded Successfully');
+  })
 
 
 
@@ -649,13 +678,10 @@ router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, nex
     });
 
     await projectZones.forEach(async element => {
-
       const fieldphotoarray = await FieldPhoto.find({
         projectzone: element._id
       });
-
       FieldPhotoArrays.push(fieldphotoarray);
-
     });
 
   } catch (err) {
@@ -675,7 +701,7 @@ router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, nex
 
     FieldPhotoArrays.forEach(async a => {
       a.forEach(async b => {
-        console.log('ini adalah semuanya yang bakal ke ambil: ' + b.fieldphoto);
+        // console.log('ini adalah semuanya yang bakal ke ambil: ' + b.fieldphoto);
       })
 
     })
