@@ -18,6 +18,7 @@ const {
 } = require('../config/adminauth')
 
 const multer = require('multer');
+const sharp = require ('sharp');
 
 const User = require('../model/user');
 const Project = require('../model/project');
@@ -116,7 +117,7 @@ const Storage = multer.diskStorage({
 
 const upload = multer({
   storage: Storage
-}).single('image');
+});
 
 
 router.put('/user', [
@@ -132,7 +133,7 @@ router.put('/user', [
       return true;
     }),
   ],
-  upload,
+  upload.single('image'),
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -141,7 +142,6 @@ router.put('/user', [
         user: req.body,
         layout: 'layout-account',
       });
-
       console.log(errors);
     } else {
       if (req.file === undefined) {
@@ -149,6 +149,14 @@ router.put('/user', [
       } else {
         var filenamalama = req.file.filename;
       };
+      
+      await sharp(req.file.destination+'/'+filenamalama).toBuffer().then(
+        (data)=>{ sharp(data).rotate(90).resize(300).toFile(req.file.destination+'/'+filenamalama, (err,info)=>{
+          console.log('image resized');
+        })
+          })
+          .catch((err)=>{console.log(err);})
+
       await User.updateOne({
         _id: req.body._id
       }, {
@@ -225,7 +233,16 @@ router.put('/tambahfieldphoto', uploadFieldPhoto,
     const fieldphotozonanows = await FieldPhoto.find({
       projectzone: zonaid
     });
+        
     await req.files.forEach(element => {
+
+      sharp(element.destination+'/'+element.filename).toBuffer().then(
+        (data)=>{ sharp(data).rotate(90).resize(600).toFile(element.destination+'/'+element.filename, (err,info)=>{
+          console.log('image resized '+ element.destination+'/'+element.filename);
+        })
+          })
+          .catch((err)=>{console.log(err);});
+
       const file = {
         projectzone: zonaid,
         fieldphoto: element.filename,
@@ -261,6 +278,14 @@ router.put('/tambahfieldphoto', uploadFieldPhoto,
       projectzone: zonaid
     });
     await req.files.forEach(element => {
+
+      sharp(element.destination+'/'+element.filename).toBuffer().then(
+        (data)=>{ sharp(data).rotate(90).resize(600).toFile(element.destination+'/'+element.filename, (err,info)=>{
+          console.log('image resized '+ element.destination+'/'+element.filename);
+        })
+          })
+          .catch((err)=>{console.log(err);});
+
       const file = {
         projectzone: zonaid,
         fieldphoto: element.filename,
