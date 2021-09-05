@@ -154,15 +154,10 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100%;
-}
-
-#hero::before {
+  padding-top: 52px;
   margin-top: -52px;
-  height: 52px;
-  content: " ";
-  visibility: hidden;
-  pointer-events: none;
-  display: block;
+  -webkit-background-clip: content-box;
+  background-clip: content-box;
 }
 
 #hero .section-padding {
@@ -406,15 +401,10 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   background-color: #fff;
   width: 100%;
   color: #343a40;
-}
-
-#about::before {
-  display: block;
-  content: " ";
+  padding-top: 52px;
   margin-top: -52px;
-  height: 52px;
-  pointer-events: none;
-  background-color: #343a40;
+  -webkit-background-clip: content-box;
+  background-clip: content-box;
 }
 
 .problem-div {
@@ -480,15 +470,10 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 #services {
   background-color: #343a40;
   color: #000;
-}
-
-#services::before {
-  display: block;
-  content: " ";
+  padding-top: 52px;
   margin-top: -52px;
-  height: 52px;
-  pointer-events: none;
-  background-color: #fff;
+  -webkit-background-clip: content-box;
+  background-clip: content-box;
 }
 
 .services .icon-box {
@@ -536,15 +521,10 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 /* Clients */
 #clients {
   background-color: #fff;
-}
-
-#clients::before {
-  display: block;
-  content: " ";
+  padding-top: 52px;
   margin-top: -52px;
-  height: 52px;
-  pointer-events: none;
-  background-color: #343a40;
+  -webkit-background-clip: content-box;
+  background-clip: content-box;
 }
 
 .clients .clients-slider .swiper-slide img {
@@ -564,15 +544,10 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 /* Contact */
 #contact {
   background-color: #343a40;
-}
-
-#contact::before {
+  padding-top: 52px;
   margin-top: -52px;
-  height: 52px;
-  content: " ";
-  pointer-events: none;
-  display: block;
-  background-color: #fff;
+  -webkit-background-clip: content-box;
+  background-clip: content-box;
 }
 
 .contact .info {
