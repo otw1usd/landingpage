@@ -398,5 +398,4 @@ function marzipanoFunction() {
 
 
 let waktu = window.waktuOnScreen;
-console.log(waktu);
 
