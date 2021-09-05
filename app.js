@@ -1,24 +1,18 @@
 // const fs = require('fs');
-const express = require ('express'); //[MASOK]
-const expressLayouts = require ('express-ejs-layouts'); //[MASOK]
-const path = require('path');
-const { body, validationResult, check } = require ('express-validator');
-const mongoose = require ('mongoose');
+const express = require ('express'); 
+const expressLayouts = require ('express-ejs-layouts'); 
 const passport=require('passport');
 const methodOverride = require('method-override');
 
-const session = require ('express-session'); //[MASOK]
+const session = require ('express-session'); 
 // const cookieParser = require ('cookie-parser');
-const flash = require ('connect-flash'); //[MASOK]
+const flash = require ('connect-flash'); 
 
 // passport config
 require('./config/passport')(passport);
 
 //DB CONFIG and conenct mongo
 require ('./config/db');
-const user = require ('./model/user');
-const project = require ('./model/project');
-const { config } = require('process');
 
 const app = express();
 const port = 3000;
@@ -27,8 +21,8 @@ const port = 3000;
 app.use(methodOverride('_method'));
 
 //setup ejs
-app.set('view engine','ejs'); //[MASOK]
-app.use(expressLayouts); //[MASOK]
+app.set('view engine','ejs'); 
+app.use(expressLayouts); 
 app.use(express.static('public'));
 
 //bodyparser
@@ -60,7 +54,7 @@ app.use((req, res, next)=>{
     next();
 })
 
-//[MASOK]ambil index.js dan users.js
+// ambil index.js dan users.js
 app.use('/', require('./routes/index'));
 
 app.listen (port,()=>{
