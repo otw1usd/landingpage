@@ -50,12 +50,12 @@ document.querySelectorAll(".close-field-photo-button").forEach(button => {
 
 // Bagian toggle field photo tergantung timeline
 
-for (let i = 1; i < 7; i++) {
+for (let i = 0; i < document.querySelectorAll(".time-stamp-button").length; i++) {
   document.querySelector("#radio-" + i).addEventListener("click", function() {
-    for (let z = 1; z < 7; z++) {
-      document.querySelector(".yang-ke-" + z).classList.remove("field-photo-super-div-active");
+    for (let z = 0; z < 6; z++) {
+      document.querySelectorAll(".field-photo-super-div")[z].classList.remove("field-photo-super-div-active");
     }
-    document.querySelector(".yang-ke-" + i).classList.toggle("field-photo-super-div-active");
+    document.querySelectorAll(".field-photo-super-div")[i].classList.toggle("field-photo-super-div-active");
   });
 }
 

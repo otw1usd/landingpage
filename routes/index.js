@@ -26,10 +26,13 @@ const Comment = require('../model/comment');
 const ProjectZone = require('../model/projectzone');
 const FieldPhoto = require('../model/fieldphoto');
 const CommentReply = require('../model/commentreply');
+const TimeStampProject = require("../model/timestampproject");
 const bcrypt = require('bcryptjs');
 
 const monthDiff = require('../routes/function');
 const delayfunction = require('../routes/function');
+
+const getDate = require('../routes/date.js');
 
 router.get('/', (req, res) => res.render('index'));
 router.get('/login', (req, res) => res.render('login', {
@@ -246,8 +249,8 @@ router.put('/tambahfieldphoto', uploadFieldPhoto,
     req.flash('success_msg', 'Images Uploaded Successfully');
   })
 
-  //tambahfieldphoto client
-  router.put('/tambahfieldphotoclient', uploadFieldPhoto,
+//tambahfieldphoto client
+router.put('/tambahfieldphotoclient', uploadFieldPhoto,
   async (req, res, next) => {
     const files = req.files;
     let filesArray = [];
@@ -272,9 +275,9 @@ router.put('/tambahfieldphoto', uploadFieldPhoto,
       });
       multipleFieldPhotos.save();
     });
-    res.redirect('/projectindex/'+listzonanows.projectid);
+    res.redirect('/projectindex/' + listzonanows.projectid);
     req.flash('success_msg', 'Images Uploaded Successfully');
-  })
+  });
 
 
 
@@ -459,14 +462,44 @@ router.post('/tambahzona', async (req, res, next) => {
           .then(project => {
             req.flash('success_msg', 'Berhasil tambah zona ');
             res.redirect('/admin/' + projectUsername);
-          })
+          });
       })
       .catch(error => {
         throw error
       });
   } catch (err) {
     next(err);
-  };
+  }
+});
+
+//tambah waktu
+router.post('/tambahtimestamp', async (req, res, next) => {
+  try {
+    const {
+      projectUsername,
+      projectid,
+      detailtimestamp
+    } = req.body;
+    await Project.findOne({
+        _id: projectid
+      })
+      .then(project => {
+        const newTimeStamp = new TimeStampProject({
+          projectid,
+          timestampproject: detailtimestamp,
+        });
+        newTimeStamp.save()
+          .then(project => {
+            req.flash('success_msg', 'Berhasil tambah waktu ');
+            res.redirect('/admin/' + projectUsername);
+          });
+      })
+      .catch(error => {
+        throw error
+      });
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.post('/editdatazona', async (req, res, next) => {
@@ -666,6 +699,8 @@ router.put('/admin', [
 
 router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, next) => {
   var FieldPhotoArrays = [];
+  var monthYearTimeStampProject = [];
+  var numericValueTimeStampProject = [];
   try {
     var project = await Project.findOne({
         _id: req.params.projectid
@@ -683,6 +718,16 @@ router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, nex
       });
       FieldPhotoArrays.push(fieldphotoarray);
     });
+    var timeStampProject = await TimeStampProject.find({
+        projectid: req.params.projectid
+      });
+    timeStampProject.forEach(time => {
+      let monthyeartimestamp = getDate.getMonthYear(time.timestampproject);
+      monthYearTimeStampProject.push(monthyeartimestamp);
+
+      let numericvaluetimestampproject = getDate.getNumericValue(time.timestampproject).split("/").join("_");
+      numericValueTimeStampProject.push(numericvaluetimestampproject);
+    });
 
   } catch (err) {
     next(err);
@@ -697,18 +742,13 @@ router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, nex
       project,
       projectZones,
       FieldPhotoArrays,
+      monthYearTimeStampProject,
+      numericValueTimeStampProject
     });
-
-    FieldPhotoArrays.forEach(async a => {
-      a.forEach(async b => {
-        // console.log('ini adalah semuanya yang bakal ke ambil: ' + b.fieldphoto);
-      })
-
-    })
 
   }, 1000);
 
-})
+});
 
 // submit comment handle
 router.post('/projectcomment', async (req, res, next) => {

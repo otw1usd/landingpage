@@ -47,7 +47,7 @@
         </tr>
       <% }) %>
 
-      
+
     </tbody>
   </table>
   <form class="sign-up-form" action="/tambahzona" method="POST">
@@ -55,6 +55,12 @@
     <input type="hidden" name="projectUsername" value="<%= listproject.projectUsername %>">
     <input class="sign-up-box" type="text" name="detailzona" placeholder="tambah zona" id="detailzona" value="" required/>
     <button type="submit" class="btn btn-dark">Tambah Zona</button>
+  </form>
+  <form class="sign-up-form" action="/tambahtimestamp" method="POST">
+    <input type="hidden" name="projectid" value="<%= listproject._id %>">
+    <input type="hidden" name="projectUsername" value="<%= listproject.projectUsername %>">
+    <input class="sign-up-box" type="month" name="detailtimestamp" placeholder="tambah waktu" id="detailtimestamp" value="" required/>
+    <button type="submit" class="btn btn-dark">Tambah Waktu</button>
   </form>
 
   <a href="/admin/edit/<%= listproject.projectUsername %>" class ="btn btn-danger badge"> Edit Project </a>

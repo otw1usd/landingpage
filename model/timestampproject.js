@@ -7,16 +7,11 @@ const timestampprojectschema = new mongoose.Schema({
         required:true,
         ref:'project',
     },
-    timestampproject1 : {
-        type: String, //artinya harus diisi
+    timestampproject : {
+        type: Date, //artinya harus diisi
         //tambah validasi
     },
-    timestampproject2 : {
-        type: String, //artinya harus diisi
-        //tambah validasi
-    },
-
-})
+});
 
 
 const TimeStampProject = mongoose.model ('timestampproject',timestampprojectschema)
