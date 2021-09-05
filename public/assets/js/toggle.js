@@ -87,6 +87,5 @@ document.querySelectorAll(".close-foto-gamtek-button").forEach(button => {
     document.querySelector(".zoominafter").classList.add("zoominbefore");
     document.querySelector(".zoominafter").classList.remove("zoominafter");
     document.querySelector(".close-foto-gamtek-button").classList.remove("close-foto-gamtek-button-active");
-    console.log("testestes");
   });
 });
