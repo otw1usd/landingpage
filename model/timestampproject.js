@@ -8,8 +8,7 @@ const timestampprojectschema = new mongoose.Schema({
         ref:'project',
     },
     timestampproject : {
-        type: Date, //artinya harus diisi
-        //tambah validasi
+        type: Date, 
     },
 });
 

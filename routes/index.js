@@ -18,7 +18,7 @@ const {
 } = require('../config/adminauth')
 
 const multer = require('multer');
-const sharp = require ('sharp');
+// const sharp = require ('sharp');
 
 const User = require('../model/user');
 const Project = require('../model/project');
@@ -153,12 +153,12 @@ router.put('/user', [
         var filenamalama = req.file.filename;
       };
       
-      await sharp(req.file.destination+'/'+filenamalama).toBuffer().then(
-        (data)=>{ sharp(data).rotate(90).resize(300).toFile(req.file.destination+'/'+filenamalama, (err,info)=>{
-          console.log('image resized');
-        })
-          })
-          .catch((err)=>{console.log(err);})
+      // await sharp(req.file.destination+'/'+filenamalama).toBuffer().then(
+      //   (data)=>{ sharp(data).rotate(90).resize(300).toFile(req.file.destination+'/'+filenamalama, (err,info)=>{
+      //     console.log('image resized');
+      //   })
+      //     })
+      //     .catch((err)=>{console.log(err);})
 
       await User.updateOne({
         _id: req.body._id
@@ -239,12 +239,12 @@ router.put('/tambahfieldphoto', uploadFieldPhoto,
         
     await req.files.forEach(element => {
 
-      sharp(element.destination+'/'+element.filename).toBuffer().then(
-        (data)=>{ sharp(data).rotate(90).resize(600).toFile(element.destination+'/'+element.filename, (err,info)=>{
-          console.log('image resized '+ element.destination+'/'+element.filename);
-        })
-          })
-          .catch((err)=>{console.log(err);});
+      // sharp(element.destination+'/'+element.filename).toBuffer().then(
+      //   (data)=>{ sharp(data).rotate(90).resize(600).toFile(element.destination+'/'+element.filename, (err,info)=>{
+      //     console.log('image resized '+ element.destination+'/'+element.filename);
+      //   })
+      //     })
+      //     .catch((err)=>{console.log(err);});
 
       const file = {
         projectzone: zonaid,
@@ -282,12 +282,12 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
     });
     await req.files.forEach(element => {
 
-      sharp(element.destination+'/'+element.filename).toBuffer().then(
-        (data)=>{ sharp(data).rotate(90).resize(600).toFile(element.destination+'/'+element.filename, (err,info)=>{
-          console.log('image resized '+ element.destination+'/'+element.filename);
-        })
-          })
-          .catch((err)=>{console.log(err);});
+      // sharp(element.destination+'/'+element.filename).toBuffer().then(
+      //   (data)=>{ sharp(data).rotate(90).resize(600).toFile(element.destination+'/'+element.filename, (err,info)=>{
+      //     console.log('image resized '+ element.destination+'/'+element.filename);
+      //   })
+      //     })
+      //     .catch((err)=>{console.log(err);});
 
       const file = {
         projectzone: zonaid,

@@ -13,6 +13,10 @@ const fieldphotoschema = new mongoose.Schema({
     },
     timestampproject1 : {
         type: String,
+    },
+    date:{
+        type: Date,
+        default: Date.now
     }
 });
 
