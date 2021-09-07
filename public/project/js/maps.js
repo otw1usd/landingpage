@@ -1,14 +1,6 @@
-// const Project = require('../model/project');
-
 var map;
 var imageMapType;
 var waktuOnScreen=0;
-
-// const daftartesproject = Project.find({
-//     username: kcic
-//   });
-// console.log('tes impor ke mpas.js  '+ daftartesproject);
-
             function initialize() {
                 var options = {
                     zoom: 15,
@@ -82,13 +74,10 @@ var waktuOnScreen=0;
 
              map.overlayMapTypes.clear();
                map.overlayMapTypes.push(imageMapType);
-               marzipanoFunction();
+            //    marzipanoFunction();
 
 //nanti ini dibuat json
-
 //content.forEach()
-
-
                 const content4 =
                     '<div id="content">' +
                     '<div id="siteNotice">' +
@@ -377,8 +366,6 @@ var waktuOnScreen=0;
 
                 ];
 
-
-
                 for(let i=0; i<titikKCIC.length;i++){
                     const currtitikKCIC=titikKCIC[i];
 
@@ -393,8 +380,6 @@ var waktuOnScreen=0;
 
                         animation:google.maps.Animation.DROP
                     });
-
-
 
                     const infowindow = new google.maps.InfoWindow({
                         content: currtitikKCIC[6],

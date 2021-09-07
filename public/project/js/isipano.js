@@ -1,7 +1,7 @@
 function bukatutup(){
     var okedekalogitu = document.getElementById("anjinglah");     
     var x = document.getElementById("bukatutup"); 
-    
+      marzipanoFunction();
       bukatutupmaster(x);
       bukatutupmaster(okedekalogitu);
   };
