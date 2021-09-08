@@ -16,3 +16,5 @@ client
   .catch((e) => {
     console.log(e.response.data.error_message);
   });
+
+  console.log('cekcek: '+client.elevation.body);
