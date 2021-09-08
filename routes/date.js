@@ -16,3 +16,17 @@ exports.getNumericValue = function(date) {
   };
   return date.toLocaleDateString("in-ID", options);
 };
+
+exports.getMonth = function(date) {
+  const options = {
+    month: "2-digit",
+  };
+  return date.toLocaleDateString("in-ID", options);
+};
+
+exports.getYear = function(date) {
+  const options = {
+    year: "numeric"
+  };
+  return date.toLocaleDateString("in-ID", options);
+};

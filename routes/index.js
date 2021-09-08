@@ -152,7 +152,7 @@ router.put('/user', [
       } else {
         var filenamalama = req.file.filename;
       };
-      
+
       // await sharp(req.file.destination+'/'+filenamalama).toBuffer().then(
       //   (data)=>{ sharp(data).rotate(90).resize(300).toFile(req.file.destination+'/'+filenamalama, (err,info)=>{
       //     console.log('image resized');
@@ -236,7 +236,7 @@ router.put('/tambahfieldphoto', uploadFieldPhoto,
     const fieldphotozonanows = await FieldPhoto.find({
       projectzone: zonaid
     });
-        
+
     await req.files.forEach(element => {
 
       // sharp(element.destination+'/'+element.filename).toBuffer().then(
@@ -744,14 +744,18 @@ router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, nex
       FieldPhotoArrays.push(fieldphotoarray);
     });
     var timeStampProject = await TimeStampProject.find({
-        projectid: req.params.projectid
-      });
+      projectid: req.params.projectid
+    });
+    console.log("sebelom convert " + timeStampProject[0].timestampproject);
     timeStampProject.forEach(time => {
-      let monthyeartimestamp = getDate.getMonthYear(time.timestampproject);
+      let convertedTimeStamp = new Date(Date.UTC(getDate.getYear(time.timestampproject), getDate.getMonth(time.timestampproject)-1));
+
+      let monthyeartimestamp = getDate.getMonthYear(convertedTimeStamp);
       monthYearTimeStampProject.push(monthyeartimestamp);
 
-      let numericvaluetimestampproject = getDate.getNumericValue(time.timestampproject).split("/").join("_");
+      let numericvaluetimestampproject = getDate.getNumericValue(convertedTimeStamp).split("/").join("_");
       numericValueTimeStampProject.push(numericvaluetimestampproject);
+      console.log("setelah convert " + numericvaluetimestampproject);
     });
 
   } catch (err) {
@@ -768,7 +772,8 @@ router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, nex
       projectZones,
       FieldPhotoArrays,
       monthYearTimeStampProject,
-      numericValueTimeStampProject
+      numericValueTimeStampProject,
+      timeStampProject
     });
 
   }, 1000);
