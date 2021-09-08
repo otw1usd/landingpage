@@ -746,16 +746,16 @@ router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, nex
     var timeStampProject = await TimeStampProject.find({
       projectid: req.params.projectid
     });
-    console.log("sebelom convert " + timeStampProject[0].timestampproject);
     timeStampProject.forEach(time => {
-      let convertedTimeStamp = new Date(Date.UTC(getDate.getYear(time.timestampproject), getDate.getMonth(time.timestampproject)-1));
-
-      let monthyeartimestamp = getDate.getMonthYear(convertedTimeStamp);
+      let utcOffset = time.timestampproject.getTimezoneOffset();
+      time.timestampproject.setMinutes(
+        time.timestampproject.getMinutes() + utcOffset
+      );
+      let monthyeartimestamp = getDate.getMonthYear(time.timestampproject);
       monthYearTimeStampProject.push(monthyeartimestamp);
 
-      let numericvaluetimestampproject = getDate.getNumericValue(convertedTimeStamp).split("/").join("_");
+      let numericvaluetimestampproject = getDate.getNumericValue(time.timestampproject).split("/").join("_");
       numericValueTimeStampProject.push(numericvaluetimestampproject);
-      console.log("setelah convert " + numericvaluetimestampproject);
     });
 
   } catch (err) {
