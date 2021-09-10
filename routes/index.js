@@ -694,7 +694,7 @@ router.put('/admin', [
           progrestotal: req.body.progrestotal,
           timestampproject1: req.body.timestampproject1
         },
-      })
+      }, function() {});
 
       // .then((result) => {
       //   return delayfunction(5000).then(function() {
