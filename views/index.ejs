@@ -5,7 +5,7 @@
 
    <nav id="navigation-bar" class="navbar navbar-expand-lg navbar-light bg-warning">
 
-     <a class="navbar-brand" href="/"><img class="logo-amati-navbar lazyload" src="/images/logo-amati-navbar.png" alt=""></a>
+     <a class="navbar-brand" href="/"><img class="logo-amati-navbar " src="/images/logo-amati-navbar.png" alt=""></a>
 
 
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,17 +59,17 @@
            <h2 class="sign-up-heading">Sign Up Now</h2>
            <p class="sign-up-heading-text">Nikmati fitur AMATI sekarang juga!</p>
            <h3 class="sign-up-sub-heading">Data Personal</h3>
-           <input class="sign-up-box" type="text" name="name" placeholder="Nama" id="name" value="<%= typeof name != 'undefined' ? name : '' %>" required />
+           <input class="sign-up-box" type="text" name="name" placeholder="Name" id="name" value="<%= typeof name != 'undefined' ? name : '' %>" required />
            <input class="sign-up-box" type="text" name="username" placeholder="Username" id="username" value="<%= typeof username != 'undefined' ? username : '' %>" required />
            <input class="sign-up-box" type="email" name="email" placeholder="Email" id="email" value="<%= typeof email != 'undefined' ? email : '' %>" required />
            <input class="sign-up-box" type="password" name="password" placeholder="Password" id="password" value="<%= typeof password != 'undefined' ? password : '' %>" required />
-           <input class="sign-up-box" type="text" name="nohp" placeholder="Nomor HP" id="nohp" value="<%= typeof nohp != 'undefined' ? nohp : '' %>" required />
-           <h3 class="sign-up-sub-heading">Status dan Pengalaman Kerja</h3>
-           <input class="sign-up-box" type="text" name="company" placeholder="Nama Perusahaan/Proyek" id="company" value="<%= typeof company != 'undefined' ? company : '' %>" required />
-           <input class="sign-up-box" type="text" name="jobs" placeholder="Posisi" id="job" value="<%= typeof jobs != 'undefined' ? jobs : '' %>" required />
+           <input class="sign-up-box" type="text" name="nohp" placeholder="Phone Number" id="nohp" value="<%= typeof nohp != 'undefined' ? nohp : '' %>" required />
+           <h3 class="sign-up-sub-heading">Status</h3>
+           <input class="sign-up-box" type="text" name="company" placeholder="Company" id="company" value="<%= typeof company != 'undefined' ? company : '' %>" required />
+           <input class="sign-up-box" type="text" name="jobs" placeholder="Position" id="job" value="<%= typeof jobs != 'undefined' ? jobs : '' %>" required />
            <button type="submit" class="btn btn-light sign-up-btn-style">Sign Up</button>
            <%- include('./partials/messages.ejs') %>
-           <p class="log-in-text-div">Sudah memiliki akun? <a class="log-in-text" href="/login">Log in</a></p>
+           <p class="log-in-text-div">Already have an account? <a class="log-in-text" href="/login">Log in</a></p>
          </form>
        </div>
 
@@ -89,7 +89,7 @@
 
        <div class="row justify-content-between problem-div">
          <div class="col-lg-5 d-flex align-items-center justify-content-center about-img order-lg-1 order-2">
-           <img src="images/problem.png" class="img-fluid lazyload" alt="" data-aos="zoom-in">
+           <img src="images/problem.png" class="img-fluid " alt="" data-aos="zoom-in">
          </div>
          <div class="col-lg-6 pt-5 pt-lg-0 order-lg-2 order-1">
            <h3 data-aos="fade-up">Overview of the Construction Industry</h3>
@@ -122,7 +122,7 @@
 
          </div>
          <div class="col-lg-5 d-flex align-items-center justify-content-center about-img">
-           <img src="images/product.png" class="img-fluid lazyload" alt="" data-aos="zoom-in">
+           <img src="images/product.png" class="img-fluid " alt="" data-aos="zoom-in">
          </div>
 
        </div>
@@ -147,7 +147,7 @@
        <div class="row">
          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
            <div class="icon-box">
-             <div class="service-icon"><img class="service-image lazyload" src="images/service1.png"></div>
+             <div class="service-icon"><img class="service-image " src="images/service1.png"></div>
              <h4 class="title"><a href="">Progress Monitoring</a></h4>
              <p class="description">Allows owners and contractors to virtually visit construction sites and provide detailed progress results.</p>
            </div>
@@ -155,7 +155,7 @@
 
          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
            <div class="icon-box">
-             <div class="service-icon"><img class="service-image lazyload" src="images/service2.png"></div>
+             <div class="service-icon"><img class="service-image " src="images/service2.png"></div>
              <h4 class="title"><a href="">Productivity Control</a></h4>
              <p class="description">Provides productivity results based on accurate as-built data.</p>
            </div>
@@ -163,7 +163,7 @@
 
          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
            <div class="icon-box">
-             <div class="service-icon"><img class="service-image lazyload" src="images/service3.png"></div>
+             <div class="service-icon"><img class="service-image " src="images/service3.png"></div>
              <h4 class="title"><a href="">Site Logistic Control</a></h4>
              <p class="description">Provides real-time data of on-site materials and equipments, thus allowing optimized logistic management.</p>
            </div>
@@ -171,7 +171,7 @@
 
          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="400">
            <div class="icon-box">
-             <div class="service-icon"><img class="service-image lazyload" src="images/service4.png"></div>
+             <div class="service-icon"><img class="service-image " src="images/service4.png"></div>
              <h4 class="title"><a href="">Safety, Health and Environment Early Risk Identification</a></h4>
              <p class="description">Identify and give real-time warnings about safety, health and environment risk possibilities.</p>
            </div>
@@ -198,9 +198,9 @@
 
        <div class="clients-slider swiper-container" data-aos="fade-up" data-aos-delay="100">
          <div class="swiper-wrapper align-items-center">
-           <div class="swiper-slide"><img src="/images/logo-eidaramata.webp" class="img-fluid lazyload" alt=""></div>
-           <div class="swiper-slide"><img src="/images/logo-itb.png" class="img-fluid lazyload" alt=""></div>
-           <div class="swiper-slide"><img src="/images/logo-kcic.png" class="img-fluid lazyload" alt=""></div>
+           <div class="swiper-slide"><img src="/images/logo-eidaramata.webp" class="img-fluid " alt=""></div>
+           <div class="swiper-slide"><img src="/images/logo-itb.png" class="img-fluid " alt=""></div>
+           <div class="swiper-slide"><img src="/images/logo-kcic.png" class="img-fluid " alt=""></div>
          </div>
          <div class="swiper-pagination"></div>
        </div>
@@ -280,3 +280,5 @@
 
  </main>
  <!-- End #main -->
+
+ 

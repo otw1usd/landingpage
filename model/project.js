@@ -54,12 +54,23 @@ const projectschema = new mongoose.Schema({
         //owner username
     },
     
-
     timestampproject1 : {
         type: String,
-    }
+    },
 
-    
+    nilaiProyek : {
+        type: String,
+    },
+
+    konsultan : {
+        //consultant
+        type: String,
+    },
+
+    kontraktor : {
+        //contractor
+        type: String,
+    }    
 
 })
 

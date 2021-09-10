@@ -11,7 +11,7 @@
             <p>Perusahaan: <%= company %></p>
           </div>
           <div class="div-logo col-3">
-            <img class="logo lazyload" src="/images/logo-kcic.png" alt="">
+            <img class="logo" src="/images/logo-kcic.png" alt="">
           </div>
         </div>
       </div>
@@ -25,7 +25,7 @@
             <i class="fas fa-file-alt"></i>
           </div>
           <div class="col-10 keterangan">
-            Informasi Proyek
+            Project Information
           </div>
         </a>
         <a class="btn btn-outline-warning button-info-container row" href="/project/<%= project._id %>">
@@ -113,7 +113,7 @@
       <!-- Div Peta -->
       <div class="div-peta col-7">
         <h5>AMATI kondisi Proyek</h5>
-        <a href="/projectindex/<%= project.id %>"><img id="peta" src="/images/peta.png" class="lazyload" alt=""></a>
+        <a href="/projectindex/<%= project.id %>"><img id="peta" data-src="/images/peta.png" class="lazy" alt=""></a>
         <div class="daftar-proyek col-12">
           <div class="div-data-proyek-besar">
             <div class="row">
@@ -156,7 +156,7 @@
           <p class="nama">Beri Komentar</p>
           <div class="row">
             <div class="col-2">
-              <img class="foto-profile-comment lazyload" src="/user/uploads/<%= user.image %>" alt="">
+              <img class="foto-profile-comment lazy" data-src="/user/uploads/<%= user.image %>" alt="">
             </div>
             <div class="col-10">
               <p class="nama"><%= user.name %> </p>
@@ -181,7 +181,7 @@
         <% commentprojects.reverse().forEach((commentproject) => { %>
         <div class="div-notifikasi alert bg-light row">
           <div class="col-2">
-            <img class="foto-profile-comment lazyload" src="/user/uploads/<%= commentproject.usernameid.image %> " alt="">
+            <img class="foto-profile-comment lazy" data-src="/user/uploads/<%= commentproject.usernameid.image %> " alt="">
           </div>
           <div class="col-10">
             <a class="nama" href=""><%= commentproject.usernameid.name %> </a>
@@ -207,7 +207,7 @@
               <input type="hidden" name="commentprojectid" value="<%= commentproject._id %>" required />
               <div class="row">
                 <div class="col-1 foto-profile-reply-comment-div">
-                  <img class="foto-profile-reply-comment lazyload" src="/user/uploads/<%= user.image %>" alt="">
+                  <img class="foto-profile-reply-comment lazy" data-src="/user/uploads/<%= user.image %>" alt="">
                 </div>
                 <div class="col-10 reply-comment-box-div">
                   <textarea class="reply-comment-box" type="text" name="komentarbalasan" Placeholder="Komentar" value="<%= typeof komentarbalasan != 'undefined' ? komentarbalasan : '' %>"></textarea>
@@ -222,7 +222,7 @@
           <% if(String(commentreplyproject.commentprojectid) === String(commentproject._id)) { %>
           <div class="row reply-others-div">
             <div class="col-1 reply-others-pic-div">
-              <img class="foto-profile-reply-comment lazyload" src="/user/uploads/<%= commentreplyproject.usernameid.image %>" alt="">
+              <img class="foto-profile-reply-comment lazy" data-src="/user/uploads/<%= commentreplyproject.usernameid.image %>" alt="">
             </div>
             <div class="col-10 reply-others-name-div">
               <p class="nama"><%= commentreplyproject.usernameid.name %></p>

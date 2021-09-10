@@ -8,7 +8,7 @@ module.exports={
             console.log('galewat yg pertama');
         } else{
             await Admin.find({username:req.user.username}).then(adminlogedin=>{
-            console.log('cekadminlogedin:'+adminlogedin);
+            
                 if(adminlogedin.length === 0){
                     console.log('gabolehlogin');
                     req.flash('error_msg','Please log in !');

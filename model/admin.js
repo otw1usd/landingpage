@@ -4,13 +4,11 @@ const mongoose = require ('mongoose');
 const adminschema = new mongoose.Schema({
     username : {
         type: String,
-        required:true, //artinya harus diisi
-        //tambah validasi
+        required:true, 
     },
     password : {
         type: String,
-        required:true, //artinya harus diisi
-        //tambah validasi
+        required:true, 
     }
 
 })

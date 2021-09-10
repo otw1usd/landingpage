@@ -392,7 +392,7 @@ function marzipanoFunction() {
   }
 
   // Display the initial scene.
-  switchScene(scenes[16]);
+  switchScene(scenes[15]);
 
 };
 
