@@ -1,10 +1,12 @@
+<!-- ENG: BERANDA IS HOMEPAGE -->
+
 <!-- info-container -->
 <div class="info-container col-2 bg-dark">
 
 </div>
 
 
-<!-- Data Pribadi -->
+<!-- Eng: User Data -->
 <div class="div-beranda col-8">
   <div class="div-data-pribadi">
     <img class="foto-profile" src="/user/uploads/<%= user.image %> " alt="">
@@ -17,65 +19,8 @@
     <%- include('./partials/messages.ejs') %>
   </div>
 
-  <!-- <div class="data-pribadi kiri">
-
-    <h4>Pengalaman Kerja</h4>
-    <div class="pengalaman-kerja">
-      <h6 class="institusi">PT. Amati Teknologi Anagata</h6>
-      <p class="durasi">1 Bulan</p>
-      <p class="jabatan">Chief Operating Officer</p>
-      <p class="rentang">Juli 2021 - Saat Ini</p>
-
-      <h6 class="institusi">Terracon Consultants Inc.</h6>
-      <p class="durasi">3 Bulan</p>
-      <p class="jabatan">Intern</p>
-      <p class="rentang">Oktober - Desember 2020</p>
-
-      <h6 class="institusi">CV. Goldstar Alumindo Jaya</h6>
-      <p class="durasi">2 Bulan</p>
-      <p class="jabatan">Teknisi</p>
-      <p class="rentang">Juni - Juli 2020</p>
-    </div>
-
-    <h4>Riwayat Pendidikan</h4>
-    <div class="riwayat-pendidikan">
-      <h6 class="institusi">Institut Teknologi Bandung (ITB)</h6>
-      <p class="jabatan">Sarjana Teknik Sipil</p>
-      <p class="rentang">2017 - 2021</p>
-
-      <h6 class="institusi">SMA Yos Sudarso Batam</h6>
-      <p class="jabatan">SMA, IPA</p>
-      <p class="rentang">2014 - 2017</p>
-    </div>
-
-    <h4>Keterampilan</h4>
-    <div class="keterampilan">
-      <h6 class="institusi">Desain Tiang Pancang</h6>
-      <p class="jabatan">Level: Pemula</p>
-      <p class="rentang">Keterangan</p>
-
-      <h6 class="institusi">Desain Reklamasi</h6>
-      <p class="jabatan">Level: Pemula</p>
-      <p class="rentang">Keterangan</p>
-
-      <h6 class="institusi">AutoCAD</h6>
-      <p class="jabatan">Level: Pemula</p>
-      <p class="rentang">Keterangan</p>
-    </div>
-
-    <h4>Lowongan Kerja</h4>
-    <div class="lowongan-kerja">
-      <h6 class="institusi">Sedang membutuhkan pekerjaan fulltime?</h6>
-      <p class="rentang">Tidak</p>
-      <h6 class="institusi">Membuka jasa untuk freelance sesuai keterampilan?</h6>
-      <p class="rentang">Iya</p>
-    </div>
-
-  </div> -->
-
-
   <div class="">
-    <h2>Daftar Proyek Contoh</h2>
+    <h2>List of Example Project</h2>
     <% listprojects.forEach((listproject) => { %>
     <div class="daftar-proyek col-12 row">
       <div class="col-2">
@@ -90,22 +35,22 @@
         </div>
         <div class="row">
           <div class="div-data-proyek col-4">
-            <p class="data-proyek">Rentang: <%= listproject.startDate %> - <%= listproject.endDate %></p>
-            <p class="data-proyek">Lokasi: <%= listproject.projectLocation %></p>
-            <p class="data-proyek">Luas: 80 Hektar</p>
+            <p class="data-proyek">Project Duration: <%= listproject.startDate %> - <%= listproject.endDate %></p>
+            <p class="data-proyek">Locaton: <%= listproject.projectLocation %></p>
+            <p class="data-proyek">Area: 80 Hektar</p>
           </div>
           <div class="div-data-proyek col-3">
-            <p class="data-proyek">Nilai Proyek: <%= listproject.nilaiProyek%></p>
+            <p class="data-proyek">Project Cost: <%= listproject.nilaiProyek%></p>
             <p class="data-proyek">Owner: <%= listproject.username %></p>
-            <p class="data-proyek">Konsultan: <%= listproject.konsultan%></p>
+            <p class="data-proyek">Consultant: <%= listproject.konsultan%></p>
           </div>
           <div class="div-data-proyek col-2">
-            <p class="data-proyek">Kontraktor: <%= listproject.kontraktor%></p></p>
+            <p class="data-proyek">Contractor: <%= listproject.kontraktor%></p></p>
             <p class="data-proyek"></p>
           </div>
           <div class="div-data-proyek col-3">
-            <p class="data-proyek">Jabatan Anda: <%= jobs %></p>
-            <a href="/project/<%= listproject._id %>" class="btn btn-warning btn-sm"> Notifikasi</a>
+            <p class="data-proyek">Your Position: <%= jobs %></p>
+            <a href="/project/<%= listproject._id %>" class="btn btn-warning btn-sm"> Notification</a>
             <a href="/project/<%= listproject._id %>" class="btn btn-warning btn-sm"> Link Invite</a>
           </div>
         </div>
@@ -115,8 +60,3 @@
   </div>
 
 </div>
-
-<!-- Daftar Proyek Contoh -->
-
-
-<!-- Javascript -->

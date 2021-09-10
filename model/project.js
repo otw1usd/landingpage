@@ -63,10 +63,12 @@ const projectschema = new mongoose.Schema({
     },
 
     konsultan : {
+        //consultant
         type: String,
     },
 
     kontraktor : {
+        //contractor
         type: String,
     }    
 

@@ -42,8 +42,7 @@ const userschema = new mongoose.Schema({
     },
     nohp : {
         type: String,
-        // required:true, //artinya harus diisi
-        //tambah validasi
+        // phone number
     },
     date:{
         type: Date,

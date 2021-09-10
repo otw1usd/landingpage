@@ -59,17 +59,17 @@
            <h2 class="sign-up-heading">Sign Up Now</h2>
            <p class="sign-up-heading-text">Nikmati fitur AMATI sekarang juga!</p>
            <h3 class="sign-up-sub-heading">Data Personal</h3>
-           <input class="sign-up-box" type="text" name="name" placeholder="Nama" id="name" value="<%= typeof name != 'undefined' ? name : '' %>" required />
+           <input class="sign-up-box" type="text" name="name" placeholder="Name" id="name" value="<%= typeof name != 'undefined' ? name : '' %>" required />
            <input class="sign-up-box" type="text" name="username" placeholder="Username" id="username" value="<%= typeof username != 'undefined' ? username : '' %>" required />
            <input class="sign-up-box" type="email" name="email" placeholder="Email" id="email" value="<%= typeof email != 'undefined' ? email : '' %>" required />
            <input class="sign-up-box" type="password" name="password" placeholder="Password" id="password" value="<%= typeof password != 'undefined' ? password : '' %>" required />
-           <input class="sign-up-box" type="text" name="nohp" placeholder="Nomor HP" id="nohp" value="<%= typeof nohp != 'undefined' ? nohp : '' %>" required />
-           <h3 class="sign-up-sub-heading">Status dan Pengalaman Kerja</h3>
-           <input class="sign-up-box" type="text" name="company" placeholder="Nama Perusahaan/Proyek" id="company" value="<%= typeof company != 'undefined' ? company : '' %>" required />
-           <input class="sign-up-box" type="text" name="jobs" placeholder="Posisi" id="job" value="<%= typeof jobs != 'undefined' ? jobs : '' %>" required />
+           <input class="sign-up-box" type="text" name="nohp" placeholder="Phone Number" id="nohp" value="<%= typeof nohp != 'undefined' ? nohp : '' %>" required />
+           <h3 class="sign-up-sub-heading">Status</h3>
+           <input class="sign-up-box" type="text" name="company" placeholder="Company" id="company" value="<%= typeof company != 'undefined' ? company : '' %>" required />
+           <input class="sign-up-box" type="text" name="jobs" placeholder="Position" id="job" value="<%= typeof jobs != 'undefined' ? jobs : '' %>" required />
            <button type="submit" class="btn btn-light sign-up-btn-style">Sign Up</button>
            <%- include('./partials/messages.ejs') %>
-           <p class="log-in-text-div">Sudah memiliki akun? <a class="log-in-text" href="/login">Log in</a></p>
+           <p class="log-in-text-div">Already have an account? <a class="log-in-text" href="/login">Log in</a></p>
          </form>
        </div>
 

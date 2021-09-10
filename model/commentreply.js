@@ -14,6 +14,7 @@ const commentreplyschema = new mongoose.Schema({
             required:true,
         },
     komentarbalasan: {
+        //reply of the comment
         type:String,
         required:true,
     },

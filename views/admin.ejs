@@ -2,23 +2,23 @@
   <h2 class="sign-up-heading">Edit Project</h2>
   <%- include('./partials/messages.ejs') %>
   <h3 class="sign-up-sub-heading"></h3>
-  <input class="sign-up-box" type="text" name="projectName" placeholder="Nama Project" id="projectName" value="<%= typeof projectName != 'undefined' ? projectName : '' %>" required/>
+  <input class="sign-up-box" type="text" name="projectName" placeholder="Project Name" id="projectName" value="<%= typeof projectName != 'undefined' ? projectName : '' %>" required/>
 
   <input class="sign-up-box" type="text" name="location" placeholder="Location" id="location" value="<%= typeof location != 'undefined' ? location : '' %>" required/>
   
-  <input class="sign-up-box" type="text" name="projectDescription" placeholder="Deskripsi Project" id="projectDescription" value="<%= typeof projectDescription != 'undefined' ? projectDescription : '' %>" required/>
+  <input class="sign-up-box" type="text" name="projectDescription" placeholder="Project Description" id="projectDescription" value="<%= typeof projectDescription != 'undefined' ? projectDescription : '' %>" required/>
   
-  <input class="sign-up-box" type="date" name="startDate" placeholder="Waktu Mulai" id="startDate" value="<%= typeof startDate != 'undefined' ? startDate : '' %>" required/>
+  <input class="sign-up-box" type="date" name="startDate" placeholder="Start Date Project" id="startDate" value="<%= typeof startDate != 'undefined' ? startDate : '' %>" required/>
 
-  <input class="sign-up-box" type="date" name="endDate" placeholder="Waktu Selesai" id="endDate" value="<%= typeof endDate != 'undefined' ? endDate : '' %>" required/>
+  <input class="sign-up-box" type="date" name="endDate" placeholder="End Date Project" id="endDate" value="<%= typeof endDate != 'undefined' ? endDate : '' %>" required/>
 
-  <input class="sign-up-box" type="text" name="projectUsername" placeholder="username project" id="projectUsername" value="<%= typeof projectUsername != 'undefined' ? projectUsername : '' %>" required/>
+  <input class="sign-up-box" type="text" name="projectUsername" placeholder="Project Username" id="projectUsername" value="<%= typeof projectUsername != 'undefined' ? projectUsername : '' %>" required/>
 
-  <input class="sign-up-box" type="text" name="projectPassword" placeholder="password project" id="projectPassword" value="<%= typeof projectPassword != 'undefined' ? projectPassword : '' %>" required/>
+  <input class="sign-up-box" type="text" name="projectPassword" placeholder="Project Password" id="projectPassword" value="<%= typeof projectPassword != 'undefined' ? projectPassword : '' %>" required/>
 
-  <input class="sign-up-box" type="text" name="username" placeholder="username owner" id="username" value="<%= typeof username != 'undefined' ? username : '' %>" required/>
+  <input class="sign-up-box" type="text" name="username" placeholder="Owner Username" id="username" value="<%= typeof username != 'undefined' ? username : '' %>" required/>
 
-  <input class="sign-up-box" type="text" name="progrestotal" placeholder="progrestotal" id="progrestotal" value="<%= typeof progrestotal != 'undefined' ? progrestotal : '' %>" required/>
+  <input class="sign-up-box" type="text" name="progrestotal" placeholder="Total Project Progress" id="progrestotal" value="<%= typeof progrestotal != 'undefined' ? progrestotal : '' %>" required/>
   
   <button type="submit" class="btn btn-dark">Register</button>
   

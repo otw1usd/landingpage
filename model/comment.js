@@ -14,6 +14,7 @@ const commentschema = new mongoose.Schema({
             required:true,
         },
     isicomment: {
+        //fill in the comments
         type:String,
         required:true,
     },

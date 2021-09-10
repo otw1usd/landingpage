@@ -14,3 +14,5 @@ function bukatutup(){
         e.style.display = "none";
       }
   };
+
+  //toggle to open and close 360 view

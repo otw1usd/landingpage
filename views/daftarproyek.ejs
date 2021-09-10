@@ -4,10 +4,10 @@
   </div>
 
 
-  <!-- Daftar Proyek -->
+  <!-- List of Own Project -->
   <div class="div-daftar-proyek col-9">
-    <h2>Daftar Proyek</h2>
-    <h4>Hubungi <a href="/#contact">Admin AMATI</a> untuk mendaftar </h4>
+    <h2>List Project</h2>
+    <h4>Contact <a href="/#contact">Admin AMATI</a> to register </h4>
     <% listprojects.forEach((listproject) => { %>
     <div class="daftar-proyek col-12 row">
       <div class="col-2">
@@ -24,22 +24,22 @@
         </div>
         <div class="row">
           <div class="div-data-proyek col-4">
-            <p class="data-proyek">Rentang: <%= listproject.startDate %> - <%= listproject.endDate %></p>
-            <p class="data-proyek">Lokasi: <%= listproject.projectLocation %></p>
-            <p class="data-proyek">Luas: 80 Hektar</p>
+            <p class="data-proyek">Project Duration: <%= listproject.startDate %> - <%= listproject.endDate %></p>
+            <p class="data-proyek">Location: <%= listproject.projectLocation %></p>
+            <p class="data-proyek">Area: 80 Hektar</p>
           </div>
           <div class="div-data-proyek col-3">
-            <p class="data-proyek">Nilai Investasi: 86,55 Triliun Rupiah</p>
+            <p class="data-proyek">Project Cost: 86,55 Triliun Rupiah</p>
             <p class="data-proyek">Owner: <%= listproject.username %></p>
-            <p class="data-proyek">Konsultan: CDJO</p>
+            <p class="data-proyek">Consultant: CDJO</p>
           </div>
           <div class="div-data-proyek col-2">
-            <p class="data-proyek">Kontraktor: PT. WIKA</p>
-            <p class="data-proyek">Anggota: 26 Orang</p>
+            <p class="data-proyek">Contractor: PT. WIKA</p>
+            <p class="data-proyek">Member: 26 Orang</p>
           </div>
           <div class="div-data-proyek col-3">
-            <p class="data-proyek">Jabatan Anda: <%= jobs %></p>
-            <a href="/project/<%= listproject._id %>" class="btn btn-warning btn-sm"> Notifikasi</a>
+            <p class="data-proyek">Your Position: <%= jobs %></p>
+            <a href="/project/<%= listproject._id %>" class="btn btn-warning btn-sm"> Notification</a>
             <a href="/project/<%= listproject._id %>" class="btn btn-warning btn-sm"> Link Invite</a>
           </div>
         </div>
