@@ -30,9 +30,6 @@ const CommentReply = require('../model/commentreply');
 const TimeStampProject = require("../model/timestampproject");
 const bcrypt = require('bcryptjs');
 
-const monthDiff = require('../routes/function');
-const delayfunction = require('../routes/function');
-
 const getDate = require('../routes/date.js');
 
 router.get('/', (req, res) => res.render('index'));
@@ -651,13 +648,6 @@ router.get('/admin/edit/:projectUsername', adminEnsureAuthenticated, async (req,
   console.log('inicobacekzzz' + projectnow);
 });
 
-
-
-//  //examples
-//  console.log('cek1: '+monthDiff(new Date(2000, 01), new Date(2000, 02))) // 1
-//  console.log(monthDiff(new Date(1999, 02), new Date(2000, 02))) // 12 full year
-//  console.log(monthDiff(new Date(2009, 11), new Date(2010, 0))) // 1
-
 router.put('/admin', [
     body('projectUsername').custom(async (value, {
       req
@@ -679,6 +669,8 @@ router.put('/admin', [
         project: req.body,
       });
     } else {
+      console.log(req.body);
+      console.log(req.body._id);
       Project.updateOne({
         _id: req.body._id
       }, {
@@ -692,7 +684,10 @@ router.put('/admin', [
           projectUsername: req.body.projectUsername,
           projectPassword: req.body.projectPassword,
           progrestotal: req.body.progrestotal,
-          timestampproject1: req.body.timestampproject1
+          timestampproject1: req.body.timestampproject1,
+          nilaiProyek : req.body.nilaiProyek,
+          konsultan: req.body.konsultan,
+          kontraktor: req.body.kontraktor
         },
       })
 
@@ -713,7 +708,7 @@ router.put('/admin', [
         res.redirect('/admin');
         console.log('ini timestamp 1 ' + req.body.timestampproject1);
         console.log('ini timestamp 2 ' + req.body.timestampproject2);
-      }, 0);
+      }, 1000);
 
       // });
     }

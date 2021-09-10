@@ -14,7 +14,12 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbUFZJhvcv_dLJIxGJrdfpTE3YLhupiVA"></script>
+  <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbUFZJhvcv_dLJIxGJrdfpTE3YLhupiVA&callback=initialize&libraries=&v=weekly"
+      async
+  ></script>
+<!-- 
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbUFZJhvcv_dLJIxGJrdfpTE3YLhupiVA"></script> -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +31,27 @@
 
   <link rel="stylesheet" href="/project/styleedited.css">
   <link rel="stylesheet" href="/project/style360.css">
+  <style>
+    img {
+       display: block;
+       border: 0;
+     }
+     img.lazy {
+       opacity: 0;
+     }
+     img:not(.initial) {
+       transition: opacity 1s;
+     }
+     img.initial,
+     img.loaded,
+     img.error {
+       opacity: 1;
+     }
+
+     img:not([src]) {
+       visibility: hidden;
+     }
+ </style>
 
 </head>
 
@@ -108,14 +134,63 @@
   </script>
 
 
-  <div id="map"></div>
+  <div id="map">
+
+
+  </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/33f1988f52.js" crossorigin="anonymous"></script>
   <script src="/assets/js/navbar.js" charset="utf-8"></script>
   <script src="/assets/js/toggle.js" charset="utf-8"></script>
-  <script src="/assets/js/lazysizes.js" async=""></script>
+  
+  <script src="/assets/js/lazyload.min.js"></script>
+  <script>
+    (function () {
+      function logElementEvent(eventName, element) {
+        console.log(Date.now(), eventName, element.getAttribute("data-src"));
+      }
+
+      var callback_enter = function (element) {
+        logElementEvent("🔑 ENTERED", element);
+      };
+      var callback_exit = function (element) {
+        logElementEvent("🚪 EXITED", element);
+      };
+      var callback_loading = function (element) {
+        logElementEvent("⌚ LOADING", element);
+      };
+      var callback_loaded = function (element) {
+        logElementEvent("👍 LOADED", element);
+      };
+      var callback_error = function (element) {
+        logElementEvent("💀 ERROR", element);
+        element.src =
+          "https://via.placeholder.com/440x560/?text=Error+Placeholder";
+      };
+      var callback_finish = function () {
+        logElementEvent("✔️ FINISHED", document.documentElement);
+      };
+      var callback_cancel = function (element) {
+        logElementEvent("🔥 CANCEL", element);
+      };
+
+      var ll = new LazyLoad({
+        threshold: 0,
+        // Assign the callbacks defined above
+        callback_enter: callback_enter,
+        callback_exit: callback_exit,
+        callback_cancel: callback_cancel,
+        callback_loading: callback_loading,
+        callback_loaded: callback_loaded,
+        callback_error: callback_error,
+        callback_finish: callback_finish
+      });
+    })();
+  </script>
+
+
 
 </body>
 
