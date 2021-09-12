@@ -21,6 +21,14 @@ function myFunction() {
   popup.classList.toggle("show");
 }
 
+//INI UNTUK TOGGLE FIELD PHOTO DARI PINPOINT DI MAPS
+function toggleFieldPhoto(i) {
+  for (let z = 0; z < document.querySelectorAll(".time-stamp-button").length; z++) {
+    document.querySelectorAll(".field-photo-super-div")[z].classList.remove("field-photo-super-div-active");
+  }
+  document.querySelectorAll(".field-photo-super-div")[i].classList.toggle("field-photo-super-div-active");
+}
+
 //buka button construction drawing, nnti di upgrade ke location
 
 function gamtekSaya(asd) {
