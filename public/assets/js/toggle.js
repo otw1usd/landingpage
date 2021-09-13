@@ -17,7 +17,7 @@ document.querySelectorAll(".toggle-comment-button").forEach(button => {
   });
 });
 
-// Bagian field photo di project index
+// Bagian tampilin carousel field photo di project index
 
 for (let x = 0; x < document.querySelectorAll(".toggle-field-photo-button").length; x++) {
   document.querySelectorAll(".toggle-field-photo-button")[x].addEventListener("click", () => {
@@ -50,14 +50,14 @@ document.querySelectorAll(".close-field-photo-button").forEach(button => {
 
 // Bagian toggle field photo tergantung timeline
 
-for (let i = 0; i < document.querySelectorAll(".time-stamp-button").length; i++) {
-  document.querySelector("#radio-" + i).addEventListener("click", function() {
-    for (let z = 0; z < document.querySelectorAll(".time-stamp-button").length; z++) {
-      document.querySelectorAll(".field-photo-super-div")[z].classList.remove("field-photo-super-div-active");
-    }
-    document.querySelectorAll(".field-photo-super-div")[i].classList.toggle("field-photo-super-div-active");
-  });
-}
+// for (let i = 0; i < document.querySelectorAll(".time-stamp-button").length; i++) {
+//   document.querySelector("#radio-" + i).addEventListener("click", function() {
+//     for (let z = 0; z < document.querySelectorAll(".time-stamp-button").length; z++) {
+//       document.querySelectorAll(".field-photo-super-div")[z].classList.remove("field-photo-super-div-active");
+//     }
+//     document.querySelectorAll(".field-photo-super-div")[i].classList.toggle("field-photo-super-div-active");
+//   });
+// }
 
 // Toggle bagian untuk add field photo sebagai client
 let addFieldPhotoIndicator = 1;

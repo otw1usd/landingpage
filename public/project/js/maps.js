@@ -1,399 +1,438 @@
 var map;
 var imageMapType;
-var waktuOnScreen=0;
-            function initialize() {
-                var options = {
-                    zoom: 15,
-                    center: new google.maps.LatLng(-6.960370735383669, 107.74107971756642),
-                    mapTypeId: google.maps.MapTypeId.STREET,
-                };
-
-                map = new google.maps.Map(document.getElementById("map"), options);
-
-                var bounds = {
-                    13: [[6545, 6545], [4254, 4254]],
-                    14: [[13090, 13091], [8509, 8509]],
-                    15: [[26180, 26182], [17018, 17019]],
-                    16: [[52360, 52365], [34037, 34039]],
-                    17: [[104721, 104731], [68075, 68079]],
-                    18: [[209443, 209462], [136150, 136158]],
-                    19: [[418887, 418924], [272300, 272316]],
-                    20: [[837774, 837849], [544600, 544633]],
-                    21: [[1675549, 1675699], [1089200, 1089266]],
-                    22: [[3351098, 3351399], [2178400, 2178532]]
-                };
-
-                 imageMapType = new google.maps.ImageMapType({
-                    getTileUrl: function(coord, zoom) {
-                        /*if (zoom < 13 || zoom > 25 ||
-                            bounds[zoom][0][0] > coord.x || coord.x > bounds[zoom][0][1] ||
-                            bounds[zoom][1][0] > coord.y || coord.y > bounds[zoom][1][1]) {
-                            return null;
-                        }*/
+var waktuOnScreen = 0;
+
+function initialize() {
+  var options = {
+    zoom: 15,
+    center: new google.maps.LatLng(-6.960370735383669, 107.74107971756642),
+    mapTypeId: google.maps.MapTypeId.STREET,
+  };
+
+  map = new google.maps.Map(document.getElementById("map"), options);
+
+  var bounds = {
+    13: [
+      [6545, 6545],
+      [4254, 4254]
+    ],
+    14: [
+      [13090, 13091],
+      [8509, 8509]
+    ],
+    15: [
+      [26180, 26182],
+      [17018, 17019]
+    ],
+    16: [
+      [52360, 52365],
+      [34037, 34039]
+    ],
+    17: [
+      [104721, 104731],
+      [68075, 68079]
+    ],
+    18: [
+      [209443, 209462],
+      [136150, 136158]
+    ],
+    19: [
+      [418887, 418924],
+      [272300, 272316]
+    ],
+    20: [
+      [837774, 837849],
+      [544600, 544633]
+    ],
+    21: [
+      [1675549, 1675699],
+      [1089200, 1089266]
+    ],
+    22: [
+      [3351098, 3351399],
+      [2178400, 2178532]
+    ]
+  };
+
+  imageMapType = new google.maps.ImageMapType({
+    getTileUrl: function(coord, zoom) {
+      /*if (zoom < 13 || zoom > 25 ||
+          bounds[zoom][0][0] > coord.x || coord.x > bounds[zoom][0][1] ||
+          bounds[zoom][1][0] > coord.y || coord.y > bounds[zoom][1][1]) {
+          return null;
+      }*/
+
+      return ['/project/dataset/drone/01_06_21/',
+          zoom, '/', coord.y, '/', coord.x, '.png'
+        ]
+        .join('');
+
+    },
+    tileSize: new google.maps.Size(256, 256)
+  });
+
+  map.overlayMapTypes.push(imageMapType);
+}
+
+
+function toggleOverlay(element) {
+
+  if (element.value == "none") {
+    map.overlayMapTypes.clear();
+    return;
+  }
+
+  var path = "/project/dataset/drone/" + element.value + "/";
+  window.waktuOnScreen = element.value; //yang butuh push
+
+
+  imageMapType = new google.maps.ImageMapType({
+    getTileUrl: function(coord, zoom) {
+      /*if (zoom < 13 || zoom > 25 ||
+          bounds[zoom][0][0] > coord.x || coord.x > bounds[zoom][0][1] ||
+          bounds[zoom][1][0] > coord.y || coord.y > bounds[zoom][1][1]) {
+          return null;
+      }*/
+
+      return [path,
+          zoom + "/" + coord.y + "/" + coord.x + ".png"
+        ]
+        .join("");
+
+
+
+    },
+    tileSize: new google.maps.Size(256, 256)
+  });
 
-                        return ['/project/dataset/drone/01_06_21/',
-                zoom , '/' , coord.y , '/' , coord.x , '.png']
-                     .join('');
-
-                    },
-                    tileSize: new google.maps.Size(256, 256)
-                });
-
-                map.overlayMapTypes.push(imageMapType);
-            }
-
-
-        function toggleOverlay(element) {
-
-            if (element.value == "none") {
-                map.overlayMapTypes.clear();
-                return;
-            }
-
-           var path = "/project/dataset/drone/" + element.value + "/";
-           window.waktuOnScreen = element.value; //yang butuh push
-
-
-            imageMapType = new google.maps.ImageMapType({
-                getTileUrl: function(coord, zoom) {
-                        /*if (zoom < 13 || zoom > 25 ||
-                            bounds[zoom][0][0] > coord.x || coord.x > bounds[zoom][0][1] ||
-                            bounds[zoom][1][0] > coord.y || coord.y > bounds[zoom][1][1]) {
-                            return null;
-                        }*/
-
-                        return [path,
-                    zoom + "/" + coord.y + "/" + coord.x + ".png"]
-                     .join("");
-
+  map.overlayMapTypes.clear();
+  map.overlayMapTypes.push(imageMapType);
+  //    marzipanoFunction();
 
+  //nanti ini dibuat json
+  //content.forEach()
+  const content4 =
+    '<div id="content">' +
+    '<div id="siteNotice">' +
+    "</div>" +
+    '<h1 id="firstHeading" class="firstHeading">KM-300</h1>' +
 
-                },
-                    tileSize: new google.maps.Size(256, 256)
-            });
 
-             map.overlayMapTypes.clear();
-               map.overlayMapTypes.push(imageMapType);
-            //    marzipanoFunction();
+    '<div id="bodyContent">' +
 
-//nanti ini dibuat json
-//content.forEach()
-                const content4 =
-                    '<div id="content">' +
-                    '<div id="siteNotice">' +
-                    "</div>" +
-                    '<h1 id="firstHeading" class="firstHeading">KM-300</h1>' +
+    '<table style="width:100%">' +
+    "<tr>" +
+    "<th> <b> Progres </b></th>" +
+    "<th>:</th>" +
+    "<th>35%</th>" +
+    "</tr>" +
+    "</table>" +
 
+    '<h6></h6>' +
 
-                    '<div id="bodyContent">' +
+    '<table style="width:100%">' +
+    "<tr>" +
+    // "<th> <button>Gantt Chart</button></th>"+
+    "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>" +
+    "</tr>" +
 
-                    '<table style="width:100%">'+
-                    "<tr>" +
-                    "<th> <b> Progres </b></th>"+
-                    "<th>:</th>"+
-                    "<th>35%</th>"+
-                    "</tr>"+
-                    "</table>"+
+    "<tr>" +
+    "<th><button onclick='toggleFieldPhoto(" + element.id.slice(-1) + ")'>Field Photo</button></th>" +
+    "</tr>" +
 
-                    '<h6></h6>'+
+    "<tr>" +
+    "<th><button onclick='gamtekSaya(300)'>Construction Drawing</button></th>" +
+    "</tr>" +
 
-                    '<table style="width:100%">'+
-                    "<tr>" +
-                    // "<th> <button>Gantt Chart</button></th>"+
-                    "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>"+
-                    "</tr>"+
+    "<tr>" +
+    "<th><button onclick='reportSaya(300)'>Progress Report</button></th>" +
+    "</tr>" +
 
-                    "<tr>" +
-                    "<th><button>Field Photo</button></th>"+
-                    "</tr>"+
+    "</table>" +
 
-                    "<tr>" +
-                    "<th><button onclick='gamtekSaya(300)'>Construction Drawing</button></th>"+
-                    "</tr>"+
 
-                    "<tr>" +
-                    "<th><button onclick='reportSaya(300)'>Progress Report</button></th>"+
-                    "</tr>"+
+    "</div>" +
+    "</div>";
 
-                    "</table>"+
+  const content5 =
+    '<div id="content">' +
+    '<div id="siteNotice">' +
+    "</div>" +
+    '<h1 id="firstHeading" class="firstHeading">KM-299</h1>' +
 
 
-                    "</div>" +
-                    "</div>";
+    '<div id="bodyContent">' +
 
-                const content5 =
-                    '<div id="content">' +
-                    '<div id="siteNotice">' +
-                    "</div>" +
-                    '<h1 id="firstHeading" class="firstHeading">KM-299</h1>' +
+    '<table style="width:100%">' +
+    "<tr>" +
+    "<th> <b> Progres </b></th>" +
+    "<th>:</th>" +
+    "<th>35%</th>" +
+    "</tr>" +
+    "</table>" +
 
+    '<h6></h6>' +
 
-                    '<div id="bodyContent">' +
+    '<table style="width:100%">' +
+    "<tr>" +
+    // "<th> <button>Gantt Chart</button></th>"+
+    "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>" +
+    "</tr>" +
 
-                    '<table style="width:100%">'+
-                    "<tr>" +
-                    "<th> <b> Progres </b></th>"+
-                    "<th>:</th>"+
-                    "<th>35%</th>"+
-                    "</tr>"+
-                    "</table>"+
+    "<tr>" +
+    "<th><button onclick='toggleFieldPhoto(" + element.id.slice(-1) + ")'>Field Photo</button></th>" + "</tr>" +
 
-                    '<h6></h6>'+
+    // "<tr>" +
+    // "<th><button>%Cost</button></th>"+
+    // "<th><button>Video</button></th>"+
+    // "</tr>"+
 
-                    '<table style="width:100%">'+
-                    "<tr>" +
-                    // "<th> <button>Gantt Chart</button></th>"+
-                    "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>"+
-                    "</tr>"+
+    "<tr>" +
+    "<th><button onclick='gamtekSaya(299)'>Construction Drawing</button></th>" +
+    "</tr>" +
 
-                    "<tr>" +
-                    "<th><button>Field Photo</button></th>"+
-                    "</tr>"+
+    "<tr>" +
+    "<th><button onclick='reportSaya(299)'>Progress Report</button></th>" +
+    "</tr>" +
 
-                    // "<tr>" +
-                    // "<th><button>%Cost</button></th>"+
-                    // "<th><button>Video</button></th>"+
-                    // "</tr>"+
+    "</table>" +
 
-                    "<tr>" +
-                    "<th><button onclick='gamtekSaya(299)'>Construction Drawing</button></th>"+
-                    "</tr>"+
 
-                    "<tr>" +
-                    "<th><button onclick='reportSaya(299)'>Progress Report</button></th>"+
-                    "</tr>"+
+    "</div>" +
+    "</div>";
 
-                    "</table>"+
+  const content6 =
+    '<div id="content">' +
+    '<div id="siteNotice">' +
+    "</div>" +
+    '<h1 id="firstHeading" class="firstHeading">KM-301</h1>' +
 
 
-                    "</div>" +
-                    "</div>";
+    '<div id="bodyContent">' +
 
-                    const content6 =
-                    '<div id="content">' +
-                    '<div id="siteNotice">' +
-                    "</div>" +
-                    '<h1 id="firstHeading" class="firstHeading">KM-301</h1>' +
+    '<table style="width:100%">' +
+    "<tr>" +
+    "<th> <b> Progres </b></th>" +
+    "<th>:</th>" +
+    "<th>35%</th>" +
+    "</tr>" +
+    "</table>" +
 
+    '<h6></h6>' +
 
-                    '<div id="bodyContent">' +
+    '<table style="width:100%">' +
+    "<tr>" +
+    // "<th> <button>Gantt Chart</button></th>"+
+    "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>" +
+    "</tr>" +
 
-                    '<table style="width:100%">'+
-                    "<tr>" +
-                    "<th> <b> Progres </b></th>"+
-                    "<th>:</th>"+
-                    "<th>35%</th>"+
-                    "</tr>"+
-                    "</table>"+
+    "<tr>" +
+    "<th><button onclick='toggleFieldPhoto(" + element.id.slice(-1) + ")'>Field Photo</button></th>" + "</tr>" +
 
-                    '<h6></h6>'+
+    // "<tr>" +
+    // "<th><button>%Cost</button></th>"+
+    // "<th><button>Video</button></th>"+
+    // "</tr>"+
 
-                    '<table style="width:100%">'+
-                    "<tr>" +
-                    // "<th> <button>Gantt Chart</button></th>"+
-                    "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>"+
-                    "</tr>"+
+    "<tr>" +
+    "<th><button onclick='gamtekSaya(301)'>Construction Drawing</button></th>" +
+    "</tr>" +
 
-                    "<tr>" +
-                    "<th><button>Field Photo</button></th>"+
-                    "</tr>"+
+    "<tr>" +
+    "<th><button onclick='reportSaya(301)'>Progress Report</button></th>" +
+    "</tr>" +
 
-                    // "<tr>" +
-                    // "<th><button>%Cost</button></th>"+
-                    // "<th><button>Video</button></th>"+
-                    // "</tr>"+
+    "</table>" +
 
-                    "<tr>" +
-                    "<th><button onclick='gamtekSaya(301)'>Construction Drawing</button></th>"+
-                    "</tr>"+
 
-                    "<tr>" +
-                    "<th><button onclick='reportSaya(301)'>Progress Report</button></th>"+
-                    "</tr>"+
+    "</div>" +
+    "</div>";
 
-                    "</table>"+
+  const content7 =
+    '<div id="content">' +
+    '<div id="siteNotice">' +
+    "</div>" +
+    '<h1 id="firstHeading" class="firstHeading">Bangunan Depo Tegalluar</h1>' +
 
 
-                    "</div>" +
-                    "</div>";
+    '<div id="bodyContent">' +
 
-                    const content7 =
-                    '<div id="content">' +
-                    '<div id="siteNotice">' +
-                    "</div>" +
-                    '<h1 id="firstHeading" class="firstHeading">Bangunan Depo Tegalluar</h1>' +
+    '<table style="width:100%">' +
+    "<tr>" +
+    "<th> <b> Progres </b></th>" +
+    "<th>:</th>" +
+    "<th>35%</th>" +
+    "</tr>" +
+    "</table>" +
 
+    '<h6></h6>' +
 
-                    '<div id="bodyContent">' +
+    '<table style="width:100%">' +
+    "<tr>" +
+    // "<th> <button>Gantt Chart</button></th>"+
+    "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>" +
+    "</tr>" +
 
-                    '<table style="width:100%">'+
-                    "<tr>" +
-                    "<th> <b> Progres </b></th>"+
-                    "<th>:</th>"+
-                    "<th>35%</th>"+
-                    "</tr>"+
-                    "</table>"+
+    "<tr>" +
+    "<th><button onclick='toggleFieldPhoto(" + element.id.slice(-1) + ")'>Field Photo</button></th>" + "</tr>" +
 
-                    '<h6></h6>'+
+    // "<tr>" +
+    // "<th><button>%Cost</button></th>"+
+    // "<th><button>Video</button></th>"+
+    // "</tr>"+
 
-                    '<table style="width:100%">'+
-                    "<tr>" +
-                    // "<th> <button>Gantt Chart</button></th>"+
-                    "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>"+
-                    "</tr>"+
+    "<tr>" +
+    "<th><button onclick='gamtekSaya(302)'>Construction Drawing</button></th>" +
+    "</tr>" +
 
-                    "<tr>" +
-                    "<th><button>Field Photo</button></th>"+
-                    "</tr>"+
+    "<tr>" +
+    "<th><button onclick='reportSaya(302)'>Progress Report</button></th>" +
+    "</tr>" +
 
-                    // "<tr>" +
-                    // "<th><button>%Cost</button></th>"+
-                    // "<th><button>Video</button></th>"+
-                    // "</tr>"+
+    "</table>" +
 
-                    "<tr>" +
-                    "<th><button onclick='gamtekSaya(302)'>Construction Drawing</button></th>"+
-                    "</tr>"+
 
-                    "<tr>" +
-                    "<th><button onclick='reportSaya(302)'>Progress Report</button></th>"+
-                    "</tr>"+
+    "</div>" +
+    "</div>";
 
-                    "</table>"+
+  const content8 =
+    '<div id="content">' +
+    '<div id="siteNotice">' +
+    "</div>" +
+    '<h1 id="firstHeading" class="firstHeading">Daerah Mesin Stabilisasi</h1>' +
 
 
-                    "</div>" +
-                    "</div>";
+    '<div id="bodyContent">' +
 
-                    const content8 =
-                    '<div id="content">' +
-                    '<div id="siteNotice">' +
-                    "</div>" +
-                    '<h1 id="firstHeading" class="firstHeading">Daerah Mesin Stabilisasi</h1>' +
+    '<table style="width:100%">' +
+    "<tr>" +
+    "<th> <b> Progres </b></th>" +
+    "<th>:</th>" +
+    "<th>35%</th>" +
+    "</tr>" +
+    "</table>" +
 
+    '<h6></h6>' +
 
-                    '<div id="bodyContent">' +
+    '<table style="width:100%">' +
+    "<tr>" +
+    // "<th> <button>Gantt Chart</button></th>"+
+    "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>" +
+    "</tr>" +
 
-                    '<table style="width:100%">'+
-                    "<tr>" +
-                    "<th> <b> Progres </b></th>"+
-                    "<th>:</th>"+
-                    "<th>35%</th>"+
-                    "</tr>"+
-                    "</table>"+
+    "<tr>" +
+    "<th><button onclick='toggleFieldPhoto(" + element.id.slice(-1) + ")'>Field Photo</button></th>" + "</tr>" +
 
-                    '<h6></h6>'+
+    // "<tr>" +
+    // "<th><button>%Cost</button></th>"+
+    // "<th><button>Video</button></th>"+
+    // "</tr>"+
 
-                    '<table style="width:100%">'+
-                    "<tr>" +
-                    // "<th> <button>Gantt Chart</button></th>"+
-                    "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>"+
-                    "</tr>"+
+    "<tr>" +
+    "<th><button onclick='gamtekSaya(303)'>Construction Drawing</button></th>" +
+    "</tr>" +
 
-                    "<tr>" +
-                    "<th><button>Field Photo</button></th>"+
-                    "</tr>"+
+    "<tr>" +
+    "<th><button onclick='reportSaya(303)'>Progress Report</button></th>" +
+    "</tr>" +
 
-                    // "<tr>" +
-                    // "<th><button>%Cost</button></th>"+
-                    // "<th><button>Video</button></th>"+
-                    // "</tr>"+
+    "</table>" +
 
-                    "<tr>" +
-                    "<th><button onclick='gamtekSaya(303)'>Construction Drawing</button></th>"+
-                    "</tr>"+
 
-                    "<tr>" +
-                    "<th><button onclick='reportSaya(303)'>Progress Report</button></th>"+
-                    "</tr>"+
+    "</div>" +
+    "</div>";
 
-                    "</table>"+
 
 
-                    "</div>" +
-                    "</div>";
+  const titikKCIC = [
 
 
+    [
+      "KM-300",
+      -6.958979247996991, 107.73666835334447,
+      "/images/hotspot.png",
+      25,
+      33,
+      content4,
+    ],
 
-                const titikKCIC=[
+    [
+      "KM-299",
+      -6.9576846316832635, 107.73280808839294,
+      "/images/hotspot.png",
+      25,
+      33,
+      content5,
+    ],
 
 
-                    [
-                        "KM-300",
-                        -6.958979247996991, 107.73666835334447,
-                        "/images/hotspot.png",
-                        25,
-                        33,
-                        content4,
-                    ],
+    [
+      "KM-301",
+      -6.960370735383669, 107.74107971756642,
+      "/images/hotspot.png",
+      25,
+      33,
+      content6,
+    ],
 
-                    [
-                        "KM-299",
-                        -6.9576846316832635, 107.73280808839294,
-                        "/images/hotspot.png",
-                        25,
-                        33,
-                        content5,
-                    ],
+    [
+      "Bangunan Depo Tegalluar",
+      -6.96426012335397, 107.7494698161802,
+      "/images/hotspot.png",
+      25,
+      33,
+      content7,
+    ],
 
+    [
+      "Daerah Mesin Stabilisasi",
+      -6.9623993260912735, 107.74568786049235,
+      "/images/hotspot.png",
+      25,
+      33,
+      content8,
+    ]
 
-                    [
-                        "KM-301",
-                        -6.960370735383669, 107.74107971756642,
-                        "/images/hotspot.png",
-                        25,
-                        33,
-                        content6,
-                    ],
+  ];
 
-                    [
-                        "Bangunan Depo Tegalluar",
-                        -6.96426012335397, 107.7494698161802,
-                        "/images/hotspot.png",
-                        25,
-                        33,
-                        content7,
-                    ],
+  for (let i = 0; i < titikKCIC.length; i++) {
+    const currtitikKCIC = titikKCIC[i];
 
-                    [
-                        "Daerah Mesin Stabilisasi",
-                        -6.9623993260912735, 107.74568786049235,
-                        "/images/hotspot.png",
-                        25,
-                        33,
-                        content8,
-                    ]
+    const marker = new google.maps.Marker({
+      position: {
+        lat: currtitikKCIC[1],
+        lng: currtitikKCIC[2]
+      },
+      map: map,
+      title: currtitikKCIC[0],
+      icon: {
+        url: currtitikKCIC[3],
+        scaledSize: new google.maps.Size(currtitikKCIC[4], currtitikKCIC[5])
+      },
 
-                ];
+      animation: google.maps.Animation.DROP
+    });
 
-                for(let i=0; i<titikKCIC.length;i++){
-                    const currtitikKCIC=titikKCIC[i];
+    const infowindow = new google.maps.InfoWindow({
+      content: currtitikKCIC[6],
+      maxWidth: 200,
+    });
 
-                        const marker = new google.maps.Marker({
-                        position:{lat:currtitikKCIC[1], lng: currtitikKCIC[2]},
-                        map : map,
-                        title:currtitikKCIC[0],
-                        icon:{
-                            url:currtitikKCIC[3],
-                            scaledSize:new google.maps.Size(currtitikKCIC[4],currtitikKCIC[5])
-                        },
+    marker.addListener("click", () => {
+      infowindow.open({
+        anchor: marker,
+        map,
+        shouldFocus: false,
+      });
+    });
 
-                        animation:google.maps.Animation.DROP
-                    });
+    for (let x = 0; x < document.querySelectorAll(".time-stamp-button").length; x++) {
+      document.querySelector("#radio-" + x).addEventListener("click", function() {
+        infowindow.close();
+      });
+    }
 
-                    const infowindow = new google.maps.InfoWindow({
-                        content: currtitikKCIC[6],
-                        maxWidth : 200,
-                    });
-
-                    marker.addListener("click", () => {
-                        infowindow.open({
-                            anchor: marker,
-                            map,
-                            shouldFocus: false,
-                        });
-                    });
-                };
-        }
+  };
+}
 
 google.maps.event.addDomListener(window, 'load', initialize);
