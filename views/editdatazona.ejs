@@ -1,13 +1,7 @@
 
-
 <form class="sign-up-form" action="/tambahfieldphoto?_method=PUT" method="POST" enctype="multipart/form-data">
-    <h2 class="sign-up-heading">Edit User</h2>
-    
+    <h2 class="sign-up-heading">Edit Data Zona</h2>
     <input type="hidden" name="zonaid" value="<%= zonaid %>" />
-    
-    <h3 class="sign-up-sub-heading"> <%= listzonanows %></h3>
-    
-    <label for="image">Profile Picture:</label>
     <input type="file" name="image" multiple />
     
     <button type="submit" class="btn btn-dark">Insert Data</button>

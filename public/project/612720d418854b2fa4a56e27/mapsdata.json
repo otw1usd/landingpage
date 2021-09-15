@@ -1,0 +1,47 @@
+{
+    "zoomInit" : 15,
+    "latInit"   : -6.960370735383669,
+    "lngInit"   : 107.74107971756642,
+    
+    "timestampproject" :
+    ["01_02_21","01_03_21","01_04_21","01_05_21","01_06_21"],
+
+    "projectzone":
+    [
+        {
+            "zonename": "WP-212",
+            "zoneid": "299",
+            "projectZoneProgres" : "123",
+            "zoneLat" : -6.9576846316832635, 
+            "zoneLng":  107.73280808839294
+        },
+        {
+            "zonename": "WP-213",
+            "zoneid": "300",
+            "projectZoneProgres" : "123",
+            "zoneLat" : -6.958979247996991, 
+            "zoneLng":  107.73666835334447
+        },
+        {
+            "zonename": "WP-214",
+            "zoneid": "301",
+            "projectZoneProgres" : "123",
+            "zoneLat" : -6.960370735383669, 
+            "zoneLng":  107.74107971756642
+        },
+        {
+            "zonename": "Bangunan Depo Tegalluar",
+            "zoneid": "302",
+            "projectZoneProgres" : "123",
+            "zoneLat" : -6.96426012335397, 
+            "zoneLng":  107.7494698161802
+        },
+        {
+            "zonename": "Daerah Mesin Stabilisasi",
+            "zoneid": "303",
+            "projectZoneProgres" : "123",
+            "zoneLat" : -6.9623993260912735,  
+            "zoneLng":  107.74568786049235
+        }
+    ]
+}

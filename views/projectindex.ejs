@@ -33,7 +33,7 @@
         <div class="row">
           <!-- Panel Tanggal -->
           <div class="floating-panel col-lg-6">
-            <strong class="lini-masa">TImeline</strong>
+            <strong class="lini-masa">Timeline</strong>
 
             <% for (let i=0; i<monthYearTimeStampProject.length ; i++) { %>
 
@@ -46,7 +46,26 @@
 
           <div class="infocontainer-button col-lg-6">
 
-            <!-- <strong class="lini-masa">features</strong> -->
+            <strong class="lini-masa">features</strong>
+            <button> Tambah Project Zone</button>
+            <form class="sign-up-form" action="/tambahzona" method="POST">
+              <input type="hidden" name="projectid" value="<%= project._id %>" />
+              <input type="hidden" name="projectUsername" value="<%= project.username %>" />
+              <label for="detailzona">zonename :</label>
+              <input class="sign-up-box" type="text" name="detailzona" placeholder="tambah zona" id="detailzona" value="" required/>
+
+              <label for="zoneid">zoneid :</label>
+              <input class="sign-up-box" type="text" name="zoneid" placeholder="zoneid" id="zoneid" value="" required/><br>
+
+              <label for="zoneLat">zoneLat :</label>
+              <input class="sign-up-box" type="number" name="zoneLat" placeholder="zoneLat" id="zoneLat" value="" required/><br>
+
+              <label for="zoneLang">zoneLang :</label>
+              <input class="sign-up-box" type="number" name="zoneLang" placeholder="zoneLang" id="zoneLang" value="" required/><br>
+
+              <button type="submit" class="btn btn-outline-warning btn-sm">Insert Zone</button>
+              </div>
+            </form>
 
             <button class="btn btn-outline-dark btn-sm btn-block button-utama button2 popup container-fluid" onclick="myFunction()">Kurva S
             </button>
@@ -211,13 +230,15 @@
         <% if (String(FieldPhotoArrays[y][0].projectzone) === String(projectZones[x]._id)) { %>
         <% for (let i=1; i<FieldPhotoArrays[y].length ; i++) { %>
         <div class="carousel-item">
-          <img src="/project/dataset/fieldphoto/<%=FieldPhotoArrays[y][i].fieldphoto %>" class="d-block w-100 field-photo" alt="">
+          <img src="/project/dataset/fieldphoto/<%= FieldPhotoArrays[y][i].fieldphoto %>" class="d-block w-100 field-photo" alt="">
         </div>
         <% } %>
         <% } %>
         <% } %>
         <% } %>
       </div>
+
+      <div id="projectid" value="<%= project._id %>"> </div>
 
       <button class="carousel-control-prev" type="button" data-bs-target="#field-photo-div<%=x%>" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -1,58 +1,71 @@
+const projectid = document.getElementById("projectid").getAttribute("value");
+console.log(projectid);
+
+const getMapsData = async () => {
+  const response = await fetch('/project/'+projectid+'/mapsdata.json');
+  return response
+};
+
+const jsonMapsData = async () => {
+  const response =  await (await getMapsData()).json();
+  return response
+};
+
+const getZoomInitData = async () => {
+  const result = await jsonMapsData();
+  const result2 = result.zoomInit;
+  return result2
+};
+
+const getLatInitData = async () => {
+  const result = await jsonMapsData();
+  const result2 = result.latInit;
+  return result2
+};
+
+const getLngInitData = async () => {
+  const result = await jsonMapsData();
+  const result2 = result.lngInit;
+  return result2
+};
+
+const getTimestamp = async () => {
+  const result = await jsonMapsData();
+  const result2 = result.timestampproject;
+  return result2
+};
+
+const getContent = async () => {
+  const result = await jsonMapsData();
+  const result2 = result.content;
+  return result2
+};
+
+const getProjectZone = async () => {
+  const result = await jsonMapsData();
+  const result2 = result.projectzone;
+  return result2
+};
+
+
 var map;
 var imageMapType;
 var waktuOnScreen = 0;
 
-function initialize() {
+async function initialize() {
+  var zoomInitDataNotPromise = await getZoomInitData();
+  var latInitDataNotPromise = await getLatInitData();
+  var lngInitDataNotPromise = await getLngInitData();
+  var timestampDataNotPromise = await getTimestamp();
+  var timestampDataLength = await timestampDataNotPromise.length;
   var options = {
-    zoom: 15,
-    center: new google.maps.LatLng(-6.960370735383669, 107.74107971756642),
+    zoom: zoomInitDataNotPromise,
+    center: new google.maps.LatLng(latInitDataNotPromise, lngInitDataNotPromise),
     mapTypeId: google.maps.MapTypeId.STREET,
   };
+  console.log(options);
 
   map = new google.maps.Map(document.getElementById("map"), options);
-
-  var bounds = {
-    13: [
-      [6545, 6545],
-      [4254, 4254]
-    ],
-    14: [
-      [13090, 13091],
-      [8509, 8509]
-    ],
-    15: [
-      [26180, 26182],
-      [17018, 17019]
-    ],
-    16: [
-      [52360, 52365],
-      [34037, 34039]
-    ],
-    17: [
-      [104721, 104731],
-      [68075, 68079]
-    ],
-    18: [
-      [209443, 209462],
-      [136150, 136158]
-    ],
-    19: [
-      [418887, 418924],
-      [272300, 272316]
-    ],
-    20: [
-      [837774, 837849],
-      [544600, 544633]
-    ],
-    21: [
-      [1675549, 1675699],
-      [1089200, 1089266]
-    ],
-    22: [
-      [3351098, 3351399],
-      [2178400, 2178532]
-    ]
-  };
 
   imageMapType = new google.maps.ImageMapType({
     getTileUrl: function(coord, zoom) {
@@ -62,7 +75,7 @@ function initialize() {
           return null;
       }*/
 
-      return ['/project/dataset/drone/01_06_21/',
+      return ['/project/'+projectid+'/drone/'+timestampDataNotPromise[timestampDataLength-1]+'/',
           zoom, '/', coord.y, '/', coord.x, '.png'
         ]
         .join('');
@@ -75,16 +88,15 @@ function initialize() {
 }
 
 
-function toggleOverlay(element) {
+async function toggleOverlay(element) {
 
   if (element.value == "none") {
     map.overlayMapTypes.clear();
     return;
   }
 
-  var path = "/project/dataset/drone/" + element.value + "/";
+  var path = "/project/"+projectid+"/drone/" + element.value + "/";
   window.waktuOnScreen = element.value; //yang butuh push
-
 
   imageMapType = new google.maps.ImageMapType({
     getTileUrl: function(coord, zoom) {
@@ -99,322 +111,86 @@ function toggleOverlay(element) {
         ]
         .join("");
 
-
-
     },
     tileSize: new google.maps.Size(256, 256)
   });
 
   map.overlayMapTypes.clear();
   map.overlayMapTypes.push(imageMapType);
-  //    marzipanoFunction();
 
   //nanti ini dibuat json
   //content.forEach()
-  const content4 =
-    '<div id="content">' +
-    '<div id="siteNotice">' +
-    "</div>" +
-    '<h1 id="firstHeading" class="firstHeading">KM-300</h1>' +
 
+  var projectzoneDataNotPromise = await getProjectZone();
+  var projectzoneDataLength = await projectzoneDataNotPromise.length;
+  
 
-    '<div id="bodyContent">' +
+  for (let i = 0; i < projectzoneDataLength; i++) {
+    const projectzoneDataEach = projectzoneDataNotPromise[i];
+    const content =
+        '<div id="content">' +
+        '<div id="siteNotice">' +
+        "</div>" +
+        '<h1 id="firstHeading" class="firstHeading">'+projectzoneDataEach.zonename+'</h1>' +
 
-    '<table style="width:100%">' +
-    "<tr>" +
-    "<th> <b> Progres </b></th>" +
-    "<th>:</th>" +
-    "<th>35%</th>" +
-    "</tr>" +
-    "</table>" +
+        '<div id="bodyContent">' +
 
-    '<h6></h6>' +
+        '<table style="width:100%">' +
+        "<tr>" +
+        "<th> <b> Progres </b></th>" +
+        "<th>:</th>" +
+        "<th>"+projectzoneDataEach.projectZoneProgres+"</th>" +
+        "</tr>" +
+        "</table>" +
 
-    '<table style="width:100%">' +
-    "<tr>" +
-    // "<th> <button>Gantt Chart</button></th>"+
-    "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>" +
-    "</tr>" +
+        '<h6></h6>' +
 
-    "<tr>" +
-    "<th><button onclick='toggleFieldPhoto(" + element.id.slice(-1) + ")'>Field Photo</button></th>" +
-    "</tr>" +
+        '<table style="width:100%">' +
+        "<tr>" +
+        // "<th> <button>Gantt Chart</button></th>"+
+        "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>" +
+        "</tr>" +
 
-    "<tr>" +
-    "<th><button onclick='gamtekSaya(300)'>Construction Drawing</button></th>" +
-    "</tr>" +
+        "<tr>" +
+        "<th><button onclick='toggleFieldPhoto(" + element.id.slice(-1) + ")'>Field Photo</button></th>" + "</tr>" +
 
-    "<tr>" +
-    "<th><button onclick='reportSaya(300)'>Progress Report</button></th>" +
-    "</tr>" +
+        // "<tr>" +
+        // "<th><button>%Cost</button></th>"+
+        // "<th><button>Video</button></th>"+
+        // "</tr>"+
 
-    "</table>" +
+        "<tr>" +
+        "<th><button onclick='gamtekSaya("+projectzoneDataEach.zoneid+")'>Construction Drawing</button></th>" +
+        "</tr>" +
 
+        "<tr>" +
+        "<th><button onclick='reportSaya("+projectzoneDataEach.zoneid+")'>Progress Report</button></th>" +
+        "</tr>" +``
 
-    "</div>" +
-    "</div>";
+        "</table>" +
 
-  const content5 =
-    '<div id="content">' +
-    '<div id="siteNotice">' +
-    "</div>" +
-    '<h1 id="firstHeading" class="firstHeading">KM-299</h1>' +
 
+        "</div>" +
+        "</div>";
 
-    '<div id="bodyContent">' +
-
-    '<table style="width:100%">' +
-    "<tr>" +
-    "<th> <b> Progres </b></th>" +
-    "<th>:</th>" +
-    "<th>35%</th>" +
-    "</tr>" +
-    "</table>" +
-
-    '<h6></h6>' +
-
-    '<table style="width:100%">' +
-    "<tr>" +
-    // "<th> <button>Gantt Chart</button></th>"+
-    "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>" +
-    "</tr>" +
-
-    "<tr>" +
-    "<th><button onclick='toggleFieldPhoto(" + element.id.slice(-1) + ")'>Field Photo</button></th>" + "</tr>" +
-
-    // "<tr>" +
-    // "<th><button>%Cost</button></th>"+
-    // "<th><button>Video</button></th>"+
-    // "</tr>"+
-
-    "<tr>" +
-    "<th><button onclick='gamtekSaya(299)'>Construction Drawing</button></th>" +
-    "</tr>" +
-
-    "<tr>" +
-    "<th><button onclick='reportSaya(299)'>Progress Report</button></th>" +
-    "</tr>" +
-
-    "</table>" +
-
-
-    "</div>" +
-    "</div>";
-
-  const content6 =
-    '<div id="content">' +
-    '<div id="siteNotice">' +
-    "</div>" +
-    '<h1 id="firstHeading" class="firstHeading">KM-301</h1>' +
-
-
-    '<div id="bodyContent">' +
-
-    '<table style="width:100%">' +
-    "<tr>" +
-    "<th> <b> Progres </b></th>" +
-    "<th>:</th>" +
-    "<th>35%</th>" +
-    "</tr>" +
-    "</table>" +
-
-    '<h6></h6>' +
-
-    '<table style="width:100%">' +
-    "<tr>" +
-    // "<th> <button>Gantt Chart</button></th>"+
-    "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>" +
-    "</tr>" +
-
-    "<tr>" +
-    "<th><button onclick='toggleFieldPhoto(" + element.id.slice(-1) + ")'>Field Photo</button></th>" + "</tr>" +
-
-    // "<tr>" +
-    // "<th><button>%Cost</button></th>"+
-    // "<th><button>Video</button></th>"+
-    // "</tr>"+
-
-    "<tr>" +
-    "<th><button onclick='gamtekSaya(301)'>Construction Drawing</button></th>" +
-    "</tr>" +
-
-    "<tr>" +
-    "<th><button onclick='reportSaya(301)'>Progress Report</button></th>" +
-    "</tr>" +
-
-    "</table>" +
-
-
-    "</div>" +
-    "</div>";
-
-  const content7 =
-    '<div id="content">' +
-    '<div id="siteNotice">' +
-    "</div>" +
-    '<h1 id="firstHeading" class="firstHeading">Bangunan Depo Tegalluar</h1>' +
-
-
-    '<div id="bodyContent">' +
-
-    '<table style="width:100%">' +
-    "<tr>" +
-    "<th> <b> Progres </b></th>" +
-    "<th>:</th>" +
-    "<th>35%</th>" +
-    "</tr>" +
-    "</table>" +
-
-    '<h6></h6>' +
-
-    '<table style="width:100%">' +
-    "<tr>" +
-    // "<th> <button>Gantt Chart</button></th>"+
-    "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>" +
-    "</tr>" +
-
-    "<tr>" +
-    "<th><button onclick='toggleFieldPhoto(" + element.id.slice(-1) + ")'>Field Photo</button></th>" + "</tr>" +
-
-    // "<tr>" +
-    // "<th><button>%Cost</button></th>"+
-    // "<th><button>Video</button></th>"+
-    // "</tr>"+
-
-    "<tr>" +
-    "<th><button onclick='gamtekSaya(302)'>Construction Drawing</button></th>" +
-    "</tr>" +
-
-    "<tr>" +
-    "<th><button onclick='reportSaya(302)'>Progress Report</button></th>" +
-    "</tr>" +
-
-    "</table>" +
-
-
-    "</div>" +
-    "</div>";
-
-  const content8 =
-    '<div id="content">' +
-    '<div id="siteNotice">' +
-    "</div>" +
-    '<h1 id="firstHeading" class="firstHeading">Daerah Mesin Stabilisasi</h1>' +
-
-
-    '<div id="bodyContent">' +
-
-    '<table style="width:100%">' +
-    "<tr>" +
-    "<th> <b> Progres </b></th>" +
-    "<th>:</th>" +
-    "<th>35%</th>" +
-    "</tr>" +
-    "</table>" +
-
-    '<h6></h6>' +
-
-    '<table style="width:100%">' +
-    "<tr>" +
-    // "<th> <button>Gantt Chart</button></th>"+
-    "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>" +
-    "</tr>" +
-
-    "<tr>" +
-    "<th><button onclick='toggleFieldPhoto(" + element.id.slice(-1) + ")'>Field Photo</button></th>" + "</tr>" +
-
-    // "<tr>" +
-    // "<th><button>%Cost</button></th>"+
-    // "<th><button>Video</button></th>"+
-    // "</tr>"+
-
-    "<tr>" +
-    "<th><button onclick='gamtekSaya(303)'>Construction Drawing</button></th>" +
-    "</tr>" +
-
-    "<tr>" +
-    "<th><button onclick='reportSaya(303)'>Progress Report</button></th>" +
-    "</tr>" +
-
-    "</table>" +
-
-
-    "</div>" +
-    "</div>";
-
-
-
-  const titikKCIC = [
-
-
-    [
-      "KM-300",
-      -6.958979247996991, 107.73666835334447,
-      "/images/hotspot.png",
-      25,
-      33,
-      content4,
-    ],
-
-    [
-      "KM-299",
-      -6.9576846316832635, 107.73280808839294,
-      "/images/hotspot.png",
-      25,
-      33,
-      content5,
-    ],
-
-
-    [
-      "KM-301",
-      -6.960370735383669, 107.74107971756642,
-      "/images/hotspot.png",
-      25,
-      33,
-      content6,
-    ],
-
-    [
-      "Bangunan Depo Tegalluar",
-      -6.96426012335397, 107.7494698161802,
-      "/images/hotspot.png",
-      25,
-      33,
-      content7,
-    ],
-
-    [
-      "Daerah Mesin Stabilisasi",
-      -6.9623993260912735, 107.74568786049235,
-      "/images/hotspot.png",
-      25,
-      33,
-      content8,
-    ]
-
-  ];
-
-  for (let i = 0; i < titikKCIC.length; i++) {
-    const currtitikKCIC = titikKCIC[i];
 
     const marker = new google.maps.Marker({
       position: {
-        lat: currtitikKCIC[1],
-        lng: currtitikKCIC[2]
+        lat: projectzoneDataEach.zoneLat,
+        lng: projectzoneDataEach.zoneLng
       },
       map: map,
-      title: currtitikKCIC[0],
+      title: projectzoneDataEach.zonename,
       icon: {
-        url: currtitikKCIC[3],
-        scaledSize: new google.maps.Size(currtitikKCIC[4], currtitikKCIC[5])
+        url: "/images/hotspot.png",
+        scaledSize: new google.maps.Size(25,33)
       },
 
       animation: google.maps.Animation.DROP
     });
 
     const infowindow = new google.maps.InfoWindow({
-      content: currtitikKCIC[6],
+      content: content,
       maxWidth: 200,
     });
 
@@ -436,3 +212,7 @@ function toggleOverlay(element) {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+

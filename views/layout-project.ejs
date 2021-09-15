@@ -14,12 +14,11 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script
+  <!-- <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbUFZJhvcv_dLJIxGJrdfpTE3YLhupiVA&callback=initialize&libraries=&v=weekly"
       async
-  ></script>
-<!-- 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbUFZJhvcv_dLJIxGJrdfpTE3YLhupiVA"></script> -->
+  ></script> -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbUFZJhvcv_dLJIxGJrdfpTE3YLhupiVA"></script> 
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -99,7 +98,6 @@
   <!-- DIBAWAH INI UDAH JAVASCRIPT SEMUA -->
 
 
-  <script src="/https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
   <script src="/project/dataset/360/index.js"></script>
   <script src="/project/js/isipano.js"></script>
   <script src="/project/js/drawing.js"> </script>
@@ -111,9 +109,6 @@
 
 
   <script>
-    console.log('mulai');
-
-
     fetch('/project/data.json')
       .then(response => response.json())
       .then(function(response) {
@@ -130,7 +125,9 @@
         let script = document.createElement('script');
         script.src = '/project/dataset/360/data.js';
         document.head.appendChild(script);
-      })
+      });
+
+      console.log('bacot dah');
   </script>
 
 

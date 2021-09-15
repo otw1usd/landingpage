@@ -30,9 +30,12 @@ const CommentReply = require('../model/commentreply');
 const TimeStampProject = require("../model/timestampproject");
 const bcrypt = require('bcryptjs');
 
+const {loadMaps, addZoneData, newDataMap}  = require('../routes/datamaps.js');
+
 const getDate = require('../routes/date.js');
 
 router.get('/', (req, res) => res.render('index'));
+router.get('/adminganteng', (req, res) => res.render('adminganteng'));
 router.get('/login', (req, res) => res.render('login', {
   layout: 'layout-login',
 }));
@@ -301,8 +304,6 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
     req.flash('success_msg', 'Images Uploaded Successfully');
   });
 
-
-
 //
 //     console.log(req.files);
 //     console.log('ini zonaid input:' +zonaid);
@@ -460,6 +461,8 @@ router.post('/admin', (req, res) => {
             req.flash('success_msg', 'Project are now registered');
             res.redirect('/admin');
           });
+
+         newDataMap(projectName, newProject._id);
       }
     });
 });
@@ -470,7 +473,10 @@ router.post('/tambahzona', async (req, res, next) => {
     const {
       projectUsername,
       projectid,
-      detailzona
+      detailzona,
+      zoneid,
+      zoneLat,
+      zoneLang,
     } = req.body;
     await Project.findOne({
         _id: projectid
@@ -483,8 +489,16 @@ router.post('/tambahzona', async (req, res, next) => {
         newZone.save()
           .then(project => {
             req.flash('success_msg', 'Berhasil tambah zona ');
-            res.redirect('/admin/' + projectUsername);
           });
+          const newContentZoneData = {
+            projectid,
+            detailzona,
+            zoneid,
+            zoneLat,
+            zoneLang
+          };
+          addZoneData(projectid, newContentZoneData);
+          res.redirect('/projectindex/' + projectid);
       })
       .catch(error => {
         throw error
@@ -641,11 +655,12 @@ router.get('/admin/edit/:projectUsername', adminEnsureAuthenticated, async (req,
   const projectnow = await Project.findOne({
     projectUsername: req.params.projectUsername
   });
+  // const ProjectDataMaps = await loadMaps(projectnow._id);
   res.render('admineditproject', {
     projectnow,
     layout: 'layout-login',
+    // ProjectDataMaps,
   });
-  console.log('inicobacekzzz' + projectnow);
 });
 
 router.put('/admin', [
@@ -715,12 +730,16 @@ router.put('/admin', [
   });
 
 
-//project
+//project 
+
+//DISINI AMBIL DATA DARI MAPS.JSON TIMESTAMPNYA? ATAU GAUSAH TPI OVERLAP DI JSON DAN MONGODB
 
 router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, next) => {
   var FieldPhotoArrays = [];
   var monthYearTimeStampProject = [];
   var numericValueTimeStampProject = [];
+  const ProjectDataMaps = await loadMaps(req.params.projectid);
+  const ProjectDataMapsProjectZone = ProjectDataMaps.projectzone;
   try {
     var project = await Project.findOne({
         _id: req.params.projectid
@@ -768,7 +787,8 @@ router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, nex
       FieldPhotoArrays,
       monthYearTimeStampProject,
       numericValueTimeStampProject,
-      timeStampProject
+      timeStampProject,
+      ProjectDataMapsProjectZone
     });
 
   }, 1000);
