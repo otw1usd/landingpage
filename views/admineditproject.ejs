@@ -1,46 +1,68 @@
-<form class="sign-up-form" action="/admin?_method=PUT" method="POST">
-  <h2 class="sign-up-heading">Edit Project</h2>
-  
-  <input type="hidden" name="_id" value="<%= projectnow._id %>" />
-  <input type="hidden" name="oldprojectUsername" value="<%= projectnow.oldprojectUsername || projectnow.projectUsername  %>" />
 
-  <h3 class="sign-up-sub-heading"></h3>
-  <label for="projectName">Project Name:</label>
-  <input class="sign-up-box" type="text" name="projectName" placeholder="Nama Project" id="projectName" value="<%= projectnow.projectName  %>" required/><br>
+<div class="admin-edit-project-div">
 
-  <label for="location">Project Location:</label>
-  <input class="sign-up-box" type="text" name="location" placeholder="Location" id="location" value="<%= projectnow.location  %>" required/><br>
-  
-  <label for="projectDescription">Project Description:</label>
-  <input class="sign-up-box" type="text" name="projectDescription" placeholder="Deskripsi Project" id="projectDescription" value="<%= projectnow.projectDescription  %>"  required/><br>
-  
-  <label for="startDate">Project Start Date:</label>
-  <input class="sign-up-box" type="date" name="startDate" placeholder="Waktu Mulai" id="startDate" value="<%= projectnow.startDate  %>" required/><br>
 
-  <label for="endDate">Project End Date:</label>
-  <input class="sign-up-box" type="date" name="endDate" placeholder="Waktu Selesai" id="endDate" value="<%= projectnow.endDate  %>" required/><br>
+  <form class="form-group" action="/admin?_method=PUT" method="POST">
+    <h2 class="made-tommy-soft-bold">Edit Project</h2>
 
-  <label for="projectUsername">Project Username:</label>
-  <input class="sign-up-box" type="text" name="projectUsername" placeholder="username project" id="projectUsername" value="<%= projectnow.projectUsername  %>" required/><br>
+    <input type="hidden" name="_id" value="<%= projectnow._id %>" />
+    <input type="hidden" name="oldprojectUsername" value="<%= projectnow.oldprojectUsername || projectnow.projectUsername  %>" />
 
-  <label for="projectPassword">Project Password:</label>
-  <input class="sign-up-box" type="text" name="projectPassword" placeholder="password project" id="projectPassword" value="<%= projectnow.projectPassword  %>" required/><br>
 
-  <label for="username">Project Owner username: </label>
-  <input class="sign-up-box" type="text" name="username" placeholder="username owner" id="username" value="<%= projectnow.username  %>" required/><br>
-  
-  <label for="progrestotal">Project Progress Total: </label>
-  <input class="sign-up-box" type="text" name="progrestotal" placeholder="dalam persen" id="progrestotal" value="<%= projectnow.progrestotal  %>" required/><br>
+    <label for="projectName">Project Name:</label>
+    <input class="form-control" type="text" name="projectName" placeholder="Nama Project" id="projectName" value="<%= projectnow.projectName  %>" required /><br>
 
-  <label for="nilaiProyek">Proyek Cost: </label>
-  <input class="sign-up-box" type="text" name="nilaiProyek" placeholder="dalam rupiah" id="nilaiProyek" value="<%= projectnow.nilaiProyek  %>" /><br>
+    <label for="location">Project Location:</label>
+    <input class="form-control" type="text" name="location" placeholder="Location" id="location" value="<%= projectnow.location  %>" required /><br>
 
-  <label for="konsultan">Consultant: </label>
-  <input class="sign-up-box" type="text" name="konsultan" placeholder="konsultan" id="konsultan" value="<%= projectnow.konsultan  %>" /><br>
+    <label for="projectDescription">Project Description:</label>
+    <input class="form-control" type="text" name="projectDescription" placeholder="Deskripsi Project" id="projectDescription" value="<%= projectnow.projectDescription  %>" required /><br>
 
-  <label for="kontraktor">Contractor: </label>
-  <input class="sign-up-box" type="text" name="kontraktor" placeholder="kontraktor" id="kontraktor" value="<%= projectnow.kontraktor  %>" /><br>
-  
-  <button type="submit" class="btn btn-dark">Change Project Data</button>
-  
-</form>
+    <label for="startDate">Project Start Date:</label>
+    <input class="form-control" type="date" name="startDate" placeholder="Waktu Mulai" id="startDate" value="<%= projectnow.startDate  %>" required /><br>
+
+    <label for="endDate">Project End Date:</label>
+    <input class="form-control" type="date" name="endDate" placeholder="Waktu Selesai" id="endDate" value="<%= projectnow.endDate  %>" required /><br>
+
+    <label for="projectUsername">Project Username:</label>
+    <input class="form-control" type="text" name="projectUsername" placeholder="username project" id="projectUsername" value="<%= projectnow.projectUsername  %>" required /><br>
+
+    <label for="projectPassword">Project Password:</label>
+    <input class="form-control" type="text" name="projectPassword" placeholder="password project" id="projectPassword" value="<%= projectnow.projectPassword  %>" required /><br>
+
+    <label for="username">Project Owner username: </label>
+    <input class="form-control" type="text" name="username" placeholder="username owner" id="username" value="<%= projectnow.username  %>" required /><br>
+
+    <label for="progrestotal">Project Progress Total: </label>
+    <input class="form-control" type="text" name="progrestotal" placeholder="dalam persen" id="progrestotal" value="<%= projectnow.progrestotal  %>" required /><br>
+
+    <label for="nilaiProyek">Proyek Cost: </label>
+    <input class="form-control" type="text" name="nilaiProyek" placeholder="dalam rupiah" id="nilaiProyek" value="<%= projectnow.nilaiProyek  %>" /><br>
+
+    <label for="konsultan">Consultant: </label>
+    <input class="form-control" type="text" name="konsultan" placeholder="konsultan" id="konsultan" value="<%= projectnow.konsultan  %>" /><br>
+
+    <label for="kontraktor">Contractor: </label>
+    <input class="form-control" type="text" name="kontraktor" placeholder="kontraktor" id="kontraktor" value="<%= projectnow.kontraktor  %>" /><br>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="Monthly" id="timestampproject1" name="timestampproject1">
+      <label class="form-check-label" for="timestampproject1">
+        Bulanan
+      </label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="Weekly" id="timestampproject1" name="timestampproject1">
+      <label class="form-check-label" for="timestampproject1">
+        Mingguan
+      </label>
+    </div>
+
+
+    <button type="submit" class="btn btn-dark">Change Project Data</button>
+
+  </form>
+
+</div>
+

@@ -1,32 +1,66 @@
-<form class="sign-up-form" action="/user?_method=PUT" method="POST" enctype="multipart/form-data">
-  <h2 class="sign-up-heading">Edit User</h2>
-  
-  <input type="hidden" name="_id" value="<%= user._id %>" />
-  <input type="hidden" name="oldusername" value="<%= user.oldusername || user.username  %>" />
-  <input type="hidden" name="oldimage" value="<%= user.oldimage || user.image  %>" />
+<div class="container edit-user-div">
 
-  <h3 class="sign-up-sub-heading"></h3>
-  <label for="username">Username:</label>
-  <input class="sign-up-box" type="text" name="username" placeholder="Username" id="username" value="<%= user.username  %>" required/><br>
 
-  <label for="name">Name:</label>
-  <input class="sign-up-box" type="text" name="name" placeholder="name" id="name" value="<%= user.name  %>" required/><br>
+  <h3 class="mt-2 made-tommy-soft-bold">Update Your Profile</h3><br>
 
-  <label for="email">email:</label>
-  <input class="sign-up-box" type="text" name="email" placeholder="email" id="email" value="<%= user.email  %>" required/><br>
+  <h5 class="made-tommy-soft-bold">Personal Information</h5>
+  <form action="/user?_method=PUT" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="_id" value="<%= user._id %>" />
+    <input type="hidden" name="oldusername" value="<%= user.oldusername || user.username  %>" />
+    <input type="hidden" name="oldimage" value="<%= user.oldimage || user.image  %>" />
+    <div class="form-group mb-3">
+      <img width="18" height="20" src="/images/user.svg" alt="User Icon" />
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Name" name="name" value="<%= user.name  %>" required />
+    </div>
+    <div class="form-group mb-3">
+      <img width="18" height="20" src="/images/user.svg" alt="Username Icon" />
+      <label for="username">Username:</label>
+      <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Username" name="username" value="<%= user.username  %>" required />
+    </div>
+    <div class="form-group mb-3">
+      <img width="21" height="15" src="/images/email.svg" alt="Email Icon" />
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" aria-describedby="useremailHelp" placeholder="Email" name="email" value="<%= user.email  %>" required />
+    </div>
+    <div class="form-group mb-3">
+      <img width="22" height="22" src="/images/bullseye.svg" alt="Phone Number Icon" />
+      <label for="nohp">Phone Number:</label>
+      <input type="text" class="form-control" id="nohp" aria-describedby="usernomorHPHelp" placeholder="Phone Number" name="nohp" value="<%= user.nohp  %>" required />
+    </div>
+    <h5 class="made-tommy-soft-bold mb-3">
+      Work Status and Experience
+    </h5>
+    <div class="form-group mb-3">
+      <img width="20" height="16" src="/images/briefcase.svg" alt="Company Icon" />
+      <label for="company">Company:</label>
 
-  <label for="company">Company:</label>
-  <input class="sign-up-box" type="text" name="company" placeholder="company" id="company" value="<%= user.company  %>" required/><br>
+      <input type="text" class="form-control" id="company" aria-describedby="usercompanyflarnaHPHelp" placeholder="Company" name="company" value="<%= user.company  %>" required />
+    </div>
+    <div class="form-group mb-3">
+      <img width="23" height="23" src="/images/sticky-notes.svg" alt="Position Icon" />
+      <label for="jobs">Your job position:</label>
+      <input type="text" class="form-control" id="job" aria-describedby="userpositionHPHelp" placeholder="Position" name="jobs" value="<%= user.jobs  %>" required />
+    </div>
+    <h5 class="made-tommy-soft-bold mb-3">
+      Profile Picture
+    </h5>
+    <div class="form-group mb-3">
+      <label for="image">Profile Picture:</label>
+      <input type="file" class="form-control" name="image" />
+    </div>
 
-  <label for="jobs">Your job position:</label>
-  <input class="sign-up-box" type="text" name="jobs" placeholder="jobs" id="jobs" value="<%= user.jobs  %>" required/><br>
 
-  <label for="nohp">Phone Number:</label>
-  <input class="sign-up-box" type="text" name="nohp" placeholder="nohp" id="nohp" value="<%= user.nohp  %>" required/><br>
+    <div class="
+                  d-flex
+                  flex-column flex-md-row
+                  justify-content-between
+                  align-items-baseline
+                ">
+      <button type="submit" class="btn btn-sm btn-warning col-12">
+        Save Changes
+      </button>
 
-  <label for="image">Profile Picture:</label>
-  <input type="file" name="image" />
-  
-  <button type="submit" class="btn btn-dark">Change User Data</button>
-  
-</form>
+    </div>
+  </form>
+</div>
