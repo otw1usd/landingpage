@@ -121,18 +121,18 @@
             </div>
             <div class="row">
               <div class="div-data-proyek col-3">
-                <p class="data-proyek">Rentang: 16 Oktober 2015 - Masih Berlangsung</p>
-                <p class="data-proyek">Lokasi: <%= project.location %></p>
-                <p class="data-proyek">Luas: 80 Hektar</p>
+                <p class="data-proyek">Project Duration: <%= project.startDate %> until <%= project.endDate %></p>
+            <p class="data-proyek">Locaton: <%= project.location %></p>
+            <p class="data-proyek">Area: 80 Hektar</p>
               </div>
               <div class="div-data-proyek col-3">
-                <p class="data-proyek">Nilai Investasi: 86,55 Triliun Rupiah</p>
-                <p class="data-proyek">Owner: Konsorsium KCIC</p>
-                <p class="data-proyek">Konsultan: CDJO</p>
+                <p class="data-proyek">Project Cost: <%= project.nilaiProyek%></p>
+                <p class="data-proyek">Owner: <%= project.username %></p>
+                <p class="data-proyek">Consultant: <%= project.konsultan%></p>
               </div>
               <div class="div-data-proyek col-3">
-                <p class="data-proyek">Kontraktor: PT. WIKA</p>
-                <p class="data-proyek">Anggota: 26 Orang</p>
+                <p class="data-proyek">Contractor: <%= project.kontraktor%></p></p>
+            <p class="data-proyek"></p>
               </div>
               <div class="div-data-proyek col-3">
                 <p class="data-proyek">Jabatan Anda: <%= jobs %> </p>
