@@ -15,26 +15,24 @@
   <link rel="stylesheet" href="/style.css">
 
   <style>
-    img {
-       display: block;
-       border: 0;
-     }
-     img.lazy {
-       opacity: 0;
-     }
-     img:not(.initial) {
-       transition: opacity 1s;
-     }
-     img.initial,
-     img.loaded,
-     img.error {
-       opacity: 1;
-     }
+    img.lazy {
+      opacity: 0;
+    }
 
-     img:not([src]) {
-       visibility: hidden;
-     }
- </style>
+    img:not(.initial) {
+      transition: opacity 1s;
+    }
+
+    img.initial,
+    img.loaded,
+    img.error {
+      opacity: 1;
+    }
+
+    img:not([src]) {
+      visibility: hidden;
+    }
+  </style>
 
 
 </head>
@@ -85,7 +83,7 @@
   <script src="/assets/js/toggle.js" charset="utf-8"></script>
 
   <!--Start of Tawk.to Script-->
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     var Tawk_API = Tawk_API || {},
       Tawk_LoadStart = new Date();
     (function() {
@@ -97,37 +95,37 @@
       s1.setAttribute('crossorigin', '*');
       s0.parentNode.insertBefore(s1, s0);
     })();
-  </script>
+  </script> -->
   <!--End of Tawk.to Script-->
 
   <script src="/assets/js/lazyload.min.js"></script>
   <script>
-    (function () {
+    (function() {
       function logElementEvent(eventName, element) {
         console.log(Date.now(), eventName, element.getAttribute("data-src"));
       }
 
-      var callback_enter = function (element) {
+      var callback_enter = function(element) {
         logElementEvent("🔑 ENTERED", element);
       };
-      var callback_exit = function (element) {
+      var callback_exit = function(element) {
         logElementEvent("🚪 EXITED", element);
       };
-      var callback_loading = function (element) {
+      var callback_loading = function(element) {
         logElementEvent("⌚ LOADING", element);
       };
-      var callback_loaded = function (element) {
+      var callback_loaded = function(element) {
         logElementEvent("👍 LOADED", element);
       };
-      var callback_error = function (element) {
+      var callback_error = function(element) {
         logElementEvent("💀 ERROR", element);
         element.src =
           "https://via.placeholder.com/440x560/?text=Error+Placeholder";
       };
-      var callback_finish = function () {
+      var callback_finish = function() {
         logElementEvent("✔️ FINISHED", document.documentElement);
       };
-      var callback_cancel = function (element) {
+      var callback_cancel = function(element) {
         logElementEvent("🔥 CANCEL", element);
       };
 
