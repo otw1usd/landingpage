@@ -32,6 +32,7 @@ for (let x = 0; x < document.querySelectorAll(".toggle-field-photo-button").leng
     for (let y = 0; y < document.querySelectorAll(".toggle-field-photo-identifier").length; y++) {
       if (document.querySelectorAll(".toggle-field-photo-identifier")[y].classList.contains(zoneNameTrimmed)) {
         document.querySelectorAll(".toggle-field-photo-identifier")[y].classList.toggle("field-photo-active");
+        // document.querySelectorAll(".field-photo-carousel-div")[y].innerHTML = "";
       }
     }
   });
