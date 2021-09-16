@@ -92,7 +92,12 @@
 
         <!-- <button class="btn btn-outline-warning btn-sm btn-block button-utama button2 popup container-fluid" onclick="myFunction()">Kurva S
             </button> -->
+
+
       </div>
+      <div class="formpopupbox"></div>
+
+
 
       <% for (let i=0; i<monthYearTimeStampProject.length ; i++) { %>
       <div class="col-lg-12 floating-panel <%=numericValueTimeStampProject[i]%> field-photo-super-div">
@@ -103,6 +108,8 @@
           <div class="col-3">
             <button type="button" name="button" class="btn btn-outline-warning close-field-photo-button">close</button>
           </div>
+
+
 
         </div>
         <div class="row">
@@ -117,28 +124,26 @@
 
           <!-- form popup box -->
 
-          <form class="sign-up-form add-field-photo" action="/tambahfieldphotoclient?_method=PUT" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="zonaid" value="<%= projectZone._id %>" />
-            <label for="image">Upload Field Photos:</label>
-            <div class="btn-center">
-              <input type="file" class="add-field-photo-button" name="image" multiple />
-              <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Photos</button>
-            </div>
-          </form>
+          <!-- <form class="sign-up-form add-field-photo" action="/tambahfieldphotoclient?_method=PUT" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="zonaid" value="<%= projectZone._id %>" />
+                <label for="image">Upload Field Photos:</label>
+                <div class="add-field-photo-button-div">
+                  <input type="file" class="add-field-photo-button" name="image" multiple />
+                  <button type="submit" class="btn btn-outline-warning btn-sm">Insert Photos</button>
+                </div>
+              </form> -->
 
           <% }) %>
         </div>
-
       </div>
 
       <% } %>
-
-
       <div class="close-foto-gamtek-button-div">
         <button type="button" name="button" class="btn btn-outline-warning close-foto-gamtek-button">close</button>
       </div>
 
     </div>
+
 
 
     <div class="gamtek col-12" id="gamtek">
@@ -154,9 +159,30 @@
         <strong class="font-1-rem">Hotspots</strong>
         <ul class="scenes scenes-padding">
         </ul>
+
+        <section id="viewing-tab">
+          <!-- <ul>
+      <li class="nav-item dropdown">
+        <strong class="text-dark dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          All
+        </strong>
+        <div class=" dropdown-menu bg-warning" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">All</a>
+          <a class="dropdown-item" href="#">Structural</a>
+          <a class="dropdown-item" href="#">Architectural</a>
+          <a class="dropdown-item" href="#">Electrical</a>
+          <a class="dropdown-item" href="#">Plumbing</a>
+        </div>
+      </li>
+    </ul> -->
+          <div class="zoomoutbefore"><img class="imgzoomgamtek zoomoutgambar" id="zoomoutgamtekfs" src="/images/z2out.png"></div>
+          <div class="zoominbefore"><img class="imgzoomgamtek zoomingambar" id="zoomingamtekfs" src="/images/z2in.png"></div>
+          <div class="gamtekfs">
+            <div class="gamtekfsshow">
+
+            </div>
+          </div>
       </div>
-    </div>
-  </div>
 
 </section>
 
@@ -185,6 +211,9 @@
 
     <div id="titleBar">
       <h1 class="sceneName"></h1>
+    </div>
+    <div class="fieldphotooow">
+
     </div>
 
     <a href="javascript:void(0)" id="autorotateToggle">
