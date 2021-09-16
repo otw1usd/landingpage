@@ -90,3 +90,18 @@ document.querySelectorAll(".close-foto-gamtek-button").forEach(button => {
     document.querySelector(".close-foto-gamtek-button").classList.remove("close-foto-gamtek-button-active");
   });
 });
+
+// Input timestamp dari client-side
+
+document.querySelector(".toggle-client-side-input-timestamp").addEventListener("click", () => {
+  document.querySelector(".client-side-input-timestamp").classList.toggle("client-side-input-timestamp-active");
+  document.querySelector(".client-side-input-timestamp").classList.toggle("client-side-input-timestamp-inactive");
+})
+
+
+
+// Input project zone dari client-side
+document.querySelector(".toggle-client-side-input-projectzone").addEventListener("click", () => {
+  document.querySelector(".client-side-input-projectzone").classList.toggle("client-side-input-projectzone-active");
+  document.querySelector(".client-side-input-projectzone").classList.toggle("client-side-input-projectzone-inactive");
+})

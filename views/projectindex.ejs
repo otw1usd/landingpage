@@ -1,268 +1,283 @@
 <div id="projectid" value="<%= project._id %>"> </div>
-  <section id="user-tab">
-    <div class="info-container col-2 bg-dark">
-      <div class="row">
-        <div class="col-1 space"> </div>
-        <div class="alert info-container-ringkas col-10">
-          <h5>You in this project</h5>
-          <div class="row">
-            <div class="col-9 div-ringkas">
-              <p>Position: <%= jobs %></p>
-              <p>Company: <%= company %></p>
-            </div>
-            <div class="div-logo col-3">
-              <img class="logo" src="/project/<%= project._id %>/logo.png" alt="">
-            </div>
+<section id="user-tab">
+  <div class="info-container col-2 bg-dark">
+    <div class="row">
+      <div class="col-1 space"> </div>
+      <div class="alert info-container-ringkas col-10">
+        <h5>You in this project</h5>
+        <div class="row">
+          <div class="col-9 div-ringkas">
+            <p>Position: <%= jobs %></p>
+            <p>Company: <%= company %></p>
+          </div>
+          <div class="div-logo col-3">
+            <img class="logo" src="/project/<%= project._id %>/logo.png" alt="">
           </div>
         </div>
       </div>
-      <div class="fitur-div">
-        <h6 class="fitur"><strong>Project Information </strong></h6>
+    </div>
+    <div>
+      <h6 class="fitur"><strong>Project Information </strong></h6>
 
-        <div>
-          <h6> Total Project Progress: </h6>
-          <h3><span> <%= project.progrestotal %>% </span></h3>
-        </div>
-        <!-- <div>
+      <div>
+        <h6> Total Project Progress: </h6>
+        <h3><span> <%= project.progrestotal %>% </span></h3>
+      </div>
+      <!-- <div>
           <h6> Pengeluaran total: </h6>
           <h6><span> dirahasiakan </span></h6>
         </div> -->
 
 
-        <h6 class="fitur"><strong>Main Features</strong></h6>
-        <!-- Infocontainer Button -->
-        <div class="row">
-          <!-- Panel Tanggal -->
-          <div class="floating-panel col-lg-6">
-            <strong class="lini-masa">Timeline</strong>
-
-            <% for (let i=0; i<monthYearTimeStampProject.length ; i++) { %>
-
-            <input type="radio" class="btn-check" id="radio-<%=i%>" name="date" value="<%=numericValueTimeStampProject[i]%>" onclick="toggleOverlay(this)" />
-            <label class="btn btn-outline-warning btn-sm btn-block time-stamp-button" for="radio-<%=i%>"><%=monthYearTimeStampProject[i]%></label>
-
-            <% } %>
-
-            <button> Tambah TimeStamp Zone</button>
-            <form class="sign-up-form" action="/tambahtimestamp" method="POST">
-              <input type="hidden" name="projectid" value="<%= project._id %>" />
-              <input type="hidden" name="projectUsername" value="<%= project.username %>" />
-              <label for="detailtimestamp">detailtimestamp :</label>
-              <input class="sign-up-box" type="month" name="detailtimestamp" placeholder="tambah waktu" id="detailtimestamp" value="" required/>
-
-              <button type="submit" class="btn btn-outline-warning btn-sm">Insert Timestamp</button>
-                </form>
-
-          </div>
-
-          <div class="infocontainer-button col-lg-6">
-            <strong class="lini-masa">features</strong>
-            <button> Tambah Project Zone</button>
-            <form class="sign-up-form" action="/tambahzona" method="POST">
-              <input type="hidden" name="projectid" value="<%= project._id %>" />
-              <input type="hidden" name="projectUsername" value="<%= project.username %>" />
-              <label for="detailzona">zonename :</label>
-              <input class="sign-up-box" type="text" name="detailzona" placeholder="tambah zona" id="detailzona" value="" required/>
-
-              <label for="zoneid">zoneid :</label>
-              <input class="sign-up-box" type="text" name="zoneid" placeholder="zoneid" id="zoneid" value="" required/><br>
-
-              <label for="zoneLat">zoneLat :</label>
-              <input class="sign-up-box" type="number" step="any" name="zoneLat" placeholder="zoneLat" id="zoneLat" value="" required/><br>
-
-              <label for="zoneLng">zoneLng :</label>
-              <input class="sign-up-box" type="number" step="any" name="zoneLng" placeholder="zoneLng" id="zoneLng" value="" required/><br>
-
-              <button type="submit" class="btn btn-outline-warning btn-sm">Insert Zone</button>
-                </form>
-              </div>
-
-
-            <!-- <button class="btn btn-outline-warning btn-sm btn-block button-utama button2 popup container-fluid" onclick="myFunction()">Kurva S
-            </button> -->
-          </div>
+      <h6 class="fitur"><strong>Main Features</strong></h6>
+      <!-- Infocontainer Button -->
+      <div class="row">
+        <!-- Panel Tanggal -->
+        <div class="floating-panel col-lg-6">
+          <strong class="font-1-rem">Timeline</strong>
 
           <% for (let i=0; i<monthYearTimeStampProject.length ; i++) { %>
-          <div class="col-lg-12 floating-panel <%=numericValueTimeStampProject[i]%> field-photo-super-div">
-            <div class="field-photo-heading-div row">
-              <div class="col-9">
-                <strong class="lini-masa field-photo-button-name">Field Photo <%=monthYearTimeStampProject[i]%></strong>
-              </div>
-              <div class="col-3">
-                <button type="button" name="button" class="btn btn-outline-warning close-field-photo-button">close</button>
-              </div>
 
+          <input type="radio" class="btn-check" id="radio-<%=i%>" name="date" value="<%=numericValueTimeStampProject[i]%>" onclick="toggleOverlay(this)" />
+          <label class="btn btn-outline-warning btn-sm btn-block time-stamp-button" for="radio-<%=i%>"><%=monthYearTimeStampProject[i]%></label>
+
+          <% } %>
+
+
+
+        </div>
+
+        <div class="floating-panel col-lg-6">
+          <strong class="font-1-rem">Features</strong>
+          <button class="btn btn-outline-warning btn-sm btn-block toggle-client-side-input-timestamp">Input Timestamp</button>
+          <button class="btn btn-outline-warning btn-sm btn-block toggle-client-side-input-projectzone">Input Project Zone</button>
+
+        </div>
+
+        <div class="client-side-input-timestamp client-side-input-timestamp-inactive floating-panel">
+          <strong class="font-1-rem">Tambah Timestamp</strong>
+          <form class="sign-up-form" action="/tambahtimestamp" method="POST">
+            <input type="hidden" name="projectid" value="<%= project._id %>" />
+            <input type="hidden" name="projectUsername" value="<%= project.username %>" />
+            <label for="detailtimestamp">Bulan dan tahun :</label>
+            <input class="sign-up-box" type="month" name="detailtimestamp" placeholder="tambah waktu" id="detailtimestamp" value="" required />
+            <div class="btn-center">
+              <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Timestamp</button>
             </div>
-            <div class="row">
-              <% projectZones.forEach((projectZone) => { %>
-              <div class="col-11">
-                <button type="button" class="btn btn-outline-warning btn-sm btn-block toggle-field-photo-button"> <%= projectZone.zonename  %></button>
-              </div>
-              <div class="col-1">
-                <button type="button" class="btn btn-outline-warning btn-sm toggle-add-field-photo">+</button>
+          </form>
+        </div>
 
-              </div>
+        <div class="client-side-input-projectzone client-side-input-projectzone-inactive floating-panel">
+          <strong class="font-1-rem">Tambah Project Zone</strong>
+          <form class="sign-up-form" action="/tambahzona" method="POST">
+            <input type="hidden" name="projectid" value="<%= project._id %>" />
+            <input type="hidden" name="projectUsername" value="<%= project.username %>" />
+            <label for="detailzona">Zone name :</label>
+            <input class="sign-up-box" type="text" name="detailzona" placeholder="tambah zona" id="detailzona" value="" required />
 
-              <!-- form popup box -->
+            <label for="zoneid">Zone Id :</label>
+            <input class="sign-up-box" type="text" name="zoneid" placeholder="zoneid" id="zoneid" value="" required /><br>
 
-              <form class="sign-up-form add-field-photo" action="/tambahfieldphotoclient?_method=PUT" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="zonaid" value="<%= projectZone._id %>" />
-                <label for="image">Upload Field Photos:</label>
-                <div class="add-field-photo-button-div">
-                  <input type="file" class="add-field-photo-button" name="image" multiple />
-                  <button type="submit" class="btn btn-outline-warning btn-sm">Insert Photos</button>
-                </div>
-              </form>
+            <label for="zoneLat">Zone latitude :</label>
+            <input class="sign-up-box" type="number" step="any" name="zoneLat" placeholder="zoneLat" id="zoneLat" value="" required /><br>
 
-              <% }) %>
+            <label for="zoneLng">Zone longitude :</label>
+            <input class="sign-up-box" type="number" step="any" name="zoneLng" placeholder="zoneLng" id="zoneLng" value="" required /><br>
+
+            <div class="btn-center">
+              <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Zone</button>
             </div>
+          </form>
+        </div>
+
+        <!-- <button class="btn btn-outline-warning btn-sm btn-block button-utama button2 popup container-fluid" onclick="myFunction()">Kurva S
+            </button> -->
+      </div>
+
+      <% for (let i=0; i<monthYearTimeStampProject.length ; i++) { %>
+      <div class="col-lg-12 floating-panel <%=numericValueTimeStampProject[i]%> field-photo-super-div">
+        <div class="field-photo-heading-div row">
+          <div class="col-9">
+            <strong class="font-1-rem field-photo-button-name">Field Photo <%=monthYearTimeStampProject[i]%></strong>
+          </div>
+          <div class="col-3">
+            <button type="button" name="button" class="btn btn-outline-warning close-field-photo-button">close</button>
+          </div>
+
+        </div>
+        <div class="row">
+          <% projectZones.forEach((projectZone) => { %>
+          <div class="col-11">
+            <button type="button" class="btn btn-outline-warning btn-sm btn-block toggle-field-photo-button"> <%= projectZone.zonename  %></button>
+          </div>
+          <div class="col-1">
+            <button type="button" class="btn btn-outline-warning btn-sm toggle-add-field-photo">+</button>
 
           </div>
 
-          <% } %>
+          <!-- form popup box -->
 
-          <button type="button" name="button" class="btn btn-outline-warning close-foto-gamtek-button">close</button>
-
-        </div>
-
-
-        <div class="gamtek col-12" id="gamtek">
-          <div class="popupgamtek" id="daftarGamtekSaya">
-            <div class="loopingbatasgamtek">
-              <div></div> <!-- Dont delete this div row, it is used for DOM -->
+          <form class="sign-up-form add-field-photo" action="/tambahfieldphotoclient?_method=PUT" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="zonaid" value="<%= projectZone._id %>" />
+            <label for="image">Upload Field Photos:</label>
+            <div class="btn-center">
+              <input type="file" class="add-field-photo-button" name="image" multiple />
+              <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Photos</button>
             </div>
-          </div>
+          </form>
+
+          <% }) %>
         </div>
 
-        <div id="anjinglah" style="display: none;">
-          <div id="sceneList" class="infocontainer-button col-lg-12">
-            <strong class="lini-masa">Hotspots</strong>
-            <ul class="scenes scenes-padding">
-            </ul>
-          </div>
-        </div>
       </div>
 
-  </section>
+      <% } %>
 
 
-  <section id="viewing-tab">
-
-    <div class="zoomoutbefore"><img class="imgzoomgamtek zoomoutgambar" id="zoomoutgamtekfs" src="/images/z2out.png"></div>
-    <div class="zoominbefore"><img class="imgzoomgamtek zoomingambar" id="zoomingamtekfs" src="/images/z2in.png"></div>
-    <div class="gamtekfs">
-      <div class="gamtekfsshow">
+      <div class="close-foto-gamtek-button-div">
+        <button type="button" name="button" class="btn btn-outline-warning close-foto-gamtek-button">close</button>
       </div>
-    </div>
-
-    <!-- ENG: GAMTEK IS CONSTRUCTION DRAWING -->
-    <!-- ENG : GAMBAR IS DRAWING -->
-
-
-
-    <!-- ENG: BUKATUTUP is OPEN and CLOSE -->
-
-    <div id="bukatutup" style="display: none;">
-      <div id="pano"></div>
-      <!-- back panorama -->
-      <img class="backpano" onclick="bukatutup()" src="/images/back.png">
-
-
-      <div id="titleBar">
-        <h1 class="sceneName"></h1>
-      </div>
-
-      <a href="javascript:void(0)" id="autorotateToggle">
-        <img class="icon off" src="/images/play.png">
-        <img class="icon on" src="/images/pause.png">
-      </a>
-
-      <a href="javascript:void(0)" id="fullscreenToggle">
-        <img class="icon off" src="/images/fullscreen.png">
-        <img class="icon on" src="/images/windowed.png">
-      </a>
-
-      <a href="javascript:void(0)" id="sceneListToggle">
-        <img class="icon off" src="/images/expand.png">
-        <img class="icon on" src="/images/collapse.png">
-      </a>
-
-
-      <a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
-        <img class="icon" src="/images/up.png">
-      </a>
-      <a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
-        <img class="icon" src="/images/down.png">
-      </a>
-      <a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
-        <img class="icon" src="/images/left.png">
-      </a>
-      <a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
-        <img class="icon" src="/images/right.png">
-      </a>
-      <a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
-        <img class="icon" src="/images/plus.png">
-      </a>
-      <a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
-        <img class="icon" src="/images/minus.png">
-      </a>
 
     </div>
 
-    <% for (let x=0 ; x<FieldPhotoArrays.length ; x++) { %>
-    <div id="field-photo-div<%=x%>" class="carousel slide toggle-field-photo-identifier <%= projectZones[x].zonename.split(" ").join("");  %>" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#field-photo-div<%=x%>" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
 
-        <% for (let y=0 ; y<FieldPhotoArrays.length ; y++) { %>
-        <% if (FieldPhotoArrays[y].length > 0) { %>
-        <% if (String(FieldPhotoArrays[y][0].projectzone) === String(projectZones[x]._id)) { %>
-        <% for (let i=1; i<FieldPhotoArrays[y].length ; i++) { %>
-        <button type="button" data-bs-target="#field-photo-div<%=x%>" data-bs-slide-to="<%=i%>" aria-label="Slide <%=i%>"></button>
-        <% } %>
-        <% } %>
-        <% } %>
-        <% } %>
-      </div>
-
-      <div class="carousel-inner field-photo-carousel-div">
-        <div class="carousel-item active">
-          <%  for (let y=0 ; y<FieldPhotoArrays.length ; y++) { %>
-          <%  if (FieldPhotoArrays[y].length > 0) { %>
-          <%  if (String(FieldPhotoArrays[y][0].projectzone) === String(projectZones[x]._id)) { %>
-          <img src="/project/dataset/fieldphoto/<%= FieldPhotoArrays[y][0].fieldphoto %>" class="d-block w-100 field-photo" alt="">
-          <% } %>
-          <% } %>
-          <% } %>
+    <div class="gamtek col-12" id="gamtek">
+      <div class="popupgamtek" id="daftarGamtekSaya">
+        <div class="loopingbatasgamtek">
+          <div></div> <!-- Dont delete this div row, it is used for DOM -->
         </div>
-
-        <% for (let y=0 ; y<FieldPhotoArrays.length ; y++) { %>
-        <% if (FieldPhotoArrays[y].length > 0) { %>
-        <% if (String(FieldPhotoArrays[y][0].projectzone) === String(projectZones[x]._id)) { %>
-        <% for (let i=1; i<FieldPhotoArrays[y].length ; i++) { %>
-        <div class="carousel-item">
-          <img src="/project/dataset/fieldphoto/<%= FieldPhotoArrays[y][i].fieldphoto %>" class="d-block w-100 field-photo" alt="">
-        </div>
-        <% } %>
-        <% } %>
-        <% } %>
-        <% } %>
       </div>
-
-      
-
-      <button class="carousel-control-prev" type="button" data-bs-target="#field-photo-div<%=x%>" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-
-      <button class="carousel-control-next" type="button" data-bs-target="#field-photo-div<%=x%>" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
     </div>
-    <% } %>
+
+    <div id="anjinglah" style="display: none;">
+      <div id="sceneList" class="floating-panel col-lg-12">
+        <strong class="font-1-rem">Hotspots</strong>
+        <ul class="scenes scenes-padding">
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<section id="viewing-tab">
+
+  <div class="zoomoutbefore"><img class="imgzoomgamtek zoomoutgambar" id="zoomoutgamtekfs" src="/images/z2out.png"></div>
+  <div class="zoominbefore"><img class="imgzoomgamtek zoomingambar" id="zoomingamtekfs" src="/images/z2in.png"></div>
+  <div class="gamtekfs">
+    <div class="gamtekfsshow">
+    </div>
+  </div>
+
+  <!-- ENG: GAMTEK IS CONSTRUCTION DRAWING -->
+  <!-- ENG : GAMBAR IS DRAWING -->
 
 
 
-  </section>
+  <!-- ENG: BUKATUTUP is OPEN and CLOSE -->
+
+  <div id="bukatutup" style="display: none;">
+    <div id="pano"></div>
+    <!-- back panorama -->
+    <img class="backpano" onclick="bukatutup()" src="/images/back.png">
+
+
+    <div id="titleBar">
+      <h1 class="sceneName"></h1>
+    </div>
+
+    <a href="javascript:void(0)" id="autorotateToggle">
+      <img class="icon off" src="/images/play.png">
+      <img class="icon on" src="/images/pause.png">
+    </a>
+
+    <a href="javascript:void(0)" id="fullscreenToggle">
+      <img class="icon off" src="/images/fullscreen.png">
+      <img class="icon on" src="/images/windowed.png">
+    </a>
+
+    <a href="javascript:void(0)" id="sceneListToggle">
+      <img class="icon off" src="/images/expand.png">
+      <img class="icon on" src="/images/collapse.png">
+    </a>
+
+
+    <a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
+      <img class="icon" src="/images/up.png">
+    </a>
+    <a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
+      <img class="icon" src="/images/down.png">
+    </a>
+    <a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
+      <img class="icon" src="/images/left.png">
+    </a>
+    <a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
+      <img class="icon" src="/images/right.png">
+    </a>
+    <a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
+      <img class="icon" src="/images/plus.png">
+    </a>
+    <a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
+      <img class="icon" src="/images/minus.png">
+    </a>
+
+  </div>
+
+  <% for (let x=0 ; x<FieldPhotoArrays.length ; x++) { %>
+  <div id="field-photo-div<%=x%>" class="carousel slide toggle-field-photo-identifier <%= projectZones[x].zonename.split(" ").join("");  %>" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#field-photo-div<%=x%>" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+
+      <% for (let y=0 ; y<FieldPhotoArrays.length ; y++) { %>
+      <% if (FieldPhotoArrays[y].length > 0) { %>
+      <% if (String(FieldPhotoArrays[y][0].projectzone) === String(projectZones[x]._id)) { %>
+      <% for (let i=1; i<FieldPhotoArrays[y].length ; i++) { %>
+      <button type="button" data-bs-target="#field-photo-div<%=x%>" data-bs-slide-to="<%=i%>" aria-label="Slide <%=i%>"></button>
+      <% } %>
+      <% } %>
+      <% } %>
+      <% } %>
+    </div>
+
+    <div class="carousel-inner field-photo-carousel-div">
+      <div class="carousel-item active">
+        <%  for (let y=0 ; y<FieldPhotoArrays.length ; y++) { %>
+        <%  if (FieldPhotoArrays[y].length > 0) { %>
+        <%  if (String(FieldPhotoArrays[y][0].projectzone) === String(projectZones[x]._id)) { %>
+        <img src="/project/dataset/fieldphoto/<%= FieldPhotoArrays[y][0].fieldphoto %>" class="d-block w-100 field-photo" alt="">
+        <% } %>
+        <% } %>
+        <% } %>
+      </div>
+
+      <% for (let y=0 ; y<FieldPhotoArrays.length ; y++) { %>
+      <% if (FieldPhotoArrays[y].length > 0) { %>
+      <% if (String(FieldPhotoArrays[y][0].projectzone) === String(projectZones[x]._id)) { %>
+      <% for (let i=1; i<FieldPhotoArrays[y].length ; i++) { %>
+      <div class="carousel-item">
+        <img src="/project/dataset/fieldphoto/<%= FieldPhotoArrays[y][i].fieldphoto %>" class="d-block w-100 field-photo" alt="">
+      </div>
+      <% } %>
+      <% } %>
+      <% } %>
+      <% } %>
+    </div>
+
+
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#field-photo-div<%=x%>" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#field-photo-div<%=x%>" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <% } %>
+
+
+
+</section>
