@@ -253,6 +253,11 @@ h3, h6 {
   overflow: hidden;
 }
 
+.add-field-photo-inactive {
+  border: 0;
+  padding: 0;
+}
+
 .add-field-photo-active {
   max-height: 100%;
 }
@@ -312,6 +317,11 @@ h3, h6 {
 /* Bagian foto gamtek */
 .close-foto-gamtek-button-div {
   text-align: center;
+  max-height: 0;
+}
+
+.close-foto-gamtek-button-div-active {
+  max-height: 100%;
 }
 
 .btn.close-foto-gamtek-button {

@@ -116,7 +116,7 @@ async function toggleOverlay(element) {
 
   var projectzoneDataNotPromise = await getProjectZone();
   var projectzoneDataLength = projectzoneDataNotPromise.length;
-  
+
 
   for (let i = 0; i < projectzoneDataLength; i++) {
     const projectzoneDataEach = projectzoneDataNotPromise[i];
@@ -203,7 +203,3 @@ async function toggleOverlay(element) {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
-
-
-
-

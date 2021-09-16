@@ -39,11 +39,11 @@ function gamtekSaya(asd) {
 
     document.querySelector('.loopingbatasgamtek').remove();
     document.querySelector('.popupgamtek').innerHTML += '<div class="loopingbatasgamtek"> </div>';
-
+    document.querySelector('.filter-gamtek').innerHTML = '<div class="btn-center row floating-panel"><button class="btn btn-sm btn-outline-warning col-6">Struktur</button><button class="btn btn-sm btn-outline-warning col-6">Arsitektur</button><button class="btn btn-sm btn-outline-warning col-6">Mekanikal Elektrikal</button><button class="btn btn-sm btn-outline-warning col-6">Plumbing</button></div>'
 
     for (i = 1; i < 5; i++) {
       //cari code itung jumlah file biar makin auto
-      document.querySelector('.loopingbatasgamtek').innerHTML += '<div class="card border-dark mb-3 row"><div class="card-header">Page' + i + '</div><div class="card-body text-dark"><div class="row"><div class="foto-gamtek col-10"><img class="construction-drawing-small-version" src="/project/'+projectid+'/drawing/' + window.locationOnScreen + '/Original PNG/z0-Page' + i + '.png" alt="Page' + i + '"" id="Page' + i + '" class="list"></div><div class="div-logo-kecil col-2"><img class="logo-kecil" src="/images/download.png" alt="download"><br><img class="logo-kecil" src="/images/print.png" alt="print"><br><img class="logo-kecil" src="/images/share.png" alt="share"></div></div></div></div>';
+      document.querySelector('.loopingbatasgamtek').innerHTML += '<div class="card border-dark mb-3 row"><div class="card-header">Page' + i + '</div><div class="card-body text-dark"><div class="row"><div class="foto-gamtek col-10"><img class="construction-drawing-small-version" src="/project/' + projectid + '/drawing/' + window.locationOnScreen + '/Original PNG/z0-Page' + i + '.png" alt="Page' + i + '"" id="Page' + i + '" class="list"></div><div class="div-logo-kecil col-2"><img class="logo-kecil" src="/images/download.png" alt="download"><br><img class="logo-kecil" src="/images/print.png" alt="print"><br><img class="logo-kecil" src="/images/share.png" alt="share"></div></div></div></div>';
     }
 
     var gamtek = document.getElementById("daftarGamtekSaya");
@@ -85,8 +85,9 @@ listGamtek.addEventListener('click', function(e) {
 //fungsi general munculin gamtek
 function munculinTabel() {
   document.querySelector('.gamtekfsshow').remove();
-  document.querySelector('.gamtekfs').innerHTML += '<div class="gamtekfsshow"> <img ondragstart="return false" class="zoom-img" id="zoom-img" src="/project/'+projectid+'/drawing/' + window.locationOnScreen + '/Original PNG/z3-' + window.idOnScreen + '.png" /></div>';
+  document.querySelector('.gamtekfs').innerHTML += '<div class="gamtekfsshow"> <img ondragstart="return false" class="zoom-img" id="zoom-img" src="/project/' + projectid + '/drawing/' + window.locationOnScreen + '/Original PNG/z3-' + window.idOnScreen + '.png" /></div>';
   document.querySelector(".close-foto-gamtek-button").classList.add("close-foto-gamtek-button-active");
+  document.querySelector(".close-foto-gamtek-button-div").classList.add("close-foto-gamtek-button-div-active");
 
   var img_ele = null,
     x_cursor = 0,

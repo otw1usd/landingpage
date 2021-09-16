@@ -19,35 +19,35 @@ document.querySelectorAll(".toggle-comment-button").forEach(button => {
 
 // Bagian tampilin carousel field photo di project index
 
-for (let x = 0; x < document.querySelectorAll(".toggle-field-photo-button").length; x++) {
-  document.querySelectorAll(".toggle-field-photo-button")[x].addEventListener("click", () => {
-    document.querySelectorAll(".toggle-field-photo-identifier").forEach(button => {
-      button.classList.remove("field-photo-active");
-    });
-    document.querySelectorAll(".close-field-photo-button").forEach(button => {
-      button.classList.add("close-field-photo-button-active");
-    });
-    var zoneName = document.querySelectorAll(".toggle-field-photo-button")[x].innerHTML;
-    var zoneNameTrimmed = zoneName.split(" ").join("");
-    for (let y = 0; y < document.querySelectorAll(".toggle-field-photo-identifier").length; y++) {
-      if (document.querySelectorAll(".toggle-field-photo-identifier")[y].classList.contains(zoneNameTrimmed)) {
-        document.querySelectorAll(".toggle-field-photo-identifier")[y].classList.toggle("field-photo-active");
-        // document.querySelectorAll(".field-photo-carousel-div")[y].innerHTML = "";
-      }
-    }
-  });
-}
-
-document.querySelectorAll(".close-field-photo-button").forEach(button => {
-  button.addEventListener("click", () => {
-    for (let y = 0; y < document.querySelectorAll(".toggle-field-photo-identifier").length; y++) {
-      document.querySelectorAll(".toggle-field-photo-identifier")[y].classList.remove("field-photo-active");
-    }
-    document.querySelectorAll(".close-field-photo-button").forEach(button => {
-      button.classList.remove("close-field-photo-button-active");
-    });
-  });
-});
+// for (let x = 0; x < document.querySelectorAll(".toggle-field-photo-button").length; x++) {
+//   document.querySelectorAll(".toggle-field-photo-button")[x].addEventListener("click", () => {
+//     document.querySelectorAll(".toggle-field-photo-identifier").forEach(button => {
+//       button.classList.remove("field-photo-active");
+//     });
+//     document.querySelectorAll(".close-field-photo-button").forEach(button => {
+//       button.classList.add("close-field-photo-button-active");
+//     });
+//     var zoneName = document.querySelectorAll(".toggle-field-photo-button")[x].innerHTML;
+//     var zoneNameTrimmed = zoneName.split(" ").join("");
+//     for (let y = 0; y < document.querySelectorAll(".toggle-field-photo-identifier").length; y++) {
+//       if (document.querySelectorAll(".toggle-field-photo-identifier")[y].classList.contains(zoneNameTrimmed)) {
+//         document.querySelectorAll(".toggle-field-photo-identifier")[y].classList.toggle("field-photo-active");
+//         // document.querySelectorAll(".field-photo-carousel-div")[y].innerHTML = "";
+//       }
+//     }
+//   });
+// }
+//
+// document.querySelectorAll(".close-field-photo-button").forEach(button => {
+//   button.addEventListener("click", () => {
+//     for (let y = 0; y < document.querySelectorAll(".toggle-field-photo-identifier").length; y++) {
+//       document.querySelectorAll(".toggle-field-photo-identifier")[y].classList.remove("field-photo-active");
+//     }
+//     document.querySelectorAll(".close-field-photo-button").forEach(button => {
+//       button.classList.remove("close-field-photo-button-active");
+//     });
+//   });
+// });
 
 // Bagian toggle field photo tergantung timeline
 
@@ -61,21 +61,21 @@ document.querySelectorAll(".close-field-photo-button").forEach(button => {
 // }
 
 // Toggle bagian untuk add field photo sebagai client
-let addFieldPhotoIndicator = 1;
-
-document.querySelectorAll(".toggle-add-field-photo").forEach(button => {
-  button.addEventListener("click", () => {
-    button.parentElement.nextElementSibling.classList.toggle("add-field-photo-active");
-
-    if (addFieldPhotoIndicator === 1) {
-      button.innerText = "-";
-      addFieldPhotoIndicator = 0;
-    } else {
-      button.innerText = "+";
-      addFieldPhotoIndicator = 1;
-    }
-  });
-});
+// let addFieldPhotoIndicator = 1;
+//
+// document.querySelectorAll(".toggle-add-field-photo").forEach(button => {
+//   button.addEventListener("click", () => {
+//     button.parentElement.nextElementSibling.classList.toggle("add-field-photo-active");
+//
+//     if (addFieldPhotoIndicator === 1) {
+//       button.innerText = "-";
+//       addFieldPhotoIndicator = 0;
+//     } else {
+//       button.innerText = "+";
+//       addFieldPhotoIndicator = 1;
+//     }
+//   });
+// });
 
 
 // Bagian gamtek di project projectindex
@@ -98,8 +98,6 @@ document.querySelector(".toggle-client-side-input-timestamp").addEventListener("
   document.querySelector(".client-side-input-timestamp").classList.toggle("client-side-input-timestamp-active");
   document.querySelector(".client-side-input-timestamp").classList.toggle("client-side-input-timestamp-inactive");
 })
-
-
 
 // Input project zone dari client-side
 document.querySelector(".toggle-client-side-input-projectzone").addEventListener("click", () => {
@@ -124,13 +122,55 @@ function bukatutupmaster(e) {
   }
 };
 
+let oowIndicator = 0;
+let oowIndicator2 = 0;
+
 function bukatutupfieldphoto(e) {
   for (i = 1; i < 5; i++) {
     //cari code itung jumlah file biar makin auto
-    document.querySelector('.fieldphotooow').innerHTML += '<div class="fieldphotoBox"><img src="/project/' + projectid + '/fieldphoto/' + e + '/' + window.waktuOnScreen + '/1631725519592-612b4b94be98e265640757b4-iphone png.png" width="100"></div>'
+    document.querySelector('.fieldphotooow').innerHTML += '<div class="fieldphotoBox col-4"><img src="/project/' + projectid + '/fieldphoto/' + e + '/' + window.waktuOnScreen + '/1631725519592-612b4b94be98e265640757b4-iphone png.png" width="100"></div>'
   }
+
+  //Close field photo button (yang kebuka dari pinpoint)
+  document.querySelectorAll(".close-field-photo-button").forEach(button => {
+    button.classList.add("close-field-photo-button-active");
+    button.addEventListener("click", () => {
+      document.querySelectorAll(".fieldphotooow").forEach(fieldphoto => {
+        fieldphoto.classList.add("fieldphotooow-inactive");
+      });
+      button.classList.remove("close-field-photo-button-active");
+      oowIndicator2 = 1;
+    });
+  });
+
+  if (oowIndicator === 1) {
+    document.querySelectorAll(".fieldphotooow").forEach(fieldphoto => {
+      fieldphoto.classList.toggle("fieldphotooow-inactive");
+      if (oowIndicator2 === 0) {
+        document.querySelectorAll(".close-field-photo-button").forEach(button => {
+          button.classList.toggle("close-field-photo-button-active");
+        });
+        oowIndicator2 = 1;
+      } else {
+        oowIndicator2 = 0;
+      }
+    });
+  }
+  oowIndicator = 1;
 }
 
 function bukatutupuploadfieldphoto(e) {
-  document.querySelector('.formpopupbox').innerHTML += '<form class="sign-up-form add-field-photo" method="POST" enctype="multipart/form-data"><label for="image">Upload Field Photos:</label><div class="add-field-photo-button-div"><input type="file" class="add-field-photo-button" name="image" multiple /><button type="submit" class="btn btn-outline-warning btn-sm">Insert Photos</button></div></form>'
+
+  // let addFieldPhotoIndicator = 1;
+
+  document.querySelector(".add-field-photo").classList.toggle("add-field-photo-active");
+  document.querySelector(".add-field-photo").classList.toggle("add-field-photo-inactive");
+
+  // if (addFieldPhotoIndicator === 1) {
+  //   e.innerText = "-";
+  //   addFieldPhotoIndicator = 0;
+  // } else {
+  //   e.innerText = "+";
+  //   addFieldPhotoIndicator = 1;
+  // }
 }
