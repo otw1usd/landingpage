@@ -35,6 +35,8 @@ const {loadMaps, addZoneData, newDataMap, addTimeStamp}  = require('../routes/da
 const getDate = require('../routes/date.js');
 
 router.get('/', (req, res) => res.render('index'));
+router.get('/ganteng', (req, res) => res.render('cobacobamartin'));
+
 router.get('/login', (req, res) => res.render('login', {
   layout: 'layout-login',
 }));
@@ -475,7 +477,7 @@ router.post('/tambahzona', async (req, res, next) => {
       detailzona,
       zoneid,
       zoneLat,
-      zoneLang,
+      zoneLng,
     } = req.body;
     await Project.findOne({
         _id: projectid
@@ -490,7 +492,7 @@ router.post('/tambahzona', async (req, res, next) => {
           detailzona,
           zoneid,
           zoneLat,
-          zoneLang
+          zoneLng
         };
         addZoneData(projectid, newContentZoneData);
         newZone.save();

@@ -11,7 +11,7 @@
             <p>Perusahaan: <%= company %></p>
           </div>
           <div class="div-logo col-3">
-            <img class="logo" src="/images/logo-kcic.png" alt="">
+            <img class="logo" src="/project/<%= project._id %>/logo.png" alt="">
           </div>
         </div>
       </div>
@@ -113,7 +113,7 @@
       <!-- Div Peta -->
       <div class="div-peta col-7">
         <h5>AMATI kondisi Proyek</h5>
-        <a href="/projectindex/<%= project.id %>"><img id="peta" data-src="/images/peta.png" class="lazy" alt=""></a>
+        <a href="/projectindex/<%= project.id %>"><img id="peta" data-src="/project/<%= project._id %>/peta.png" class="lazy" alt="" value="<%= project.id %>"></a>
         <div class="daftar-proyek col-12">
           <div class="div-data-proyek-besar">
             <div class="row">

@@ -1,5 +1,4 @@
 const projectid = document.getElementById("projectid").getAttribute("value");
-console.log(projectid);
 
 const getMapsData = async () => {
   const response = await fetch('/project/'+projectid+'/mapsdata.json');
@@ -8,7 +7,6 @@ const getMapsData = async () => {
 
 const jsonMapsData = async () => {
   const response =  await (await getMapsData()).json();
-  console.log(response);
   return response
 };
 
@@ -37,15 +35,9 @@ const getTimestamp = async () => {
   return result2
 };
 
-const getContent = async () => {
-  const result = await jsonMapsData();
-  const result2 = result[2].content;
-  return result2
-};
-
 const getProjectZone = async () => {
   const result = await jsonMapsData();
-  const result2 = result[2].projectzone;
+  const result2 = result[2];
   return result2
 };
 
@@ -65,7 +57,6 @@ async function initialize() {
     center: new google.maps.LatLng(latInitDataNotPromise, lngInitDataNotPromise),
     mapTypeId: google.maps.MapTypeId.STREET,
   };
-  console.log(options);
 
   map = new google.maps.Map(document.getElementById("map"), options);
 
@@ -124,7 +115,7 @@ async function toggleOverlay(element) {
   //content.forEach()
 
   var projectzoneDataNotPromise = await getProjectZone();
-  var projectzoneDataLength = await projectzoneDataNotPromise.length;
+  var projectzoneDataLength = projectzoneDataNotPromise.length;
   
 
   for (let i = 0; i < projectzoneDataLength; i++) {
@@ -133,7 +124,7 @@ async function toggleOverlay(element) {
         '<div id="content">' +
         '<div id="siteNotice">' +
         "</div>" +
-        '<h1 id="firstHeading" class="firstHeading">'+projectzoneDataEach.zonename+'</h1>' +
+        '<h1 id="firstHeading" class="firstHeading">'+projectzoneDataEach.detailzona+'</h1>' +
 
         '<div id="bodyContent">' +
 
@@ -178,8 +169,8 @@ async function toggleOverlay(element) {
 
     const marker = new google.maps.Marker({
       position: {
-        lat: projectzoneDataEach.zoneLat,
-        lng: projectzoneDataEach.zoneLng
+        lat: parseFloat(projectzoneDataEach.zoneLat),
+        lng: parseFloat(projectzoneDataEach.zoneLng)
       },
       map: map,
       title: projectzoneDataEach.zonename,

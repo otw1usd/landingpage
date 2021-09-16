@@ -1,3 +1,4 @@
+<div id="projectid" value="<%= project._id %>"> </div>
   <section id="user-tab">
     <div class="info-container col-2 bg-dark">
       <div class="row">
@@ -10,7 +11,7 @@
               <p>Company: <%= company %></p>
             </div>
             <div class="div-logo col-3">
-              <img class="logo" src="/images/logo-kcic.png" alt="">
+              <img class="logo" src="/project/<%= project._id %>/logo.png" alt="">
             </div>
           </div>
         </div>
@@ -47,7 +48,7 @@
               <input type="hidden" name="projectid" value="<%= project._id %>" />
               <input type="hidden" name="projectUsername" value="<%= project.username %>" />
               <label for="detailtimestamp">detailtimestamp :</label>
-              <input class="sign-up-box" type="text" name="detailtimestamp" placeholder="tambah timestamp" id="detailtimestamp" value="" required/>
+              <input class="sign-up-box" type="month" name="detailtimestamp" placeholder="tambah waktu" id="detailtimestamp" value="" required/>
 
               <button type="submit" class="btn btn-outline-warning btn-sm">Insert Timestamp</button>
                 </form>
@@ -67,10 +68,10 @@
               <input class="sign-up-box" type="text" name="zoneid" placeholder="zoneid" id="zoneid" value="" required/><br>
 
               <label for="zoneLat">zoneLat :</label>
-              <input class="sign-up-box" type="number" name="zoneLat" placeholder="zoneLat" id="zoneLat" value="" required/><br>
+              <input class="sign-up-box" type="number" step="any" name="zoneLat" placeholder="zoneLat" id="zoneLat" value="" required/><br>
 
-              <label for="zoneLang">zoneLang :</label>
-              <input class="sign-up-box" type="number" name="zoneLang" placeholder="zoneLang" id="zoneLang" value="" required/><br>
+              <label for="zoneLng">zoneLng :</label>
+              <input class="sign-up-box" type="number" step="any" name="zoneLng" placeholder="zoneLng" id="zoneLng" value="" required/><br>
 
               <button type="submit" class="btn btn-outline-warning btn-sm">Insert Zone</button>
                 </form>
@@ -248,7 +249,7 @@
         <% } %>
       </div>
 
-      <div id="projectid" value="<%= project._id %>"> </div>
+      
 
       <button class="carousel-control-prev" type="button" data-bs-target="#field-photo-div<%=x%>" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
