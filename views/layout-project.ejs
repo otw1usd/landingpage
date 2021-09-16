@@ -50,6 +50,17 @@
     img:not([src]) {
       visibility: hidden;
     }
+
+    .fieldphotooow{
+			display: flex;
+			flex-wrap: wrap;
+      z-index: 15;
+      margin-top:5rem;
+      margin-left:25rem;
+		}
+		.fieldphotoBox{
+			position: relative;
+		}
   </style>
 
 </head>
@@ -96,10 +107,13 @@
   <%- body %>
 
   <!-- DIBAWAH INI UDAH JAVASCRIPT SEMUA -->
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/33f1988f52.js" crossorigin="anonymous"></script>
+  <script src="/assets/js/navbar.js" charset="utf-8"></script>
+  <script src="/assets/js/toggle.js" charset="utf-8"></script>
 
   <script src="/project/dataset/360/index.js"></script>
-  <script src="/project/js/isipano.js"></script>
   <script src="/project/js/drawing.js"> </script>
   <script src="/project/js/maps.js"> </script>
 
@@ -136,11 +150,7 @@
 
   </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/33f1988f52.js" crossorigin="anonymous"></script>
-  <script src="/assets/js/navbar.js" charset="utf-8"></script>
-  <script src="/assets/js/toggle.js" charset="utf-8"></script>
+  
 
   <script src="/assets/js/lazyload.min.js"></script>
   <script>

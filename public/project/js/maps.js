@@ -145,12 +145,11 @@ async function toggleOverlay(element) {
         "</tr>" +
 
         "<tr>" +
-        "<th><button onclick='toggleFieldPhoto(" + element.id.slice(-1) + ")'>Field Photo</button></th>" + "</tr>" +
+        "<th><button onclick='bukatutupfieldphoto(" + projectzoneDataEach.zoneid + ")'>Field Photo</button><button onclick='bukatutupuploadfieldphoto(" + projectzoneDataEach.zoneid + ")'>+</button></th>" + "</tr>" +
 
-        // "<tr>" +
-        // "<th><button>%Cost</button></th>"+
-        // "<th><button>Video</button></th>"+
-        // "</tr>"+
+        "<tr>" +
+        "<th><button>Video</button></th>"+
+        "</tr>"+
 
         "<tr>" +
         "<th><button onclick='gamtekSaya("+projectzoneDataEach.zoneid+")'>Construction Drawing</button></th>" +
@@ -161,7 +160,6 @@ async function toggleOverlay(element) {
         "</tr>" +``
 
         "</table>" +
-
 
         "</div>" +
         "</div>";

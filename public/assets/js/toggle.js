@@ -90,3 +90,30 @@ document.querySelectorAll(".close-foto-gamtek-button").forEach(button => {
     document.querySelector(".close-foto-gamtek-button").classList.remove("close-foto-gamtek-button-active");
   });
 });
+
+function bukatutup(){
+  var okedekalogitu = document.getElementById("anjinglah");     
+  var x = document.getElementById("bukatutup"); 
+    marzipanoFunction();
+    bukatutupmaster(x);
+    bukatutupmaster(okedekalogitu);
+};
+
+
+function bukatutupmaster(e){
+  if (e.style.display === "none") {
+      e.style.display = "block";
+    } else {
+      e.style.display = "none";
+    }
+};
+
+function bukatutupfieldphoto(e){
+  for (i = 1; i < 5; i++) {
+    //cari code itung jumlah file biar makin auto
+    document.querySelector('.fieldphotooow').innerHTML +='<div class="fieldphotoBox"><img src="/project/'+projectid+'/fieldphoto/'+e+'/'+window.waktuOnScreen+'/1631725519592-612b4b94be98e265640757b4-iphone png.png" width="100"></div>'
+  }
+}
+function bukatutupuploadfieldphoto(e){
+  document.querySelector('.formpopupbox').innerHTML+='<form class="sign-up-form add-field-photo" method="POST" enctype="multipart/form-data"><label for="image">Upload Field Photos:</label><div class="add-field-photo-button-div"><input type="file" class="add-field-photo-button" name="image" multiple /><button type="submit" class="btn btn-outline-warning btn-sm">Insert Photos</button></div></form>'
+}
