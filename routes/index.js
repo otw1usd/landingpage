@@ -30,12 +30,11 @@ const CommentReply = require('../model/commentreply');
 const TimeStampProject = require("../model/timestampproject");
 const bcrypt = require('bcryptjs');
 
-const {loadMaps, addZoneData, newDataMap}  = require('../routes/datamaps.js');
+const {loadMaps, addZoneData, newDataMap, addTimeStamp}  = require('../routes/datamaps.js');
 
 const getDate = require('../routes/date.js');
 
 router.get('/', (req, res) => res.render('index'));
-router.get('/adminganteng', (req, res) => res.render('adminganteng'));
 router.get('/login', (req, res) => res.render('login', {
   layout: 'layout-login',
 }));
@@ -486,19 +485,17 @@ router.post('/tambahzona', async (req, res, next) => {
           projectid,
           zonename: detailzona,
         });
-        newZone.save()
-          .then(project => {
-            req.flash('success_msg', 'Berhasil tambah zona ');
-          });
-          const newContentZoneData = {
-            projectid,
-            detailzona,
-            zoneid,
-            zoneLat,
-            zoneLang
-          };
-          addZoneData(projectid, newContentZoneData);
-          res.redirect('/projectindex/' + projectid);
+        const newContentZoneData = {
+          projectid,
+          detailzona,
+          zoneid,
+          zoneLat,
+          zoneLang
+        };
+        addZoneData(projectid, newContentZoneData);
+        newZone.save();
+        res.redirect('/projectindex/' + projectid);
+        req.flash('success_msg', 'Berhasil tambah zona ');
       })
       .catch(error => {
         throw error
@@ -524,10 +521,11 @@ router.post('/tambahtimestamp', async (req, res, next) => {
           projectid,
           timestampproject: detailtimestamp,
         });
+        addTimeStamp(projectid, newTimeStamp);
         newTimeStamp.save()
           .then(project => {
             req.flash('success_msg', 'Berhasil tambah waktu ');
-            res.redirect('/admin/' + projectUsername);
+            res.redirect('/projectindex/' + projectid);
           });
       })
       .catch(error => {
@@ -750,8 +748,7 @@ router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, nex
     var projectZones = await ProjectZone.find({
       projectid: project._id
     });
-
-    await projectZones.forEach(async element => {
+    projectZones.forEach(async element => {
       const fieldphotoarray = await FieldPhoto.find({
         projectzone: element._id
       });
@@ -785,6 +782,7 @@ router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, nex
       project,
       projectZones,
       FieldPhotoArrays,
+      users: req.user,
       monthYearTimeStampProject,
       numericValueTimeStampProject,
       timeStampProject,

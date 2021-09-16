@@ -12,10 +12,17 @@ const saveZoneData =(b,contents)=>{
 };
 
 const addZoneData = (a,data) => {
-    const datas = loadMaps();
-    datas.push(data);
+    const datas = loadMaps(a);
+    datas[2].push(data);
     saveZoneData(a,datas);
 };
+
+const addTimeStamp=(a, data)=>{
+    const datas = loadMaps(a);
+    datas[1].push(data);
+    saveZoneData(a,datas); 
+}
+
 const newDataMap = (a,b) => {
     const dirPath ='./public/project/'+b;
     const droneFolder ='./public/project/drone';
@@ -30,4 +37,4 @@ const newDataMap = (a,b) => {
     };    
 };
 //yang di export addZoneData aja
-module.exports = { loadMaps, addZoneData, newDataMap };
+module.exports = { loadMaps, addZoneData, newDataMap, addTimeStamp };

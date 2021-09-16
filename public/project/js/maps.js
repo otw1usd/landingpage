@@ -8,42 +8,44 @@ const getMapsData = async () => {
 
 const jsonMapsData = async () => {
   const response =  await (await getMapsData()).json();
+  console.log(response);
   return response
 };
 
 const getZoomInitData = async () => {
   const result = await jsonMapsData();
-  const result2 = result.zoomInit;
-  return result2
+  const result2 = await result[0][0];
+  const result3 = await result2.zoomInit;
+  return result3
 };
 
 const getLatInitData = async () => {
   const result = await jsonMapsData();
-  const result2 = result.latInit;
+  const result2 = result[0][0].latInit;
   return result2
 };
 
 const getLngInitData = async () => {
   const result = await jsonMapsData();
-  const result2 = result.lngInit;
+  const result2 = result[0][0].lngInit;
   return result2
 };
 
 const getTimestamp = async () => {
   const result = await jsonMapsData();
-  const result2 = result.timestampproject;
+  const result2 = result[1];
   return result2
 };
 
 const getContent = async () => {
   const result = await jsonMapsData();
-  const result2 = result.content;
+  const result2 = result[2].content;
   return result2
 };
 
 const getProjectZone = async () => {
   const result = await jsonMapsData();
-  const result2 = result.projectzone;
+  const result2 = result[2].projectzone;
   return result2
 };
 

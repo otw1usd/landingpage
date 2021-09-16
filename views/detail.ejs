@@ -58,7 +58,8 @@
     <input class="sign-up-box" type="text" name="detailzona" placeholder="tambah zona" id="detailzona" value="" required/>
     <button type="submit" class="btn btn-dark">Insert Zone</button>
   </form>
-  <form class="sign-up-form" action="/tambahtimestamp" method="POST">
+  <!-- <form class="sign-up-form" action="/tambahtimestamp" method="POST"> -->
+    <form class="sign-up-form" >
     <input type="hidden" name="projectid" value="<%= listproject._id %>">
     <input type="hidden" name="projectUsername" value="<%= listproject.projectUsername %>">
     <input class="sign-up-box" type="month" name="detailtimestamp" placeholder="tambah waktu" id="detailtimestamp" value="" required/>

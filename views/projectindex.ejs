@@ -42,10 +42,19 @@
 
             <% } %>
 
+            <button> Tambah TimeStamp Zone</button>
+            <form class="sign-up-form" action="/tambahtimestamp" method="POST">
+              <input type="hidden" name="projectid" value="<%= project._id %>" />
+              <input type="hidden" name="projectUsername" value="<%= project.username %>" />
+              <label for="detailtimestamp">detailtimestamp :</label>
+              <input class="sign-up-box" type="text" name="detailtimestamp" placeholder="tambah timestamp" id="detailtimestamp" value="" required/>
+
+              <button type="submit" class="btn btn-outline-warning btn-sm">Insert Timestamp</button>
+                </form>
+
           </div>
 
           <div class="infocontainer-button col-lg-6">
-
             <strong class="lini-masa">features</strong>
             <button> Tambah Project Zone</button>
             <form class="sign-up-form" action="/tambahzona" method="POST">
