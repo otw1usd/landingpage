@@ -3,15 +3,14 @@ const mongoose = require ('mongoose');
 //Membuat schema
 const fieldphotoschema = new mongoose.Schema({
     projectzone : {
-        type: mongoose.Schema.Types.ObjectId,
+        type:String,
         required:true,
-        ref:'projectzone',
     },
     fieldphoto : {
         type:String,
         required:true,
     },
-    timestampproject1 : {
+    timestamp : {
         type: String,
     },
     date:{

@@ -125,11 +125,16 @@ function bukatutupmaster(e) {
 let oowIndicator = 0;
 let oowIndicator2 = 0;
 
-function bukatutupfieldphoto(e) {
-  for (i = 1; i < 5; i++) {
-    //cari code itung jumlah file biar makin auto
-    document.querySelector('.fieldphotooow').innerHTML += '<div class="fieldphotoBox col-4"><img src="/project/' + projectid + '/fieldphoto/' + e + '/' + window.waktuOnScreen + '/1631725519592-612b4b94be98e265640757b4-iphone png.png" width="100"></div>'
-  }
+function bukatutupfieldphoto(e,f) {
+    // document.querySelector('.fieldphotooow').innerHTML += '<div class="fieldphotoBox col-4"><img src="/project/' + projectid + '/fieldphoto/' + e + '/' + window.waktuOnScreen + '/<%= FieldPhotoArrays[i].fieldphoto %>" width="100"></div>';
+
+    document.querySelector('.fieldphotooow').innerHTML += '<div class="btn-center row floating-panel"><button class="btn btn-sm btn-outline-warning col-6">All</button><button class="btn btn-sm btn-outline-warning col-6">Architectural</button><button class="btn btn-sm btn-outline-warning col-6">Structural</button><button class="btn btn-sm btn-outline-warning col-6">Mechanical Electrical Plumbing</button></div></div>';
+
+    document.getElementById("zoneid-openfieldphotoclient").value = e;
+    document.getElementById("timestamp-openfieldphotoclient").value = f;
+    console.log('inizoneid buat buka fieldpohot '+e);
+    console.log('ini timestamp buat buka fieldpohot '+f);
+  
 
   //Close field photo button (yang kebuka dari pinpoint)
   document.querySelectorAll(".close-field-photo-button").forEach(button => {
@@ -159,12 +164,16 @@ function bukatutupfieldphoto(e) {
   oowIndicator = 1;
 }
 
-function bukatutupuploadfieldphoto(e) {
+function bukatutupuploadfieldphoto(e,f) {
 
   // let addFieldPhotoIndicator = 1;
 
   document.querySelector(".add-field-photo").classList.toggle("add-field-photo-active");
   document.querySelector(".add-field-photo").classList.toggle("add-field-photo-inactive");
+  document.getElementById("zoneid-uploadfieldphotoclient").value = e;
+  document.getElementById("timestamp-uploadfieldphotoclient").value = f;
+  console.log('inizonidnyaaaaa '+e);
+  console.log('initimestampnyaaa '+f);
 
   // if (addFieldPhotoIndicator === 1) {
   //   e.innerText = "-";

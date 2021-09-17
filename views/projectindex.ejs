@@ -72,6 +72,7 @@
           <form class="sign-up-form" action="/tambahzona" method="POST">
             <input type="hidden" name="projectid" value="<%= project._id %>" />
             <input type="hidden" name="projectUsername" value="<%= project.username %>" />
+
             <label for="detailzona">Zone name :</label>
             <input class="sign-up-box" type="text" name="detailzona" placeholder="tambah zona" id="detailzona" value="" required />
 
@@ -146,13 +147,14 @@
 
       <div class="floating-panel add-field-photo add-field-photo-inactive">
         <form class="sign-up-form" action="/tambahfieldphotoclient?_method=PUT" method="POST" enctype="multipart/form-data">
-          <input type="hidden" name="zonaid" value="" />
+          <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
+          <input type="hidden" id="zoneid-uploadfieldphotoclient" name="zoneid" value="" />
+          <input type="hidden" id="timestamp-uploadfieldphotoclient" name="timestamp" value="" />
           <label for="image">Upload Field Photos :</label>
           <div class="add-field-photo-button-div">
             <input type="file" class="add-field-photo-button" name="image" multiple />
             <div class="btn-center">
               <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Photos</button>
-
             </div>
           </div>
         </form>
@@ -161,10 +163,7 @@
       <div class="close-foto-gamtek-button-div">
         <button type="button" name="button" class="btn btn-outline-warning close-foto-gamtek-button">close</button>
       </div>
-
     </div>
-
-
 
     <div class="gamtek col-12" id="gamtek">
       <div class="popupgamtek" id="daftarGamtekSaya">
@@ -188,10 +187,17 @@
 
 
 <section id="viewing-tab">
+  //view fieldphotoclient
+  <form>
+  <input id="zoneid-openfieldphotoclient" value=""></div>
+  <input id="timestamp-openfieldphotoclient" value=""></div>
 
   <div class="fieldphotooow row">
-
+    
   </div>
+</form>
+<% for (let x=0 ; x<FieldPhotoArrays.length ; x++) { %>
+<% } %>
 
   <div class="zoomoutbefore"><img class="imgzoomgamtek zoomoutgambar" id="zoomoutgamtekfs" src="/images/z2out.png"></div>
   <div class="zoominbefore"><img class="imgzoomgamtek zoomingambar" id="zoomingamtekfs" src="/images/z2in.png"></div>

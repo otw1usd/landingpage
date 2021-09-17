@@ -212,10 +212,10 @@ router.get('/admin/:name', adminEnsureAuthenticated, async (req, res) => {
 //field photo zone
 const FieldPhotoStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './public/project/dataset/fieldphoto')
+    cb(null, './public/project/'+req.body.projectid+'/fieldphoto/'+req.body.zoneid+'/'+req.body.timestamp)
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + req.body.zonaid + '-' + file.originalname);
+    cb(null, Date.now() + '-' + req.body.zoneid + '-' + file.originalname);
   },
 });
 
@@ -223,49 +223,6 @@ const uploadFieldPhoto = multer({
   storage: FieldPhotoStorage
 }).array('image', 100);
 
-//post photo zone
-router.put('/tambahfieldphoto', uploadFieldPhoto,
-  async (req, res, next) => {
-    const files = req.files;
-    let filesArray = [];
-    const {
-      zonaid
-    } = req.body;
-    const listzonanows = await ProjectZone.find({
-      _id: zonaid
-    });
-    const fieldphotozonanows = await FieldPhoto.find({
-      projectzone: zonaid
-    });
-
-    await req.files.forEach(element => {
-
-      // sharp(element.destination+'/'+element.filename).toBuffer().then(
-      //   (data)=>{ sharp(data).rotate(90).resize(600).toFile(element.destination+'/'+element.filename, (err,info)=>{
-      //     console.log('image resized '+ element.destination+'/'+element.filename);
-      //   })
-      //     })
-      //     .catch((err)=>{console.log(err);});
-
-      const file = {
-        projectzone: zonaid,
-        fieldphoto: element.filename,
-      };
-      filesArray.push(file);
-      const multipleFieldPhotos = new FieldPhoto({
-        projectzone: zonaid,
-        fieldphoto: element.filename,
-      });
-      multipleFieldPhotos.save();
-    });
-    res.render('editdatazona', {
-      listzonanows,
-      zonaid,
-      fieldphotozonanows,
-      layout: 'layout-login',
-    })
-    req.flash('success_msg', 'Images Uploaded Successfully');
-  })
 
 //tambahfieldphoto client
 router.put('/tambahfieldphotoclient', uploadFieldPhoto,
@@ -273,15 +230,18 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
     const files = req.files;
     let filesArray = [];
     const {
-      zonaid
+      zoneid,
+      projectid,
+      timestamp
     } = req.body;
+    
     var listzonanows = await ProjectZone.findOne({
-      _id: zonaid
+      zoneid: zoneid
     });
     const fieldphotozonanows = await FieldPhoto.find({
-      projectzone: zonaid
+      projectzone: zoneid
     });
-    await req.files.forEach(element => {
+    await req.files.forEach(async element => {
 
       // sharp(element.destination+'/'+element.filename).toBuffer().then(
       //   (data)=>{ sharp(data).rotate(90).resize(600).toFile(element.destination+'/'+element.filename, (err,info)=>{
@@ -290,18 +250,19 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
       //     })
       //     .catch((err)=>{console.log(err);});
 
-      const file = {
-        projectzone: zonaid,
-        fieldphoto: element.filename,
+      const file =  {
+        projectzone: zoneid,
+        fieldphoto: element.filename
       };
-      filesArray.push(file);
+       filesArray.push(file);
       const multipleFieldPhotos = new FieldPhoto({
-        projectzone: zonaid,
+        projectzone: zoneid,
         fieldphoto: element.filename,
+        timestamp
       });
-      multipleFieldPhotos.save();
+      await multipleFieldPhotos.save();
     });
-    res.redirect('/projectindex/' + listzonanows.projectid);
+    res.redirect('/projectindex/' + req.body.projectid);
     req.flash('success_msg', 'Images Uploaded Successfully');
   });
 
@@ -486,6 +447,7 @@ router.post('/tambahzona', async (req, res, next) => {
         const newZone = new ProjectZone({
           projectid,
           zonename: detailzona,
+          zoneid
         });
         const newContentZoneData = {
           projectid,
@@ -752,7 +714,7 @@ router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, nex
     });
     projectZones.forEach(async element => {
       const fieldphotoarray = await FieldPhoto.find({
-        projectzone: element._id
+        projectzone: element.zoneid
       });
       FieldPhotoArrays.push(fieldphotoarray);
     });

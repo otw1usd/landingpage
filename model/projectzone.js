@@ -13,6 +13,12 @@ const projectzoneschema = new mongoose.Schema({
         //tambah validasi
     },
 
+    zoneid : {
+        type: String,
+        required:true, //artinya harus diisi
+        //tambah validasi
+    },
+
     projectZoneProgres :{
         type:String,
     },

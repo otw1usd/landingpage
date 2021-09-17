@@ -1,51 +1,14 @@
-<!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title></title>
-	<style>
-		.fieldphoto{
-			display: flex;
-			flex-wrap: wrap;
-		}
-		.fieldphotoBox{
-			position: relative;
-		}
-		ul {
-			display: flex;
-			margin-bottom: 10px;
-		}
-		li{
-			list-style: none;
-			background: white;
-			padding: 8px 20px;
-			margin: 5px;
-			letter-spacing: 1px;
-			cursor: pointer;
-		}
-		li.active{
-			background: orange;
-		}
-
-	</style>
-</head>
 <body>
-<ul>
-    <li class="list active" data-filter="All"> All</li>
-    <li class="list" data-filter="Structural"> Structural</li>
-    <li class="list" data-filter="Architectural"> Architectural</li>
-    <li class="list" data-filter="Electrical"> Electrical</li>
-    <li class="list" data-filter="Plumbing"> Plumbing</li>
-</ul>
-<div class="fieldphoto">
-    <div class="fieldphotoBox"><img src="fieldphoto/1631725519592-612b4b94be98e265640757b4-iphone png.png" width="100"></div>
-    <div class="fieldphotoBox"><img src="fieldphoto/1631725519592-612b4b94be98e265640757b4-iphone png.png" width="100"></div>
-    <div class="fieldphotoBox"><img src="fieldphoto/1631725519592-612b4b94be98e265640757b4-iphone png.png" width="100"></div>
-    <div class="fieldphotoBox"><img src="fieldphoto/1631725519592-612b4b94be98e265640757b4-iphone png.png" width="100"></div>
-    <div class="fieldphotoBox"><img src="fieldphoto/1631725519592-612b4b94be98e265640757b4-iphone png.png" width="100"></div>
-    <div class="fieldphotoBox"><img src="fieldphoto/1631725519592-612b4b94be98e265640757b4-iphone png.png" width="100"></div>
-    <div class="fieldphotoBox"><img src="fieldphoto/1631725519592-612b4b94be98e265640757b4-iphone png.png" width="100"></div>
- </div>
-</div>
+
+<h2>JavaScript HTML DOM</h2>
+<img id="image" src="smiley.gif" width="160" height="120">
+<button onclick="gantifoto()">aaaaaaaaa</button>
+
+<script>
+function gantifoto() {document.getElementById("image").src = "landscape.jpg"};
+</script>
+
+<p>The original image was smiley.gif, but the script changed it to landscape.jpg</p>
+
 </body>
-</html>
