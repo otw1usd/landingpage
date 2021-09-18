@@ -31,55 +31,22 @@ io.on('connection', socket => {
 
 
   socket.on("fieldPhotoData", async (zoneid, timestamp) => {
-    console.log(zoneid);
-    console.log(timestamp);
 
-    const fileNameArray = [];
+    let fileNameArray = [];
     const fileName = await FieldPhoto.find({
       projectzone: zoneid
     }, function(err, photos) {
-      console.log(photos);
+
       photos.forEach(photo => {
         fileNameArray.push(photo.fieldphoto);
-        console.log(photo.fieldphoto + "askcjnakscaksjcna");
+
       });
 
     });
-    console.log(fileNameArray);
+
     socket.emit("fileNameArray", fileNameArray);
-
   });
-
-  // socket.emit("fileNameaa", "test");
-
-  // app.post("/bukafieldphoto", function(req, res) {
-
-  //
-  // const projectZoneId = req.body.zoneid;
-  // const timeStamp = req.body.timestamp;
-  //
-  // const fileName = FieldPhoto.find({
-  //   projectzone: projectZoneId
-  // }, function(err, photos) {
-  //
-  //
-  //
-  //   socket.emit("projectZoneId", projectZoneId);
-  //   socket.emit("timeStamp", timeStamp);
-  //   socket.emit("fileName", photos);
-  //   console.log("acskjanckanaksjascnakjcnkajsckanjckjcankasncajcn");
-  //   console.log(photos);
-
-  // res.send("gimane cara bikin dia ga pindah kesini tapi tetep di page sebelomnya? kalo res.send ga ditulis, dia bakal loading trus lama lama tetep bakal pindah page sendiri")
-
-  // });
-
-  //
-  //   socket.emit("projectZoneId", projectZoneId);
-  //   socket.emit("timeStamp", timeStamp);
-  //
-  // });
-
+  
 });
 
 //setup method override

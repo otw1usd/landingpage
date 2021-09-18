@@ -129,7 +129,7 @@ function bukatutupmaster(e) {
 };
 
 let oowIndicator = 0;
-let oowIndicator2 = 0;
+// let oowIndicator2 = 0;
 
 function bukatutupfieldphoto(e, f) {
   // document.querySelector('.fieldphotooow').innerHTML += '<div class="fieldphotoBox col-4"><img src="/project/' + projectid + '/fieldphoto/' + e + '/' + window.waktuOnScreen + '/<%= FieldPhotoArrays[i].fieldphoto %>" width="100"></div>';
@@ -151,19 +151,27 @@ function bukatutupfieldphoto(e, f) {
     button.addEventListener("click", () => {
 
 
-      document.querySelector(".fieldphotoBox").classList.toggle("fieldphotoBox-active");
-
-      document.querySelectorAll(".field-photo-image").forEach(photo => {
-
+      if (oowIndicator === 0) {
         const zoneid = document.querySelector(".zoneid-openfieldphotoclient").value;
         const timestamp = document.querySelector(".timestamp-openfieldphotoclient").value;
         socket.emit("fieldPhotoData", zoneid, timestamp);
         socket.on("fileNameArray", fileNameArray => {
           console.log(fileNameArray);
+          fileNameArray.forEach(fileName => {
+
+            document.querySelector('.fieldPhotoBox-grid').innerHTML += `
+            <div class="col-4">
+              <img style="width: 100px; height: auto;" src="/project/612720d418854b2fa4a56e27/fieldphoto/${zoneid}/${timestamp}/${fileName}" alt="">
+            </div>`;
+          });
         });
-      });
-      const test = document.querySelector('.field-photo-image').getAttribute("value");
-      console.log(test);
+        oowIndicator = 1;
+      } else {
+        document.querySelector('.fieldPhotoBox-grid').innerHTML = "";
+        oowIndicator = 0;
+      }
+
+      document.querySelector(".fieldphotoBox").classList.toggle("fieldphotoBox-active");
 
     });
   });
