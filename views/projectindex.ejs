@@ -145,6 +145,11 @@
         <button type="button" name="button" class="btn btn-outline-warning close-field-photo-button">close</button>
       </div>
 
+
+      <div class="fieldphotooow fieldphotooow-inactive row floating-panel">
+
+      </div>
+
       <div class="floating-panel add-field-photo add-field-photo-inactive">
         <form class="sign-up-form" action="/tambahfieldphotoclient?_method=PUT" method="POST" enctype="multipart/form-data">
           <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
@@ -187,17 +192,27 @@
 
 
 <section id="viewing-tab">
-  //view fieldphotoclient
-  <form>
-  <input id="zoneid-openfieldphotoclient" value=""></div>
-  <input id="timestamp-openfieldphotoclient" value=""></div>
+  <!-- view fieldphotoclient -->
 
-  <div class="fieldphotooow row">
-    
+  <div class="fieldphotoBox">
+    <strong>asckjnakjcnasckjnakjcnasckjnakjcnasckjnakjcnasckjnakjcnasckjnakjcnasckjnakjcn</strong>
+
+    <% for (let x=0 ; x<FieldPhotoArrays.length ; x++) { %>
+    <div class="row">
+
+      <% for (let y=0 ; y<FieldPhotoArrays[x].length ; x++) { %>
+      <div class="col-4">
+        <img src="/project/612720d418854b2fa4a56e27/fieldphoto/299/01_06_21/1631908117052-299-iphone png.png" alt="">
+      </div>
+      <% } %>
+    </div>
+
+    <% } %>
   </div>
-</form>
-<% for (let x=0 ; x<FieldPhotoArrays.length ; x++) { %>
-<% } %>
+
+
+  <% for (let x=0 ; x<FieldPhotoArrays.length ; x++) { %>
+  <% } %>
 
   <div class="zoomoutbefore"><img class="imgzoomgamtek zoomoutgambar" id="zoomoutgamtekfs" src="/images/z2out.png"></div>
   <div class="zoominbefore"><img class="imgzoomgamtek zoomingambar" id="zoomingamtekfs" src="/images/z2in.png"></div>

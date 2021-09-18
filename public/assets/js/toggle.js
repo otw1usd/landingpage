@@ -1,5 +1,9 @@
 //jshint esversion:6
 
+//COBA COBA NODE.JS EXPRESS DI FE SIAPA TAU BISA
+// const express = require("express");
+// const router = express.Router();
+
 // Bagian comment di project.ejs
 let toggleCommentIndicator = 1;
 
@@ -125,46 +129,68 @@ function bukatutupmaster(e) {
 let oowIndicator = 0;
 let oowIndicator2 = 0;
 
-function bukatutupfieldphoto(e,f) {
-    // document.querySelector('.fieldphotooow').innerHTML += '<div class="fieldphotoBox col-4"><img src="/project/' + projectid + '/fieldphoto/' + e + '/' + window.waktuOnScreen + '/<%= FieldPhotoArrays[i].fieldphoto %>" width="100"></div>';
 
-    document.querySelector('.fieldphotooow').innerHTML += '<div class="btn-center row floating-panel"><button class="btn btn-sm btn-outline-warning col-6">All</button><button class="btn btn-sm btn-outline-warning col-6">Architectural</button><button class="btn btn-sm btn-outline-warning col-6">Structural</button><button class="btn btn-sm btn-outline-warning col-6">Mechanical Electrical Plumbing</button></div></div>';
+//COBA COBA NODE.JS EXPRESS DI FE SIAPA TAU BISA
+// router.post("/blablabla", function(req, res) {
+//   res.send("cjsnjscnj");
+// console.log("ascnakcnakjscnajcn");
+// });
 
-    document.getElementById("zoneid-openfieldphotoclient").value = e;
-    document.getElementById("timestamp-openfieldphotoclient").value = f;
-    console.log('inizoneid buat buka fieldpohot '+e);
-    console.log('ini timestamp buat buka fieldpohot '+f);
-  
+function bukatutupfieldphoto(e, f) {
+  // document.querySelector('.fieldphotooow').innerHTML += '<div class="fieldphotoBox col-4"><img src="/project/' + projectid + '/fieldphoto/' + e + '/' + window.waktuOnScreen + '/<%= FieldPhotoArrays[i].fieldphoto %>" width="100"></div>';
 
-  //Close field photo button (yang kebuka dari pinpoint)
-  document.querySelectorAll(".close-field-photo-button").forEach(button => {
-    button.classList.add("close-field-photo-button-active");
+
+  document.querySelector('.fieldphotooow').classList.toggle("fieldphotooow-active");
+  document.querySelector('.fieldphotooow').classList.toggle("fieldphotooow-inactive");
+  document.querySelector('.fieldphotooow').innerHTML = '<strong class="font-1-rem">Filter Field Photo</strong><div class="btn-center row"><form method="post" action="/bukafieldphoto"><input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value=""><input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value=""><button type="" class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">All</button></form><form method="post" action="/bukafieldphoto"><input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value=""><input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value=""><button type="" class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">Architectural</button></form><form method="post" action="/bukafieldphoto"><input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value=""><input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value=""><button type="" class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">Structural</button></form><form method="post" action="/bukafieldphoto"><input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value=""><input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value=""><button type="" class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">Mechanical Electrical Plumbing</button></form></div></div>';
+
+  document.querySelectorAll(".zoneid-openfieldphotoclient").forEach(zoneid => {
+    zoneid.value = e;
+  });
+  document.querySelectorAll(".timestamp-openfieldphotoclient").forEach(timestamp => {
+    timestamp.value = f;
+  });
+
+  document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
     button.addEventListener("click", () => {
-      document.querySelectorAll(".fieldphotooow").forEach(fieldphoto => {
-        fieldphoto.classList.add("fieldphotooow-inactive");
-      });
-      button.classList.remove("close-field-photo-button-active");
-      oowIndicator2 = 1;
+      document.querySelector(".fieldphotoBox").classList.toggle("fieldphotoBox-active");
     });
   });
 
-  if (oowIndicator === 1) {
-    document.querySelectorAll(".fieldphotooow").forEach(fieldphoto => {
-      fieldphoto.classList.toggle("fieldphotooow-inactive");
-      if (oowIndicator2 === 0) {
-        document.querySelectorAll(".close-field-photo-button").forEach(button => {
-          button.classList.toggle("close-field-photo-button-active");
-        });
-        oowIndicator2 = 1;
-      } else {
-        oowIndicator2 = 0;
-      }
-    });
-  }
-  oowIndicator = 1;
+  console.log('inizoneid buat buka fieldpohot ' + e);
+  console.log('ini timestamp buat buka fieldpohot ' + f);
+
+
+
+  //Close field photo button (yang kebuka dari pinpoint)
+  // document.querySelectorAll(".close-field-photo-button").forEach(button => {
+  //   button.classList.add("close-field-photo-button-active");
+  //   button.addEventListener("click", () => {
+  //     document.querySelectorAll(".fieldphotooow").forEach(fieldphoto => {
+  //       fieldphoto.classList.add("fieldphotooow-inactive");
+  //     });
+  //     button.classList.remove("close-field-photo-button-active");
+  //     oowIndicator2 = 1;
+  //   });
+  // });
+  //
+  // if (oowIndicator === 1) {
+  //   document.querySelectorAll(".fieldphotooow").forEach(fieldphoto => {
+  //     fieldphoto.classList.toggle("fieldphotooow-inactive");
+  //     if (oowIndicator2 === 0) {
+  //       document.querySelectorAll(".close-field-photo-button").forEach(button => {
+  //         button.classList.toggle("close-field-photo-button-active");
+  //       });
+  //       oowIndicator2 = 1;
+  //     } else {
+  //       oowIndicator2 = 0;
+  //     }
+  //   });
+  // }
+  // oowIndicator = 1;
 }
 
-function bukatutupuploadfieldphoto(e,f) {
+function bukatutupuploadfieldphoto(e, f) {
 
   // let addFieldPhotoIndicator = 1;
 
@@ -172,8 +198,8 @@ function bukatutupuploadfieldphoto(e,f) {
   document.querySelector(".add-field-photo").classList.toggle("add-field-photo-inactive");
   document.getElementById("zoneid-uploadfieldphotoclient").value = e;
   document.getElementById("timestamp-uploadfieldphotoclient").value = f;
-  console.log('inizonidnyaaaaa '+e);
-  console.log('initimestampnyaaa '+f);
+  console.log('inizonidnyaaaaa ' + e);
+  console.log('initimestampnyaaa ' + f);
 
   // if (addFieldPhotoIndicator === 1) {
   //   e.innerText = "-";
@@ -183,3 +209,6 @@ function bukatutupuploadfieldphoto(e,f) {
   //   addFieldPhotoIndicator = 1;
   // }
 }
+
+//COBA COBA NODE.JS EXPRESS DI FE SIAPA TAU BISA
+// module.exports = router;

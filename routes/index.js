@@ -234,7 +234,7 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
       projectid,
       timestamp
     } = req.body;
-    
+
     var listzonanows = await ProjectZone.findOne({
       zoneid: zoneid
     });
@@ -692,7 +692,7 @@ router.put('/admin', [
   });
 
 
-//project 
+//project
 
 //DISINI AMBIL DATA DARI MAPS.JSON TIMESTAMPNYA? ATAU GAUSAH TPI OVERLAP DI JSON DAN MONGODB
 
@@ -736,7 +736,7 @@ router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, nex
   } catch (err) {
     next(err);
   }
-
+console.log(FieldPhotoArrays);
   setTimeout(function() {
     res.render('projectindex', {
       layout: 'layout-project',
@@ -823,5 +823,10 @@ router.delete('/comment', async (req, res) => {
     });
 });
 
+//buka FieldPhoto
+router.post("/bukafieldphoto", function (req,res) {
+  const projectZoneId = req.body.zoneid;
+  const timeStamp = req.body.timestamp;
+});
 
 module.exports = router;
