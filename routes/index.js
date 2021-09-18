@@ -824,9 +824,9 @@ router.delete('/comment', async (req, res) => {
 });
 
 //buka FieldPhoto
-router.post("/bukafieldphoto", function (req,res) {
-  const projectZoneId = req.body.zoneid;
-  const timeStamp = req.body.timestamp;
-});
+// router.post("/bukafieldphoto", function (req,res) {
+//   const projectZoneId = req.body.zoneid;
+//   const timeStamp = req.body.timestamp;
+// });
 
 module.exports = router;

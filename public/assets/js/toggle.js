@@ -4,6 +4,8 @@
 // const express = require("express");
 // const router = express.Router();
 
+const socket = io();
+
 // Bagian comment di project.ejs
 let toggleCommentIndicator = 1;
 
@@ -129,20 +131,12 @@ function bukatutupmaster(e) {
 let oowIndicator = 0;
 let oowIndicator2 = 0;
 
-
-//COBA COBA NODE.JS EXPRESS DI FE SIAPA TAU BISA
-// router.post("/blablabla", function(req, res) {
-//   res.send("cjsnjscnj");
-// console.log("ascnakcnakjscnajcn");
-// });
-
 function bukatutupfieldphoto(e, f) {
   // document.querySelector('.fieldphotooow').innerHTML += '<div class="fieldphotoBox col-4"><img src="/project/' + projectid + '/fieldphoto/' + e + '/' + window.waktuOnScreen + '/<%= FieldPhotoArrays[i].fieldphoto %>" width="100"></div>';
 
 
   document.querySelector('.fieldphotooow').classList.toggle("fieldphotooow-active");
   document.querySelector('.fieldphotooow').classList.toggle("fieldphotooow-inactive");
-  document.querySelector('.fieldphotooow').innerHTML = '<strong class="font-1-rem">Filter Field Photo</strong><div class="btn-center row"><form method="post" action="/bukafieldphoto"><input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value=""><input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value=""><button type="" class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">All</button></form><form method="post" action="/bukafieldphoto"><input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value=""><input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value=""><button type="" class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">Architectural</button></form><form method="post" action="/bukafieldphoto"><input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value=""><input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value=""><button type="" class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">Structural</button></form><form method="post" action="/bukafieldphoto"><input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value=""><input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value=""><button type="" class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">Mechanical Electrical Plumbing</button></form></div></div>';
 
   document.querySelectorAll(".zoneid-openfieldphotoclient").forEach(zoneid => {
     zoneid.value = e;
@@ -151,9 +145,26 @@ function bukatutupfieldphoto(e, f) {
     timestamp.value = f;
   });
 
+
+
   document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
     button.addEventListener("click", () => {
+
+
       document.querySelector(".fieldphotoBox").classList.toggle("fieldphotoBox-active");
+
+      document.querySelectorAll(".field-photo-image").forEach(photo => {
+
+        const zoneid = document.querySelector(".zoneid-openfieldphotoclient").value;
+        const timestamp = document.querySelector(".timestamp-openfieldphotoclient").value;
+        socket.emit("fieldPhotoData", zoneid, timestamp);
+        socket.on("fileNameArray", fileNameArray => {
+          console.log(fileNameArray);
+        });
+      });
+      const test = document.querySelector('.field-photo-image').getAttribute("value");
+      console.log(test);
+
     });
   });
 

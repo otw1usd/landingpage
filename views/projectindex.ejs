@@ -147,46 +147,69 @@
 
 
       <div class="fieldphotooow fieldphotooow-inactive row floating-panel">
-
-      </div>
-
-      <div class="floating-panel add-field-photo add-field-photo-inactive">
-        <form class="sign-up-form" action="/tambahfieldphotoclient?_method=PUT" method="POST" enctype="multipart/form-data">
-          <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
-          <input type="hidden" id="zoneid-uploadfieldphotoclient" name="zoneid" value="" />
-          <input type="hidden" id="timestamp-uploadfieldphotoclient" name="timestamp" value="" />
-          <label for="image">Upload Field Photos :</label>
-          <div class="add-field-photo-button-div">
-            <input type="file" class="add-field-photo-button" name="image" multiple />
-            <div class="btn-center">
-              <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Photos</button>
-            </div>
+        <strong class="font-1-rem">Filter Field Photo</strong>
+        <div class="btn-center row">
+          <div>
+            <input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value="">
+            <input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value="">
+            <button class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">All</button>
           </div>
-        </form>
-      </div>
-
-      <div class="close-foto-gamtek-button-div">
-        <button type="button" name="button" class="btn btn-outline-warning close-foto-gamtek-button">close</button>
+          <div>
+            <input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value="">
+            <input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value="">
+            <button class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">Architectural</button>
+          </div>
+          <div>
+            <input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value="">
+            <input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value="">
+            <button class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">Structural</button>
+          </div>
+          <div>
+            <input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value="">
+            <input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value="">
+            <button class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">Mechanical Electrical Plumbing</button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="gamtek col-12" id="gamtek">
-      <div class="popupgamtek" id="daftarGamtekSaya">
-        <div class="filter-gamtek">
+    <div class="floating-panel add-field-photo add-field-photo-inactive">
+      <form class="sign-up-form" action="/tambahfieldphotoclient?_method=PUT" method="POST" enctype="multipart/form-data">
+        <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
+        <input type="hidden" id="zoneid-uploadfieldphotoclient" name="zoneid" value="" />
+        <input type="hidden" id="timestamp-uploadfieldphotoclient" name="timestamp" value="" />
+        <label for="image">Upload Field Photos :</label>
+        <div class="add-field-photo-button-div">
+          <input type="file" class="add-field-photo-button" name="image" multiple />
+          <div class="btn-center">
+            <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Photos</button>
+          </div>
         </div>
-        <div class="loopingbatasgamtek">
-          <div></div> <!-- Dont delete this div row, it is used for DOM -->
-        </div>
-      </div>
+      </form>
     </div>
 
-    <div id="anjinglah" style="display: none;">
-      <div id="sceneList" class="floating-panel col-lg-12">
-        <strong class="font-1-rem">Hotspots</strong>
-        <ul class="scenes scenes-padding">
-        </ul>
+    <div class="close-foto-gamtek-button-div">
+      <button type="button" name="button" class="btn btn-outline-warning close-foto-gamtek-button">close</button>
+    </div>
+  </div>
 
+  <div class="gamtek col-12" id="gamtek">
+    <div class="popupgamtek" id="daftarGamtekSaya">
+      <div class="filter-gamtek">
       </div>
+      <div class="loopingbatasgamtek">
+        <div></div> <!-- Dont delete this div row, it is used for DOM -->
+      </div>
+    </div>
+  </div>
+
+  <div id="anjinglah" style="display: none;">
+    <div id="sceneList" class="floating-panel col-lg-12">
+      <strong class="font-1-rem">Hotspots</strong>
+      <ul class="scenes scenes-padding">
+      </ul>
+
+    </div>
 
 </section>
 
@@ -200,11 +223,11 @@
     <% for (let x=0 ; x<FieldPhotoArrays.length ; x++) { %>
     <div class="row">
 
-      <% for (let y=0 ; y<FieldPhotoArrays[x].length ; x++) { %>
+
       <div class="col-4">
-        <img src="/project/612720d418854b2fa4a56e27/fieldphoto/299/01_06_21/1631908117052-299-iphone png.png" alt="">
+        <img class="field-photo-image" value="test" src="" alt="">
       </div>
-      <% } %>
+
     </div>
 
     <% } %>
