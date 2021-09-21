@@ -29,8 +29,8 @@ const FieldPhoto = require(__dirname + '/model/fieldphoto.js');
 io.on('connection', socket => {
 
   socket.on("fieldPhotoData", async (zoneid, timestamp, oowIndicator) => {
-    
-    let fileNameArray = [];  
+
+    let fileNameArray = [];
     const fileName = await FieldPhoto.find({
       projectzone: zoneid,
       timestamp: timestamp
@@ -39,7 +39,12 @@ io.on('connection', socket => {
         fileNameArray.push(photo.fieldphoto);
       });
     });
-    socket.emit("fileNameArray", fileNameArray);
+
+    console.log("ini " + zoneid + " ini ");
+    socket.emit("fileNameArray", fileNameArray, zoneid, timestamp);
+
+
+
   });
 });
 

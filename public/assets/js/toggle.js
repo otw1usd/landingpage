@@ -100,13 +100,13 @@ document.querySelectorAll(".close-foto-gamtek-button").forEach(button => {
 document.querySelector(".toggle-client-side-input-timestamp").addEventListener("click", () => {
   document.querySelector(".client-side-input-timestamp").classList.toggle("client-side-input-timestamp-active");
   document.querySelector(".client-side-input-timestamp").classList.toggle("client-side-input-timestamp-inactive");
-})
+});
 
 // Input project zone dari client-side
 document.querySelector(".toggle-client-side-input-projectzone").addEventListener("click", () => {
   document.querySelector(".client-side-input-projectzone").classList.toggle("client-side-input-projectzone-active");
   document.querySelector(".client-side-input-projectzone").classList.toggle("client-side-input-projectzone-inactive");
-})
+});
 
 function bukatutup() {
   var okedekalogitu = document.getElementById("anjinglah");
@@ -114,7 +114,7 @@ function bukatutup() {
   marzipanoFunction();
   bukatutupmaster(x);
   bukatutupmaster(okedekalogitu);
-};
+}
 
 
 function bukatutupmaster(e) {
@@ -123,60 +123,60 @@ function bukatutupmaster(e) {
   } else {
     e.style.display = "none";
   }
-};
+}
 
-let oowIndicator = 0;
-// let oowIndicator2 = 0;
 
 function tutupfieldphoto() {
-  document.querySelector('.fieldphotooow').className = "fieldphotooow"
-};
+  document.querySelector('.fieldphotooow').className = "fieldphotooow";
+}
 
 function ambilzoneid(a) {
   document.querySelectorAll(".zoneid-openfieldphotoclient").forEach(zoneid => {
-    zoneid.value = a
+    zoneid.value = a;
   });
-};
+}
 
 function ambiltimestamp(a) {
   document.querySelectorAll(".timestamp-openfieldphotoclient").forEach(timestamp => {
-    timestamp.value = a
+    timestamp.value = a;
   });
-};
+}
 
-async function bukatutupfieldphoto(e, f) {
-  // document.querySelector('.fieldphotooow').innerHTML += '<div class="fieldphotoBox col-4"><img src="/project/' + projectid + '/fieldphoto/' + e + '/' + window.waktuOnScreen + '/<%= FieldPhotoArrays[i].fieldphoto %>" width="100"></div>';
+function bukatutupfieldphoto(e, f) {
 
   document.querySelector('.fieldphotooow').classList.toggle("fieldphotooow-active");
   document.querySelector('.fieldphotooow').classList.toggle("fieldphotooow-inactive");
 
-
+  document.querySelector(".filter-field-photo-heading").innerHTML = "Filter Field Photo KM-" + e;
   ambilzoneid(e);
   ambiltimestamp(f);
-};
+
+}
+
+let oowIndicator = 0;
 
 document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
   button.addEventListener("click", async () => {
-    const zoneid = await document.querySelector(".zoneid-openfieldphotoclient").value;
-    const timestamp = await document.querySelector(".timestamp-openfieldphotoclient").value;
+    let zoneid = document.querySelector(".zoneid-openfieldphotoclient").value;
+    let timestamp = document.querySelector(".timestamp-openfieldphotoclient").value;
     if (oowIndicator === 0) {
-      oowIndicator = 1;
-      await socket.emit("fieldPhotoData", zoneid, timestamp, oowIndicator);
-      socket.on("fileNameArray", fileNameArray => {
-        fileNameArray.forEach(fileName => {
-          document.querySelector('.fieldphotooowIndicatorApus').innerHTML += '<div class="col-4"><img style="width: 100px; height: auto;" src="/project/612720d418854b2fa4a56e27/fieldphoto/' + zoneid + '/' + timestamp + '/' + fileName + '" alt=""></div>';
-          console.log(zoneid);
-        });
-      });
 
-    } else {
-      oowIndicator = 0;
-      document.querySelector('.fieldphotooowIndicatorApus').remove();
-      document.querySelector('.fieldPhotoBox-grid').innerHTML += '<div class="fieldphotooowIndicatorApus"></div>';
       await socket.emit("fieldPhotoData", zoneid, timestamp, oowIndicator);
-      socket.on("fileNameArray", fileNameArray => {
-        fileNameArray.length = 0
+      socket.on("fileNameArray", (fileNameArray, zoneid, timestamp) => {
+
+        fileNameArray.forEach(fileName => {
+          document.querySelector('.fieldphotooowIndicatorApus').innerHTML += '<div class="col-4"><img style="height: 100px; width: auto;" src="/project/612720d418854b2fa4a56e27/fieldphoto/' + zoneid + '/' + timestamp + '/' + fileName + '" alt=""></div>';
+          console.log("Test " + zoneid);
+        });
+        fileNameArray.length = 0;
       });
+      console.log("zone id: " + zoneid);
+      oowIndicator = 1;
+    } else {
+      document.querySelector('.fieldphotooowIndicatorApus').remove();
+      document.querySelector('.fieldPhotoBox-grid').innerHTML = '<div class="fieldphotooowIndicatorApus row"></div>';
+      console.log("salah ni " + zoneid);
+      oowIndicator = 0;
     }
     document.querySelector(".fieldphotoBox").classList.toggle("fieldphotoBox-active");
 

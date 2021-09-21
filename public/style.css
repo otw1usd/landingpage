@@ -572,6 +572,15 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   border-color: black;
 }
 
+/* Daftar Username Proyek */
+.pihak-proyek {
+  padding-bottom: 1rem;
+}
+
+.pihak-proyek ul {
+  margin-bottom: 0;
+}
+
 /* Log In Page */
 .html-login {
   height: 100%;
@@ -668,6 +677,8 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 .edit-user-div input {
   font-family: system-ui;
 }
+
+
 
 /* DIBAWAH INI ADALAH SEMUA YANG DI INTERFACE ADMIN */
 /* Log In Admin */

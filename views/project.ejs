@@ -112,7 +112,7 @@
     <div class="div-utama row">
       <!-- Div Peta -->
       <div class="div-peta col-7">
-        <h5>AMATI kondisi Proyek</h5>
+        <h4>AMATI kondisi Proyek</h4>
         <a href="/projectindex/<%= project.id %>"><img id="peta" data-src="/project/<%= project._id %>/peta.png" class="lazy" alt="" value="<%= project.id %>"></a>
         <div class="daftar-proyek col-12">
           <div class="div-data-proyek-besar">
@@ -122,8 +122,8 @@
             <div class="row">
               <div class="div-data-proyek col-3">
                 <p class="data-proyek">Project Duration: <%= project.startDate %> until <%= project.endDate %></p>
-            <p class="data-proyek">Locaton: <%= project.location %></p>
-            <p class="data-proyek">Area: 80 Hektar</p>
+                <p class="data-proyek">Locaton: <%= project.location %></p>
+                <p class="data-proyek">Area: 80 Hektar</p>
               </div>
               <div class="div-data-proyek col-3">
                 <p class="data-proyek">Project Cost: <%= project.nilaiProyek%></p>
@@ -131,8 +131,8 @@
                 <p class="data-proyek">Consultant: <%= project.konsultan%></p>
               </div>
               <div class="div-data-proyek col-3">
-                <p class="data-proyek">Contractor: <%= project.kontraktor%></p></p>
-            <p class="data-proyek"></p>
+                <p class="data-proyek">Contractor: <%= project.kontraktor%></p>
+                <p class="data-proyek"></p>
               </div>
               <div class="div-data-proyek col-3">
                 <p class="data-proyek">Jabatan Anda: <%= jobs %> </p>
@@ -141,13 +141,50 @@
             </div>
           </div>
         </div>
-
+        <div>
+          <h4> Daftar Username Proyek :</h4>
+          <div class="pihak-proyek">
+            <h5 class="data-proyek" alt="dapat view, comment, menanmbah foto lapangan, dan edit member proyek">Owner:</h5>
+            <ul>
+              <li>KCIC</li>
+            </ul>
+            <button type="button" class="btn btn-warning btn-sm" id="">Tambah/Hapus Username Owner</button>
+          </div>
+          <div class="pihak-proyek">
+            <h5 class="data-proyek" alt="dapat view, comment, dan menanmbah foto lapangan">Consultant:</h5>
+            <ul>
+              <li>CDJO</li>
+            </ul>
+            <button type="button" class="btn btn-warning btn-sm" id="">Tambah/Hapus Username Consultant</button>
+          </div>
+          <div class="pihak-proyek">
+            <h5 class="data-proyek" alt="dapat view, comment, dan menanmbah foto lapangan"> Contractor:</h5>
+            <ul>
+              <li>KCIC</li>
+            </ul>
+            <button type="button" class="btn btn-warning btn-sm" id="">Tambah/Hapus Username Contractor</button>
+          </div>
+          <div class="pihak-proyek">
+            <h5 class="data-proyek" alt="dapat edit foto drone"> Engineer Drone:</h5>
+            <ul>
+              <li>HIBER</li>
+            </ul>
+            <button type="button" class="btn btn-warning btn-sm" id="">Tambah/Hapus Username Engineer</button>
+          </div>
+          <div class="pihak-proyek">
+            <h5 class="data-proyek" alt="dapat view , comment, dan menambah foto lapangan"> Member Proyek:</h5>
+            <ul>
+              <li>AMATI</li>
+            </ul>
+            <button type="button" class="btn btn-warning btn-sm" id="">Tambah/Hapus Username Member</button>
+          </div>
+        </div>
       </div>
-      
+
 
       <!-- Div Kosong -->
       <div class="col-1">
-        
+
       </div>
 
       <!-- Div Notifikasi -->
@@ -244,15 +281,5 @@
       <% }) %>
 
     </div>
-    <div class="row">
-      <h1> DAFTAR USERNAME PROYEK :</h1>
-      <div class="div-data-proyek col-3">
-        <p class="data-proyek" alt="dapat view, comment, menanmbah foto lapangan, dan edit member proyek"></p> Owner: - tes 123 </p><button type="button" class="btn btn-warning btn-sm" id="">Tambah/Hapus Username Owner</button>
-        <p class="data-proyek" alt="dapat view, comment, dan menanmbah foto lapangan"> </p>Consultant: - tes 123 </p><button type="button" class="btn btn-warning btn-sm" id="">Tambah/Hapus Username Consultant</button>
-        <p class="data-proyek" alt="dapat view, comment, dan menanmbah foto lapangan"> </p>Contractor: - tes 123 </p><button type="button" class="btn btn-warning btn-sm" id="">Tambah/Hapus Username Contractor</button>
-        <p class="data-proyek" alt="dapat edit foto drone"> Engineer Drone: - tes 123 </p><button type="button" class="btn btn-warning btn-sm" id="">Tambah/Hapus Username Engineer</button>
-        <p class="data-proyek" alt="dapat view , comment, dan menambah foto lapangan"> Member Proyek: - tes 123 </p><button type="button" class="btn btn-warning btn-sm" id="">Tambah/Hapus Username Member</button>
-      </div>
-      </div>
-  </div>
+
   </div>
