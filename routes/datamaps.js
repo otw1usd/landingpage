@@ -25,7 +25,7 @@ const addTimeStamp=(a, data)=>{
 
 const newDataMap = (a,b) => {
     const dirPath ='./public/project/'+b;
-    const droneFolder ='./public/project/drone';
+    const droneFolder ='./public/project/'+b+'/drone';
     if(!fs.existsSync(dirPath)){
         fs.mkdir(dirPath, {recursive: true}, err => {});
         fs.mkdir(droneFolder, {recursive: true}, err => {});

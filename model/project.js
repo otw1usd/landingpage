@@ -31,13 +31,11 @@ const projectschema = new mongoose.Schema({
         //next level pake api pupr
     },
     projectUsername : {
-        type: String,
-        required:true, //artinya harus diisi
+        type: String, //artinya harus diisi
         //tambah validasi
     },
     projectPassword : {
-        type: String,
-        required:true, //artinya harus diisi
+        type: String,//artinya harus diisi
         //tambah validasi
     },
     username : {
@@ -48,8 +46,7 @@ const projectschema = new mongoose.Schema({
     },
 
     progrestotal : {
-        type: String,
-        required:true, //artinya harus diisi
+        type: String, //artinya harus diisi
         //tambah validasi
         //owner username
     },

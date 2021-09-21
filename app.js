@@ -27,26 +27,22 @@ const io = socketio(server);
 const FieldPhoto = require(__dirname + '/model/fieldphoto.js');
 
 io.on('connection', socket => {
-  console.log("New WS Connection...");
 
-
-  socket.on("fieldPhotoData", async (zoneid, timestamp) => {
-
-    let fileNameArray = [];
+  socket.on("fieldPhotoData", async (zoneid, timestamp, oowIndicator) => {
+    
+    console.log('cuycuy' +timestamp + zoneid+ '   '+oowIndicator);
+    let fileNameArray = [];  
     const fileName = await FieldPhoto.find({
-      projectzone: zoneid
+      projectzone: zoneid,
+      timestamp: timestamp
     }, function(err, photos) {
-
       photos.forEach(photo => {
         fileNameArray.push(photo.fieldphoto);
-
       });
-
     });
-
     socket.emit("fileNameArray", fileNameArray);
+    console.log('nih isinya'+fileNameArray);
   });
-  
 });
 
 //setup method override

@@ -35,7 +35,6 @@ const {loadMaps, addZoneData, newDataMap, addTimeStamp}  = require('../routes/da
 const getDate = require('../routes/date.js');
 
 router.get('/', (req, res) => res.render('index'));
-router.get('/ganteng', (req, res) => res.render('cobacobamartin'));
 
 router.get('/login', (req, res) => res.render('login', {
   layout: 'layout-login',
@@ -45,6 +44,20 @@ router.get('/beranda', ensureAuthenticated, async (req, res) => {
     username: 'contoh'
   });
   res.render('beranda', {
+    name: req.user.name,
+    jobs: req.user.jobs,
+    company: req.user.company,
+    user: req.user,
+    listprojects,
+    layout: 'layout-account',
+  });
+});
+
+router.get('/registerproject', ensureAuthenticated, async (req, res) => {
+  const listprojects = await Project.find({
+    username: 'contoh'
+  });
+  res.render('registerproject', {
     name: req.user.name,
     jobs: req.user.jobs,
     company: req.user.company,
@@ -122,7 +135,6 @@ const Storage = multer.diskStorage({
 const upload = multer({
   storage: Storage
 });
-
 
 router.put('/user', [
     body('username').custom(async (value, {
@@ -422,6 +434,65 @@ router.post('/admin', (req, res) => {
           .then(project => {
             req.flash('success_msg', 'Project are now registered');
             res.redirect('/admin');
+          });
+
+         newDataMap(projectName, newProject._id);
+      }
+    });
+});
+
+
+
+router.post('/registerproject', (req, res) => {
+  const {
+    projectName,
+    location,
+    projectDescription,
+    startDate,
+    endDate,
+    projectUsername,
+    projectPassword,
+    username,
+    progrestotal
+  } = req.body;
+  let errors = [];
+
+  //validation passed
+  Project.findOne({
+      projectUsername: projectUsername
+    })
+    .then(project => {
+      if (project) {
+        // Project exists
+        req.flash('error_msg', 'Project is Already Registered');
+        res.render('registerproject', {
+          projectName,
+          location,
+          projectDescription,
+          startDate,
+          endDate,
+          projectUsername,
+          projectPassword,
+          username,
+          progrestotal
+        });
+      } else {
+        const newProject = new Project({
+          projectName,
+          location,
+          projectDescription,
+          startDate,
+          endDate,
+          projectUsername,
+          projectPassword,
+          username,
+          progrestotal
+        });
+
+        newProject.save()
+          .then(project => {
+            req.flash('success_msg', 'Project are now registered');
+            res.redirect('/daftarproyek');
           });
 
          newDataMap(projectName, newProject._id);

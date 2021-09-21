@@ -131,53 +131,58 @@ function bukatutupmaster(e) {
 let oowIndicator = 0;
 // let oowIndicator2 = 0;
 
-function bukatutupfieldphoto(e, f) {
-  // document.querySelector('.fieldphotooow').innerHTML += '<div class="fieldphotoBox col-4"><img src="/project/' + projectid + '/fieldphoto/' + e + '/' + window.waktuOnScreen + '/<%= FieldPhotoArrays[i].fieldphoto %>" width="100"></div>';
+function tutupfieldphoto(){
+  document.querySelector('.fieldphotooow').className="fieldphotooow"};
 
+function ambilzoneid(a) {
+  document.querySelectorAll(".zoneid-openfieldphotoclient").forEach(zoneid => {
+    zoneid.value = a
+  });
+};
+
+function ambiltimestamp(a) {
+  document.querySelectorAll(".timestamp-openfieldphotoclient").forEach(timestamp => {
+    timestamp.value = a
+  });
+};
+
+async function bukatutupfieldphoto(e, f) {
+  // document.querySelector('.fieldphotooow').innerHTML += '<div class="fieldphotoBox col-4"><img src="/project/' + projectid + '/fieldphoto/' + e + '/' + window.waktuOnScreen + '/<%= FieldPhotoArrays[i].fieldphoto %>" width="100"></div>';
 
   document.querySelector('.fieldphotooow').classList.toggle("fieldphotooow-active");
   document.querySelector('.fieldphotooow').classList.toggle("fieldphotooow-inactive");
 
-  document.querySelectorAll(".zoneid-openfieldphotoclient").forEach(zoneid => {
-    zoneid.value = e;
-  });
-  document.querySelectorAll(".timestamp-openfieldphotoclient").forEach(timestamp => {
-    timestamp.value = f;
-  });
 
-
+  ambilzoneid(e);
+  ambiltimestamp(f);
+};
 
   document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
-    button.addEventListener("click", () => {
-
-
+    button.addEventListener("click", async () => {
+      const zoneid = await document.querySelector(".zoneid-openfieldphotoclient").value;
+      const timestamp = await document.querySelector(".timestamp-openfieldphotoclient").value;
       if (oowIndicator === 0) {
-        const zoneid = document.querySelector(".zoneid-openfieldphotoclient").value;
-        const timestamp = document.querySelector(".timestamp-openfieldphotoclient").value;
-        socket.emit("fieldPhotoData", zoneid, timestamp);
+        oowIndicator = 1;        
+        await socket.emit("fieldPhotoData", zoneid, timestamp, oowIndicator);
         socket.on("fileNameArray", fileNameArray => {
-          console.log(fileNameArray);
           fileNameArray.forEach(fileName => {
-
-            document.querySelector('.fieldPhotoBox-grid').innerHTML += `
-            <div class="col-4">
-              <img style="width: 100px; height: auto;" src="/project/612720d418854b2fa4a56e27/fieldphoto/${zoneid}/${timestamp}/${fileName}" alt="">
-            </div>`;
+            document.querySelector('.fieldphotooowIndicatorApus').innerHTML += '<div class="col-4"><img style="width: 100px; height: auto;" src="/project/612720d418854b2fa4a56e27/fieldphoto/'+zoneid+'/'+timestamp+'/'+fileName+'" alt=""></div>';
+            console.log(zoneid);
           });
         });
-        oowIndicator = 1;
+       
       } else {
-        document.querySelector('.fieldPhotoBox-grid').innerHTML = "";
         oowIndicator = 0;
+        document.querySelector('.fieldphotooowIndicatorApus').remove();
+        document.querySelector('.fieldPhotoBox-grid').innerHTML+= '<div class="fieldphotooowIndicatorApus"></div>';
+        await socket.emit("fieldPhotoData", zoneid, timestamp, oowIndicator);
+        socket.on("fileNameArray", fileNameArray => { fileNameArray.length=0});
       }
-
       document.querySelector(".fieldphotoBox").classList.toggle("fieldphotoBox-active");
 
     });
   });
 
-  console.log('inizoneid buat buka fieldpohot ' + e);
-  console.log('ini timestamp buat buka fieldpohot ' + f);
 
 
 
@@ -207,7 +212,7 @@ function bukatutupfieldphoto(e, f) {
   //   });
   // }
   // oowIndicator = 1;
-}
+
 
 function bukatutupuploadfieldphoto(e, f) {
 
