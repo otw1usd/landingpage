@@ -36,6 +36,17 @@ const TimeStampProject = require("../model/timestampproject");
 const {loadMaps, addZoneData, newDataMap, addTimeStamp}  = require('../routes/datamaps.js');
 const getDate = require('../routes/date.js');
 const extractzip = require('../routes/extractzip.js');
+const { 
+  uploadDroneImages13,                   
+  uploadDroneImages14,
+  uploadDroneImages15, 
+  uploadDroneImages16, 
+  uploadDroneImages17, 
+  uploadDroneImages18, 
+  uploadDroneImages19, 
+  uploadDroneImages20, 
+  uploadDroneImages21,
+  uploadDroneImages22   } = require('../routes/uploadDroneImages.js');   
 
 router.get('/', (req, res) => res.render('index'));
 
@@ -287,6 +298,68 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
 // }
 // );
 
+// drone images
+// const DroneImagesStorage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/'+req.body.zoom)
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, file.originalname);
+//   },
+// });
+
+// for (let i = 13; i < 23; i++) {
+//   const uploadDroneImages+i = multer({
+//     storage: DroneImagesStorage
+//   }).array('image'+i, 100);
+// };
+
+// function createZoomDroneImagesLoop(a){
+//   for ( i=13; i<=23; i++ ){
+//         var str =a+i+" = undefined";
+//         str=multer({
+//           storage: multer.diskStorage({
+//             destination: (req, file, cb) => {
+//               cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/'+i)
+//             },
+//             filename: (req, file, cb) => {
+//               cb(null, file.originalname);
+//             },
+//           })
+//         }).array('image'+i,1);
+//         eval(str);
+//         console.log('cek: '+str)
+//     }
+// };
+// createZoomDroneImagesLoop('uploadDroneImages');
+
+
+
+
+//tambah droneimagesclient client
+router.put('/tambahdroneimagesclient', 
+      // uploadDroneImages13,                   
+      // uploadDroneImages14,
+      // uploadDroneImages15, 
+      // uploadDroneImages16, 
+      // uploadDroneImages17, 
+      // uploadDroneImages18, 
+      // uploadDroneImages19, 
+      // uploadDroneImages20, 
+      // uploadDroneImages21,
+      // uploadDroneImages22,
+  async (req, res) => {
+    const {
+      projectid,
+      timestamp
+    } = await req.body;
+    console.log(req.body);
+    console.log(req.body.timestamp);
+    console.log(req.body.projectid);
+    res.redirect('/projectindex/' + req.body.projectid);
+    req.flash('success_msg', 'Images Uploaded Successfully');
+  });
+
 //register handle
 router.post('/', (req, res) => {
   const {
@@ -444,9 +517,20 @@ router.post('/admin', (req, res) => {
     });
 });
 
+const PetaStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './public/project/'+newProject._id)
+  },
+  filename: (req, file, cb) => {
+    cb(null, peta.png);
+  }
+});
 
+const uploadPeta = multer({
+  storage: Storage
+}).single('image');
 
-router.post('/registerproject', (req, res) => {
+router.post('/registerproject',uploadPeta, (req, res) => {
   const {
     projectName,
     location,
@@ -501,6 +585,7 @@ router.post('/registerproject', (req, res) => {
           });
 
          newDataMap(projectName, newProject._id, latInit,lngInit);
+         console.log(req.file);
       }
     });
 });

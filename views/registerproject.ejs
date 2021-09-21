@@ -26,7 +26,7 @@
             map.setCenter(vMarker.position);
             // adds the marker on the map
             vMarker.setMap(map);
-        };
+        }
 
 
     function exportpicture() {
@@ -45,13 +45,13 @@
  
         //Set the Google Map Type.
         staticMapUrlPhoto += "&maptype=" + mapp.mapTypeId;
-    };
+
 
  
         //Display the Image of Google Map.
-        var imgMap = document.getElementById("imgMap");
+        var imgMap = document.getElementById("image");
         imgMap.src = staticMapUrlPhoto;
-        imgMap.style.display = "block";
+}
         </script>
 
 <body onload="initialize();">
@@ -76,15 +76,14 @@
     <input class="form-control" type="hidden" name="username" placeholder="Owner Username" id="username" value="<%= user.username %>" required />
     <input id="latInit" type="hidden" style="color:red" name="latInit" value="-6.278253" />
     <input id="lngInit" type="hidden" style="color:red" name="lngInit" value="106.78604803863368" /><br />
+    <input type="hidden" id="image" name="image" >
+
     <div id="map_canvas" style="width: 1000px; height: 400px;" class="mx-auto"></div>
     <button type="submit" class="btn btn-dark">Register</button>
     
   </form>
 </div>
 </body>
-
-
-<img id="imgMap"  alt="" style="display: hidden" />
 
 <br />
 <input type="button" id="btnExport" value="Export" onclick="exportpicture()" />
