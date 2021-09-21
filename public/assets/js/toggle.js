@@ -1,8 +1,5 @@
 //jshint esversion:6
 
-//COBA COBA NODE.JS EXPRESS DI FE SIAPA TAU BISA
-// const express = require("express");
-// const router = express.Router();
 
 const socket = io();
 
@@ -131,8 +128,9 @@ function bukatutupmaster(e) {
 let oowIndicator = 0;
 // let oowIndicator2 = 0;
 
-function tutupfieldphoto(){
-  document.querySelector('.fieldphotooow').className="fieldphotooow"};
+function tutupfieldphoto() {
+  document.querySelector('.fieldphotooow').className = "fieldphotooow"
+};
 
 function ambilzoneid(a) {
   document.querySelectorAll(".zoneid-openfieldphotoclient").forEach(zoneid => {
@@ -157,66 +155,66 @@ async function bukatutupfieldphoto(e, f) {
   ambiltimestamp(f);
 };
 
-  document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
-    button.addEventListener("click", async () => {
-      const zoneid = await document.querySelector(".zoneid-openfieldphotoclient").value;
-      const timestamp = await document.querySelector(".timestamp-openfieldphotoclient").value;
-      if (oowIndicator === 0) {
-        oowIndicator = 1;        
-        await socket.emit("fieldPhotoData", zoneid, timestamp, oowIndicator);
-        socket.on("fileNameArray", fileNameArray => {
-          fileNameArray.forEach(fileName => {
-            document.querySelector('.fieldphotooowIndicatorApus').innerHTML += '<div class="col-4"><img style="width: 100px; height: auto;" src="/project/612720d418854b2fa4a56e27/fieldphoto/'+zoneid+'/'+timestamp+'/'+fileName+'" alt=""></div>';
-            console.log(zoneid);
-          });
+document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
+  button.addEventListener("click", async () => {
+    const zoneid = await document.querySelector(".zoneid-openfieldphotoclient").value;
+    const timestamp = await document.querySelector(".timestamp-openfieldphotoclient").value;
+    if (oowIndicator === 0) {
+      oowIndicator = 1;
+      await socket.emit("fieldPhotoData", zoneid, timestamp, oowIndicator);
+      socket.on("fileNameArray", fileNameArray => {
+        fileNameArray.forEach(fileName => {
+          document.querySelector('.fieldphotooowIndicatorApus').innerHTML += '<div class="col-4"><img style="width: 100px; height: auto;" src="/project/612720d418854b2fa4a56e27/fieldphoto/' + zoneid + '/' + timestamp + '/' + fileName + '" alt=""></div>';
+          console.log(zoneid);
         });
-       
-      } else {
-        oowIndicator = 0;
-        document.querySelector('.fieldphotooowIndicatorApus').remove();
-        document.querySelector('.fieldPhotoBox-grid').innerHTML+= '<div class="fieldphotooowIndicatorApus"></div>';
-        await socket.emit("fieldPhotoData", zoneid, timestamp, oowIndicator);
-        socket.on("fileNameArray", fileNameArray => { fileNameArray.length=0});
-      }
-      document.querySelector(".fieldphotoBox").classList.toggle("fieldphotoBox-active");
+      });
 
-    });
+    } else {
+      oowIndicator = 0;
+      document.querySelector('.fieldphotooowIndicatorApus').remove();
+      document.querySelector('.fieldPhotoBox-grid').innerHTML += '<div class="fieldphotooowIndicatorApus"></div>';
+      await socket.emit("fieldPhotoData", zoneid, timestamp, oowIndicator);
+      socket.on("fileNameArray", fileNameArray => {
+        fileNameArray.length = 0
+      });
+    }
+    document.querySelector(".fieldphotoBox").classList.toggle("fieldphotoBox-active");
+
   });
+});
 
 
 
 
-  //Close field photo button (yang kebuka dari pinpoint)
-  // document.querySelectorAll(".close-field-photo-button").forEach(button => {
-  //   button.classList.add("close-field-photo-button-active");
-  //   button.addEventListener("click", () => {
-  //     document.querySelectorAll(".fieldphotooow").forEach(fieldphoto => {
-  //       fieldphoto.classList.add("fieldphotooow-inactive");
-  //     });
-  //     button.classList.remove("close-field-photo-button-active");
-  //     oowIndicator2 = 1;
-  //   });
-  // });
-  //
-  // if (oowIndicator === 1) {
-  //   document.querySelectorAll(".fieldphotooow").forEach(fieldphoto => {
-  //     fieldphoto.classList.toggle("fieldphotooow-inactive");
-  //     if (oowIndicator2 === 0) {
-  //       document.querySelectorAll(".close-field-photo-button").forEach(button => {
-  //         button.classList.toggle("close-field-photo-button-active");
-  //       });
-  //       oowIndicator2 = 1;
-  //     } else {
-  //       oowIndicator2 = 0;
-  //     }
-  //   });
-  // }
-  // oowIndicator = 1;
+//Close field photo button (yang kebuka dari pinpoint)
+// document.querySelectorAll(".close-field-photo-button").forEach(button => {
+//   button.classList.add("close-field-photo-button-active");
+//   button.addEventListener("click", () => {
+//     document.querySelectorAll(".fieldphotooow").forEach(fieldphoto => {
+//       fieldphoto.classList.add("fieldphotooow-inactive");
+//     });
+//     button.classList.remove("close-field-photo-button-active");
+//     oowIndicator2 = 1;
+//   });
+// });
+//
+// if (oowIndicator === 1) {
+//   document.querySelectorAll(".fieldphotooow").forEach(fieldphoto => {
+//     fieldphoto.classList.toggle("fieldphotooow-inactive");
+//     if (oowIndicator2 === 0) {
+//       document.querySelectorAll(".close-field-photo-button").forEach(button => {
+//         button.classList.toggle("close-field-photo-button-active");
+//       });
+//       oowIndicator2 = 1;
+//     } else {
+//       oowIndicator2 = 0;
+//     }
+//   });
+// }
+// oowIndicator = 1;
 
 
 function bukatutupuploadfieldphoto(e, f) {
-
-  // let addFieldPhotoIndicator = 1;
 
   document.querySelector(".add-field-photo").classList.toggle("add-field-photo-active");
   document.querySelector(".add-field-photo").classList.toggle("add-field-photo-inactive");
@@ -225,14 +223,11 @@ function bukatutupuploadfieldphoto(e, f) {
   console.log('inizonidnyaaaaa ' + e);
   console.log('initimestampnyaaa ' + f);
 
-  // if (addFieldPhotoIndicator === 1) {
-  //   e.innerText = "-";
-  //   addFieldPhotoIndicator = 0;
-  // } else {
-  //   e.innerText = "+";
-  //   addFieldPhotoIndicator = 1;
-  // }
 }
 
-//COBA COBA NODE.JS EXPRESS DI FE SIAPA TAU BISA
-// module.exports = router;
+
+//input drone data
+document.querySelector(".toggle-client-side-input-dronedata").addEventListener("click", () => {
+  document.querySelector(".input-drone-data-div").classList.toggle("input-drone-data-inactive");
+  document.querySelector(".input-drone-data-div").classList.toggle("input-drone-data-active");
+});

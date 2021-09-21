@@ -304,6 +304,21 @@ h3, h6 {
   max-height: 100%;
 }
 
+/* Input drone photo client side */
+.input-drone-data-div {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.input-drone-data-inactive {
+  padding: 0;
+  border: 0;
+}
+
+.input-drone-data-active {
+  max-height: 100%;
+}
+
 /* Bagian hotspot 360 */
 .scenes-padding {
   padding: 0;
