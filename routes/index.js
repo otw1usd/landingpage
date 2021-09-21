@@ -17,9 +17,12 @@ const {
   adminEnsureAuthenticated
 } = require('../config/adminauth')
 
+//npm function
 const multer = require('multer');
 // const sharp = require ('sharp');
+const bcrypt = require('bcryptjs');
 
+//model
 const User = require('../model/user');
 const Project = require('../model/project');
 const Admin = require('../model/admin');
@@ -28,11 +31,11 @@ const ProjectZone = require('../model/projectzone');
 const FieldPhoto = require('../model/fieldphoto');
 const CommentReply = require('../model/commentreply');
 const TimeStampProject = require("../model/timestampproject");
-const bcrypt = require('bcryptjs');
 
+//local function
 const {loadMaps, addZoneData, newDataMap, addTimeStamp}  = require('../routes/datamaps.js');
-
 const getDate = require('../routes/date.js');
+const extractzip = require('../routes/extractzip.js');
 
 router.get('/', (req, res) => res.render('index'));
 
