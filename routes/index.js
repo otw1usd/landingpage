@@ -456,7 +456,9 @@ router.post('/registerproject', (req, res) => {
     projectUsername,
     projectPassword,
     username,
-    progrestotal
+    progrestotal,
+    latInit,
+    lngInit
   } = req.body;
   let errors = [];
 
@@ -498,7 +500,7 @@ router.post('/registerproject', (req, res) => {
             res.redirect('/daftarproyek');
           });
 
-         newDataMap(projectName, newProject._id);
+         newDataMap(projectName, newProject._id, latInit,lngInit);
       }
     });
 });

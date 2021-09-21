@@ -30,7 +30,6 @@ io.on('connection', socket => {
 
   socket.on("fieldPhotoData", async (zoneid, timestamp, oowIndicator) => {
     
-    console.log('cuycuy' +timestamp + zoneid+ '   '+oowIndicator);
     let fileNameArray = [];  
     const fileName = await FieldPhoto.find({
       projectzone: zoneid,
@@ -41,7 +40,6 @@ io.on('connection', socket => {
       });
     });
     socket.emit("fileNameArray", fileNameArray);
-    console.log('nih isinya'+fileNameArray);
   });
 });
 

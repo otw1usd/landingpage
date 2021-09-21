@@ -1,6 +1,8 @@
 const fs = require('fs');
 const getDate = require('../routes/date.js');
 
+
+
 const loadMaps = (projectid) =>{
     const fileBuffer = fs.readFileSync('./public/project/'+projectid+'/mapsdata.json','utf-8');
     const jsonparse = JSON.parse(fileBuffer);
@@ -45,7 +47,7 @@ const addTimeStamp=(a, data)=>{
     });
 }
 
-const newDataMap = (a,b) => {
+const newDataMap = (a,b,c,d) => {
     const dirPath ='./public/project/'+b;
     const droneFolder ='./public/project/'+b+'/drone';
     const fieldphotoFolder = './public/project/'+b+'/fieldphoto';
@@ -59,7 +61,7 @@ const newDataMap = (a,b) => {
 
     const mapsDataJson = './public/project/'+b+'/mapsdata.json';
     if(!fs.existsSync(mapsDataJson)){
-        fs.writeFileSync(mapsDataJson, '[[],[],[]]','utf-8');//bisa diisiin dlu????
+        fs.writeFileSync(mapsDataJson, '[[{"zoomInit":15,"latInit":'+c+',"lngInit":'+d+'}],[],[]]','utf-8');//bisa diisiin dlu????
     };    
 };
 //yang di export addZoneData aja
