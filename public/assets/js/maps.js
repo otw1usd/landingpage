@@ -76,6 +76,22 @@ async function initialize() {
     },
     tileSize: new google.maps.Size(256, 256)
   });
+    var vMarker = new google.maps.Marker({
+        position: new google.maps.LatLng(latInitDataNotPromise, lngInitDataNotPromise),
+        draggable: true
+    });
+    // adds a listener to the marker
+    // gets the coords when drag event ends
+    // then updates the input with the new coords
+    google.maps.event.addListener(vMarker, 'dragend', function (evt) {
+        $("#zoneLat").val(evt.latLng.lat().toFixed(6));
+        $("#zoneLng").val(evt.latLng.lng().toFixed(6));
+        map.panTo(evt.latLng);
+    });
+    // centers the map on markers coords
+    map.setCenter(vMarker.position);
+    // adds the marker on the map
+    vMarker.setMap(map);
 
   map.overlayMapTypes.push(imageMapType);
 }

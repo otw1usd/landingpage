@@ -82,11 +82,11 @@
             <input class="sign-up-box" type="text" name="zoneid" placeholder="zoneid" id="zoneid" value="" required /><br>
 
             <label for="zoneLat">Zone latitude :</label>
-            <input class="sign-up-box" type="number" step="any" name="zoneLat" placeholder="zoneLat" id="zoneLat" value="" required /><br>
-
+            <input class="sign-up-box" id="zoneLat" style="color:red" name="zoneLat" value="-6.278253" />
+            
             <label for="zoneLng">Zone longitude :</label>
-            <input class="sign-up-box" type="number" step="any" name="zoneLng" placeholder="zoneLng" id="zoneLng" value="" required /><br>
-
+            <input class="sign-up-box" id="zoneLng" style="color:red" name="zoneLng" value="106.78604803863368" /><br />
+          
             <div class="btn-center">
               <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Zone</button>
             </div>
@@ -95,15 +95,18 @@
 
         <div class="floating-panel input-drone-data-div input-drone-data-inactive">
           <strong class="font-1-rem">Tambah Foto Drone</strong>
+          <div class="font-1-rem"> Pastikan kriteria berikut terpenuhi :</div>
+          <div class="font-1-rem"> - sudah menekan button Timeline </div>
+          <div class="font-1-rem"> - data yang dimasukkans sesuai timeline</div> 
+          <div class="font-1-rem"> - upload zip file dengan isi zip folderzoom/coord-y/coord-x.png (<a href ="" target="_blank">contoh</a>)</div>
+          <div class="font-1-rem"> - file foto drone dalam format png</div>
           <form action="/tambahdroneimagesclient?_method=PUT" method="POST" class="sign-up-form" enctype="multipart/form-data">
-            <input type="hidden" name="projectid" value="<%= project._id %>" />
-            <input type="hidden" name="timestamp" class="timestampOnScreen" value="" />
-              <% for (let x=13 ; x<23 ; x++) { %>
-              <label for="image<%=x%>">Zoom <%= x %> :</label>
+            <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
+            <input type="hidden" id="timestamp" name="timestamp" class="timestampOnScreen" value="" />
+              <label for="droneimages"></label>
               <div class="add-drone-data-div">
-                <input type="file" class="add-drone-data" name="image<%= x %>" />
+                <input type="file" class="add-drone-data" name="droneimages" />
               </div>
-              <% } %>
               <div class="btn-center">
                 <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Drone Photo</button>
               </div>
