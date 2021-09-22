@@ -35,18 +35,7 @@ const TimeStampProject = require("../model/timestampproject");
 //local function
 const {loadMaps, addZoneData, newDataMap, addTimeStamp}  = require('../routes/datamaps.js');
 const getDate = require('../routes/date.js');
-const extractzip = require('../routes/extractzip.js');
-const { 
-  uploadDroneImages13,                   
-  uploadDroneImages14,
-  uploadDroneImages15, 
-  uploadDroneImages16, 
-  uploadDroneImages17, 
-  uploadDroneImages18, 
-  uploadDroneImages19, 
-  uploadDroneImages20, 
-  uploadDroneImages21,
-  uploadDroneImages22   } = require('../routes/uploadDroneImages.js');   
+const { extractZipDrone } = require('../routes/uploadDroneImages.js');   
 
 router.get('/', (req, res) => res.render('index'));
 
@@ -328,21 +317,32 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
 // };
 // createZoomDroneImagesLoop('uploadDroneImages');
 
+
+const DroneImagesStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp)
+  },
+  filename: (req, file, cb) => {
+    cb(null, req.body.timestamp+'.zip')
+  }
+});
+
+const uploadDroneImage = multer({
+  storage: DroneImagesStorage
+}).single('droneimages');
+
 //tambah droneimagesclient client
-router.put('/tambahdroneimagesclient', uploadDroneImages13, uploadDroneImages14, uploadDroneImages15, uploadDroneImages16, uploadDroneImages17, uploadDroneImages18, uploadDroneImages19, uploadDroneImages20, uploadDroneImages21, uploadDroneImages22, 
-  (req, res, next) => {
-    const files = req.files;
-    console.log(req.file);
+router.put('/tambahdroneimagesclient' , uploadDroneImage,(req, res)=> {
+    console.log('cekfile: '+req.file);
     const {
       projectid,
       timestamp
     } =  req.body;
-    console.log(req.files);
-    console.log(files);
     console.log(req.body);
     res.redirect('/projectindex/' + req.body.projectid);
     req.flash('success_msg', 'Images Uploaded Successfully');
-  });
+    extractZipDrone(req.file.destination,req.file.filename);
+});
 
 
 //register handle
