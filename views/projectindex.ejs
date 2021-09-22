@@ -95,18 +95,19 @@
 
         <div class="floating-panel input-drone-data-div input-drone-data-inactive">
           <strong class="font-1-rem">Tambah Foto Drone</strong>
-          <form class="sign-up-form" action="/tambahdroneimagesclient?_method=PUT" method="POST" enctype="multipart/form-data">
-            <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
-            <input type="hidden" name="timestamp" id="timestamp-openfieldphotoclient" value="" />
-            <% for (let x=13 ; x<23 ; x++) { %>
-            <label for="image<%=x%>">Zoom <%= x %> :</label>
-            <div class="add-drone-data-div">
-              <input type="file" class="add-drone-data" name="image<%= x %>" multiple />
-            </div>
-            <% } %>
-            <div class="btn-center">
-              <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Drone Photo</button>
-            </div>
+          <form action="/tambahdroneimagesclient?_method=PUT" method="POST" class="sign-up-form" enctype="multipart/form-data">
+            <input type="hidden" name="projectid" value="<%= project._id %>" />
+            <input type="hidden" name="timestamp" class="timestampOnScreen" value="" />
+              <% for (let x=13 ; x<23 ; x++) { %>
+              <label for="image<%=x%>">Zoom <%= x %> :</label>
+              <div class="add-drone-data-div">
+                <input type="file" class="add-drone-data" name="image<%= x %>" />
+              </div>
+              <% } %>
+              <div class="btn-center">
+                <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Drone Photo</button>
+              </div>
+            
           </form>
         </div>
 

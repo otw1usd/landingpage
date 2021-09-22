@@ -91,6 +91,7 @@ async function toggleOverlay(element) {
   var path = "/project/"+projectid+"/drone/" + element.value + "/";
   window.waktuOnScreen = element.value; //yang butuh push
   tutupfieldphoto();
+  timestampOnScreen(element.value);
 
   imageMapType = new google.maps.ImageMapType({
     getTileUrl: function(coord, zoom) {

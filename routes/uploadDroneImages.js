@@ -2,10 +2,11 @@ const multer = require('multer');
 
 const DroneImagesStorage13 = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/'+13)
+      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/13')
     },
     filename: (req, file, cb) => {
       cb(null, file.originalname);
+      console.log('cekcekwoi: '+file.originalname);
     },
   });
   
@@ -15,7 +16,7 @@ const uploadDroneImages13 = multer({
 
 const DroneImagesStorage14 = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/'+14)
+      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/14')
     },
     filename: (req, file, cb) => {
       cb(null, file.originalname);
@@ -28,7 +29,7 @@ const uploadDroneImages14 = multer({
 
 const DroneImagesStorage15 = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/'+15)
+      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/15')
     },
     filename: (req, file, cb) => {
       cb(null, file.originalname);
@@ -41,7 +42,7 @@ const uploadDroneImages15 = multer({
 
 const DroneImagesStorage16 = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/'+16)
+      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/16')
     },
     filename: (req, file, cb) => {
       cb(null, file.originalname);
@@ -54,7 +55,7 @@ const uploadDroneImages16 = multer({
 
 const DroneImagesStorage17 = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/'+17)
+      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/17')
     },
     filename: (req, file, cb) => {
       cb(null, file.originalname);
@@ -67,7 +68,7 @@ const uploadDroneImages17 = multer({
 
 const DroneImagesStorage18 = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/'+18)
+      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/18')
     },
     filename: (req, file, cb) => {
       cb(null, file.originalname);
@@ -80,7 +81,7 @@ const uploadDroneImages18 = multer({
 
 const DroneImagesStorage19 = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/'+19)
+      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/19')
     },
     filename: (req, file, cb) => {
       cb(null, file.originalname);
@@ -93,7 +94,7 @@ const uploadDroneImages19 = multer({
 
 const DroneImagesStorage20 = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/'+20)
+      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/20')
     },
     filename: (req, file, cb) => {
       cb(null, file.originalname);
@@ -106,7 +107,7 @@ const uploadDroneImages20 = multer({
 
 const DroneImagesStorage21 = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/'+21)
+      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/21')
     },
     filename: (req, file, cb) => {
       cb(null, file.originalname);
@@ -119,7 +120,7 @@ const uploadDroneImages21 = multer({
 
 const DroneImagesStorage22 = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/'+22)
+      cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/22')
     },
     filename: (req, file, cb) => {
       cb(null, file.originalname);

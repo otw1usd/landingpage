@@ -250,6 +250,7 @@ const uploadFieldPhoto = multer({
 }).array('image', 100);
 
 
+
 //tambahfieldphoto client
 router.put('/tambahfieldphotoclient', uploadFieldPhoto,
   async (req, res, next) => {
@@ -292,12 +293,6 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
     req.flash('success_msg', 'Images Uploaded Successfully');
   });
 
-//
-//     console.log(req.files);
-//     console.log('ini zonaid input:' +zonaid);
-// }
-// );
-
 // drone images
 // const DroneImagesStorage = multer.diskStorage({
 //   destination: (req, file, cb) => {
@@ -333,32 +328,22 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
 // };
 // createZoomDroneImagesLoop('uploadDroneImages');
 
-
-
-
 //tambah droneimagesclient client
-router.put('/tambahdroneimagesclient', 
-      // uploadDroneImages13,                   
-      // uploadDroneImages14,
-      // uploadDroneImages15, 
-      // uploadDroneImages16, 
-      // uploadDroneImages17, 
-      // uploadDroneImages18, 
-      // uploadDroneImages19, 
-      // uploadDroneImages20, 
-      // uploadDroneImages21,
-      // uploadDroneImages22,
-  async (req, res) => {
+router.put('/tambahdroneimagesclient', uploadDroneImages13, uploadDroneImages14, uploadDroneImages15, uploadDroneImages16, uploadDroneImages17, uploadDroneImages18, uploadDroneImages19, uploadDroneImages20, uploadDroneImages21, uploadDroneImages22, 
+  (req, res, next) => {
+    const files = req.files;
+    console.log(req.file);
     const {
       projectid,
       timestamp
-    } = await req.body;
+    } =  req.body;
+    console.log(req.files);
+    console.log(files);
     console.log(req.body);
-    console.log(req.body.timestamp);
-    console.log(req.body.projectid);
     res.redirect('/projectindex/' + req.body.projectid);
     req.flash('success_msg', 'Images Uploaded Successfully');
   });
+
 
 //register handle
 router.post('/', (req, res) => {
@@ -585,7 +570,6 @@ router.post('/registerproject',uploadPeta, (req, res) => {
           });
 
          newDataMap(projectName, newProject._id, latInit,lngInit);
-         console.log(req.file);
       }
     });
 });
@@ -807,8 +791,6 @@ router.put('/admin', [
         project: req.body,
       });
     } else {
-      console.log(req.body);
-      console.log(req.body._id);
       Project.updateOne({
         _id: req.body._id
       }, {
@@ -844,8 +826,6 @@ router.put('/admin', [
       setTimeout(() => {
         req.flash('success_msg', 'Data Project berhasil diubah!');
         res.redirect('/admin');
-        console.log('ini timestamp 1 ' + req.body.timestampproject1);
-        console.log('ini timestamp 2 ' + req.body.timestampproject2);
       }, 1000);
 
       // });
@@ -897,7 +877,6 @@ router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, nex
   } catch (err) {
     next(err);
   }
-console.log(FieldPhotoArrays);
   setTimeout(function() {
     res.render('projectindex', {
       layout: 'layout-project',
@@ -989,5 +968,7 @@ router.delete('/comment', async (req, res) => {
 //   const projectZoneId = req.body.zoneid;
 //   const timeStamp = req.body.timestamp;
 // });
+
+
 
 module.exports = router;

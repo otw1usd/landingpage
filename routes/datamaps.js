@@ -1,8 +1,6 @@
 const fs = require('fs');
 const getDate = require('../routes/date.js');
 
-
-
 const loadMaps = (projectid) =>{
     const fileBuffer = fs.readFileSync('./public/project/'+projectid+'/mapsdata.json','utf-8');
     const jsonparse = JSON.parse(fileBuffer);
@@ -30,7 +28,6 @@ const addZoneData = (a,data) => {
     const drawingZoneFolder = './public/project/'+a+'/drawing/'+datazoneid;
     fs.mkdir(drawingZoneFolder, {recursive: true}, err => {});
 
-
 };
 
 const addTimeStamp=(a, data)=>{
@@ -39,12 +36,16 @@ const addTimeStamp=(a, data)=>{
     saveZoneData(a,datas);
     const newTimestamp = getDate.getNumericValue(data.timestampproject).split("/").join("_");
     const dronedirPath = './public/project/'+a+'/drone/'+newTimestamp;
+    for (let i = 13; i < 23; i++) {
+            const dronedirPathwithZoom = './public/project/'+a+'/drone/'+newTimestamp+'/'+i;
+            fs.mkdir(dronedirPathwithZoom, {recursive: true}, err => {});
+          };
     fs.mkdir(dronedirPath, {recursive: true}, err => {});
     datas[2].forEach(element => {
         const zoneidExist = element.zoneid;
         const fieldphotodirPath = './public/project/'+a+'/fieldphoto/'+zoneidExist+'/'+newTimestamp;
         fs.mkdir(fieldphotodirPath, {recursive: true}, err => {});
-    });
+        });
 }
 
 const newDataMap = (a,b,c,d) => {
@@ -61,7 +62,7 @@ const newDataMap = (a,b,c,d) => {
 
     const mapsDataJson = './public/project/'+b+'/mapsdata.json';
     if(!fs.existsSync(mapsDataJson)){
-        fs.writeFileSync(mapsDataJson, '[[{"zoomInit":15,"latInit":'+c+',"lngInit":'+d+'}],[],[]]','utf-8');//bisa diisiin dlu????
+        fs.writeFileSync(mapsDataJson, '[[{"zoomInit":15,"latInit":'+c+',"lngInit":'+d+'}],[],[]]','utf-8');
     };    
 };
 //yang di export addZoneData aja
