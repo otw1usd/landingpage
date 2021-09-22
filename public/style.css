@@ -665,12 +665,13 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 
 /* EDIT USER INFORMATION */
 .edit-user-div {
-  padding-top: 100px;
+  padding-top: 75px;
   padding-bottom: 100px;
+  width: 50%;
 }
 
 .edit-user-div label {
-  font-family: 'Gilroy-Light';
+  font-family: system-ui;
   padding-bottom: 0.5rem;
 }
 
@@ -678,7 +679,22 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   font-family: system-ui;
 }
 
+/* REGISTER NEW PROJECT */
+.register-project-div {
+  padding-top: 75px;
+  padding-bottom: 100px;
+  width: 50%;
+}
 
+.register-project-heading {
+  padding-bottom: 1rem;
+}
+
+#map_canvas {
+  margin-bottom: 1.5rem;
+  width: 100%;
+  height: 400px;
+}
 
 /* DIBAWAH INI ADALAH SEMUA YANG DI INTERFACE ADMIN */
 /* Log In Admin */
