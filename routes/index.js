@@ -31,13 +31,20 @@ const ProjectZone = require('../model/projectzone');
 const FieldPhoto = require('../model/fieldphoto');
 const CommentReply = require('../model/commentreply');
 const TimeStampProject = require("../model/timestampproject");
+const Traction = require("../model/traction");
 
 //local function
 const {loadMaps, addZoneData, newDataMap, addTimeStamp}  = require('../routes/datamaps.js');
 const getDate = require('../routes/date.js');
 const { extractZipDrone } = require('../routes/uploadDroneImages.js');   
 
-router.get('/', (req, res) => res.render('index'));
+router.get('/', async (req, res) => {
+  const newTraction = new Traction({
+    traction: '1'
+  });
+  await newTraction.save();
+  res.render('index');
+});
 
 router.get('/login', (req, res) => res.render('login', {
   layout: 'layout-login',

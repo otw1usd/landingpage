@@ -6,8 +6,7 @@
 
   <!-- List of Own Project -->
   <div class="div-daftar-proyek col-9">
-    <h2>List Project</h2>
-    <a href="/registerproject"><button>Create Project</button></a> 
+    <h2>Project List</h2>
     <h4>Contact <a href="/#contact">Admin AMATI</a> for more information </h4>
     <% listprojects.forEach((listproject) => { %>
     <div class="daftar-proyek col-12 row">
@@ -21,22 +20,22 @@
               <%= listproject.projectName %>
             </a>
           </h4>
-          <a href="/project/<%= listproject._id %>"><img class="col-1" id="icon-edit-data-proyek" src="images/edit.png" alt="edit"></a>
+          <a href="/registerproject"><img class="col-1" id="icon-edit-data-proyek" src="images/tambah.jpg" alt="Create New Project"> </a>
         </div>
         <div class="row">
           <div class="div-data-proyek col-4">
-            <p class="data-proyek">Project Duration: <%= listproject.startDate %> - <%= listproject.endDate %></p>
-            <p class="data-proyek">Location: <%= listproject.projectLocation %></p>
-            <p class="data-proyek">Area: 80 Hektar</p>
+            <p class="data-proyek">Project Duration: <%= listproject.startDate %> until <%= listproject.endDate %></p>
+            <p class="data-proyek">Locaton: <%= listproject.location %></p>
+            <p class="data-proyek">Area: </p>
           </div>
           <div class="div-data-proyek col-3">
-            <p class="data-proyek">Project Cost: 86,55 Triliun Rupiah</p>
+            <p class="data-proyek">Project Cost: <%= listproject.nilaiProyek%></p>
             <p class="data-proyek">Owner: <%= listproject.username %></p>
-            <p class="data-proyek">Consultant: CDJO</p>
+            <p class="data-proyek">Consultant: <%= listproject.konsultan%></p>
           </div>
           <div class="div-data-proyek col-2">
-            <p class="data-proyek">Contractor: PT. WIKA</p>
-            <p class="data-proyek">Member: 26 Orang</p>
+            <p class="data-proyek">Contractor: <%= listproject.kontraktor%></p></p>
+            <p class="data-proyek"></p>
           </div>
           <div class="div-data-proyek col-3">
             <p class="data-proyek">Your Position: <%= jobs %></p>

@@ -73,12 +73,12 @@
       <input class="form-control" type="date" name="endDate" placeholder="End Date Project" id="endDate" value="<%= typeof endDate != 'undefined' ? endDate : '' %>" required />
 
       <input class="form-control" type="text" name="projectUsername" placeholder="Project Username" id="projectUsername" value="<%= typeof projectUsername != 'undefined' ? projectUsername : '' %>" required />
-
+      
       <input class="form-control" type="hidden" name="username" placeholder="Owner Username" id="username" value="<%= user.username %>" required />
       <input id="latInit" type="hidden" style="color:red" name="latInit" value="-6.278253" />
       <input id="lngInit" type="hidden" style="color:red" name="lngInit" value="106.78604803863368" /><br />
       <input type="hidden" id="image" name="image">
-
+      <h6> Please move the red point to your project location</h6>
       <div id="map_canvas"></div>
       <button type="submit" class="btn btn-dark col-12">Register</button>
 
