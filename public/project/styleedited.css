@@ -203,41 +203,8 @@ h3, h6 {
   font-size: 1rem;
 }
 
-.field-photo-super-div {
-  max-height: 0;
-  overflow: hidden;
-  padding: 0;
-  border: 0;
-}
-
-.field-photo-super-div-active {
-  max-height: 100%;
-  padding: 0.8rem;
-  border-bottom: solid 1px;
-}
-
 .field-photo-heading-div {
   margin-bottom: 0.5rem;
-}
-
-.btn.close-field-photo-button {
-  height: 1rem;
-  font-size: 0.7rem;
-  padding: 0 0.5rem;
-  margin-bottom: 0;
-  margin-left: 0.5rem;
-  max-height: 0;
-  overflow: hidden;
-  border: 0;
-}
-
-.btn.close-field-photo-button.close-field-photo-button-active {
-  height: 1rem;
-  font-size: 0.7rem;
-  padding: 0 0.5rem;
-  margin-bottom: 0;
-  margin-left: 0.5rem;
-  max-height: 100%;
 }
 
 .field-photo-active {
@@ -278,16 +245,30 @@ h3, h6 {
 .fieldphotooow {
   max-height: 0;
   overflow: hidden;
-  border-bottom: 0;
 }
 
 .fieldphotooow-inactive {
   padding: 0;
+  border: 0;
 }
 
 .fieldphotooow-active {
   max-height: 100%;
-  border-bottom: 1px;
+}
+
+/* Upload gamtek client-side */
+.add-gamtek {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.add-gamtek-inactive {
+  border: 0;
+  padding: 0;
+}
+
+.add-gamtek-active {
+  max-height: 100%;
 }
 
 /* Input timestamp client-side */
@@ -694,7 +675,7 @@ h3, h6 {
 
 /* Field Photo Grid */
 .field-photo-grid {
-  border: solid 1px #ffc107;
+  border: solid 1px #2f2f2f;
 }
 
 .fieldphotoBox {
@@ -710,6 +691,6 @@ h3, h6 {
 
 .fieldphotoBox-active {
   max-height: 100%;
-  background-color: #212529;
+  background-color: #fff;
   overflow-y: scroll;
 }

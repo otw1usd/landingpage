@@ -8,6 +8,8 @@
   <div class="div-daftar-proyek col-9">
     <h2>Project List</h2>
     <h4>Contact <a href="/#contact">Admin AMATI</a> for more information </h4>
+    <a href="/registerproject"><img class="col-1" id="icon-edit-data-proyek" src="images/tambah.jpg" alt="Create New Project"> </a>
+
     <% listprojects.forEach((listproject) => { %>
     <div class="daftar-proyek col-12 row">
       <div class="col-2">
@@ -20,7 +22,6 @@
               <%= listproject.projectName %>
             </a>
           </h4>
-          <a href="/registerproject"><img class="col-1" id="icon-edit-data-proyek" src="images/tambah.jpg" alt="Create New Project"> </a>
         </div>
         <div class="row">
           <div class="div-data-proyek col-4">

@@ -167,7 +167,9 @@ async function toggleOverlay(element) {
         "</tr>"+
 
         "<tr>" +
-        "<th><button onclick='gamtekSaya(\""+projectzoneDataEach.zoneid+"\")'>Construction Drawing</button><button onclick=''>+</button></th>" +
+
+        "<th><button onclick='gamtekSaya(\""+projectzoneDataEach.zoneid+"\")'>Construction Drawing</button><button onclick='bukatutupuploadgamtek(\""+projectzoneDataEach.zoneid+"\", \""+waktuOnScreen+"\")'>+</button></th>" +
+
         "</tr>" +
 
         "<tr>" +

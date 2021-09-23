@@ -34,9 +34,16 @@ const TimeStampProject = require("../model/timestampproject");
 const Traction = require("../model/traction");
 
 //local function
-const {loadMaps, addZoneData, newDataMap, addTimeStamp}  = require('../routes/datamaps.js');
+const {
+  loadMaps,
+  addZoneData,
+  newDataMap,
+  addTimeStamp
+} = require('../routes/datamaps.js');
 const getDate = require('../routes/date.js');
-const { extractZipDrone } = require('../routes/uploadDroneImages.js');   
+const {
+  extractZipDrone
+} = require('../routes/uploadDroneImages.js');
 
 router.get('/', async (req, res) => {
   const newTraction = new Traction({
@@ -234,7 +241,7 @@ router.get('/admin/:name', adminEnsureAuthenticated, async (req, res) => {
 //field photo zone
 const FieldPhotoStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './public/project/'+req.body.projectid+'/fieldphoto/'+req.body.zoneid+'/'+req.body.timestamp)
+    cb(null, './public/project/' + req.body.projectid + '/fieldphoto/' + req.body.zoneid + '/' + req.body.timestamp)
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + '-' + req.body.zoneid + '-' + file.originalname);
@@ -273,11 +280,11 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
       //     })
       //     .catch((err)=>{console.log(err);});
 
-      const file =  {
+      const file = {
         projectzone: zoneid,
         fieldphoto: element.filename
       };
-       filesArray.push(file);
+      filesArray.push(file);
       const multipleFieldPhotos = new FieldPhoto({
         projectzone: zoneid,
         fieldphoto: element.filename,
@@ -327,10 +334,10 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
 
 const DroneImagesStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp)
+    cb(null, './public/project/' + req.body.projectid + '/drone/' + req.body.timestamp)
   },
   filename: (req, file, cb) => {
-    cb(null, req.body.timestamp+'.zip')
+    cb(null, req.body.timestamp + '.zip')
   }
 });
 
@@ -339,16 +346,16 @@ const uploadDroneImage = multer({
 }).single('droneimages');
 
 //tambah droneimagesclient client
-router.put('/tambahdroneimagesclient' , uploadDroneImage,(req, res)=> {
-    console.log('cekfile: '+req.file);
-    const {
-      projectid,
-      timestamp
-    } =  req.body;
-    console.log(req.body);
-    res.redirect('/projectindex/' + req.body.projectid);
-    req.flash('success_msg', 'Images Uploaded Successfully');
-    extractZipDrone(req.file.destination,req.file.filename);
+router.put('/tambahdroneimagesclient', uploadDroneImage, (req, res) => {
+  console.log('cekfile: ' + req.file);
+  const {
+    projectid,
+    timestamp
+  } = req.body;
+  console.log(req.body);
+  res.redirect('/projectindex/' + req.body.projectid);
+  req.flash('success_msg', 'Images Uploaded Successfully');
+  extractZipDrone(req.file.destination, req.file.filename);
 });
 
 
@@ -393,7 +400,7 @@ router.post('/', (req, res) => {
         if (user) {
           // User exists
           errors.push({
-            msg: "email is already registered"
+            msg: "Email is already registered"
           });
           res.render('', {
             errors,
@@ -406,29 +413,54 @@ router.post('/', (req, res) => {
             jobs
           });
         } else {
-          const newUser = new User({
-            name,
-            username,
-            email,
-            password,
-            nohp,
-            company,
-            jobs
 
-          });
-          //hash password
-          bcrypt.genSalt(10, (err, salt) => bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-            //set password to ahshed
-            newUser.password = hash;
-            //save user
-            newUser.save()
-              .then(user => {
-                req.flash('success_msg', 'You are now registered and can log in');
-                res.redirect('/login');
-              })
-              .catch(err => console.log(err));
-          }));
+          User.findOne({
+              username: username
+            })
+            .then(usernameCheck => {
+              if (usernameCheck) {
+                // User exists
+                errors.push({
+                  msg: "Username is already taken. Try another."
+                });
+                res.render('', {
+                  errors,
+                  name,
+                  username,
+                  email,
+                  password,
+                  nohp,
+                  company,
+                  jobs
+                });
+              } else {
+
+
+                const newUser = new User({
+                  name,
+                  username,
+                  email,
+                  password,
+                  nohp,
+                  company,
+                  jobs
+
+                });
+                //hash password
+                bcrypt.genSalt(10, (err, salt) => bcrypt.hash(newUser.password, salt, (err, hash) => {
+                  if (err) throw err;
+                  //set password to ahshed
+                  newUser.password = hash;
+                  //save user
+                  newUser.save()
+                    .then(user => {
+                      req.flash('success_msg', 'You are now registered and can log in');
+                      res.redirect('/login');
+                    })
+                    .catch(err => console.log(err));
+                }));
+              }
+            });
         }
       });
   }
@@ -504,14 +536,14 @@ router.post('/admin', (req, res) => {
             res.redirect('/admin');
           });
 
-         newDataMap(projectName, newProject._id);
+        newDataMap(projectName, newProject._id);
       }
     });
 });
 
 const PetaStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './public/project/'+newProject._id)
+    cb(null, './public/project/' + newProject._id)
   },
   filename: (req, file, cb) => {
     cb(null, peta.png);
@@ -522,7 +554,7 @@ const uploadPeta = multer({
   storage: Storage
 }).single('image');
 
-router.post('/registerproject',uploadPeta, (req, res) => {
+router.post('/registerproject', uploadPeta, (req, res) => {
   const {
     projectName,
     location,
@@ -576,7 +608,7 @@ router.post('/registerproject',uploadPeta, (req, res) => {
             res.redirect('/daftarproyek');
           });
 
-         newDataMap(projectName, newProject._id, latInit,lngInit);
+        newDataMap(projectName, newProject._id, latInit, lngInit);
       }
     });
 });
@@ -812,7 +844,7 @@ router.put('/admin', [
           projectPassword: req.body.projectPassword,
           progrestotal: req.body.progrestotal,
           timestampproject1: req.body.timestampproject1,
-          nilaiProyek : req.body.nilaiProyek,
+          nilaiProyek: req.body.nilaiProyek,
           konsultan: req.body.konsultan,
           kontraktor: req.body.kontraktor
         },

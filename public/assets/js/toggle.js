@@ -91,6 +91,7 @@ document.querySelectorAll(".close-foto-gamtek-button").forEach(button => {
     document.querySelector(".zoominafter").classList.add("zoominbefore");
     document.querySelector(".zoominafter").classList.remove("zoominafter");
     document.querySelector(".close-foto-gamtek-button").classList.remove("close-foto-gamtek-button-active");
+    document.querySelector(".close-foto-gamtek-button-div").classList.remove("close-foto-gamtek-button-div-active");
   });
 });
 
@@ -127,7 +128,7 @@ function bukatutupmaster(e) {
 
 
 function tutupfieldphoto() {
-  document.querySelector('.fieldphotooow').className = "fieldphotooow";
+
 }
 
 function ambilzoneid(a) {
@@ -225,6 +226,16 @@ function bukatutupuploadfieldphoto(e, f) {
   document.getElementById("timestamp-uploadfieldphotoclient").value = f;
 
 }
+
+function bukatutupuploadgamtek(e, f) {
+
+  document.querySelector(".add-gamtek").classList.toggle("add-gamtek-active");
+  document.querySelector(".add-gamtek").classList.toggle("add-gamtek-inactive");
+  document.getElementById("zoneid-uploadgamtekclient").value = e;
+  document.getElementById("timestamp-uploadgamtekclient").value = f;
+
+}
+
 
 
 //input drone data

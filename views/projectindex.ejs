@@ -83,10 +83,10 @@
 
             <label for="zoneLat">Zone latitude :</label>
             <input class="sign-up-box" id="zoneLat" style="color:red" name="zoneLat" value="Please move the red point" />
-            
+
             <label for="zoneLng">Zone longitude :</label>
             <input class="sign-up-box" id="zoneLng" style="color:red" name="zoneLng" value="Please move the red point" /><br />
-          
+
             <div class="btn-center">
               <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Zone</button>
             </div>
@@ -97,19 +97,19 @@
           <strong class="font-1-rem">Tambah Foto Drone</strong>
           <div class="font-1-rem"> Pastikan kriteria berikut terpenuhi :</div>
           <div class="font-1-rem"> - sudah menekan button Timeline </div>
-          <div class="font-1-rem"> - data yang dimasukkans sesuai timeline</div> 
-          <div class="font-1-rem"> - upload zip file dengan isi zip folderzoom/coord-y/coord-x.png (<a href ="" target="_blank">contoh</a>)</div>
+          <div class="font-1-rem"> - data yang dimasukkans sesuai timeline</div>
+          <div class="font-1-rem"> - upload zip file dengan isi zip folderzoom/coord-y/coord-x.png (<a href="" target="_blank">contoh</a>)</div>
           <div class="font-1-rem"> - file foto drone dalam format png</div>
           <form action="/tambahdroneimagesclient?_method=PUT" method="POST" class="sign-up-form" enctype="multipart/form-data">
             <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
             <input type="hidden" id="timestamp" name="timestamp" class="timestampOnScreen" value="" />
-              <label for="droneimages"></label>
-              <div class="add-drone-data-div">
-                <input type="file" class="add-drone-data" name="droneimages" />
-              </div>
-              <div class="btn-center">
-                <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Drone Photo</button>
-              </div>
+            <label for="droneimages"></label>
+            <div class="add-drone-data-div">
+              <input type="file" class="add-drone-data" name="droneimages" />
+            </div>
+            <div class="btn-center">
+              <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Drone Photo</button>
+            </div>
 
           </form>
         </div>
@@ -117,38 +117,33 @@
       </div>
       <div class="formpopupbox"></div>
 
-      <div class="btn-center">
-        <button type="button" name="button" class="btn btn-outline-warning close-field-photo-button">close</button>
-      </div>
-
-      <div class="floating-panel">
-        <div class="fieldphotooow fieldphotooow-inactive">
-          <strong class="font-1-rem filter-field-photo-heading"></strong>
-          <div class="btn-center">
-            <div>
-              <input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value="">
-              <input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value="">
-              <button class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">All</button>
-            </div>
-            <div>
-              <input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value="">
-              <input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value="">
-              <button class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">Architectural</button>
-            </div>
-            <div>
-              <input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value="">
-              <input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value="">
-              <button class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">Structural</button>
-            </div>
-            <div>
-              <input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value="">
-              <input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value="">
-              <button class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">Mechanical Electrical Plumbing</button>
-            </div>
+      <div class="floating-panel fieldphotooow fieldphotooow-inactive">
+        <strong class="font-1-rem filter-field-photo-heading"></strong>
+        <div class="btn-center">
+          <div>
+            <input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value="">
+            <input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value="">
+            <button class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">All</button>
+          </div>
+          <div>
+            <input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value="">
+            <input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value="">
+            <button class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">Architectural</button>
+          </div>
+          <div>
+            <input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value="">
+            <input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value="">
+            <button class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">Structural</button>
+          </div>
+          <div>
+            <input name="zoneid" type="hidden" class="zoneid-openfieldphotoclient" value="">
+            <input type="hidden" name="timestamp" class="timestamp-openfieldphotoclient" value="">
+            <button class="toggle-field-photo-grid btn btn-sm btn-outline-warning col-12">Mechanical Electrical Plumbing</button>
           </div>
         </div>
       </div>
     </div>
+
 
     <div class="floating-panel add-field-photo add-field-photo-inactive">
       <form class="sign-up-form" action="/tambahfieldphotoclient?_method=PUT" method="POST" enctype="multipart/form-data">
@@ -165,8 +160,23 @@
       </form>
     </div>
 
+    <div class="floating-panel add-gamtek add-gamtek-inactive">
+      <form class="sign-up-form" action="" method="POST" enctype="multipart/form-data">
+        <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
+        <input type="hidden" id="zoneid-uploadgamtekclient" name="zoneid" value="" />
+        <input type="hidden" id="timestamp-uploadgamtekclient" name="timestamp" value="" />
+        <label for="image">Upload Construction Drawing :</label>
+        <div class="add-gamtek-button-div">
+          <input type="file" class="add-gamtek-button" name="image" multiple />
+          <div class="btn-center">
+            <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Drawing</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
     <div class="close-foto-gamtek-button-div">
-      <button type="button" name="button" class="btn btn-outline-warning close-foto-gamtek-button">close</button>
+      <button type="button" name="button" class="btn btn-outline-warning close-foto-gamtek-button">CLOSE DRAWING</button>
     </div>
 
 
