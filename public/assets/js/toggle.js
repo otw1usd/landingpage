@@ -172,7 +172,7 @@ document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
       socket.on("fileNameArray", (fileNameArray, zoneid, timestamp) => {
 
         fileNameArray.forEach(fileName => {
-          document.querySelector('.fieldphotooowIndicatorApus').innerHTML += '<div class="col-4 field-photo-grid"><img onclick="fieldPhotoFullscreen(this)" style="height: auto; width: 100%;" src="/project/612720d418854b2fa4a56e27/fieldphoto/' + zoneid + '/' + timestamp + '/' + fileName + '" alt=""></div>';
+          document.querySelector('.fieldphotooowIndicatorApus').innerHTML += '<div class="col-4 field-photo-grid"><img onclick="fieldPhotoFullscreen(this)" style="height: auto; width: 100%;" class="lazy" src="/project/612720d418854b2fa4a56e27/fieldphoto/' + zoneid + '/' + timestamp + '/' + fileName + '" alt=""></div>';
         });
         fileNameArray.length = 0;
       });

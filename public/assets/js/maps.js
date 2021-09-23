@@ -129,9 +129,6 @@ async function toggleOverlay(element) {
   map.overlayMapTypes.clear();
   map.overlayMapTypes.push(imageMapType);
 
-  //nanti ini dibuat json
-  //content.forEach()
-
   var projectzoneDataNotPromise = await getProjectZone();
   var projectzoneDataLength = projectzoneDataNotPromise.length;
 
@@ -170,7 +167,9 @@ async function toggleOverlay(element) {
         "</tr>"+
 
         "<tr>" +
+
         "<th><button onclick='gamtekSaya(\""+projectzoneDataEach.zoneid+"\")'>Construction Drawing</button><button onclick='bukatutupuploadgamtek(\""+projectzoneDataEach.zoneid+"\", \""+waktuOnScreen+"\")'>+</button></th>" +
+
         "</tr>" +
 
         "<tr>" +
