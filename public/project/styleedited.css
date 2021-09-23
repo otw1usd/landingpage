@@ -701,6 +701,10 @@ h3, h6 {
   overflow-y: scroll;
 }
 
+.fieldphotooowIndicatorApus {
+  padding: 0.5rem;
+}
+
 /* Field Photo Fullscreen */
 .field-photo-fullscreen-div {
   position: fixed;

@@ -190,8 +190,6 @@ document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
 //Buka foto jadi fullscreen
 function fieldPhotoFullscreen(img) {
   const src = img.src;
-  console.log(src);
-
   document.querySelector(".field-photo-fullscreen-super-div").innerHTML = `
     <div class="field-photo-fullscreen-div">
       <div class="field-photo-fullscreen-content">
