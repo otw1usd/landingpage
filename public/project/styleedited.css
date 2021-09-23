@@ -286,7 +286,7 @@ h3, h6 {
   max-height: 100%;
 }
 
-/* Input timestamp client-side */
+/* Input projectzone client-side */
 .client-side-input-projectzone {
   max-height: 0;
   overflow: hidden;
@@ -314,6 +314,11 @@ h3, h6 {
 
 .input-drone-data-active {
   max-height: 100%;
+}
+
+.input-drone-data-criteria {
+  padding-top: 0.5rem;
+  font-size: 0.75rem;
 }
 
 /* Bagian hotspot 360 */
@@ -635,7 +640,7 @@ h3, h6 {
   overflow: scroll;
   z-index: 11;
   left: 16.66667%;
-  top: 4rem;
+  top: 52px;
   max-height: 48rem;
   max-width: 68rem;
   border: 0;
