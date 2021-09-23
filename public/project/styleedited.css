@@ -675,7 +675,8 @@ h3, h6 {
 
 /* Field Photo Grid */
 .field-photo-grid {
-  border: solid 1px #2f2f2f;
+  /* border: solid 1px #2f2f2f; */
+  padding: 0.5rem;
 }
 
 .fieldphotoBox {
@@ -693,4 +694,38 @@ h3, h6 {
   max-height: 100%;
   background-color: #fff;
   overflow-y: scroll;
+}
+
+/* Field Photo Fullscreen */
+.field-photo-fullscreen-div {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.field-photo-fullscreen-content {
+  background-color: #fff;
+  position: relative;
+  z-index: 2;
+
+}
+
+.field-photo-fullscreen-bg {
+  background-color: #000;
+  opacity: 0.5;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }

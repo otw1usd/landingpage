@@ -172,7 +172,7 @@ document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
       socket.on("fileNameArray", (fileNameArray, zoneid, timestamp) => {
 
         fileNameArray.forEach(fileName => {
-          document.querySelector('.fieldphotooowIndicatorApus').innerHTML += '<div class="col-4 field-photo-grid"><img style="height: 300px; width: auto;" src="/project/612720d418854b2fa4a56e27/fieldphoto/' + zoneid + '/' + timestamp + '/' + fileName + '" alt=""></div>';
+          document.querySelector('.fieldphotooowIndicatorApus').innerHTML += '<div class="col-4 field-photo-grid"><img onclick="fieldPhotoFullscreen(this)" style="height: auto; width: 100%;" src="/project/612720d418854b2fa4a56e27/fieldphoto/' + zoneid + '/' + timestamp + '/' + fileName + '" alt=""></div>';
         });
         fileNameArray.length = 0;
       });
@@ -187,8 +187,25 @@ document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
   });
 });
 
+//Buka foto jadi fullscreen
+function fieldPhotoFullscreen(img) {
+  const src = img.src;
+  console.log(src);
 
+  document.querySelector(".field-photo-fullscreen-super-div").innerHTML = `
+    <div class="field-photo-fullscreen-div">
+      <div class="field-photo-fullscreen-content">
+        <img src="${src}" style="width: auto; height: 600px;">
+      </div>
+      <div class="field-photo-fullscreen-bg">
+      </div>
+    </div>
+  `;
 
+  document.querySelector(".field-photo-fullscreen-bg").addEventListener("click", () => {
+    document.querySelector(".field-photo-fullscreen-div").remove();
+  });
+}
 
 //Close field photo button (yang kebuka dari pinpoint)
 // document.querySelectorAll(".close-field-photo-button").forEach(button => {
