@@ -1,5 +1,5 @@
 // const fs = require('fs');
-//jshint esversion: 6
+//jshint esversion: 8
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const passport = require('passport');
@@ -28,8 +28,7 @@ const FieldPhoto = require(__dirname + '/model/fieldphoto.js');
 
 io.on('connection', socket => {
 
-  socket.on("fieldPhotoData", async (zoneid, timestamp, oowIndicator, projectid) => {
-    let projectidd=projectid;
+  socket.on("fieldPhotoData", async (zoneid, timestamp) => {
     let fileNameArray = [];
     const fileName = await FieldPhoto.find({
       projectzone: zoneid,
@@ -38,18 +37,8 @@ io.on('connection', socket => {
       photos.forEach(photo => {
         fileNameArray.push(photo.fieldphoto);
       });
-
-      if (photos.length !== 0) {
-        const projectid = projectidd;
-       console.log("1");
-       socket.emit("fileNameArray", fileNameArray, projectid, zoneid, timestamp);
-      } else {
-        const projectid = 0;
-        console.log("2");
-        socket.emit("fileNameArray", fileNameArray, projectid, zoneid, timestamp);
-      }
     });
-
+    socket.emit("fileNameArray", fileNameArray, zoneid, timestamp);
   });
 });
 

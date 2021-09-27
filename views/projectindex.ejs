@@ -1,5 +1,6 @@
-<div id="projectid" value="<%= project._id %>"> </div>
+
 <section id="user-tab">
+  <input type="hidden" value="<%= project._id %>" class="getProjectId">
   <div class="info-container col-2 bg-dark">
     <div class="row">
       <div class="col-1 space"> </div>
@@ -119,7 +120,7 @@
       </div>
       <div class="formpopupbox"></div>
 
-      <div class="floating-panel fieldphotooow fieldphotooow-inactive">
+      <div class="floating-panel filter-field-photo filter-field-photo-inactive">
         <strong class="font-1-rem filter-field-photo-heading"></strong>
         <div class="btn-center">
           <div>
@@ -207,9 +208,10 @@
 <section id="viewing-tab">
 
   <!-- View Field Photo Grid -->
-  <div class="fieldphotoBox">
-    <div class="fieldPhotoBox-grid">
-      <div class="fieldphotooowIndicatorApus row"></div>
+  <div class="field-photo-grid-super-div">
+    <div class="field-photo-grid-div row">
+    </div>
+    <div class="field-photo-grid-bg">
     </div>
   </div>
 

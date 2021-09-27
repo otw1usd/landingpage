@@ -242,17 +242,17 @@ h3, h6 {
 }
 
 /* Filter field photo */
-.fieldphotooow {
+.filter-field-photo {
   max-height: 0;
   overflow: hidden;
 }
 
-.fieldphotooow-inactive {
+.filter-field-photo-inactive {
   padding: 0;
   border: 0;
 }
 
-.fieldphotooow-active {
+.filter-field-photo-active {
   max-height: 100%;
 }
 
@@ -679,30 +679,55 @@ h3, h6 {
 }
 
 /* Field Photo Grid */
-.field-photo-grid {
-  /* border: solid 1px #2f2f2f; */
-  padding: 0.5rem;
+.field-photo-grid-super-div {}
+
+.field-photo-grid-super-div-active {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.fieldphotoBox {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+.field-photo-grid-div {
+  padding: 0.5rem;
+  position: relative;
   width: 50%;
-  text-align: center;
   max-height: 0;
   overflow: hidden;
+  z-index: 2;
 }
 
-.fieldphotoBox-active {
+.field-photo-grid-div-active {
   max-height: 100%;
   background-color: #fff;
   overflow-y: scroll;
 }
 
-.fieldphotooowIndicatorApus {
+.field-photo-grid {
   padding: 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.field-photo-grid-bg {
+}
+
+.field-photo-grid-bg-active {
+  background-color: #000;
+  opacity: 0.5;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 /* Field Photo Fullscreen */
@@ -716,14 +741,12 @@ h3, h6 {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .field-photo-fullscreen-content {
   background-color: #fff;
   position: relative;
   z-index: 2;
-
 }
 
 .field-photo-fullscreen-bg {
