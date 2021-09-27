@@ -38,12 +38,17 @@ io.on('connection', socket => {
       photos.forEach(photo => {
         fileNameArray.push(photo.fieldphoto);
       });
+
+      if (photos.length !== 0) {
+        const projectid = photos[0]._id;
+       console.log("1");
+       socket.emit("fileNameArray", fileNameArray, projectid, zoneid, timestamp);
+      } else {
+        const projectid = 0;
+        console.log("2");
+        socket.emit("fileNameArray", fileNameArray, projectid, zoneid, timestamp);
+      }
     });
-
-    console.log("ini " + zoneid + " ini ");
-    socket.emit("fileNameArray", fileNameArray, zoneid, timestamp);
-
-
 
   });
 });
