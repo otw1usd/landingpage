@@ -321,6 +321,18 @@ h3, h6 {
   font-size: 0.75rem;
 }
 
+/* Toggle View Vertical  */
+.view-vertical-div {
+  text-align: center;
+  max-height: 0;
+  overflow: hidden;
+  padding-top: 0.5rem;
+}
+
+.view-vertical-div-active {
+  max-height: 100%;
+}
+
 /* Bagian hotspot 360 */
 .scenes-padding {
   padding: 0;
@@ -714,8 +726,7 @@ h3, h6 {
   z-index: 2;
 }
 
-.field-photo-grid-bg {
-}
+.field-photo-grid-bg {}
 
 .field-photo-grid-bg-active {
   background-color: #000;

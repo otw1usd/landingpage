@@ -97,17 +97,17 @@ document.querySelectorAll(".close-foto-gamtek-button").forEach(button => {
 
 
 // Input timestamp dari client-side
-
-document.querySelector(".toggle-client-side-input-timestamp").addEventListener("click", () => {
+function toggleClientSideInputTimestamp() {
   document.querySelector(".client-side-input-timestamp").classList.toggle("client-side-input-timestamp-active");
   document.querySelector(".client-side-input-timestamp").classList.toggle("client-side-input-timestamp-inactive");
-});
+}
+
 
 // Input project zone dari client-side
-document.querySelector(".toggle-client-side-input-projectzone").addEventListener("click", () => {
+function toggleClientSideInputProjectZone() {
   document.querySelector(".client-side-input-projectzone").classList.toggle("client-side-input-projectzone-active");
   document.querySelector(".client-side-input-projectzone").classList.toggle("client-side-input-projectzone-inactive");
-});
+}
 
 function bukatutup() {
   var okedekalogitu = document.getElementById("anjinglah");
@@ -229,9 +229,36 @@ function bukatutupuploadgamtek(e, f) {
 }
 
 
-
 //input drone data
-document.querySelector(".toggle-client-side-input-dronedata").addEventListener("click", () => {
+function toggleClientSideInputDroneData() {
   document.querySelector(".input-drone-data-div").classList.toggle("input-drone-data-inactive");
   document.querySelector(".input-drone-data-div").classList.toggle("input-drone-data-active");
-});
+}
+
+// Toggle tambah username
+function addUsername(button) {
+  button.nextElementSibling.classList.toggle("add-username-form-active");
+}
+
+//Toggle View Vertical
+let storyIndicator = 1;
+let viewVerticalIndicator = 1;
+
+function viewVertical() {
+  document.querySelector(".view-vertical-div").classList.toggle("view-vertical-div-active");
+  document.querySelector(".current-story").innerHTML = "Lantai " + storyIndicator;
+
+  if (viewVerticalIndicator === 1) {
+    document.querySelector(".up-one-story").addEventListener("click", () => {
+      storyIndicator = storyIndicator + 1;
+      document.querySelector(".current-story").innerHTML = "Lantai " + storyIndicator;
+    });
+
+    document.querySelector(".down-one-story").addEventListener("click", () => {
+      storyIndicator = storyIndicator - 1;
+      document.querySelector(".current-story").innerHTML = "Lantai " + storyIndicator;
+    });
+
+    viewVerticalIndicator = 0;
+  }
+}

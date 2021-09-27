@@ -581,6 +581,27 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   margin-bottom: 0;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
+.add-username {
+  margin: 0.5rem 0;
+}
+
+.input-username {
+  margin-bottom: 0.5rem;
+}
+
+.add-username-form {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.add-username-form-active {
+  max-height: 100%;
+}
+
 /* Log In Page */
 .html-login {
   height: 100%;
