@@ -48,7 +48,6 @@ const projectschema = new mongoose.Schema({
     progrestotal : {
         type: String, //artinya harus diisi
         //tambah validasi
-        //owner username
     },
     
     timestampproject1 : {
@@ -59,15 +58,13 @@ const projectschema = new mongoose.Schema({
         type: String,
     },
 
-    konsultan : {
-        //consultant
-        type: String,
-    },
+    consultant :[],
 
-    kontraktor : {
-        //contractor
-        type: String,
-    }    
+    contractor : [],
+    
+    droneengineer:[],
+    
+    member : []
 
 })
 

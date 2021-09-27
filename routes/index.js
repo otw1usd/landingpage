@@ -122,9 +122,13 @@ router.get('/project/:oit', ensureAuthenticated, async (req, res, next) => {
       company: req.user.company,
       user: req.user,
       project,
+      consultants: project.consultant,
+      contractors: project.contractor,
+      droneengineers: project.droneengineer,
+      members: project.member,
       commentprojects,
       commentreplyprojects,
-      layout: 'layout-account',
+      layout: 'layout-account'
     });
   } catch (err) {
     next(err);
@@ -525,7 +529,8 @@ router.post('/registerproject', uploadPeta, (req, res) => {
     username,
     progrestotal,
     latInit,
-    lngInit
+    lngInit,
+    consultant
   } = req.body;
   let errors = [];
 
@@ -546,7 +551,8 @@ router.post('/registerproject', uploadPeta, (req, res) => {
           projectUsername,
           projectPassword,
           username,
-          progrestotal
+          progrestotal,
+          consultant
         });
       } else {
         const newProject = new Project({
@@ -558,7 +564,8 @@ router.post('/registerproject', uploadPeta, (req, res) => {
           projectUsername,
           projectPassword,
           username,
-          progrestotal
+          progrestotal,
+          consultant
         });
 
         newProject.save()
@@ -967,6 +974,259 @@ router.delete('/comment', async (req, res) => {
 //   const timeStamp = req.body.timestamp;
 // });
 
+
+//username settings
+//consultant
+router.put('/addconsultant', async (req, res) => {
+  const {
+      projectid,
+      consultant
+    } = req.body;
+    
+    const project = await Project.findOne({
+      _id: projectid
+    })
+    .then(project => {
+      return project
+    });
+    var newListConsultants=project.consultant;
+    newListConsultants.push(consultant);
+    Project.updateOne({
+      _id: projectid
+    }, {
+      $set: {
+        consultant: newListConsultants
+      },
+    }, function() {});
+    setTimeout(() => {
+      req.flash('success_msg', 'Data Project berhasil diubah!');
+      res.redirect('/project/'+projectid);
+    }, 1000);
+  });
+
+  router.delete('/consultant', async (req, res) => {
+    const {
+      consultant,
+      projectid
+    } = req.body;
+    const project = await Project.findOne({
+      _id: projectid
+    })
+    .then(project => {
+      return project
+    });
+    var oldListConsultants = project.consultant;
+    var newListConsultants=[];
+
+    oldListConsultants.forEach((oldConsultant)=> {
+      if (oldConsultant === consultant) {
+        
+      } else {
+        newListConsultants.push(oldConsultant)
+      }
+    });
+    
+    Project.updateOne({
+      _id: projectid
+    }, {
+      $set: {
+        consultant: newListConsultants
+      },
+    }, function() {});
+    setTimeout(() => {
+      req.flash('success_msg', 'Data Project berhasil diubah!');
+      res.redirect('/project/'+projectid);
+    }, 1000);
+  });
+
+  //contractor
+router.put('/addcontractor', async (req, res) => {
+  const {
+      projectid,
+      contractor
+    } = req.body;
+    
+    const project = await Project.findOne({
+      _id: projectid
+    })
+    .then(project => {
+      return project
+    });
+    var newListContractors=project.contractor;
+    newListContractors.push(contractor);
+    Project.updateOne({
+      _id: projectid
+    }, {
+      $set: {
+        contractor: newListContractors
+      },
+    }, function() {});
+    setTimeout(() => {
+      req.flash('success_msg', 'Data Project berhasil diubah!');
+      res.redirect('/project/'+projectid);
+    }, 1000);
+  });
+
+  router.delete('/contractor', async (req, res) => {
+    const {
+      contractor,
+      projectid
+    } = req.body;
+    const project = await Project.findOne({
+      _id: projectid
+    })
+    .then(project => {
+      return project
+    });
+    var oldListContractors = project.contractor;
+    var newListContractors=[];
+
+    oldListContractors.forEach((oldContractor)=> {
+      if (oldContractor === contractor) {
+        
+      } else {
+        newListContractors.push(oldContractor)
+      }
+    });
+    
+    Project.updateOne({
+      _id: projectid
+    }, {
+      $set: {
+        contractor: newListContractors
+      },
+    }, function() {});
+    setTimeout(() => {
+      req.flash('success_msg', 'Data Project berhasil diubah!');
+      res.redirect('/project/'+projectid);
+    }, 1000);
+  });
+
+  //droneengineer
+router.put('/adddroneengineer', async (req, res) => {
+  const {
+      projectid,
+      droneengineer
+    } = req.body;
+    
+    const project = await Project.findOne({
+      _id: projectid
+    })
+    .then(project => {
+      return project
+    });
+    var newListDroneengineers=project.droneengineer;
+    newListDroneengineers.push(droneengineer);
+    Project.updateOne({
+      _id: projectid
+    }, {
+      $set: {
+        droneengineer: newListDroneengineers
+      },
+    }, function() {});
+    setTimeout(() => {
+      req.flash('success_msg', 'Data Project berhasil diubah!');
+      res.redirect('/project/'+projectid);
+    }, 1000);
+  });
+
+  router.delete('/droneengineer', async (req, res) => {
+    const {
+      droneengineer,
+      projectid
+    } = req.body;
+    const project = await Project.findOne({
+      _id: projectid
+    })
+    .then(project => {
+      return project
+    });
+    var oldListDroneengineers = project.droneengineer;
+    var newListDroneengineers=[];
+
+    oldListDroneengineers.forEach((oldDroneengineer)=> {
+      if (oldDroneengineer === droneengineer) {
+        
+      } else {
+        newListDroneengineers.push(oldDroneengineer)
+      }
+    });
+    
+    Project.updateOne({
+      _id: projectid
+    }, {
+      $set: {
+        droneengineer: newListDroneengineers
+      },
+    }, function() {});
+    setTimeout(() => {
+      req.flash('success_msg', 'Data Project berhasil diubah!');
+      res.redirect('/project/'+projectid);
+    }, 1000);
+  });
+
+  //member
+router.put('/addmember', async (req, res) => {
+  const {
+      projectid,
+      member
+    } = req.body;
+    
+    const project = await Project.findOne({
+      _id: projectid
+    })
+    .then(project => {
+      return project
+    });
+    var newListMembers=project.member;
+    newListMembers.push(member);
+    Project.updateOne({
+      _id: projectid
+    }, {
+      $set: {
+        member: newListMembers
+      },
+    }, function() {});
+    setTimeout(() => {
+      req.flash('success_msg', 'Data Project berhasil diubah!');
+      res.redirect('/project/'+projectid);
+    }, 1000);
+  });
+
+  router.delete('/member', async (req, res) => {
+    const {
+      member,
+      projectid
+    } = req.body;
+    const project = await Project.findOne({
+      _id: projectid
+    })
+    .then(project => {
+      return project
+    });
+    var oldListMembers = project.member;
+    var newListMembers=[];
+
+    oldListMembers.forEach((oldMember)=> {
+      if (oldMember === member) {
+        
+      } else {
+        newListMembers.push(oldMember)
+      }
+    });
+    
+    Project.updateOne({
+      _id: projectid
+    }, {
+      $set: {
+        member: newListMembers
+      },
+    }, function() {});
+    setTimeout(() => {
+      req.flash('success_msg', 'Data Project berhasil diubah!');
+      res.redirect('/project/'+projectid);
+    }, 1000);
+  });
 
 
 module.exports = router;

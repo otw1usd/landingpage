@@ -181,7 +181,6 @@ document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
         fileNameArray.forEach(fileName => {
           document.querySelector('.fieldphotooowIndicatorApus').innerHTML += '<div class="col-4 field-photo-grid"><img onclick="fieldPhotoFullscreen(this)" style="height: auto; width: 100%;" src="/project/612720d418854b2fa4a56e27/fieldphoto/' + zoneid + '/' + timestamp + '/compressedfieldphoto/' + fileName + '" alt=""></div>';
         });
-        console.log(projectid);
         fileNameArray.length = 0;
       });
       oowIndicator = 1;

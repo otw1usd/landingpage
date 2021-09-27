@@ -58,12 +58,12 @@ const fieldphotoresize = async (a,b) => {
   });
   };
 
-const textOverlay = async(a)=> {
-  const font = await Jimp.loadFont(Jimp.FONT_SANS_16_BLACK);
+const textOverlay = async (a)=> {
+  const font = await Jimp.loadFont('./node_modules/jimp/fonts/open-sans/open-sans-32-black/open-sans-32-black.fnt');
   const image = await Jimp.read(a);
-  console.log(image._exif.tags.DateTimeOriginal);
-
-  image.print(font, 10, 10, 'OMGGGGGG');
+  image.print(font, 10, 10, "AAAAaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+  console.log('watermark exif created');
+  
 };
 
 
