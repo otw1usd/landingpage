@@ -161,19 +161,27 @@ function bukatutupfieldphoto(e, f) {
 }
 
 let oowIndicator = 0;
+async function getprojectid() {
+  return document.getElementById("projectid");
+};
 
 document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
   button.addEventListener("click", async () => {
     let zoneid = document.querySelector(".zoneid-openfieldphotoclient").value;
+    let projectid = await getprojectid();
+    let projectidvalue = await getprojectid().value;
     let timestamp = document.querySelector(".timestamp-openfieldphotoclient").value;
+    console.log(projectid);
+    console.log(projectidvalue);
     if (oowIndicator === 0) {
 
-      await socket.emit("fieldPhotoData", zoneid, timestamp, oowIndicator);
+      await socket.emit("fieldPhotoData", zoneid, timestamp, oowIndicator, projectid);
       socket.on("fileNameArray", (fileNameArray, projectid, zoneid, timestamp) => {
 
         fileNameArray.forEach(fileName => {
-          document.querySelector('.fieldphotooowIndicatorApus').innerHTML += '<div class="col-4 field-photo-grid"><img onclick="fieldPhotoFullscreen(this)" style="height: auto; width: 100%;" src="/project/' + projectid + '/fieldphoto/' + zoneid + '/' + timestamp + '/' + fileName + '" alt=""></div>';
+          document.querySelector('.fieldphotooowIndicatorApus').innerHTML += '<div class="col-4 field-photo-grid"><img onclick="fieldPhotoFullscreen(this)" style="height: auto; width: 100%;" src="/project/612720d418854b2fa4a56e27/fieldphoto/' + zoneid + '/' + timestamp + '/compressedfieldphoto/' + fileName + '" alt=""></div>';
         });
+        console.log(projectid);
         fileNameArray.length = 0;
       });
       oowIndicator = 1;
@@ -190,10 +198,13 @@ document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
 //Buka foto jadi fullscreen
 function fieldPhotoFullscreen(img) {
   const src = img.src;
+  const srcsplitfirst = src.split("/");
+  const srcnotcompressed = srcsplitfirst[0]+'//'+srcsplitfirst[1]+'/'+srcsplitfirst[2]+'/'+srcsplitfirst[3]+'/'+srcsplitfirst[4]+'/'+srcsplitfirst[5]+'/'+srcsplitfirst[6]+'/'+srcsplitfirst[7]+'/'+srcsplitfirst[9];
+  
   document.querySelector(".field-photo-fullscreen-super-div").innerHTML = `
     <div class="field-photo-fullscreen-div">
       <div class="field-photo-fullscreen-content">
-        <img src="${src}" style="width: auto; height: 600px;">
+        <img src="${srcnotcompressed}" style="width: auto; height: 600px;">
       </div>
       <div class="field-photo-fullscreen-bg">
       </div>

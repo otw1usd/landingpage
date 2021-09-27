@@ -281,49 +281,15 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
         timestamp
       });
       await multipleFieldPhotos.save();
-      const fieldphotodest = element.destination+'/'+element.destination;
-      fieldphotoresize(element.destination, element.destination);
+      const fieldphotodest = element.destination+'/'+element.filename;
+      console.log(fieldphotodest);
+      fieldphotoresize(element.destination, element.filename);
       watermarklogo(fieldphotodest);
+      textOverlay(fieldphotodest);
     });
     res.redirect('/projectindex/' + req.body.projectid);
     req.flash('success_msg', 'Images Uploaded Successfully');
   });
-
-// drone images
-// const DroneImagesStorage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/'+req.body.zoom)
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, file.originalname);
-//   },
-// });
-
-// for (let i = 13; i < 23; i++) {
-//   const uploadDroneImages+i = multer({
-//     storage: DroneImagesStorage
-//   }).array('image'+i, 100);
-// };
-
-// function createZoomDroneImagesLoop(a){
-//   for ( i=13; i<=23; i++ ){
-//         var str =a+i+" = undefined";
-//         str=multer({
-//           storage: multer.diskStorage({
-//             destination: (req, file, cb) => {
-//               cb(null, './public/project/'+req.body.projectid+'/drone/'+req.body.timestamp+'/'+i)
-//             },
-//             filename: (req, file, cb) => {
-//               cb(null, file.originalname);
-//             },
-//           })
-//         }).array('image'+i,1);
-//         eval(str);
-//         console.log('cek: '+str)
-//     }
-// };
-// createZoomDroneImagesLoop('uploadDroneImages');
-
 
 const DroneImagesStorage = multer.diskStorage({
   destination: (req, file, cb) => {

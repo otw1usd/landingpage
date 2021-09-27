@@ -28,8 +28,8 @@ const FieldPhoto = require(__dirname + '/model/fieldphoto.js');
 
 io.on('connection', socket => {
 
-  socket.on("fieldPhotoData", async (zoneid, timestamp, oowIndicator) => {
-
+  socket.on("fieldPhotoData", async (zoneid, timestamp, oowIndicator, projectid) => {
+    let projectidd=projectid;
     let fileNameArray = [];
     const fileName = await FieldPhoto.find({
       projectzone: zoneid,
@@ -40,7 +40,7 @@ io.on('connection', socket => {
       });
 
       if (photos.length !== 0) {
-        const projectid = photos[0]._id;
+        const projectid = projectidd;
        console.log("1");
        socket.emit("fileNameArray", fileNameArray, projectid, zoneid, timestamp);
       } else {
