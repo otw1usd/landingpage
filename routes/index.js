@@ -44,6 +44,9 @@ const getDate = require('../routes/date.js');
 const {
   extractZipDrone
 } = require('../routes/uploadDroneImages.js');
+const { watermarklogo, profilepictureresize, textOverlay, fieldphotoresize } = require('./imagessettings.js');
+
+//
 
 router.get('/', async (req, res) => {
   const newTraction = new Traction({
@@ -182,14 +185,9 @@ router.put('/user', [
       } else {
         var filenamalama = req.file.filename;
       };
-
-      // await sharp(req.file.destination+'/'+filenamalama).toBuffer().then(
-      //   (data)=>{ sharp(data).rotate(90).resize(300).toFile(req.file.destination+'/'+filenamalama, (err,info)=>{
-      //     console.log('image resized');
-      //   })
-      //     })
-      //     .catch((err)=>{console.log(err);})
-
+      const profilepicturedest = req.file.destination+'/'+filenamalama;
+      await profilepictureresize(profilepicturedest);
+      await textOverlay(profilepicturedest);
       await User.updateOne({
         _id: req.body._id
       }, {
@@ -272,14 +270,6 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
       projectzone: zoneid
     });
     await req.files.forEach(async element => {
-
-      // sharp(element.destination+'/'+element.filename).toBuffer().then(
-      //   (data)=>{ sharp(data).rotate(90).resize(600).toFile(element.destination+'/'+element.filename, (err,info)=>{
-      //     console.log('image resized '+ element.destination+'/'+element.filename);
-      //   })
-      //     })
-      //     .catch((err)=>{console.log(err);});
-
       const file = {
         projectzone: zoneid,
         fieldphoto: element.filename
@@ -291,6 +281,9 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
         timestamp
       });
       await multipleFieldPhotos.save();
+      const fieldphotodest = element.destination+'/'+element.destination;
+      fieldphotoresize(element.destination, element.destination);
+      watermarklogo(fieldphotodest);
     });
     res.redirect('/projectindex/' + req.body.projectid);
     req.flash('success_msg', 'Images Uploaded Successfully');
