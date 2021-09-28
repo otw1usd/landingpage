@@ -165,7 +165,7 @@ document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
     let zoneid = document.querySelector(".zoneid-openfieldphotoclient").value;
     let projectid = document.querySelector(".getProjectId").value;
     let timestamp = document.querySelector(".timestamp-openfieldphotoclient").value;
-    let story = document.querySelector(".story-openfieldphotoclient").value;
+    let story = document.querySelector(".story-openfieldphotoclient").getAttribute("value");
     console.log('ini story ke ' + story);
 
     await socket.emit("fieldPhotoData", zoneid, timestamp);
