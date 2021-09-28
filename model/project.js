@@ -64,7 +64,11 @@ const projectschema = new mongoose.Schema({
     
     droneengineer:[],
     
-    member : []
+    member : [],
+
+    storyMax : {},
+
+    storyMin : {}
 
 })
 

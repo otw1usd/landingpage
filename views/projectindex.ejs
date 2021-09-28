@@ -53,11 +53,13 @@
           <button class="btn btn-outline-warning btn-sm btn-block toggle-client-side-input-projectzone" onclick="toggleClientSideInputProjectZone()">Input Project Zone</button>
           <button class="btn btn-outline-warning btn-sm btn-block toggle-client-side-input-dronedata" onclick="toggleClientSideInputDroneData()">Input Drone Data</button>
           <button class="btn btn-outline-warning btn-sm btn-block toggle-client-side-input-viewvertical" onclick="viewVertical()">View Vertical</button>
+          <div class="story-openfieldphotoclient" id="story-openfieldphotoclient" value=""></div>
           <div class="view-vertical-div">
             <button type="button" class="btn btn-outline-warning btn-sm up-one-story">up</button>
             <h1 class="font-1-rem current-story">Lantai 1</h1>
             <button type="button" class="btn btn-outline-warning btn-sm down-one-story">down</button>
           </div>
+          //kasi button tambah story ke atas dan ke bawah-> trus masuk ke database story max dan min
 
         </div>
 
@@ -91,6 +93,12 @@
 
             <label for="zoneLng">Zone longitude :</label>
             <input class="sign-up-box" id="zoneLng" style="color:red" name="zoneLng" value="Please move the red point" /><br />
+
+            <label for="storyMax">Highest Story :</label>
+            <input class="sign-up-box" id="storyMax" style="color:red" name="storyMax" value="1" /><br />
+
+            <label for="storyMin">Lowest Story :</label>
+            <input class="sign-up-box" id="storyMin" style="color:red" name="storyMin" value="1" /><br />
 
             <div class="btn-center">
               <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Zone</button>
@@ -157,6 +165,7 @@
         <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
         <input type="hidden" id="zoneid-uploadfieldphotoclient" name="zoneid" value="" />
         <input type="hidden" id="timestamp-uploadfieldphotoclient" name="timestamp" value="" />
+        <input type="hidden" id="story-uploadfieldphotoclient" name="story" value="" />
         <label for="image">Upload Field Photos :</label>
         <div class="add-field-photo-button-div">
           <input type="file" class="add-field-photo-button" name="image" multiple />

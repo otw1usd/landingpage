@@ -131,6 +131,7 @@ async function toggleOverlay(element) {
 
   var projectzoneDataNotPromise = await getProjectZone();
   var projectzoneDataLength = projectzoneDataNotPromise.length;
+  console.log(storyIndicator);
 
 
   for (let i = 0; i < projectzoneDataLength; i++) {
@@ -140,6 +141,7 @@ async function toggleOverlay(element) {
         '<div id="siteNotice">' +
         "</div>" +
         '<h1 id="firstHeading" class="firstHeading">'+projectzoneDataEach.detailzona+'</h1>' +
+        '<h2 id="firstHeading" class="firstHeading">Lantai '+storyIndicator+'</h1>' +
 
         '<div id="bodyContent">' +
 
@@ -182,7 +184,7 @@ async function toggleOverlay(element) {
         "</div>";
 
 
-    const marker = new google.maps.Marker({
+    var marker = new google.maps.Marker({
       position: {
         lat: parseFloat(projectzoneDataEach.zoneLat),
         lng: parseFloat(projectzoneDataEach.zoneLng)
@@ -197,7 +199,7 @@ async function toggleOverlay(element) {
       animation: google.maps.Animation.DROP
     });
 
-    const infowindow = new google.maps.InfoWindow({
+    var infowindow = new google.maps.InfoWindow({
       content: content,
       maxWidth: 200,
     });
@@ -210,11 +212,19 @@ async function toggleOverlay(element) {
       });
     });
 
+
     for (let x = 0; x < document.querySelectorAll(".time-stamp-button").length; x++) {
       document.querySelector("#radio-" + x).addEventListener("click", function() {
         infowindow.close();
       });
-    }
+    };
+
+    document.querySelector(".up-one-story").addEventListener("click", function() {
+      infowindow.close();
+    });
+    document.querySelector(".down-one-story").addEventListener("click", function() {
+      infowindow.close();
+    });
 
   };
 }

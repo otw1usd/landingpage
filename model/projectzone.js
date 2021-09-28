@@ -23,6 +23,13 @@ const projectzoneschema = new mongoose.Schema({
         type:String,
     },
 
+    storyMax :{
+        type:Number,
+    },
+    storyMin :{
+        type:Number,
+    },
+
 })
 
 

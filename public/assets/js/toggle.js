@@ -154,7 +154,7 @@ function bukatutupfieldphoto(e, f) {
   document.querySelector('.filter-field-photo').classList.toggle("filter-field-photo-active");
   document.querySelector('.filter-field-photo').classList.toggle("filter-field-photo-inactive");
 
-  document.querySelector(".filter-field-photo-heading").innerHTML = "Filter Field Photo KM-" + e;
+  document.querySelector(".filter-field-photo-heading").innerHTML = "Filter Field Photo Zone" + e;
   ambilzoneid(e);
   ambiltimestamp(f);
 
@@ -165,12 +165,14 @@ document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
     let zoneid = document.querySelector(".zoneid-openfieldphotoclient").value;
     let projectid = document.querySelector(".getProjectId").value;
     let timestamp = document.querySelector(".timestamp-openfieldphotoclient").value;
+    let story = document.querySelector(".story-openfieldphotoclient").value;
+    console.log('ini story ke '+story);
 
     await socket.emit("fieldPhotoData", zoneid, timestamp);
     setTimeout(
       socket.on("fileNameArray", (fileNameArray, zoneid, timestamp) => {
         fileNameArray.forEach(fileName => {
-          document.querySelector('.field-photo-grid-div').innerHTML += '<div class="col-4 field-photo-grid"><img onclick="fieldPhotoFullscreen(this)" style="height: auto; width: 100%;" src="/project/' + projectid + '/fieldphoto/' + zoneid + '/' + timestamp + '/compressedfieldphoto/' + fileName + '" alt="">';
+          document.querySelector('.field-photo-grid-div').innerHTML += '<div class="col-4 field-photo-grid"><img onclick="fieldPhotoFullscreen(this)" style="height: auto; width: 100%;" src="/project/' + projectid + '/fieldphoto/' + zoneid + '/' + story + '/' + timestamp + '/compressedfieldphoto/' + fileName + '" alt="">';
         });
         fileNameArray.length = 0;
       }), 0);
@@ -193,7 +195,8 @@ document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
 function fieldPhotoFullscreen(img) {
   const src = img.src;
   const srcsplitfirst = src.split("/");
-  const srcnotcompressed = srcsplitfirst[0] + '//' + srcsplitfirst[1] + '/' + srcsplitfirst[2] + '/' + srcsplitfirst[3] + '/' + srcsplitfirst[4] + '/' + srcsplitfirst[5] + '/' + srcsplitfirst[6] + '/' + srcsplitfirst[7] + '/' + srcsplitfirst[9];
+  const srcnotcompressed = srcsplitfirst[0] + '//' + srcsplitfirst[1] + '/' + srcsplitfirst[2] + '/' + srcsplitfirst[3] + '/' + srcsplitfirst[4] + '/' + srcsplitfirst[5] + '/' + srcsplitfirst[6] + '/' + srcsplitfirst[7] + '/' + srcsplitfirst[8] + '/' + srcsplitfirst[10];
+  console.log('ini src  '+src);
 
   document.querySelector(".field-photo-fullscreen-super-div").innerHTML = `
     <div class="field-photo-fullscreen-div">
@@ -243,6 +246,8 @@ function addUsername(button) {
 //Toggle View Vertical
 let storyIndicator = 1;
 let viewVerticalIndicator = 1;
+let storyIndicatorMax = 2;
+let storyIndicatorMin = 1;
 
 function viewVertical() {
   document.querySelector(".view-vertical-div").classList.toggle("view-vertical-div-active");
@@ -252,11 +257,21 @@ function viewVertical() {
     document.querySelector(".up-one-story").addEventListener("click", () => {
       storyIndicator = storyIndicator + 1;
       document.querySelector(".current-story").innerHTML = "Lantai " + storyIndicator;
+      const element = {value:waktuOnScreen };
+      toggleOverlay(element);
+      document.querySelector(".story-openfieldphotoclient").value = storyIndicator; // gakedetect lagii
+      document.getElementById("story-uploadfieldphotoclient").value = storyIndicator;
+      // if (storyIndicator === storyIndicatorMax) {toggle up jadi inactive}else {toggle up button jd active};
     });
 
     document.querySelector(".down-one-story").addEventListener("click", () => {
       storyIndicator = storyIndicator - 1;
       document.querySelector(".current-story").innerHTML = "Lantai " + storyIndicator;
+      const element = {value:waktuOnScreen };
+      toggleOverlay(element);
+      document.querySelector("story-openfieldphotoclient").value = storyIndicator;
+      document.getElementById("story-uploadfieldphotoclient").value = storyIndicator;
+      // if (storyIndicator === storyIndicatorMin) {toggle down jadi inactive}else {toggle down button jd active};
     });
 
     viewVerticalIndicator = 0;

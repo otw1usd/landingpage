@@ -17,18 +17,20 @@ const addZoneData = (a,data) => {
     datas[2].push(data);
     saveZoneData(a,datas);
     const datazoneid = data.zoneid;
-    const fieldphotoZoneFolder = './public/project/'+a+'/fieldphoto/'+datazoneid;
-    fs.mkdir(fieldphotoZoneFolder, {recursive: true}, err => {});
-    datas[1].forEach(async element => {
-        const timestampDate= await new Date(element.timestampproject);
-        const timestampExist = await getDate.getNumericValue(timestampDate).split("/").join("_");
-        const fieldphotodirPath = './public/project/'+a+'/fieldphoto/'+datazoneid+'/'+timestampExist;
-        fs.mkdir(fieldphotodirPath, {recursive: true}, err => {});
-    });
-    const drawingZoneFolder = './public/project/'+a+'/drawing/'+datazoneid;
-    fs.mkdir(drawingZoneFolder, {recursive: true}, err => {});
-
+    for (let story = data.storyMin; story <= data.storyMax; story++) {
+        const fieldphotoZoneFolder = './public/project/'+a+'/fieldphoto/'+datazoneid+'/'+story;
+        fs.mkdir(fieldphotoZoneFolder, {recursive: true}, err => {});
+        datas[1].forEach(async element => {
+            const timestampDate= await new Date(element.timestampproject);
+            const timestampExist = await getDate.getNumericValue(timestampDate).split("/").join("_");
+            const fieldphotodirPath = './public/project/'+a+'/fieldphoto/'+datazoneid+'/'+story+'/'+timestampExist;
+            fs.mkdir(fieldphotodirPath, {recursive: true}, err => {});
+        });
+        const drawingZoneFolder = './public/project/'+a+'/drawing/'+datazoneid+'/'+story;
+        fs.mkdir(drawingZoneFolder, {recursive: true}, err => {});
+    };
 };
+
 
 const addTimeStamp=(a, data)=>{
     const datas = loadMaps(a);
@@ -43,8 +45,10 @@ const addTimeStamp=(a, data)=>{
     fs.mkdir(dronedirPath, {recursive: true}, err => {});
     datas[2].forEach(element => {
         const zoneidExist = element.zoneid;
-        const fieldphotodirPath = './public/project/'+a+'/fieldphoto/'+zoneidExist+'/'+newTimestamp;
-        fs.mkdir(fieldphotodirPath, {recursive: true}, err => {});
+        for (let story = element.storyMin; story <= element.storyMax; story++) {
+            const fieldphotodirPath = './public/project/'+a+'/fieldphoto/'+zoneidExist+'/'+story+'/'+newTimestamp;
+            fs.mkdir(fieldphotodirPath, {recursive: true}, err => {});
+        };
         });
 }
 

@@ -191,7 +191,6 @@ router.put('/user', [
       };
       const profilepicturedest = req.file.destination+'/'+filenamalama;
       await profilepictureresize(profilepicturedest);
-      await textOverlay(profilepicturedest);
       await User.updateOne({
         _id: req.body._id
       }, {
@@ -243,7 +242,7 @@ router.get('/admin/:name', adminEnsureAuthenticated, async (req, res) => {
 //field photo zone
 const FieldPhotoStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './public/project/' + req.body.projectid + '/fieldphoto/' + req.body.zoneid + '/' + req.body.timestamp)
+    cb(null, './public/project/' + req.body.projectid + '/fieldphoto/' + req.body.zoneid + '/' + req.body.story + '/' + req.body.timestamp)
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + '-' + req.body.zoneid + '-' + file.originalname);
@@ -264,7 +263,8 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
     const {
       zoneid,
       projectid,
-      timestamp
+      timestamp,
+      story
     } = req.body;
 
     var listzonanows = await ProjectZone.findOne({
@@ -289,7 +289,7 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
       console.log(fieldphotodest);
       fieldphotoresize(element.destination, element.filename);
       watermarklogo(fieldphotodest);
-      textOverlay(fieldphotodest);
+      // textOverlay(fieldphotodest);
     });
     res.redirect('/projectindex/' + req.body.projectid);
     req.flash('success_msg', 'Images Uploaded Successfully');
@@ -589,6 +589,8 @@ router.post('/tambahzona', async (req, res, next) => {
       zoneid,
       zoneLat,
       zoneLng,
+      storyMax,
+      storyMin  
     } = req.body;
     await Project.findOne({
         _id: projectid
@@ -604,7 +606,9 @@ router.post('/tambahzona', async (req, res, next) => {
           detailzona,
           zoneid,
           zoneLat,
-          zoneLng
+          zoneLng,
+          storyMax,
+          storyMin
         };
         addZoneData(projectid, newContentZoneData);
         newZone.save();
