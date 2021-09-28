@@ -85,5 +85,5 @@ app.use((req, res, next) => {
 app.use('/', require('./routes/index'));
 
 server.listen(port, () => {
-  console.log(`AMATI User Database | listening at http://localhost:${port}`);
+  console.log(`AMATI | listening at http://localhost:${port}`);
 });

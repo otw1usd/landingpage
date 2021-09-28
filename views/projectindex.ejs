@@ -177,13 +177,14 @@
     </div>
 
     <div class="floating-panel add-gamtek add-gamtek-inactive">
-      <form class="sign-up-form" action="uploadgamtek" method="POST" enctype="multipart/form-data">
+      <form class="sign-up-form" action="/uploadgamtekclient?_method=PUT" method="POST" enctype="multipart/form-data">
         <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
         <input type="hidden" id="zoneid-uploadgamtekclient" name="zoneid" value="" />
-        <input type="hidden" id="story-uploadgamtekclient" name="story" value="" />
+        <input type="hidden" id="story-uploadgamtekclient" name="story" value="1" />
+        <input type="hidden" id="category-uploadgamtekclient" name="category" value="STR/ARS/MEP"/>
         <label for="image">Upload Construction Drawing :</label>
         <div class="add-gamtek-button-div">
-          <input type="file" class="add-gamtek-button" name="image" multiple />
+          <input type="file" class="add-gamtek-button" name="gamtek" />
           <div class="btn-center">
             <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Drawing</button>
           </div>

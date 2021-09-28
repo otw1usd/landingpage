@@ -196,7 +196,6 @@ function fieldPhotoFullscreen(img) {
   const src = img.src;
   const srcsplitfirst = src.split("/");
   const srcnotcompressed = srcsplitfirst[0] + '//' + srcsplitfirst[1] + '/' + srcsplitfirst[2] + '/' + srcsplitfirst[3] + '/' + srcsplitfirst[4] + '/' + srcsplitfirst[5] + '/' + srcsplitfirst[6] + '/' + srcsplitfirst[7] + '/' + srcsplitfirst[8] + '/' + srcsplitfirst[10];
-  console.log('ini src  ' + src);
 
   document.querySelector(".field-photo-fullscreen-super-div").innerHTML = `
     <div class="field-photo-fullscreen-div">

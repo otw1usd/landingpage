@@ -45,6 +45,7 @@ const {
   extractZipDrone
 } = require('../routes/uploadDroneImages.js');
 const { watermarklogo, profilepictureresize, textOverlay, fieldphotoresize } = require('./imagessettings.js');
+const { PDFtoPNG } = require('./uploadGamtek.js');
 
 //
 
@@ -323,33 +324,33 @@ router.put('/tambahdroneimagesclient', uploadDroneImage, (req, res) => {
 });
 
  //gamtek
- const GamtekStorage = multer.diskStorage({
+const GamtekStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, './public/project/' + req.body.projectid + '/drawing/' + req.body.zoneid + '/' + req.body.story)
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname)
+    cb(null, req.body.category+'_'+file.originalname)
   }
 });
 
-const uploadGamtek = multer({
+const uploadGamtekClient = multer({
   storage: GamtekStorage
 }).single('gamtek');
 
 //tambah gamtek client
-router.put('/uploadgamtek', uploadGamtek, (req, res) => {
+router.put('/uploadgamtekclient', uploadGamtekClient, async (req, res) => {
   console.log('cekfile: ' + req.file);
   const {
     projectid,
     story,
-    zoneid
+    zoneid,
+    category
   } = req.body;
   console.log(req.body);
   res.redirect('/projectindex/' + req.body.projectid);
   req.flash('success_msg', 'Gamtek Successfully');
-  extractZipGamtek(req.file.destination, req.file.filename);
+  // await PDFtoPNG(req.file.destination, req.file.filename);
 });
-
 
 //register handle
 router.post('/', (req, res) => {
@@ -705,7 +706,6 @@ router.post('/editdatazona', async (req, res, next) => {
   };
 });
 
-
 //register handle
 router.post('/registeradmin', (req, res) => {
   const {
@@ -859,8 +859,6 @@ router.put('/admin', [
 
       // else if req.body.timestampproject === "Bulanan", enddate kurang stardate berapa bulan, trus +1 trus tambahin sampe bulan dari bulan itu
 
-
-
       setTimeout(() => {
         req.flash('success_msg', 'Data Project berhasil diubah!');
         res.redirect('/admin');
@@ -872,9 +870,6 @@ router.put('/admin', [
 
 
 //project
-
-//DISINI AMBIL DATA DARI MAPS.JSON TIMESTAMPNYA? ATAU GAUSAH TPI OVERLAP DI JSON DAN MONGODB
-
 router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, next) => {
   var FieldPhotoArrays = [];
   var monthYearTimeStampProject = [];
@@ -1000,12 +995,6 @@ router.delete('/comment', async (req, res) => {
       res.redirect('/project/' + projectid);
     });
 });
-
-//buka FieldPhoto
-// router.post("/bukafieldphoto", function (req,res) {
-//   const projectZoneId = req.body.zoneid;
-//   const timeStamp = req.body.timestamp;
-// });
 
 
 //username settings

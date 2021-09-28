@@ -140,8 +140,8 @@ async function toggleOverlay(element) {
         '<div id="content">' +
         '<div id="siteNotice">' +
         "</div>" +
-        '<h1 id="firstHeading" class="firstHeading">'+projectzoneDataEach.detailzona+'</h1>' +
-        '<h2 id="firstHeading" class="firstHeading">Lantai '+storyIndicator+'</h1>' +
+        '<h2 id="firstHeading" class="firstHeading">'+projectzoneDataEach.detailzona+'</h1>' +
+        '<h1 id="firstHeading" class="firstHeading">Lantai '+storyIndicator+'</h1>' +
 
         '<div id="bodyContent">' +
 
@@ -170,7 +170,7 @@ async function toggleOverlay(element) {
 
         "<tr>" +
 
-        "<th><button onclick='gamtekSaya(\""+projectzoneDataEach.zoneid+"\")'>Construction Drawing</button><button onclick='bukatutupuploadgamtek(\""+projectzoneDataEach.zoneid+"\", \""+storyIndicator+"\")'>+</button></th>" +
+        "<th><button onclick='gamtekSaya(\""+projectzoneDataEach.zoneid+"\", \""+storyIndicator+"\")'>Construction Drawing</button><button onclick='bukatutupuploadgamtek(\""+projectzoneDataEach.zoneid+"\", \""+storyIndicator+"\")'>+</button></th>" +
 
         "</tr>" +
 

@@ -20,7 +20,7 @@ function myFunction() {
 
 //buka button construction drawing, nnti di upgrade ke location
 
-function gamtekSaya(asd) {
+function gamtekSaya(asd,b) {
 
   if (window.listGamtekSaya === 0) {
 
@@ -33,10 +33,12 @@ function gamtekSaya(asd) {
     document.querySelector('.popupgamtek').innerHTML += '<div class="loopingbatasgamtek"> </div>';
     document.querySelector('.filter-gamtek').innerHTML = '<div class="btn-center row floating-panel"><button class="btn btn-sm btn-outline-warning col-6">Struktur</button><button class="btn btn-sm btn-outline-warning col-6">Arsitektur</button><button class="btn btn-sm btn-outline-warning col-6">Mekanikal Elektrikal</button><button class="btn btn-sm btn-outline-warning col-6">Plumbing</button></div>'
 
-    for (i = 1; i < 5; i++) {
-      //cari code itung jumlah file biar makin auto
-      document.querySelector('.loopingbatasgamtek').innerHTML += '<div class="card border-dark mb-3 row"><div class="card-header">Page' + i + '</div><div class="card-body text-dark"><div class="row"><div class="foto-gamtek col-10"><img class="construction-drawing-small-version" src="/project/' + projectid + '/drawing/' + window.locationOnScreen + '/Original PNG/z0-Page' + i + '.png" alt="Page' + i + '"" id="Page' + i + '" class="list"></div><div class="div-logo-kecil col-2"><img class="logo-kecil" src="/images/download.png" alt="download"><br><img class="logo-kecil" src="/images/print.png" alt="print"><br><img class="logo-kecil" src="/images/share.png" alt="share"></div></div></div></div>';
+  for (i = 1; i <= dirlength; i++) {
+    var drawingCategory = [STR , ARS, MEP];
+    for (dc = 0; dc < 3; dc++){
+      document.querySelector('.loopingbatasgamtek').innerHTML += '<div class="card border-dark mb-3 row"><div class="card-header">Page' + i + '</div><div class="card-body text-dark"><div class="row"><div class="foto-gamtek col-10"><img class="construction-drawing-small-version" name="'+drawingCategory[dc]+'" src="/project/' + projectid + '/drawing/' + window.locationOnScreen + '/'+b+'/'+drawingCategory[dc]+'_z0_Page' + i + '.png" alt="Page' + i + '" id="Page' + i + '" class="list"></div><div class="div-logo-kecil col-2"><img class="logo-kecil" src="/images/download.png" alt="download"><br><img class="logo-kecil" src="/images/print.png" alt="print"><br><img class="logo-kecil" src="/images/share.png" alt="share"></div></div></div></div>';
     }
+  }
 
     var gamtek = document.getElementById("daftarGamtekSaya");
     gamtek.classList.toggle("buka");
