@@ -181,7 +181,7 @@
         <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
         <input type="hidden" id="zoneid-uploadgamtekclient" name="zoneid" value="" />
         <input type="hidden" id="story-uploadgamtekclient" name="story" value="1" />
-        <input type="hidden" id="category-uploadgamtekclient" name="category" value="STR/ARS/MEP"/>
+        <input type="hidden" id="category-uploadgamtekclient" name="category" value="" />
         <label for="image">Upload Construction Drawing :</label>
         <div class="add-gamtek-button-div">
           <input type="file" class="add-gamtek-button" name="gamtek" />
@@ -198,9 +198,9 @@
 
 
     <div class="gamtek col-12" id="gamtek">
+      <div class="filter-gamtek">
+      </div>
       <div class="popupgamtek" id="daftarGamtekSaya">
-        <div class="filter-gamtek">
-        </div>
         <div class="loopingbatasgamtek">
           <div></div> <!-- Dont delete this div row, it is used for DOM -->
         </div>

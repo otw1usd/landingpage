@@ -289,4 +289,4 @@ function viewVertical() {
 
     viewVerticalIndicator = 0;
   }
-}
+} 

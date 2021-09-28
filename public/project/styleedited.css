@@ -374,6 +374,10 @@ h3, h6 {
   width: 50%;
 }
 
+.filter-gamtek {
+  visibility: visible;
+}
+
 /* atur tabel fitur */
 .button-utama {
   position: static;
