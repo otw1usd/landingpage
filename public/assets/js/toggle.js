@@ -166,7 +166,7 @@ document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
     let projectid = document.querySelector(".getProjectId").value;
     let timestamp = document.querySelector(".timestamp-openfieldphotoclient").value;
     let story = document.querySelector(".story-openfieldphotoclient").value;
-    console.log('ini story ke '+story);
+    console.log('ini story ke ' + story);
 
     await socket.emit("fieldPhotoData", zoneid, timestamp);
     setTimeout(
@@ -196,7 +196,7 @@ function fieldPhotoFullscreen(img) {
   const src = img.src;
   const srcsplitfirst = src.split("/");
   const srcnotcompressed = srcsplitfirst[0] + '//' + srcsplitfirst[1] + '/' + srcsplitfirst[2] + '/' + srcsplitfirst[3] + '/' + srcsplitfirst[4] + '/' + srcsplitfirst[5] + '/' + srcsplitfirst[6] + '/' + srcsplitfirst[7] + '/' + srcsplitfirst[8] + '/' + srcsplitfirst[10];
-  console.log('ini src  '+src);
+  console.log('ini src  ' + src);
 
   document.querySelector(".field-photo-fullscreen-super-div").innerHTML = `
     <div class="field-photo-fullscreen-div">
@@ -257,21 +257,35 @@ function viewVertical() {
     document.querySelector(".up-one-story").addEventListener("click", () => {
       storyIndicator = storyIndicator + 1;
       document.querySelector(".current-story").innerHTML = "Lantai " + storyIndicator;
-      const element = {value:waktuOnScreen };
+      const element = {
+        value: waktuOnScreen
+      };
       toggleOverlay(element);
-      document.querySelector(".story-openfieldphotoclient").value = storyIndicator; // gakedetect lagii
-      document.getElementById("story-uploadfieldphotoclient").value = storyIndicator;
-      // if (storyIndicator === storyIndicatorMax) {toggle up jadi inactive}else {toggle up button jd active};
+      document.querySelector(".story-openfieldphotoclient").setAttribute("value", storyIndicator);
+      document.querySelector("#story-uploadfieldphotoclient").value = storyIndicator;
+      if (storyIndicator === storyIndicatorMax) {
+        document.querySelector(".up-one-story").setAttribute("disabled", "");
+        document.querySelector(".down-one-story").removeAttribute("disabled");
+      } else {
+        document.querySelector(".down-one-story").removeAttribute("disabled");
+      }
     });
 
     document.querySelector(".down-one-story").addEventListener("click", () => {
       storyIndicator = storyIndicator - 1;
       document.querySelector(".current-story").innerHTML = "Lantai " + storyIndicator;
-      const element = {value:waktuOnScreen };
+      const element = {
+        value: waktuOnScreen
+      };
       toggleOverlay(element);
-      document.querySelector("story-openfieldphotoclient").value = storyIndicator;
-      document.getElementById("story-uploadfieldphotoclient").value = storyIndicator;
-      // if (storyIndicator === storyIndicatorMin) {toggle down jadi inactive}else {toggle down button jd active};
+      document.querySelector(".story-openfieldphotoclient").setAttribute("value", storyIndicator);
+      document.querySelector("#story-uploadfieldphotoclient").value = storyIndicator;
+      if (storyIndicator === storyIndicatorMin) {
+        document.querySelector(".down-one-story").setAttribute("disabled", "");
+        document.querySelector(".up-one-story").removeAttribute("disabled");
+      } else {
+        document.querySelector(".up-one-story").removeAttribute("disabled");
+      }
     });
 
     viewVerticalIndicator = 0;
