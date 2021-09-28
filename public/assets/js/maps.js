@@ -170,7 +170,7 @@ async function toggleOverlay(element) {
 
         "<tr>" +
 
-        "<th><button onclick='gamtekSaya(\""+projectzoneDataEach.zoneid+"\")'>Construction Drawing</button><button onclick='bukatutupuploadgamtek(\""+projectzoneDataEach.zoneid+"\", \""+waktuOnScreen+"\")'>+</button></th>" +
+        "<th><button onclick='gamtekSaya(\""+projectzoneDataEach.zoneid+"\")'>Construction Drawing</button><button onclick='bukatutupuploadgamtek(\""+projectzoneDataEach.zoneid+"\", \""+storyIndicator+"\")'>+</button></th>" +
 
         "</tr>" +
 
@@ -184,7 +184,7 @@ async function toggleOverlay(element) {
         "</div>";
 
 
-    var marker = new google.maps.Marker({
+    const marker = new google.maps.Marker({
       position: {
         lat: parseFloat(projectzoneDataEach.zoneLat),
         lng: parseFloat(projectzoneDataEach.zoneLng)
@@ -199,7 +199,7 @@ async function toggleOverlay(element) {
       animation: google.maps.Animation.DROP
     });
 
-    var infowindow = new google.maps.InfoWindow({
+    const infowindow = new google.maps.InfoWindow({
       content: content,
       maxWidth: 200,
     });

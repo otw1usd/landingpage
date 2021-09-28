@@ -227,7 +227,7 @@ function bukatutupuploadgamtek(e, f) {
   document.querySelector(".add-gamtek").classList.toggle("add-gamtek-active");
   document.querySelector(".add-gamtek").classList.toggle("add-gamtek-inactive");
   document.getElementById("zoneid-uploadgamtekclient").value = e;
-  document.getElementById("timestamp-uploadgamtekclient").value = f;
+  document.getElementById("story-uploadgamtekclient").value = f;
 
 }
 

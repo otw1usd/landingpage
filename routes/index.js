@@ -295,6 +295,7 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
     req.flash('success_msg', 'Images Uploaded Successfully');
   });
 
+  //droneupload
 const DroneImagesStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, './public/project/' + req.body.projectid + '/drone/' + req.body.timestamp)
@@ -319,6 +320,34 @@ router.put('/tambahdroneimagesclient', uploadDroneImage, (req, res) => {
   res.redirect('/projectindex/' + req.body.projectid);
   req.flash('success_msg', 'Images Uploaded Successfully');
   extractZipDrone(req.file.destination, req.file.filename);
+});
+
+ //gamtek
+ const GamtekStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './public/project/' + req.body.projectid + '/drawing/' + req.body.zoneid + '/' + req.body.story)
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname)
+  }
+});
+
+const uploadGamtek = multer({
+  storage: GamtekStorage
+}).single('gamtek');
+
+//tambah gamtek client
+router.put('/uploadgamtek', uploadGamtek, (req, res) => {
+  console.log('cekfile: ' + req.file);
+  const {
+    projectid,
+    story,
+    zoneid
+  } = req.body;
+  console.log(req.body);
+  res.redirect('/projectindex/' + req.body.projectid);
+  req.flash('success_msg', 'Gamtek Successfully');
+  extractZipGamtek(req.file.destination, req.file.filename);
 });
 
 
