@@ -10,12 +10,14 @@ const {
 
 const passport = require('passport');
 
+// auth
 const {
   ensureAuthenticated
 } = require('../config/auth')
 const {
   adminEnsureAuthenticated
 } = require('../config/adminauth')
+const { projectAuth } = require('../config/projectauth')
 
 //npm function
 const multer = require('multer');
@@ -102,7 +104,7 @@ router.get('/daftarproyek', ensureAuthenticated, async (req, res) => {
   });
 });
 
-router.get('/project/:oit', ensureAuthenticated, async (req, res, next) => {
+router.get('/project/:oit', ensureAuthenticated, projectAuth, async (req, res, next) => {
   try {
     const commentprojects = await Comment.find({
         projectid: req.params.oit
@@ -406,7 +408,6 @@ router.post('/', (req, res) => {
             jobs
           });
         } else {
-
           User.findOne({
               username: username
             })
@@ -427,8 +428,6 @@ router.post('/', (req, res) => {
                   jobs
                 });
               } else {
-
-
                 const newUser = new User({
                   name,
                   username,
@@ -437,7 +436,6 @@ router.post('/', (req, res) => {
                   nohp,
                   company,
                   jobs
-
                 });
                 //hash password
                 bcrypt.genSalt(10, (err, salt) => bcrypt.hash(newUser.password, salt, (err, hash) => {
