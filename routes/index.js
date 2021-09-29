@@ -618,7 +618,7 @@ router.post('/tambahzona', async (req, res, next) => {
       zoneLat,
       zoneLng,
       storyMax,
-      storyMin  
+      storyMin
     } = req.body;
     await Project.findOne({
         _id: projectid
@@ -1002,7 +1002,7 @@ router.put('/addconsultant', async (req, res) => {
       projectid,
       consultant
     } = req.body;
-    
+
     const project = await Project.findOne({
       _id: projectid
     })
@@ -1040,12 +1040,12 @@ router.put('/addconsultant', async (req, res) => {
 
     oldListConsultants.forEach((oldConsultant)=> {
       if (oldConsultant === consultant) {
-        
+
       } else {
         newListConsultants.push(oldConsultant)
       }
     });
-    
+
     Project.updateOne({
       _id: projectid
     }, {
@@ -1065,7 +1065,7 @@ router.put('/addcontractor', async (req, res) => {
       projectid,
       contractor
     } = req.body;
-    
+
     const project = await Project.findOne({
       _id: projectid
     })
@@ -1103,12 +1103,12 @@ router.put('/addcontractor', async (req, res) => {
 
     oldListContractors.forEach((oldContractor)=> {
       if (oldContractor === contractor) {
-        
+
       } else {
         newListContractors.push(oldContractor)
       }
     });
-    
+
     Project.updateOne({
       _id: projectid
     }, {
@@ -1128,7 +1128,7 @@ router.put('/adddroneengineer', async (req, res) => {
       projectid,
       droneengineer
     } = req.body;
-    
+
     const project = await Project.findOne({
       _id: projectid
     })
@@ -1166,12 +1166,12 @@ router.put('/adddroneengineer', async (req, res) => {
 
     oldListDroneengineers.forEach((oldDroneengineer)=> {
       if (oldDroneengineer === droneengineer) {
-        
+
       } else {
         newListDroneengineers.push(oldDroneengineer)
       }
     });
-    
+
     Project.updateOne({
       _id: projectid
     }, {
@@ -1191,7 +1191,7 @@ router.put('/addmember', async (req, res) => {
       projectid,
       member
     } = req.body;
-    
+
     const project = await Project.findOne({
       _id: projectid
     })
@@ -1229,12 +1229,12 @@ router.put('/addmember', async (req, res) => {
 
     oldListMembers.forEach((oldMember)=> {
       if (oldMember === member) {
-        
+
       } else {
         newListMembers.push(oldMember)
       }
     });
-    
+
     Project.updateOne({
       _id: projectid
     }, {
