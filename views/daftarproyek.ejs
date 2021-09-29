@@ -18,30 +18,30 @@
       <div class="div-data-proyek-besar col-10">
         <div class="row">
           <h4>
-            <a href="/project/<%= listproject._id %>" class="nama-proyek text-dark">
-              <%= listproject.projectName %>
+            <a href="/project/<%= listproject[0]._id %>" class="nama-proyek text-dark">
+              <%= listproject[0].projectName %>
             </a>
           </h4>
         </div>
         <div class="row">
           <div class="div-data-proyek col-4">
-            <p class="data-proyek">Project Duration: <%= listproject.startDate %> until <%= listproject.endDate %></p>
-            <p class="data-proyek">Locaton: <%= listproject.location %></p>
+            <p class="data-proyek">Project Duration: <%= listproject[0].startDate %> until <%= listproject[0].endDate %></p>
+            <p class="data-proyek">Locaton: <%= listproject[0].location %></p>
             <p class="data-proyek">Area: </p>
           </div>
           <div class="div-data-proyek col-3">
-            <p class="data-proyek">Project Cost: <%= listproject.nilaiProyek%></p>
-            <p class="data-proyek">Owner: <%= listproject.username %></p>
-            <p class="data-proyek">Consultant: <%= listproject.konsultan%></p>
+            <p class="data-proyek">Project Cost: <%= listproject[0].nilaiProyek%></p>
+            <p class="data-proyek">Owner: <%= listproject[0].username %></p>
+            <p class="data-proyek">Consultant: <%= listproject[0].konsultan%></p>
           </div>
           <div class="div-data-proyek col-2">
-            <p class="data-proyek">Contractor: <%= listproject.kontraktor%></p></p>
+            <p class="data-proyek">Contractor: <%= listproject[0].kontraktor%></p></p>
             <p class="data-proyek"></p>
           </div>
           <div class="div-data-proyek col-3">
-            <p class="data-proyek">Your Position: <%= jobs %></p>
-            <a href="/project/<%= listproject._id %>" class="btn btn-warning btn-sm"> Notification</a>
-            <a href="/project/<%= listproject._id %>" class="btn btn-warning btn-sm"> Link Invite</a>
+            <!-- <p class="data-proyek">Your Position: <%= jobs %></p> -->
+            <a href="/project/<%= listproject[0]._id %>" class="btn btn-warning btn-sm"> Notification</a>
+            <a href="/project/<%= listproject[0]._id %>" class="btn btn-warning btn-sm"> Link Invite</a>
           </div>
         </div>
       </div>
