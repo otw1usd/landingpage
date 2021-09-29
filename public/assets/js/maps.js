@@ -46,12 +46,28 @@ var map;
 var imageMapType;
 var waktuOnScreen = 0;
 
+async function getNumericValue (date) {
+  const dateDate = await new Date(date);
+  const options = {
+    day: "2-digit",
+    month: "2-digit",
+    year: "2-digit"
+  };
+  const dateDatedate = await dateDate.toLocaleDateString("in-ID", options);
+  return dateDatedate.split("/").join("_");
+};
+
 async function initialize() {
   var zoomInitDataNotPromise = await getZoomInitData();
   var latInitDataNotPromise = await getLatInitData();
   var lngInitDataNotPromise = await getLngInitData();
   var timestampDataNotPromise = await getTimestamp();
   var timestampDataLength = await timestampDataNotPromise.length;
+  var dateInitialObject = {
+    value:
+    await getNumericValue(timestampDataNotPromise[timestampDataLength-1].timestampproject)
+
+  };
   var options = {
     zoom: zoomInitDataNotPromise,
     center: new google.maps.LatLng(latInitDataNotPromise, lngInitDataNotPromise),
@@ -68,7 +84,7 @@ async function initialize() {
           return null;
       }*/
 
-      return ['/project/'+projectid+'/drone/'+timestampDataNotPromise[timestampDataLength-1]+'/',
+      return ['/project/'+projectid+'/drone/'+dateInitialObject.value+'/',
           zoom, '/', coord.y, '/', coord.x, '.png'
         ]
         .join('');
@@ -76,25 +92,31 @@ async function initialize() {
     },
     tileSize: new google.maps.Size(256, 256)
   });
-    var vMarker = new google.maps.Marker({
-        position: new google.maps.LatLng(latInitDataNotPromise, lngInitDataNotPromise),
-        draggable: true
-    });
-    // adds a listener to the marker
-    // gets the coords when drag event ends
-    // then updates the input with the new coords
-    google.maps.event.addListener(vMarker, 'dragend', function (evt) {
-        $("#zoneLat").val(evt.latLng.lat().toFixed(6));
-        $("#zoneLng").val(evt.latLng.lng().toFixed(6));
-        map.panTo(evt.latLng);
-    });
-    // centers the map on markers coords
-    map.setCenter(vMarker.position);
-    // adds the marker on the map
-    vMarker.setMap(map);
+
+  await toggleOverlay(dateInitialObject);
+  console.log(dateInitialObject);
 
   map.overlayMapTypes.push(imageMapType);
 }
+
+async function markerAddZone(){
+  var vMarker = new google.maps.Marker({
+      position: new google.maps.LatLng(latInitDataNotPromise, lngInitDataNotPromise),
+      draggable: true
+  });
+  // adds a listener to the marker
+  // gets the coords when drag event ends
+  // then updates the input with the new coords
+  google.maps.event.addListener(vMarker, 'dragend', function (evt) {
+      $("#zoneLat").val(evt.latLng.lat().toFixed(6));
+      $("#zoneLng").val(evt.latLng.lng().toFixed(6));
+      map.panTo(evt.latLng);
+  });
+  // centers the map on markers coords
+  map.setCenter(vMarker.position);
+  // adds the marker on the map
+  vMarker.setMap(map);
+};
 
 
 async function toggleOverlay(element) {
@@ -105,7 +127,7 @@ async function toggleOverlay(element) {
   }
 
   var path = "/project/"+projectid+"/drone/" + element.value + "/";
-  window.waktuOnScreen = element.value; //yang butuh push
+  window.waktuOnScreen = element.value; 
   tutupfieldphoto();
   timestampOnScreen(element.value);
 

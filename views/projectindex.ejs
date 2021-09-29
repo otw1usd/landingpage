@@ -36,12 +36,19 @@
         <div class="floating-panel col-lg-6">
           <strong class="font-1-rem">Timeline</strong>
 
-          <% for (let i=0; i<monthYearTimeStampProject.length ; i++) { %>
+          <% for (let i=0; i<monthYearTimeStampProject.length-1 ; i++) { %>
 
           <input type="radio" class="btn-check" id="radio-<%=i%>" name="date" value="<%=numericValueTimeStampProject[i]%>" onclick="toggleOverlay(this)" />
           <label class="btn btn-outline-warning btn-sm btn-block time-stamp-button" for="radio-<%=i%>"><%=monthYearTimeStampProject[i]%></label>
 
           <% } %>
+          
+          <% for (let i= monthYearTimeStampProject.length -1 ; i<monthYearTimeStampProject.length ; i++) { %>
+
+            <input type="radio" class="btn-check" id="radio-<%=i%>" name="date" value="<%=numericValueTimeStampProject[i]%>" onclick="toggleOverlay(this)" checked="checked"/>
+            <label class="btn btn-outline-warning btn-sm btn-block time-stamp-button" for="radio-<%=i%>"><%=monthYearTimeStampProject[i]%></label>
+  
+            <% } %>
 
 
 
@@ -177,6 +184,13 @@
     </div>
 
     <div class="floating-panel add-gamtek add-gamtek-inactive">
+
+      <div class="btn-center row floating-panel">
+        <button onclick="filterGamtek(this)" value="STR" class="btn btn-sm btn-outline-warning col-4">Struktur</button>
+        <button onclick="filterGamtek(this)" value="ARS" class="btn btn-sm btn-outline-warning col-4">Arsitektur</button>
+        <button onclick="filterGamtek(this)" value="MEP" class="btn btn-sm btn-outline-warning col-4">Mekanikal Elektrikal Plumbing</button>
+      </div>
+
       <form class="sign-up-form" action="/uploadgamtekclient?_method=PUT" method="POST" enctype="multipart/form-data">
         <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
         <input type="hidden" id="zoneid-uploadgamtekclient" name="zoneid" value="" />

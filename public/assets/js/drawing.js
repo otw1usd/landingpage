@@ -29,32 +29,32 @@ function gamtekSaya(asd,b) {
     window.listGamtekSaya += 1;
     console.log(listGamtekSaya);
 
+    const dir = '/project/' + projectid + '/drawing/' + window.locationOnScreen + '/'+b;
+
     document.querySelector('.loopingbatasgamtek').remove();
-    document.querySelector('.popupgamtek').innerHTML += '<div class="loopingbatasgamtek"> </div>';
-    document.querySelector('.filter-gamtek').innerHTML = '<div class="btn-center row floating-panel"><button onclick="filterGamtek(this)" value="ALL" class="btn btn-sm btn-outline-warning col-6">All</button><button onclick="filterGamtek(this)" value="STR" class="btn btn-sm btn-outline-warning col-6">Struktur</button><button onclick="filterGamtek(this)" value="ARS" class="btn btn-sm btn-outline-warning col-6">Arsitektur</button><button onclick="filterGamtek(this)" value="MEP" class="btn btn-sm btn-outline-warning col-6">Mekanikal Elektrikal Plumbing</button></div>'
+    document.querySelector('.popupgamtek').innerHTML += '<div class="loopingbatasgamtek"></div>';
+    document.querySelector('.filter-gamtek').innerHTML = '<div class="btn-center row floating-panel"><button onclick="filterGamtek(this)" value="ALL" class="btn btn-sm btn-outline-warning col-6">All</button><button onclick="filterGamtek(this)" value="STR" class="btn btn-sm btn-outline-warning col-6">Struktur</button><button onclick="filterGamtek(this)" value="ARS" class="btn btn-sm btn-outline-warning col-6">Arsitektur</button><button onclick="filterGamtek(this)" value="MEP" class="btn btn-sm btn-outline-warning col-6">Mekanikal Elektrikal Plumbing</button></div>';
 
   for (i = 1; i <= dirlength ; i++) {
     var drawingCategory = ["STR" , "ARS", "MEP"];
     for (dc = 0; dc < 3; dc++){
       document.querySelector('.loopingbatasgamtek').innerHTML += '<div class="card border-dark mb-3 row"><div class="card-header">Page' + i + '</div><div class="card-body text-dark"><div class="row"><div class="foto-gamtek col-10"><img class="construction-drawing-small-version" name="'+drawingCategory[dc]+'" src="/project/' + projectid + '/drawing/' + window.locationOnScreen + '/'+b+'/'+drawingCategory[dc]+'_z0_Page' + i + '.png" alt="Page' + i + '" id="Page' + i + '" class="list"></div><div class="div-logo-kecil col-2"><img class="logo-kecil" src="/images/download.png" alt="download"><br><img class="logo-kecil" src="/images/print.png" alt="print"><br><img class="logo-kecil" src="/images/share.png" alt="share"></div></div></div></div>';
-    }
-  }
-
+    };
+  };
     var gamtek = document.getElementById("daftarGamtekSaya");
     gamtek.classList.toggle("buka");
   }
-
-  //cek kalo locationonscreen sama, berarti nutup, kalo beda berarti buka
   else {
-    window.listGamtekSaya -= 1;
+    window.listGamtekSaya = 0;
     document.querySelector('.loopingbatasgamtek').remove();
+    document.querySelector('.filter-gamtek').innerHTML = '';
     document.querySelector('.popupgamtek').innerHTML += '<div class="loopingbatasgamtek"> </div>';
     var gamtek = document.getElementById("daftarGamtekSaya");
     gamtek.classList.toggle("buka");
     console.log(listGamtekSaya);
   }
 
-}
+};
 
 function filterGamtek(btn) {
   const category = btn.value;
