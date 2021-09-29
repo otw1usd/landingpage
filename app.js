@@ -24,6 +24,8 @@ const port = 3000 || process.env.PORT;
 const server = http.createServer(app);
 const io = socketio(server);
 
+const fs = require('fs');
+
 const FieldPhoto = require(__dirname + '/model/fieldphoto.js');
 
 io.on('connection', socket => {
@@ -40,6 +42,18 @@ io.on('connection', socket => {
     });
     socket.emit("fileNameArray", fileNameArray, zoneid, timestamp);
   });
+
+
+  //itung jumlah file gamtek dalam directory
+  socket.on("numOfFilesData", (projectid, zoneid) => {
+    const dir = './public/project/' + projectid + '/drawing/' + zoneid + '/Original PNG';
+    fs.readdir(dir, (err, files) => {
+      const dirlength = files.length;
+      socket.emit("numOfFiles", dirlength);
+
+    });
+  });
+
 });
 
 //setup method override

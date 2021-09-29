@@ -1,6 +1,4 @@
 //jshint esversion: 8
-
-
 const socket = io();
 
 // Bagian comment di project.ejs
@@ -290,4 +288,3 @@ function viewVertical() {
 //     }
 //   });
 // });
-
