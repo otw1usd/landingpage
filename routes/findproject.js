@@ -2,26 +2,24 @@ const Project = require('../model/project');
 
 const findproject = async (a) => {
     let listprojects = [];
-    const listprojectnotArray = await Project.findOne({
+    const listprojectOwner = await Project.find({
         username : a
     });
 
-    const listprojectOwner = [listprojectnotArray];
-
     const listprojectConsultant = await Project.find({
-        consultant : a 
+        consultant : a
     });
 
     const listprojectContractor = await Project.find({
-        contractor : a 
+        contractor : a
     });
 
     const listprojectDroneengineer = await Project.find({
-        droneengineer : a 
+        droneengineer : a
     });
 
     const listprojectMember = await Project.find({
-        member : a 
+        member : a
     });
 
     console.log('cek owner '+listprojectOwner);
