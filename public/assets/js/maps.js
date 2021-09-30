@@ -179,7 +179,7 @@ async function toggleOverlay(element) {
         '<table style="width:100%">' +
         "<tr>" +
         // "<th> <button>Gantt Chart</button></th>"+
-        "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>" +
+        // "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>" +
         "</tr>" +
 
         "<tr>" +

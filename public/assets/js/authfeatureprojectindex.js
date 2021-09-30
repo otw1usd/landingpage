@@ -38,6 +38,8 @@ if (role === 'Contractor') {}
 //droneengineer
 if (role === 'Drone Engineer') {
   addButtonInsertDroneData();
+  addButtonInsertTimestamp();
+  addButtonInsertProjectZone();
 }
 
 //member
