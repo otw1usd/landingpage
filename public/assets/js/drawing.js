@@ -46,7 +46,16 @@ function gamtekSaya(asd, story) {
 
     document.querySelector('.loopingbatasgamtek').remove();
     document.querySelector('.popupgamtek').innerHTML += '<div class="loopingbatasgamtek"></div>';
-    document.querySelector('.filter-gamtek').innerHTML = '<div class="btn-center row floating-panel"><button onclick="filterGamtek(this)" value="ALL" class="btn btn-sm btn-outline-warning col-6">All</button><button onclick="filterGamtek(this)" value="STR" class="btn btn-sm btn-outline-warning col-6">Struktur</button><button onclick="filterGamtek(this)" value="ARS" class="btn btn-sm btn-outline-warning col-6">Arsitektur</button><button onclick="filterGamtek(this)" value="MEP" class="btn btn-sm btn-outline-warning col-6">Mekanikal Elektrikal Plumbing</button></div>';
+    document.querySelector('.filter-gamtek').innerHTML = `
+    <div class="floating-panel">
+      <strong>Filter Gamtek</strong>
+      <div class="flex-space-between">
+        <button onclick="filterGamtek(this)" value="STR" class="btn btn-sm btn-outline-warning">Struktur</button>
+        <button onclick="filterGamtek(this)" value="ARS" class="btn btn-sm btn-outline-warning">Arsitektur</button>
+        <button onclick="filterGamtek(this)" value="MEP" class="btn btn-sm btn-outline-warning">MEP</button>
+      </div>
+    </div>
+    `;
 
     socket.emit("numOfFilesData", projectid, window.locationOnScreen, story);
     socket.on("numOfFiles", dirlength => {

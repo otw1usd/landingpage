@@ -15,6 +15,36 @@ h3, h6 {
   text-align: center;
 }
 
+/* GENERAL */
+.row {
+  margin: 0;
+}
+
+.floating-panel {
+  border-bottom: solid 1px;
+  padding: 0.8rem;
+}
+
+.font-1-rem {
+  font-size: 1rem;
+}
+
+.font-small {
+  font-size: 0.75rem;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 /* Navigation Bar */
 .logo-amati-navbar {
   height: 52px;
@@ -156,51 +186,12 @@ h3, h6 {
   overflow-y: scroll;
 }
 
-.blinking {
-  animation: blinkingText 1.2s infinite;
-}
-
-@keyframes blinkingText {
-  0% {
-    color: #000;
-  }
-
-  49% {
-    color: #ffc107;
-  }
-
-  60% {
-    color: #000;
-  }
-
-  99% {
-    color: #ffc107;
-  }
-
-  100% {
-    color: #000;
-  }
-}
-
 .fitur {
   width: 100%;
   border-top: solid 1px;
   border-bottom: solid 1px;
   margin-bottom: 0;
   margin-top: 1rem;
-}
-
-.row {
-  margin: 0;
-}
-
-.floating-panel {
-  border-bottom: solid 1px;
-  padding: 0.8rem;
-}
-
-.font-1-rem {
-  font-size: 1rem;
 }
 
 .field-photo-heading-div {
@@ -269,6 +260,10 @@ h3, h6 {
 
 .add-gamtek-active {
   max-height: 100%;
+}
+
+.filter-gamtek-upload {
+  padding-bottom: 0.5rem;
 }
 
 /* Input timestamp client-side */
@@ -775,4 +770,31 @@ h3, h6 {
   bottom: 0;
   right: 0;
   left: 0;
+}
+
+/* Progress Bar */
+.progress-bar {
+  height: 15px;
+  border: 1px solid;
+  border-radius: 15px;
+  background-color: #000;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background-color: #ffc107;
+  display: flex;
+  align-items: center;
+  transition: all 0.25s;
+}
+
+.progress-bar-text {
+  padding-left: 0.5rem;
+}
+
+.upload-success-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

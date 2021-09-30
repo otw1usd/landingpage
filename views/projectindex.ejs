@@ -1,6 +1,6 @@
 <section id="user-tab">
   <input type="hidden" value="<%= project._id %>" class="getProjectId">
-  <input type ="hidden" class="getRole" value="<%=role%>">
+  <input type="hidden" class="getRole" value="<%=role%>">
   <div class="info-container col-2 bg-dark">
     <div class="row">
       <div class="col-1 space"> </div>
@@ -46,10 +46,10 @@
 
           <% for (let i= monthYearTimeStampProject.length -1 ; i<monthYearTimeStampProject.length ; i++) { %>
 
-            <input type="radio" class="btn-check" id="radio-<%=i%>" name="date" value="<%=numericValueTimeStampProject[i]%>" onclick="toggleOverlay(this)" checked="checked"/>
-            <label class="btn btn-outline-warning btn-sm btn-block time-stamp-button" for="radio-<%=i%>"><%=monthYearTimeStampProject[i]%></label>
+          <input type="radio" class="btn-check" id="radio-<%=i%>" name="date" value="<%=numericValueTimeStampProject[i]%>" onclick="toggleOverlay(this)" checked="checked" />
+          <label class="btn btn-outline-warning btn-sm btn-block time-stamp-button" for="radio-<%=i%>"><%=monthYearTimeStampProject[i]%></label>
 
-            <% } %>
+          <% } %>
 
 
 
@@ -123,7 +123,7 @@
             <li>upload zip file dengan isi zip folderzoom/coord-y/coord-x.png (<a href="" target="_blank">contoh</a>)</li>
             <li>file foto drone dalam format .png</li>
           </div>
-          <form action="/tambahdroneimagesclient?_method=PUT" method="POST" class="sign-up-form" enctype="multipart/form-data">
+          <form class="sign-up-form" id="uploadFormDroneData">
             <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
             <input type="hidden" id="timestamp" name="timestamp" class="timestampOnScreen" value="" />
             <label for="droneimages"></label>
@@ -135,6 +135,15 @@
             </div>
 
           </form>
+          <div class="row flex-center progress-bar-dronedata">
+            <div class="progress-bar col-9" id="progressBar">
+              <div class="progress-bar-fill">
+              </div>
+            </div>
+            <span class="progress-bar-text col-2">0%</span>
+            <div class="upload-success-message">
+            </div>
+          </div>
         </div>
 
       </div>
@@ -169,35 +178,49 @@
 
 
     <div class="floating-panel add-field-photo add-field-photo-inactive">
-      <form class="sign-up-form" action="/tambahfieldphotoclient?_method=PUT" method="POST" enctype="multipart/form-data">
+      <form class="sign-up-form" id="uploadFormFieldPhoto">
         <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
         <input type="hidden" id="zoneid-uploadfieldphotoclient" name="zoneid" value="" />
         <input type="hidden" id="timestamp-uploadfieldphotoclient" name="timestamp" value="" />
-        <input type="hidden" id="story-uploadfieldphotoclient" name="story" value="" />
+        <input type="hidden" id="story-uploadfieldphotoclient" name="story" value="1" />
         <label for="image">Upload Field Photos :</label>
         <div class="add-field-photo-button-div">
-          <input type="file" class="add-field-photo-button" name="image" multiple />
+          <input type="file" class="add-field-photo-button progress-bar-input" name="image" multiple />
           <div class="btn-center">
             <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Photos</button>
           </div>
         </div>
       </form>
+      <div class="row flex-center progress-bar-fieldphoto">
+        <div class="progress-bar col-9" id="progressBar">
+          <div class="progress-bar-fill">
+          </div>
+        </div>
+        <span class="progress-bar-text col-2">0%</span>
+        <div class="upload-success-message">
+        </div>
+      </div>
+
     </div>
 
     <div class="floating-panel add-gamtek add-gamtek-inactive">
 
-      <div class="btn-center row floating-panel">
-        <button onclick="filterGamtek(this)" value="STR" class="btn btn-sm btn-outline-warning col-4">Struktur</button>
-        <button onclick="filterGamtek(this)" value="ARS" class="btn btn-sm btn-outline-warning col-4">Arsitektur</button>
-        <button onclick="filterGamtek(this)" value="MEP" class="btn btn-sm btn-outline-warning col-4">Mekanikal Elektrikal Plumbing</button>
-      </div>
 
-      <form class="sign-up-form" action="/uploadgamtekclient?_method=PUT" method="POST" enctype="multipart/form-data">
+      <form class="sign-up-form" id="uploadFormGamtek">
         <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
         <input type="hidden" id="zoneid-uploadgamtekclient" name="zoneid" value="" />
         <input type="hidden" id="story-uploadgamtekclient" name="story" value="1" />
         <input type="hidden" id="category-uploadgamtekclient" name="category" value="" />
-        <label for="image">Upload Construction Drawing :</label>
+        <label>Upload Construction Drawing :</label>
+        <label class="font-small">Type :</label><br>
+        <div class="filter-gamtek-upload flex-space-between">
+          <input type="radio" id="str-drawing-filter" onclick="filterGamtek(this)" value="STR" name="filter-drawing">
+          <label class="font-small" for="str-drawing-filter">Struktur</label>
+          <input type="radio" id="ars-drawing-filter" onclick="filterGamtek(this)" value="ARS" name="filter-drawing">
+          <label class="font-small" for="ars-drawing-filter">Arsitektur</label>
+          <input type="radio" id="mep-drawing-filter" onclick="filterGamtek(this)" value="MEP" name="filter-drawing">
+          <label class="font-small" for="mep-drawing-filter">MEP</label>
+        </div>
         <div class="add-gamtek-button-div">
           <input type="file" class="add-gamtek-button" name="gamtek" />
           <div class="btn-center">
@@ -205,6 +228,15 @@
           </div>
         </div>
       </form>
+      <div class="row flex-center progress-bar-gamtek">
+        <div class="progress-bar col-9" id="progressBar">
+          <div class="progress-bar-fill">
+          </div>
+        </div>
+        <span class="progress-bar-text col-2">0%</span>
+        <div class="upload-success-message">
+        </div>
+      </div>
     </div>
 
     <div class="close-foto-gamtek-button-div">
