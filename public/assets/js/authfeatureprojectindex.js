@@ -1,7 +1,6 @@
 //jshint esversion: 8
-const rolediv = document.querySelector('.getRole');
-const role = rolediv.value;
-console.log(role);
+const rolediv = [document.querySelector('.getRole').value];
+console.log(rolediv[1] + "acsac");
 
 //projectindex
 function addButtonInsertTimestamp() {
@@ -20,27 +19,32 @@ function addButtonInsertDroneData() {
 
 }
 
-//owner
-if (role === 'Owner') {
+rolediv.forEach(role => {
 
-}
+  console.log(role);
 
-//consultant
-if (role === 'Consultant') {
-  addButtonInsertTimestamp();
-  addButtonInsertProjectZone();
+  //owner
+  if (role === 'Owner') {
 
-}
+  }
 
-//contractor
-if (role === 'Contractor') {}
+  //consultant
+  if (role === 'Consultant') {
+    addButtonInsertTimestamp();
+    addButtonInsertProjectZone();
 
-//droneengineer
-if (role === 'Drone Engineer') {
-  addButtonInsertDroneData();
-}
+  }
 
-//member
-if (role === 'Member') {
+  //contractor
+  if (role === 'Contractor') {}
 
-}
+  //droneengineer
+  if (role === 'Drone Engineer') {
+    addButtonInsertDroneData();
+  }
+
+  //member
+  if (role === 'Member') {
+
+  }
+})

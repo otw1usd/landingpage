@@ -13,12 +13,12 @@ const passport = require('passport');
 // auth
 const {
   ensureAuthenticated
-} = require('../config/auth')
+} = require('../config/auth');
 const {
   adminEnsureAuthenticated
-} = require('../config/adminauth')
-const { projectAuth } = require('../config/projectauth')
-const { projectindexAuth } = require('../config/projectindexauth')
+} = require('../config/adminauth');
+const { projectAuth } = require('../config/projectauth');
+const { projectindexAuth } = require('../config/projectindexauth');
 
 //npm function
 const multer = require('multer');
@@ -111,8 +111,8 @@ router.get('/daftarproyek', ensureAuthenticated, async (req, res) => {
 
 router.get('/project/:oit', ensureAuthenticated, projectAuth, async (req, res, next) => {
   try {
-    var rolearray = await findrole(req.params.oit,req.user.username);
-    var role = rolearray[0];
+    var role = await findrole(req.params.oit,req.user.username);
+    console.log(role);
     const commentprojects = await Comment.find({
         projectid: req.params.oit
       })
@@ -621,7 +621,7 @@ router.post('/tambahzona', async (req, res, next) => {
       zoneLat,
       zoneLng,
       storyMax,
-      storyMin  
+      storyMin
     } = req.body;
     await Project.findOne({
         _id: projectid
@@ -872,8 +872,7 @@ router.put('/admin', [
 
 //project
 router.get('/projectindex/:projectid', ensureAuthenticated, projectindexAuth, async (req, res, next) => {
-  var rolearray = await findrole(req.params.projectid,req.user.username);
-  var role = rolearray[0];
+  var role = await findrole(req.params.projectid,req.user.username);
   var FieldPhotoArrays = [];
   var monthYearTimeStampProject = [];
   var numericValueTimeStampProject = [];
@@ -1008,7 +1007,7 @@ router.put('/addconsultant', async (req, res) => {
       projectid,
       consultant
     } = req.body;
-    
+
     const project = await Project.findOne({
       _id: projectid
     })
@@ -1046,12 +1045,12 @@ router.put('/addconsultant', async (req, res) => {
 
     oldListConsultants.forEach((oldConsultant)=> {
       if (oldConsultant === consultant) {
-        
+
       } else {
         newListConsultants.push(oldConsultant)
       }
     });
-    
+
     Project.updateOne({
       _id: projectid
     }, {
@@ -1071,7 +1070,7 @@ router.put('/addcontractor', async (req, res) => {
       projectid,
       contractor
     } = req.body;
-    
+
     const project = await Project.findOne({
       _id: projectid
     })
@@ -1109,12 +1108,12 @@ router.put('/addcontractor', async (req, res) => {
 
     oldListContractors.forEach((oldContractor)=> {
       if (oldContractor === contractor) {
-        
+
       } else {
         newListContractors.push(oldContractor)
       }
     });
-    
+
     Project.updateOne({
       _id: projectid
     }, {
@@ -1134,7 +1133,7 @@ router.put('/adddroneengineer', async (req, res) => {
       projectid,
       droneengineer
     } = req.body;
-    
+
     const project = await Project.findOne({
       _id: projectid
     })
@@ -1172,12 +1171,12 @@ router.put('/adddroneengineer', async (req, res) => {
 
     oldListDroneengineers.forEach((oldDroneengineer)=> {
       if (oldDroneengineer === droneengineer) {
-        
+
       } else {
         newListDroneengineers.push(oldDroneengineer)
       }
     });
-    
+
     Project.updateOne({
       _id: projectid
     }, {
@@ -1197,7 +1196,7 @@ router.put('/addmember', async (req, res) => {
       projectid,
       member
     } = req.body;
-    
+
     const project = await Project.findOne({
       _id: projectid
     })
@@ -1235,12 +1234,12 @@ router.put('/addmember', async (req, res) => {
 
     oldListMembers.forEach((oldMember)=> {
       if (oldMember === member) {
-        
+
       } else {
         newListMembers.push(oldMember)
       }
     });
-    
+
     Project.updateOne({
       _id: projectid
     }, {

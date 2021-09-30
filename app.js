@@ -45,8 +45,8 @@ io.on('connection', socket => {
 
 
   //itung jumlah file gamtek dalam directory
-  socket.on("numOfFilesData", (projectid, zoneid) => {
-    const dir = './public/project/' + projectid + '/drawing/' + zoneid + '/Original PNG';
+  socket.on("numOfFilesData", (projectid, zoneid, story) => {
+    const dir = './public/project/' + projectid + '/drawing/' + zoneid + '/' + story;
     fs.readdir(dir, (err, files) => {
       const dirlength = files.length;
       socket.emit("numOfFiles", dirlength);
