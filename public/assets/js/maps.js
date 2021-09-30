@@ -63,11 +63,11 @@ async function initialize() {
   var lngInitDataNotPromise = await getLngInitData();
   var timestampDataNotPromise = await getTimestamp();
   var timestampDataLength = await timestampDataNotPromise.length;
-  var dateInitialObject = {
+  if (timestampDataLength===0) {var dateInitialObject = undefined }else{var dateInitialObject = {
     value:
     await getNumericValue(timestampDataNotPromise[timestampDataLength-1].timestampproject)
-
-  };
+  }}; 
+  
   var options = {
     zoom: zoomInitDataNotPromise,
     center: new google.maps.LatLng(latInitDataNotPromise, lngInitDataNotPromise),
@@ -95,14 +95,10 @@ async function initialize() {
 
   await toggleOverlay(dateInitialObject);
   console.log(dateInitialObject);
-
-  map.overlayMapTypes.push(imageMapType);
-}
-
-async function markerAddZone(){
+  
   var vMarker = new google.maps.Marker({
-      position: new google.maps.LatLng(latInitDataNotPromise, lngInitDataNotPromise),
-      draggable: true
+    position: new google.maps.LatLng(latInitDataNotPromise, lngInitDataNotPromise),
+    draggable: true
   });
   // adds a listener to the marker
   // gets the coords when drag event ends
@@ -116,6 +112,9 @@ async function markerAddZone(){
   map.setCenter(vMarker.position);
   // adds the marker on the map
   vMarker.setMap(map);
+
+  map.overlayMapTypes.push(imageMapType);
+
 };
 
 
@@ -187,7 +186,7 @@ async function toggleOverlay(element) {
         "<th><button onclick='bukatutupfieldphoto(\""+projectzoneDataEach.zoneid+"\", \""+waktuOnScreen+"\")'>Field Photo</button><button onclick='bukatutupuploadfieldphoto(\""+projectzoneDataEach.zoneid+"\", \""+waktuOnScreen+"\")'>+</button></th>" + "</tr>" +
 
         "<tr>" +
-        "<th><button>Video</button></th>"+
+        // "<th><button>Video</button></th>"+
         "</tr>"+
 
         "<tr>" +
@@ -197,7 +196,7 @@ async function toggleOverlay(element) {
         "</tr>" +
 
         "<tr>" +
-        "<th><button onclick='reportSaya(\""+projectzoneDataEach.zoneid+"\")'>Progress Report</button></th>" +
+        // "<th><button onclick='reportSaya(\""+projectzoneDataEach.zoneid+"\")'>Progress Report</button></th>" +
         "</tr>" +``
 
         "</table>" +

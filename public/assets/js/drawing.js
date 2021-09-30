@@ -28,6 +28,7 @@ function filterGamtek(btn) {
 function getSrc(gamtek) {
   const src = gamtek.src;
   console.log(src);
+  munculinTabel(src);
 }
 
 //buka button construction drawing, nnti di upgrade ke location
@@ -100,8 +101,8 @@ listGamtek.addEventListener('click', function(e) {
 });
 
 //fungsi general munculin gamtek
-function munculinTabel() {
-  // DIBAWAH INI BUAT NGAMBIL SRC NYA
+function munculinTabel(src) {
+  console.log(src);
   // console.log('/project/' + projectid + '/drawing/' + window.locationOnScreen + '/Original PNG/z3-' + window.idOnScreen + '.png');
   document.querySelector('.gamtekfsshow').remove();
   document.querySelector('.gamtekfs').innerHTML += '<div class="gamtekfsshow"> <img ondragstart="return false" class="zoom-img" id="zoom-img" src="/project/' + projectid + '/drawing/' + window.locationOnScreen + '/Original PNG/z3-' + window.idOnScreen + '.png" /></div>';
