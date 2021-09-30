@@ -17,8 +17,12 @@ const {
 const {
   adminEnsureAuthenticated
 } = require('../config/adminauth');
-const { projectAuth } = require('../config/projectauth');
-const { projectindexAuth } = require('../config/projectindexauth');
+const {
+  projectAuth
+} = require('../config/projectauth');
+const {
+  projectindexAuth
+} = require('../config/projectindexauth');
 
 //npm function
 const multer = require('multer');
@@ -47,10 +51,21 @@ const getDate = require('../routes/date.js');
 const {
   extractZipDrone
 } = require('../routes/uploadDroneImages.js');
-const { watermarklogo, profilepictureresize, textOverlay, fieldphotoresize } = require('./imagessettings.js');
-const { PDFtoPNG } = require('../routes/uploadGamtek.js');
-const { findproject } = require ('../routes/findproject.js');
-const { findrole } = require ('../routes/findrole.js');
+const {
+  watermarklogo,
+  profilepictureresize,
+  textOverlay,
+  fieldphotoresize
+} = require('./imagessettings.js');
+const {
+  PDFtoPNG
+} = require('../routes/uploadGamtek.js');
+const {
+  findproject
+} = require('../routes/findproject.js');
+const {
+  findrole
+} = require('../routes/findrole.js');
 
 //
 
@@ -94,11 +109,20 @@ router.get('/registerproject', ensureAuthenticated, async (req, res) => {
 });
 
 router.get('/daftarproyek', ensureAuthenticated, async (req, res) => {
-  // const listprojects = await Project.find({
-  //   username: req.user.username
-  // });
-  const listprojects = await findproject(req.user.username);
-  // const listprojects = await listprojectsarray[0];
+
+  const messyListProjects = await findproject(req.user.username);
+  const listProjectIds = [];
+  const listprojects = [];
+
+  messyListProjects.forEach(messyListProject => {
+    for (i = 0; i < messyListProject.length; i++) {
+      if (listProjectIds.includes(String(messyListProject[i]._id)) === false) {
+        listprojects.push(messyListProject[i]);
+        listProjectIds.push(String(messyListProject[i]._id));
+      }
+    }
+  });
+
   res.render('daftarproyek', {
     name: req.user.name,
     jobs: req.user.jobs,
@@ -111,7 +135,7 @@ router.get('/daftarproyek', ensureAuthenticated, async (req, res) => {
 
 router.get('/project/:oit', ensureAuthenticated, projectAuth, async (req, res, next) => {
   try {
-    var role = await findrole(req.params.oit,req.user.username);
+    var role = await findrole(req.params.oit, req.user.username);
     console.log(role);
     const commentprojects = await Comment.find({
         projectid: req.params.oit
@@ -200,7 +224,7 @@ router.put('/user', [
       } else {
         var filenamalama = req.file.filename;
       };
-      const profilepicturedest = req.file.destination+'/'+filenamalama;
+      const profilepicturedest = req.file.destination + '/' + filenamalama;
       await profilepictureresize(profilepicturedest);
       await User.updateOne({
         _id: req.body._id
@@ -296,7 +320,7 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
         timestamp
       });
       await multipleFieldPhotos.save();
-      const fieldphotodest = element.destination+'/'+element.filename;
+      const fieldphotodest = element.destination + '/' + element.filename;
       fieldphotoresize(element.destination, element.filename);
       watermarklogo(fieldphotodest);
       // textOverlay(fieldphotodest);
@@ -305,7 +329,7 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
     req.flash('success_msg', 'Images Uploaded Successfully');
   });
 
-  //droneupload
+//droneupload
 const DroneImagesStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, './public/project/' + req.body.projectid + '/drone/' + req.body.timestamp)
@@ -330,13 +354,13 @@ router.put('/tambahdroneimagesclient', uploadDroneImage, (req, res) => {
   extractZipDrone(req.file.destination, req.file.filename);
 });
 
- //gamtek
+//gamtek
 const GamtekStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, './public/project/' + req.body.projectid + '/drawing/' + req.body.zoneid + '/' + req.body.story)
   },
   filename: (req, file, cb) => {
-    cb(null, req.body.category+'_'+file.originalname)
+    cb(null, req.body.category + '_' + file.originalname)
   }
 });
 
@@ -612,7 +636,7 @@ router.post('/registerproject', uploadPeta, (req, res) => {
 
 router.delete('/deleteproject', async (req, res) => {
   await Project.deleteOne({
-    _id: req.body.projectid
+      _id: req.body.projectid
     })
     .then((result) => {
       req.flash('success_msg', 'Project has been deleted!');
@@ -882,7 +906,7 @@ router.put('/admin', [
 
 //project
 router.get('/projectindex/:projectid', ensureAuthenticated, projectindexAuth, async (req, res, next) => {
-  var role = await findrole(req.params.projectid,req.user.username);
+  var role = await findrole(req.params.projectid, req.user.username);
   var FieldPhotoArrays = [];
   var monthYearTimeStampProject = [];
   var numericValueTimeStampProject = [];
@@ -1014,59 +1038,20 @@ router.delete('/comment', async (req, res) => {
 //consultant
 router.put('/addconsultant', async (req, res) => {
   const {
-      projectid,
-      consultant
-    } = req.body;
+    projectid,
+    consultant
+  } = req.body;
 
-    const project = await Project.findOne({
+  const project = await Project.findOne({
       _id: projectid
     })
     .then(project => {
       return project
     });
-    const roleExist = await findrole(projectid,member);
-    if (roleExist.length === 0){
-        var newListConsultants=project.consultant;
-        newListConsultants.push(consultant);
-        Project.updateOne({
-          _id: projectid
-        }, {
-          $set: {
-            consultant: newListConsultants
-          },
-        }, function() {});
-        setTimeout(() => {
-          // req.flash('success_msg', 'Data Project berhasil diubah!');
-          res.redirect('/project/'+projectid);
-        }, 1000);
-      } else{
-        req.flash('error_msg', 'Username has been assigned!');
-        res.redirect('/project/'+projectid);
-      }
-  });
-
-  router.delete('/consultant', async (req, res) => {
-    const {
-      consultant,
-      projectid
-    } = req.body;
-    const project = await Project.findOne({
-      _id: projectid
-    })
-    .then(project => {
-      return project
-    });
-    var oldListConsultants = project.consultant;
-    var newListConsultants=[];
-
-    oldListConsultants.forEach((oldConsultant)=> {
-      if (oldConsultant === consultant) {
-
-      } else {
-        newListConsultants.push(oldConsultant)
-      }
-    });
-
+  const roleExist = await findrole(projectid, member);
+  if (roleExist.length === 0) {
+    var newListConsultants = project.consultant;
+    newListConsultants.push(consultant);
     Project.updateOne({
       _id: projectid
     }, {
@@ -1076,66 +1061,66 @@ router.put('/addconsultant', async (req, res) => {
     }, function() {});
     setTimeout(() => {
       // req.flash('success_msg', 'Data Project berhasil diubah!');
-      res.redirect('/project/'+projectid);
+      res.redirect('/project/' + projectid);
     }, 1000);
+  } else {
+    req.flash('error_msg', 'Username has been assigned!');
+    res.redirect('/project/' + projectid);
+  }
+});
+
+router.delete('/consultant', async (req, res) => {
+  const {
+    consultant,
+    projectid
+  } = req.body;
+  const project = await Project.findOne({
+      _id: projectid
+    })
+    .then(project => {
+      return project
+    });
+  var oldListConsultants = project.consultant;
+  var newListConsultants = [];
+
+  oldListConsultants.forEach((oldConsultant) => {
+    if (oldConsultant === consultant) {
+
+    } else {
+      newListConsultants.push(oldConsultant)
+    }
   });
 
-  //contractor
+  Project.updateOne({
+    _id: projectid
+  }, {
+    $set: {
+      consultant: newListConsultants
+    },
+  }, function() {});
+  setTimeout(() => {
+    // req.flash('success_msg', 'Data Project berhasil diubah!');
+    res.redirect('/project/' + projectid);
+  }, 1000);
+});
+
+//contractor
 router.put('/addcontractor', async (req, res) => {
   const {
-      projectid,
-      contractor
-    } = req.body;
+    projectid,
+    contractor
+  } = req.body;
 
-    const project = await Project.findOne({
+  const project = await Project.findOne({
       _id: projectid
     })
     .then(project => {
       return project
     });
-    const roleExist = await findrole(projectid,member);
-    if (roleExist.length === 0){
-        var newListContractors=project.contractor;
-        newListContractors.push(contractor);
-        Project.updateOne({
-          _id: projectid
-        }, {
-          $set: {
-            contractor: newListContractors
-          },
-        }, function() {});
-        setTimeout(() => {
-          // req.flash('success_msg', 'Data Project berhasil diubah!');
-          res.redirect('/project/'+projectid);
-        }, 1000);
-      } else{
-        req.flash('error_msg', 'Username has been assigned!');
-        res.redirect('/project/'+projectid);
-      }
-  });
-
-  router.delete('/contractor', async (req, res) => {
-    const {
-      contractor,
-      projectid
-    } = req.body;
-    const project = await Project.findOne({
-      _id: projectid
-    })
-    .then(project => {
-      return project
-    });
-    var oldListContractors = project.contractor;
-    var newListContractors=[];
-
-    oldListContractors.forEach((oldContractor)=> {
-      if (oldContractor === contractor) {
-
-      } else {
-        newListContractors.push(oldContractor)
-      }
-    });
-
+  const roleExist = await findrole(projectid, member);
+  if (roleExist.length === 0) {
+    var newListContractors = project.contractor;
+    newListContractors.push(contractor);
     Project.updateOne({
       _id: projectid
     }, {
@@ -1145,66 +1130,66 @@ router.put('/addcontractor', async (req, res) => {
     }, function() {});
     setTimeout(() => {
       // req.flash('success_msg', 'Data Project berhasil diubah!');
-      res.redirect('/project/'+projectid);
+      res.redirect('/project/' + projectid);
     }, 1000);
+  } else {
+    req.flash('error_msg', 'Username has been assigned!');
+    res.redirect('/project/' + projectid);
+  }
+});
+
+router.delete('/contractor', async (req, res) => {
+  const {
+    contractor,
+    projectid
+  } = req.body;
+  const project = await Project.findOne({
+      _id: projectid
+    })
+    .then(project => {
+      return project
+    });
+  var oldListContractors = project.contractor;
+  var newListContractors = [];
+
+  oldListContractors.forEach((oldContractor) => {
+    if (oldContractor === contractor) {
+
+    } else {
+      newListContractors.push(oldContractor)
+    }
   });
 
-  //droneengineer
+  Project.updateOne({
+    _id: projectid
+  }, {
+    $set: {
+      contractor: newListContractors
+    },
+  }, function() {});
+  setTimeout(() => {
+    // req.flash('success_msg', 'Data Project berhasil diubah!');
+    res.redirect('/project/' + projectid);
+  }, 1000);
+});
+
+//droneengineer
 router.put('/adddroneengineer', async (req, res) => {
   const {
-      projectid,
-      droneengineer
-    } = req.body;
+    projectid,
+    droneengineer
+  } = req.body;
 
-    const project = await Project.findOne({
+  const project = await Project.findOne({
       _id: projectid
     })
     .then(project => {
       return project
     });
-    const roleExist = await findrole(projectid,member);
-    if (roleExist.length === 0){
-        var newListDroneengineers=project.droneengineer;
-        newListDroneengineers.push(droneengineer);
-        Project.updateOne({
-          _id: projectid
-        }, {
-          $set: {
-            droneengineer: newListDroneengineers
-          },
-        }, function() {});
-        setTimeout(() => {
-          // req.flash('success_msg', 'Data Project berhasil diubah!');
-          res.redirect('/project/'+projectid);
-        }, 1000);
-      } else{
-        req.flash('error_msg', 'Username has been assigned!');
-        res.redirect('/project/'+projectid);
-      }
-  });
-
-  router.delete('/droneengineer', async (req, res) => {
-    const {
-      droneengineer,
-      projectid
-    } = req.body;
-    const project = await Project.findOne({
-      _id: projectid
-    })
-    .then(project => {
-      return project
-    });
-    var oldListDroneengineers = project.droneengineer;
-    var newListDroneengineers=[];
-
-    oldListDroneengineers.forEach((oldDroneengineer)=> {
-      if (oldDroneengineer === droneengineer) {
-
-      } else {
-        newListDroneengineers.push(oldDroneengineer)
-      }
-    });
-
+  const roleExist = await findrole(projectid, member);
+  if (roleExist.length === 0) {
+    var newListDroneengineers = project.droneengineer;
+    newListDroneengineers.push(droneengineer);
     Project.updateOne({
       _id: projectid
     }, {
@@ -1214,66 +1199,66 @@ router.put('/adddroneengineer', async (req, res) => {
     }, function() {});
     setTimeout(() => {
       // req.flash('success_msg', 'Data Project berhasil diubah!');
-      res.redirect('/project/'+projectid);
+      res.redirect('/project/' + projectid);
     }, 1000);
+  } else {
+    req.flash('error_msg', 'Username has been assigned!');
+    res.redirect('/project/' + projectid);
+  }
+});
+
+router.delete('/droneengineer', async (req, res) => {
+  const {
+    droneengineer,
+    projectid
+  } = req.body;
+  const project = await Project.findOne({
+      _id: projectid
+    })
+    .then(project => {
+      return project
+    });
+  var oldListDroneengineers = project.droneengineer;
+  var newListDroneengineers = [];
+
+  oldListDroneengineers.forEach((oldDroneengineer) => {
+    if (oldDroneengineer === droneengineer) {
+
+    } else {
+      newListDroneengineers.push(oldDroneengineer)
+    }
   });
 
-  //member
+  Project.updateOne({
+    _id: projectid
+  }, {
+    $set: {
+      droneengineer: newListDroneengineers
+    },
+  }, function() {});
+  setTimeout(() => {
+    // req.flash('success_msg', 'Data Project berhasil diubah!');
+    res.redirect('/project/' + projectid);
+  }, 1000);
+});
+
+//member
 router.put('/addmember', async (req, res) => {
   const {
-      projectid,
-      member
-    } = req.body;
+    projectid,
+    member
+  } = req.body;
 
-    const project = await Project.findOne({
+  const project = await Project.findOne({
       _id: projectid
     })
     .then(project => {
       return project
     });
-    const roleExist = await findrole(projectid,member);
-    if (roleExist.length === 0){
-        var newListMembers=project.member;
-        newListMembers.push(member);
-        Project.updateOne({
-          _id: projectid
-        }, {
-          $set: {
-            member: newListMembers
-          },
-        }, function() {});
-        setTimeout(() => {
-          // req.flash('success_msg', 'Data Project berhasil diubah!');
-          res.redirect('/project/'+projectid);
-        }, 1000);
-      } else{
-        req.flash('error_msg', 'Username has been assigned!');
-        res.redirect('/project/'+projectid);
-      }
-  });
-
-  router.delete('/member', async (req, res) => {
-    const {
-      member,
-      projectid
-    } = req.body;
-    const project = await Project.findOne({
-      _id: projectid
-    })
-    .then(project => {
-      return project
-    });
-    var oldListMembers = project.member;
-    var newListMembers=[];
-
-    oldListMembers.forEach((oldMember)=> {
-      if (oldMember === member) {
-
-      } else {
-        newListMembers.push(oldMember)
-      }
-    });
-
+  const roleExist = await findrole(projectid, member);
+  if (roleExist.length === 0) {
+    var newListMembers = project.member;
+    newListMembers.push(member);
     Project.updateOne({
       _id: projectid
     }, {
@@ -1283,9 +1268,48 @@ router.put('/addmember', async (req, res) => {
     }, function() {});
     setTimeout(() => {
       // req.flash('success_msg', 'Data Project berhasil diubah!');
-      res.redirect('/project/'+projectid);
+      res.redirect('/project/' + projectid);
     }, 1000);
+  } else {
+    req.flash('error_msg', 'Username has been assigned!');
+    res.redirect('/project/' + projectid);
+  }
+});
+
+router.delete('/member', async (req, res) => {
+  const {
+    member,
+    projectid
+  } = req.body;
+  const project = await Project.findOne({
+      _id: projectid
+    })
+    .then(project => {
+      return project
+    });
+  var oldListMembers = project.member;
+  var newListMembers = [];
+
+  oldListMembers.forEach((oldMember) => {
+    if (oldMember === member) {
+
+    } else {
+      newListMembers.push(oldMember)
+    }
   });
+
+  Project.updateOne({
+    _id: projectid
+  }, {
+    $set: {
+      member: newListMembers
+    },
+  }, function() {});
+  setTimeout(() => {
+    // req.flash('success_msg', 'Data Project berhasil diubah!');
+    res.redirect('/project/' + projectid);
+  }, 1000);
+});
 
 
 module.exports = router;

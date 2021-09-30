@@ -11,7 +11,7 @@
     <a href="/registerproject"><img class="col-1" id="icon-edit-data-proyek" src="images/tambah.jpg" alt="Create New Project"> </a>
 
     <% listprojects.forEach((listproject) => { %>
-    <%    for (i=0 ; i < listproject.length ; i++) { %>
+
 
     <div class="daftar-proyek col-12 row">
       <div class="col-2">
@@ -20,34 +20,34 @@
       <div class="div-data-proyek-besar col-10">
         <div class="row">
           <h4>
-            <a href="/project/<%= listproject[i]._id %>" class="nama-proyek text-dark">
-              <%= listproject[i].projectName %>
+            <a href="/project/<%= listproject._id %>" class="nama-proyek text-dark">
+              <%= listproject.projectName %>
             </a>
           </h4>
         </div>
         <div class="row">
           <div class="div-data-proyek col-4">
-            <p class="data-proyek">Project Duration: <%= listproject[i].startDate %> until <%= listproject[i].endDate %></p>
-            <p class="data-proyek">Locaton: <%= listproject[i].location %></p>
+            <p class="data-proyek">Project Duration: <%= listproject.startDate %> until <%= listproject.endDate %></p>
+            <p class="data-proyek">Locaton: <%= listproject.location %></p>
             <p class="data-proyek">Area: </p>
           </div>
           <div class="div-data-proyek col-3">
-            <p class="data-proyek">Project Cost: <%= listproject[i].nilaiProyek%></p>
-            <p class="data-proyek">Owner: <%= listproject[i].username %></p>
-            <p class="data-proyek">Consultant: <%= listproject[i].konsultan%></p>
+            <p class="data-proyek">Project Cost: <%= listproject.nilaiProyek%></p>
+            <p class="data-proyek">Owner: <%= listproject.username %></p>
+            <p class="data-proyek">Consultant: <%= listproject.konsultan%></p>
           </div>
           <div class="div-data-proyek col-2">
-            <p class="data-proyek">Contractor: <%= listproject[i].kontraktor%></p>
+            <p class="data-proyek">Contractor: <%= listproject.kontraktor%></p>
             <p class="data-proyek"></p>
           </div>
           <div class="div-data-proyek col-3">
             <!-- <p class="data-proyek">Your Position: <%= jobs %></p> -->
-            <a href="/project/<%= listproject[i]._id %>" class="btn btn-warning btn-sm"> Notification</a>
-            <a href="/project/<%= listproject[i]._id %>" class="btn btn-warning btn-sm"> Link Invite</a>
+            <a href="/project/<%= listproject._id %>" class="btn btn-warning btn-sm"> Notification</a>
+            <a href="/project/<%= listproject._id %>" class="btn btn-warning btn-sm"> Link Invite</a>
           </div>
         </div>
       </div>
     </div>
-    <% } %>
+
     <% }) %>
   </div>
