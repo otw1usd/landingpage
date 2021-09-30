@@ -1046,11 +1046,12 @@ router.put('/addconsultant', async (req, res) => {
       _id: projectid
     })
     .then(project => {
-      return project
+      return project;
     });
   // const roleExist = await findrole(projectid, consultant);
   // if (roleExist.length === 0) {
-    var newListConsultants = project.consultant;
+  var newListConsultants = project.consultant;
+  if (newListConsultants.includes(consultant) === false) {
     newListConsultants.push(consultant);
     Project.updateOne({
       _id: projectid
@@ -1059,10 +1060,11 @@ router.put('/addconsultant', async (req, res) => {
         consultant: newListConsultants
       },
     }, function() {});
-    setTimeout(() => {
-      // req.flash('success_msg', 'Data Project berhasil diubah!');
-      res.redirect('/project/' + projectid);
-    }, 1000);
+  }
+  setTimeout(() => {
+    // req.flash('success_msg', 'Data Project berhasil diubah!');
+    res.redirect('/project/' + projectid);
+  }, 1000);
   // } else {
   //   req.flash('error_msg', 'Username has been assigned!');
   //   res.redirect('/project/' + projectid);
@@ -1078,7 +1080,7 @@ router.delete('/consultant', async (req, res) => {
       _id: projectid
     })
     .then(project => {
-      return project
+      return project;
     });
   var oldListConsultants = project.consultant;
   var newListConsultants = [];
@@ -1087,7 +1089,7 @@ router.delete('/consultant', async (req, res) => {
     if (oldConsultant === consultant) {
 
     } else {
-      newListConsultants.push(oldConsultant)
+      newListConsultants.push(oldConsultant);
     }
   });
 
@@ -1115,11 +1117,13 @@ router.put('/addcontractor', async (req, res) => {
       _id: projectid
     })
     .then(project => {
-      return project
+      return project;
     });
   // const roleExist = await findrole(projectid, contractor);
   // if (roleExist.length === 0) {
-    var newListContractors = project.contractor;
+
+  var newListContractors = project.contractor;
+  if (newListContractors.includes(contractor) === false) {
     newListContractors.push(contractor);
     Project.updateOne({
       _id: projectid
@@ -1128,10 +1132,11 @@ router.put('/addcontractor', async (req, res) => {
         contractor: newListContractors
       },
     }, function() {});
-    setTimeout(() => {
-      // req.flash('success_msg', 'Data Project berhasil diubah!');
-      res.redirect('/project/' + projectid);
-    }, 1000);
+  }
+  setTimeout(() => {
+    // req.flash('success_msg', 'Data Project berhasil diubah!');
+    res.redirect('/project/' + projectid);
+  }, 1000);
   // } else {
   //   req.flash('error_msg', 'Username has been assigned!');
   //   res.redirect('/project/' + projectid);
@@ -1147,7 +1152,7 @@ router.delete('/contractor', async (req, res) => {
       _id: projectid
     })
     .then(project => {
-      return project
+      return project;
     });
   var oldListContractors = project.contractor;
   var newListContractors = [];
@@ -1156,7 +1161,7 @@ router.delete('/contractor', async (req, res) => {
     if (oldContractor === contractor) {
 
     } else {
-      newListContractors.push(oldContractor)
+      newListContractors.push(oldContractor);
     }
   });
 
@@ -1184,11 +1189,13 @@ router.put('/adddroneengineer', async (req, res) => {
       _id: projectid
     })
     .then(project => {
-      return project
+      return project;
     });
   // const roleExist = await findrole(projectid, droneengineer);
   // if (roleExist.length === 0) {
-    var newListDroneengineers = project.droneengineer;
+
+  var newListDroneengineers = project.droneengineer;
+  if (newListDroneengineers.includes(droneengineer) === false) {
     newListDroneengineers.push(droneengineer);
     Project.updateOne({
       _id: projectid
@@ -1197,10 +1204,11 @@ router.put('/adddroneengineer', async (req, res) => {
         droneengineer: newListDroneengineers
       },
     }, function() {});
-    setTimeout(() => {
-      // req.flash('success_msg', 'Data Project berhasil diubah!');
-      res.redirect('/project/' + projectid);
-    }, 1000);
+  }
+  setTimeout(() => {
+    // req.flash('success_msg', 'Data Project berhasil diubah!');
+    res.redirect('/project/' + projectid);
+  }, 1000);
   // } else {
   //   req.flash('error_msg', 'Username has been assigned!');
   //   res.redirect('/project/' + projectid);
@@ -1216,7 +1224,7 @@ router.delete('/droneengineer', async (req, res) => {
       _id: projectid
     })
     .then(project => {
-      return project
+      return project;
     });
   var oldListDroneengineers = project.droneengineer;
   var newListDroneengineers = [];
@@ -1225,7 +1233,7 @@ router.delete('/droneengineer', async (req, res) => {
     if (oldDroneengineer === droneengineer) {
 
     } else {
-      newListDroneengineers.push(oldDroneengineer)
+      newListDroneengineers.push(oldDroneengineer);
     }
   });
 
@@ -1253,11 +1261,13 @@ router.put('/addmember', async (req, res) => {
       _id: projectid
     })
     .then(project => {
-      return project
+      return project;
     });
   // const roleExist = await findrole(projectid, member);
   // if (roleExist.length === 0) {
-    var newListMembers = project.member;
+
+  var newListMembers = project.member;
+  if (newListMembers.includes(member) === false) {
     newListMembers.push(member);
     Project.updateOne({
       _id: projectid
@@ -1266,10 +1276,11 @@ router.put('/addmember', async (req, res) => {
         member: newListMembers
       },
     }, function() {});
-    setTimeout(() => {
-      // req.flash('success_msg', 'Data Project berhasil diubah!');
-      res.redirect('/project/' + projectid);
-    }, 1000);
+  }
+  setTimeout(() => {
+    // req.flash('success_msg', 'Data Project berhasil diubah!');
+    res.redirect('/project/' + projectid);
+  }, 1000);
   // } else {
   //   req.flash('error_msg', 'Username has been assigned!');
   //   res.redirect('/project/' + projectid);
@@ -1285,15 +1296,14 @@ router.delete('/member', async (req, res) => {
       _id: projectid
     })
     .then(project => {
-      return project
+      return project;
     });
   var oldListMembers = project.member;
   var newListMembers = [];
 
   oldListMembers.forEach((oldMember) => {
-    if (oldMember === member) {
-    } else {
-      newListMembers.push(oldMember)
+    if (oldMember === member) {} else {
+      newListMembers.push(oldMember);
     }
   });
 
