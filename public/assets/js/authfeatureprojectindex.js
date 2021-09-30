@@ -21,25 +21,23 @@ function addButtonInsertDroneData() {
 rolediv.forEach(role => {
   //owner
   if (role === 'Owner') {
-
   }
 
   //consultant
   if (role === 'Consultant') {
     addButtonInsertTimestamp();
     addButtonInsertProjectZone();
-
   }
 
   //contractor
   if (role === 'Contractor') {}
 
-//droneengineer
-if (role === 'Drone Engineer') {
-  addButtonInsertDroneData();
-  addButtonInsertTimestamp();
-  addButtonInsertProjectZone();
-}
+  //droneengineer
+  if (role === 'Drone Engineer') {
+    addButtonInsertDroneData();
+    addButtonInsertTimestamp();
+    addButtonInsertProjectZone();
+  }
 
   //member
   if (role === 'Member') {
