@@ -18,6 +18,7 @@ const {
   adminEnsureAuthenticated
 } = require('../config/adminauth')
 const { projectAuth } = require('../config/projectauth')
+const { projectindexAuth } = require('../config/projectindexauth')
 
 //npm function
 const multer = require('multer');
@@ -49,6 +50,7 @@ const {
 const { watermarklogo, profilepictureresize, textOverlay, fieldphotoresize } = require('./imagessettings.js');
 const { PDFtoPNG } = require('../routes/uploadGamtek.js');
 const { findproject } = require ('../routes/findproject.js');
+const { findrole } = require ('../routes/findrole.js');
 
 //
 
@@ -95,10 +97,8 @@ router.get('/daftarproyek', ensureAuthenticated, async (req, res) => {
   // const listprojects = await Project.find({
   //   username: req.user.username
   // });
-  console.log(req.user.username);
   const listprojects = await findproject(req.user.username);
   // const listprojects = await listprojectsarray[0];
-  console.log(listprojects);
   res.render('daftarproyek', {
     name: req.user.name,
     jobs: req.user.jobs,
@@ -111,6 +111,8 @@ router.get('/daftarproyek', ensureAuthenticated, async (req, res) => {
 
 router.get('/project/:oit', ensureAuthenticated, projectAuth, async (req, res, next) => {
   try {
+    var rolearray = await findrole(req.params.oit,req.user.username);
+    var role = rolearray[0];
     const commentprojects = await Comment.find({
         projectid: req.params.oit
       })
@@ -130,6 +132,7 @@ router.get('/project/:oit', ensureAuthenticated, projectAuth, async (req, res, n
       company: req.user.company,
       user: req.user,
       project,
+      role,
       consultants: project.consultant,
       contractors: project.contractor,
       droneengineers: project.droneengineer,
@@ -213,7 +216,7 @@ router.put('/user', [
         },
       }).then((result) => {
         req.flash('success_msg', 'Profil berhasil diubah!');
-        res.redirect('/beranda');
+        res.redirect('/daftarproyek');
       });
     }
   }
@@ -294,7 +297,6 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
       });
       await multipleFieldPhotos.save();
       const fieldphotodest = element.destination+'/'+element.filename;
-      console.log(fieldphotodest);
       fieldphotoresize(element.destination, element.filename);
       watermarklogo(fieldphotodest);
       // textOverlay(fieldphotodest);
@@ -319,12 +321,10 @@ const uploadDroneImage = multer({
 
 //tambah droneimagesclient client
 router.put('/tambahdroneimagesclient', uploadDroneImage, (req, res) => {
-  console.log('cekfile: ' + req.file);
   const {
     projectid,
     timestamp
   } = req.body;
-  console.log(req.body);
   res.redirect('/projectindex/' + req.body.projectid);
   req.flash('success_msg', 'Images Uploaded Successfully');
   extractZipDrone(req.file.destination, req.file.filename);
@@ -346,14 +346,12 @@ const uploadGamtekClient = multer({
 
 //tambah gamtek client
 router.put('/uploadgamtekclient', uploadGamtekClient, async (req, res) => {
-  console.log('cekfile: ' + req.file);
   const {
     projectid,
     story,
     zoneid,
     category
   } = req.body;
-  console.log(req.body);
   res.redirect('/projectindex/' + req.body.projectid);
   req.flash('success_msg', 'Gamtek Successfully');
   // await PDFtoPNG(req.file.destination, req.file.filename);
@@ -465,7 +463,7 @@ router.post('/', (req, res) => {
 //Login handle
 router.post('/login', (req, res, next) => {
   passport.authenticate('local-client', {
-    successRedirect: '/beranda',
+    successRedirect: '/daftarproyek',
     failureRedirect: '/login',
     failureFlash: true,
   })(req, res, next);
@@ -873,7 +871,9 @@ router.put('/admin', [
 
 
 //project
-router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, next) => {
+router.get('/projectindex/:projectid', ensureAuthenticated, projectindexAuth, async (req, res, next) => {
+  var rolearray = await findrole(req.params.projectid,req.user.username);
+  var role = rolearray[0];
   var FieldPhotoArrays = [];
   var monthYearTimeStampProject = [];
   var numericValueTimeStampProject = [];
@@ -920,6 +920,7 @@ router.get('/projectindex/:projectid', ensureAuthenticated, async (req, res, nex
       jobs: req.user.jobs,
       company: req.user.company,
       project,
+      role,
       projectZones,
       FieldPhotoArrays,
       users: req.user,
@@ -939,7 +940,7 @@ router.post('/projectcomment', async (req, res, next) => {
     usernameid,
     isicomment,
     projectid,
-    jobs,
+    role,
     company,
     picture
   } = req.body;
@@ -947,7 +948,7 @@ router.post('/projectcomment', async (req, res, next) => {
     usernameid: usernameid,
     isicomment: isicomment,
     projectid: projectid,
-    jobs: jobs,
+    role: role,
     company: company,
     picture: picture,
   });
@@ -962,7 +963,7 @@ router.post('/projectcommentreply', async (req, res, next) => {
   const {
     usernameid,
     projectid,
-    jobs,
+    role,
     company,
     picture,
     commentprojectid,
@@ -971,7 +972,7 @@ router.post('/projectcommentreply', async (req, res, next) => {
   const newCommentReply = new CommentReply({
     usernameid: usernameid,
     projectid: projectid,
-    jobs: jobs,
+    role: role,
     company: company,
     picture: picture,
     commentprojectid: commentprojectid,
@@ -1024,7 +1025,7 @@ router.put('/addconsultant', async (req, res) => {
       },
     }, function() {});
     setTimeout(() => {
-      req.flash('success_msg', 'Data Project berhasil diubah!');
+      // req.flash('success_msg', 'Data Project berhasil diubah!');
       res.redirect('/project/'+projectid);
     }, 1000);
   });
@@ -1059,7 +1060,7 @@ router.put('/addconsultant', async (req, res) => {
       },
     }, function() {});
     setTimeout(() => {
-      req.flash('success_msg', 'Data Project berhasil diubah!');
+      // req.flash('success_msg', 'Data Project berhasil diubah!');
       res.redirect('/project/'+projectid);
     }, 1000);
   });
@@ -1087,7 +1088,7 @@ router.put('/addcontractor', async (req, res) => {
       },
     }, function() {});
     setTimeout(() => {
-      req.flash('success_msg', 'Data Project berhasil diubah!');
+      // req.flash('success_msg', 'Data Project berhasil diubah!');
       res.redirect('/project/'+projectid);
     }, 1000);
   });
@@ -1122,7 +1123,7 @@ router.put('/addcontractor', async (req, res) => {
       },
     }, function() {});
     setTimeout(() => {
-      req.flash('success_msg', 'Data Project berhasil diubah!');
+      // req.flash('success_msg', 'Data Project berhasil diubah!');
       res.redirect('/project/'+projectid);
     }, 1000);
   });
@@ -1150,7 +1151,7 @@ router.put('/adddroneengineer', async (req, res) => {
       },
     }, function() {});
     setTimeout(() => {
-      req.flash('success_msg', 'Data Project berhasil diubah!');
+      // req.flash('success_msg', 'Data Project berhasil diubah!');
       res.redirect('/project/'+projectid);
     }, 1000);
   });
@@ -1185,7 +1186,7 @@ router.put('/adddroneengineer', async (req, res) => {
       },
     }, function() {});
     setTimeout(() => {
-      req.flash('success_msg', 'Data Project berhasil diubah!');
+      // req.flash('success_msg', 'Data Project berhasil diubah!');
       res.redirect('/project/'+projectid);
     }, 1000);
   });
@@ -1213,7 +1214,7 @@ router.put('/addmember', async (req, res) => {
       },
     }, function() {});
     setTimeout(() => {
-      req.flash('success_msg', 'Data Project berhasil diubah!');
+      // req.flash('success_msg', 'Data Project berhasil diubah!');
       res.redirect('/project/'+projectid);
     }, 1000);
   });
@@ -1248,7 +1249,7 @@ router.put('/addmember', async (req, res) => {
       },
     }, function() {});
     setTimeout(() => {
-      req.flash('success_msg', 'Data Project berhasil diubah!');
+      // req.flash('success_msg', 'Data Project berhasil diubah!');
       res.redirect('/project/'+projectid);
     }, 1000);
   });

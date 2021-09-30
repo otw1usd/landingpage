@@ -16,7 +16,6 @@ const projectAuth = async (req, res, next) => {
     const listmember = await listproject.member;
     const role=[];
 
-    //nextnya dikasi parameter
     const consultant = 'consultant';
     const contractor = 'contractor';
     const droneengineer = 'droneengineer';
@@ -27,9 +26,9 @@ const projectAuth = async (req, res, next) => {
     check(listcontractor,userUsername,role,contractor);
     check(listdroneengineer,userUsername,role,droneengineer);
     check(listmember,userUsername,role,member);
-
-    console.log(role);
+    
     if (role.length ===0) {
+        req.flash('error_msg', "You don't have access to the project");
         res.redirect('/beranda');
     };
     return next();

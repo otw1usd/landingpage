@@ -1,5 +1,6 @@
   <!-- info-container -->
   <div class="info-container col-2 bg-dark">
+    <input type ="hidden" class="getRole" value="<%=role%>">
     <!-- Info Container Ringkas -->
     <div class="row">
       <div class="col-1 space"> </div>
@@ -7,7 +8,7 @@
         <h5>Anda di Proyek Ini</h5>
         <div class="row">
           <div class="col-9 div-ringkas">
-            <p>Jabatan: <%= jobs %> </p>
+            <p>Jabatan: <%= role %> </p>
             <p>Perusahaan: <%= company %></p>
           </div>
           <div class="div-logo col-3">
@@ -36,7 +37,7 @@
             Database
           </div>
         </a>
-        <a class="btn btn-outline-warning button-info-container row disabled" href="/project/<%= project._id %>">
+        <!-- <a class="btn btn-outline-warning button-info-container row disabled" href="/project/<%= project._id %>">
           <div class="col-1 logo">
             <i class="fas fa-hard-hat"></i>
           </div>
@@ -91,7 +92,7 @@
           <div class="col-10 keterangan">
             Service AMATI
           </div>
-        </a>
+        </a> -->
 
       </div>
     </div>
@@ -136,7 +137,7 @@
               </div>
               <div class="div-data-proyek col-3">
                 <!-- <p class="data-proyek">Jabatan Anda: <%= jobs %> </p> -->
-                <button type="button" class="btn btn-warning btn-sm" id="link-invite">Link Invite</button>
+                <!-- <button type="button" class="btn btn-warning btn-sm" id="link-invite">Link Invite</button> -->
               </div>
             </div>
           </div>
@@ -158,12 +159,14 @@
                 <form class="inline-block" method="POST" action="/consultant?_method=DELETE">
                   <input type="hidden" name="projectid" value="<%= project._id %>">
                   <input type="hidden" name="consultant" value="<%= username %>">
-                  <button type="submit" class="btn btn-danger badge delete-username" onclick="return confirm('yakin??')">Delete Username</button>
+                  <div class="domButtonDeleteUsername">
+                  <button type="submit" class="btn btn-danger badge delete-username" onclick="return confirm('Are you sure delete this username??')">X</button></div>
                 </form>
               </li>
               <% }) %>
             </ul>
-            <button type="button" class="btn btn-warning btn-sm add-username" onclick="addUsername(this)" id="">Tambah Username Consultant</button>
+            <div class="domButton" id="domButtonConsultant">
+            <button type="button" class="btn btn-warning btn-sm add-username" onclick="addUsername(this)" id="">Tambah Username Consultant</button></div>
             <form class="form-group add-username-form" action="/addconsultant?_method=PUT" method="POST">
               <input type="hidden" name="projectid" value="<%= project._id %>">
               <input class="form-control input-username" type="text" name="consultant" placeholder="Consultant Username" id="consultant" value="" required />
@@ -178,12 +181,14 @@
                 <form class="inline-block" method="POST" action="/contractor?_method=DELETE">
                   <input type="hidden" name="projectid" value="<%= project._id %>">
                   <input type="hidden" name="contractor" value="<%= username %>">
-                  <button type="submit" class="btn btn-danger badge delete-username" onclick="return confirm('yakin??')">Delete Username</button>
+                  <div class="domButtonDeleteUsername">
+                  <button type="submit" class="btn btn-danger badge delete-username" onclick="return confirm('Are you sure delete this username??')">X</button></div>
                 </form>
               </li>
               <% }) %>
             </ul>
-            <button type="button" class="btn btn-warning btn-sm add-username" onclick="addUsername(this)" id="">Tambah Username Contractor</button>
+            <div class="domButton" id="domButtonContractor">
+            <button type="button" class="btn btn-warning btn-sm add-username" onclick="addUsername(this)" id="">Tambah Username Contractor</button></div>
             <form class="form-group add-username-form" action="/addcontractor?_method=PUT" method="POST">
               <input type="hidden" name="projectid" value="<%= project._id %>">
               <input class="form-control input-username" type="text" name="contractor" placeholder="Contractor Username" id="contractor" value="" required />
@@ -198,12 +203,14 @@
                 <form class="inline-block" method="POST" action="/droneengineer?_method=DELETE">
                   <input type="hidden" name="projectid" value="<%= project._id %>">
                   <input type="hidden" name="droneengineer" value="<%= username %>">
-                  <button type="submit" class="btn btn-danger badge delete-username" onclick="return confirm('yakin??')">Delete Username</button>
+                  <div class="domButtonDeleteUsername">
+                  <button type="submit" class="btn btn-danger badge delete-username" onclick="return confirm('Are you sure delete this username??')">X</button></div>
                 </form>
               </li>
               <% }) %>
             </ul>
-            <button type="button" class="btn btn-warning btn-sm add-username" onclick="addUsername(this)" id="">Tambah Username Drone Engineer</button>
+            <div class="domButton" id="domButtonDroneEngineer">
+            <button type="button" class="btn btn-warning btn-sm add-username" onclick="addUsername(this)" id="">Tambah Username Drone Engineer</button></div>
             <form class="form-group add-username-form" action="/adddroneengineer?_method=PUT" method="POST">
               <input type="hidden" name="projectid" value="<%= project._id %>">
               <input class="form-control input-username" type="text" name="droneengineer" placeholder="Drone Engineer Username" id="droneengineer" value="" required />
@@ -211,19 +218,21 @@
             </form>
           </div>
           <div class="pihak-proyek">
-            <h5 class="data-proyek" alt="dapat view , comment, dan menambah foto lapangan"> Member Proyek:</h5>
+            <h5 class="data-proyek" alt="dapat view , comment, dan menambah foto lapangan"> Member Project:</h5>
             <ul>
               <% members.forEach((username) => { %>
               <li><%= username %>
                 <form class="inline-block" method="POST" action="/member?_method=DELETE">
                   <input type="hidden" name="projectid" value="<%= project._id %>">
                   <input type="hidden" name="member" value="<%= username %>">
-                  <button type="submit" class="btn btn-danger badge delete-username" onclick="return confirm('yakin??')">Delete Username</button>
+                  <div class="domButtonDeleteUsername">
+                  <button type="submit" class="btn btn-danger badge delete-username" onclick="return confirm('Are you sure delete this username??')">X</button></div>
                 </form>
               </li>
               <% }) %>
             </ul>
-            <button type="button" class="btn btn-warning btn-sm add-username" onclick="addUsername(this)" id="">Tambah Username Member</button>
+            <div class="domButton" id="domButtonMember"> 
+            <button type="button" class="btn btn-warning btn-sm add-username" onclick="addUsername(this)" id="">Tambah Username Member</button></div>
             <form class="form-group add-username-form" action="/addmember?_method=PUT" method="POST">
               <input type="hidden" name="projectid" value="<%= project._id %>">
               <input class="form-control input-username" type="text" name="member" placeholder="Member Username" id="member" value="" required />
@@ -251,10 +260,10 @@
             </div>
             <div class="col-10">
               <p class="nama"><%= user.name %> </p>
-              <p><%= user.jobs %> | <%= user.company %></p>
+              <p><%= role %> | <%= user.company %></p>
               <input type="hidden" name="usernameid" value="<%= user._id %>" required />
               <input type="hidden" name="picture" value="<%= user.image %>" required />
-              <input type="hidden" name="jobs" value="<%= jobs %>" required />
+              <input type="hidden" name="role" value="<%= role %>" required />
               <input type="hidden" name="company" value="<%= company %>" required />
               <input type="hidden" name="projectid" value="<%= project._id %>" required />
 
@@ -275,8 +284,8 @@
             <img class="foto-profile-comment lazy" data-src="/user/uploads/<%= commentproject.usernameid.image %> " alt="">
           </div>
           <div class="col-10">
-            <a class="nama" href=""><%= commentproject.usernameid.name %> </a>
-            <p class="jabatan"><%= commentproject.usernameid.jobs %> | <%= commentproject.usernameid.company %></p>
+            <a class="nama" ><%= commentproject.usernameid.name %> </a>
+            <p class="jabatan"><%= commentproject.role %> | <%= commentproject.usernameid.company %></p>
             <p class="timestamp"><%= commentproject.tanggal %>
           </div>
           <p class="keterangan"><%= commentproject.isicomment %> </p>
@@ -292,7 +301,7 @@
             <form action="/projectcommentreply" method="post">
               <input type="hidden" name="usernameid" value="<%= user._id %>" required />
               <input type="hidden" name="picture" value="<%= user.image %>" required />
-              <input type="hidden" name="jobs" value="<%= jobs %>" required />
+              <input type="hidden" name="role" value="<%= role %>" required />
               <input type="hidden" name="company" value="<%= company %>" required />
               <input type="hidden" name="projectid" value="<%= project._id %>" required />
               <input type="hidden" name="commentprojectid" value="<%= commentproject._id %>" required />
@@ -317,7 +326,7 @@
             </div>
             <div class="col-10 reply-others-name-div">
               <p class="nama"><%= commentreplyproject.usernameid.name %></p>
-              <p class="perusahaan"><%= commentreplyproject.usernameid.jobs %> | <%= commentreplyproject.usernameid.company %></p>
+              <p class="perusahaan"><%= commentreplyproject.role %> | <%= commentreplyproject.usernameid.company %></p>
             </div>
             <div class="reply-others-text-div">
               <p class="reply-others-text"><%= commentreplyproject.komentarbalasan %></p>

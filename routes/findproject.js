@@ -22,14 +22,6 @@ const findproject = async (a) => {
         member : a
     });
 
-    console.log('cek owner '+listprojectOwner);
-    console.log('cek consultant '+listprojectConsultant);
-    console.log('cek contractor '+listprojectContractor);
-    console.log('cek droneengineer '+listprojectDroneengineer);
-    console.log('cek member '+listprojectMember);
-    console.log(listprojects);
-    console.log(listprojectConsultant.length);
-
     if (listprojectOwner !== [null]){
         if (listprojectOwner.length!== 0){
         listprojects.push(listprojectOwner)

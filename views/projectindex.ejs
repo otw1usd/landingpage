@@ -1,5 +1,6 @@
 <section id="user-tab">
   <input type="hidden" value="<%= project._id %>" class="getProjectId">
+  <input type ="hidden" class="getRole" value="<%=role%>">
   <div class="info-container col-2 bg-dark">
     <div class="row">
       <div class="col-1 space"> </div>
@@ -7,7 +8,7 @@
         <h5>You in this project</h5>
         <div class="row">
           <div class="col-9 div-ringkas">
-            <p>Position: <%= jobs %></p>
+            <p>Position: <%= role %></p>
             <p>Company: <%= company %></p>
           </div>
           <div class="div-logo col-3">
@@ -56,9 +57,12 @@
 
         <div class="floating-panel col-lg-6">
           <strong class="font-1-rem">Features</strong>
-          <button class="btn btn-outline-warning btn-sm btn-block toggle-client-side-input-timestamp" onclick="toggleClientSideInputTimestamp()">Input Timestamp</button>
-          <button class="btn btn-outline-warning btn-sm btn-block toggle-client-side-input-projectzone" onclick="toggleClientSideInputProjectZone()">Input Project Zone</button>
-          <button class="btn btn-outline-warning btn-sm btn-block toggle-client-side-input-dronedata" onclick="toggleClientSideInputDroneData()">Input Drone Data</button>
+          <div class="dom-input-timestamp">
+          <button class="btn btn-outline-warning btn-sm btn-block toggle-client-side-input-timestamp" onclick="toggleClientSideInputTimestamp()">Input Timestamp</button></div>
+          <div class="dom-input-projectzone">
+          <button class="btn btn-outline-warning btn-sm btn-block toggle-client-side-input-projectzone" onclick="toggleClientSideInputProjectZone()">Input Project Zone</button></div>
+          <div class="dom-input-dronedata">
+          <button class="btn btn-outline-warning btn-sm btn-block toggle-client-side-input-dronedata" onclick="toggleClientSideInputDroneData()">Input Drone Data</button></div>
           <button class="btn btn-outline-warning btn-sm btn-block toggle-client-side-input-viewvertical" onclick="viewVertical()">View Vertical</button>
           <div class="story-openfieldphotoclient" id="story-openfieldphotoclient" value=""></div>
           <div class="view-vertical-div">
