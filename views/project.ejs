@@ -1,6 +1,6 @@
   <!-- info-container -->
   <div class="info-container col-2 bg-dark">
-    <input type ="hidden" class="getRole" value="<%=role%>">
+    <input type="hidden" class="getRole" value="<%=role%>">
     <!-- Info Container Ringkas -->
     <div class="row">
       <div class="col-1 space"> </div>
@@ -146,27 +146,24 @@
         <div>
           <h4> Daftar Username Proyek :</h4>
           <div class="pihak-proyek">
-            <h5 class="data-proyek" alt="dapat view, comment, menanmbah foto lapangan, dan edit member proyek">Owner:</h5>
-            <ul>
-              <%= project.username %>
-            </ul>
+            <h5 class="data-proyek" alt="dapat view, comment, menanmbah foto lapangan, dan edit member proyek"><strong>Owner: </strong><%= project.username %></h5>
           </div>
           <div class="pihak-proyek">
-            <h5 class="data-proyek" alt="dapat view, comment, dan menanmbah foto lapangan">Consultant:</h5>
-            <ul>
+            <h5 class="data-proyek" alt="dapat view, comment, dan menanmbah foto lapangan"><strong>Consultant: </strong></h5>
+            <ol>
               <% consultants.forEach((username) => { %>
               <li><%= username %>
                 <form class="inline-block" method="POST" action="/consultant?_method=DELETE">
                   <input type="hidden" name="projectid" value="<%= project._id %>">
                   <input type="hidden" name="consultant" value="<%= username %>">
                   <div class="domButtonDeleteUsername">
-                  <button type="submit" class="btn btn-danger badge delete-username" onclick="return confirm('Are you sure delete this username??')">X</button></div>
+                  </div>
                 </form>
               </li>
               <% }) %>
-            </ul>
+            </ol>
             <div class="domButton" id="domButtonConsultant">
-            <button type="button" class="btn btn-warning btn-sm add-username" onclick="addUsername(this)" id="">Tambah Username Consultant</button></div>
+            </div>
             <form class="form-group add-username-form" action="/addconsultant?_method=PUT" method="POST">
               <input type="hidden" name="projectid" value="<%= project._id %>">
               <input class="form-control input-username" type="text" name="consultant" placeholder="Consultant Username" id="consultant" value="" required />
@@ -174,21 +171,21 @@
             </form>
           </div>
           <div class="pihak-proyek">
-            <h5 class="data-proyek" alt="dapat view, comment, dan menanmbah foto lapangan"> Contractor:</h5>
-            <ul>
+            <h5 class="data-proyek" alt="dapat view, comment, dan menanmbah foto lapangan"><strong>Contractor: </strong></h5>
+            <ol>
               <% contractors.forEach((username) => { %>
               <li><%= username %>
                 <form class="inline-block" method="POST" action="/contractor?_method=DELETE">
                   <input type="hidden" name="projectid" value="<%= project._id %>">
                   <input type="hidden" name="contractor" value="<%= username %>">
                   <div class="domButtonDeleteUsername">
-                  <button type="submit" class="btn btn-danger badge delete-username" onclick="return confirm('Are you sure delete this username??')">X</button></div>
+                  </div>
                 </form>
               </li>
               <% }) %>
-            </ul>
+            </ol>
             <div class="domButton" id="domButtonContractor">
-            <button type="button" class="btn btn-warning btn-sm add-username" onclick="addUsername(this)" id="">Tambah Username Contractor</button></div>
+            </div>
             <form class="form-group add-username-form" action="/addcontractor?_method=PUT" method="POST">
               <input type="hidden" name="projectid" value="<%= project._id %>">
               <input class="form-control input-username" type="text" name="contractor" placeholder="Contractor Username" id="contractor" value="" required />
@@ -196,21 +193,21 @@
             </form>
           </div>
           <div class="pihak-proyek">
-            <h5 class="data-proyek" alt="dapat edit foto drone"> Engineer Drone:</h5>
-            <ul>
+            <h5 class="data-proyek" alt="dapat edit foto drone"><strong>Engineer Drone: </strong></h5>
+            <ol>
               <% droneengineers.forEach((username) => { %>
               <li><%= username %>
                 <form class="inline-block" method="POST" action="/droneengineer?_method=DELETE">
                   <input type="hidden" name="projectid" value="<%= project._id %>">
                   <input type="hidden" name="droneengineer" value="<%= username %>">
                   <div class="domButtonDeleteUsername">
-                  <button type="submit" class="btn btn-danger badge delete-username" onclick="return confirm('Are you sure delete this username??')">X</button></div>
+                  </div>
                 </form>
               </li>
               <% }) %>
-            </ul>
+            </ol>
             <div class="domButton" id="domButtonDroneEngineer">
-            <button type="button" class="btn btn-warning btn-sm add-username" onclick="addUsername(this)" id="">Tambah Username Drone Engineer</button></div>
+            </div>
             <form class="form-group add-username-form" action="/adddroneengineer?_method=PUT" method="POST">
               <input type="hidden" name="projectid" value="<%= project._id %>">
               <input class="form-control input-username" type="text" name="droneengineer" placeholder="Drone Engineer Username" id="droneengineer" value="" required />
@@ -218,21 +215,21 @@
             </form>
           </div>
           <div class="pihak-proyek">
-            <h5 class="data-proyek" alt="dapat view , comment, dan menambah foto lapangan"> Member Project:</h5>
-            <ul>
+            <h5 class="data-proyek" alt="dapat view , comment, dan menambah foto lapangan"><strong>Member Project: </strong></h5>
+            <ol>
               <% members.forEach((username) => { %>
               <li><%= username %>
                 <form class="inline-block" method="POST" action="/member?_method=DELETE">
                   <input type="hidden" name="projectid" value="<%= project._id %>">
                   <input type="hidden" name="member" value="<%= username %>">
                   <div class="domButtonDeleteUsername">
-                  <button type="submit" class="btn btn-danger badge delete-username" onclick="return confirm('Are you sure delete this username??')">X</button></div>
+                  </div>
                 </form>
               </li>
               <% }) %>
-            </ul>
-            <div class="domButton" id="domButtonMember"> 
-            <button type="button" class="btn btn-warning btn-sm add-username" onclick="addUsername(this)" id="">Tambah Username Member</button></div>
+            </ol>
+            <div class="domButton" id="domButtonMember">
+            </div>
             <form class="form-group add-username-form" action="/addmember?_method=PUT" method="POST">
               <input type="hidden" name="projectid" value="<%= project._id %>">
               <input class="form-control input-username" type="text" name="member" placeholder="Member Username" id="member" value="" required />
@@ -284,7 +281,7 @@
             <img class="foto-profile-comment lazy" data-src="/user/uploads/<%= commentproject.usernameid.image %> " alt="">
           </div>
           <div class="col-10">
-            <a class="nama" ><%= commentproject.usernameid.name %> </a>
+            <a class="nama"><%= commentproject.usernameid.name %> </a>
             <p class="jabatan"><%= commentproject.role %> | <%= commentproject.usernameid.company %></p>
             <p class="timestamp"><%= commentproject.tanggal %>
           </div>

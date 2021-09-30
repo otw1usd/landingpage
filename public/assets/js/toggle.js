@@ -176,7 +176,7 @@ function toggleClientSideInputDroneData() {
 
 // Toggle tambah username
 function addUsername(button) {
-  button.nextElementSibling.classList.toggle("add-username-form-active");
+  button.parentElement.nextElementSibling.classList.toggle("add-username-form-active");
 }
 
 //Toggle View Vertical
