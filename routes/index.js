@@ -610,6 +610,16 @@ router.post('/registerproject', uploadPeta, (req, res) => {
     });
 });
 
+router.delete('/deleteproject', async (req, res) => {
+  await Project.deleteOne({
+    _id: req.body.projectid
+    })
+    .then((result) => {
+      req.flash('success_msg', 'Project has been deleted!');
+      res.redirect('/daftarproyek');
+    });
+});
+
 //tambah zona
 router.post('/tambahzona', async (req, res, next) => {
   try {
@@ -1014,19 +1024,25 @@ router.put('/addconsultant', async (req, res) => {
     .then(project => {
       return project
     });
-    var newListConsultants=project.consultant;
-    newListConsultants.push(consultant);
-    Project.updateOne({
-      _id: projectid
-    }, {
-      $set: {
-        consultant: newListConsultants
-      },
-    }, function() {});
-    setTimeout(() => {
-      // req.flash('success_msg', 'Data Project berhasil diubah!');
-      res.redirect('/project/'+projectid);
-    }, 1000);
+    const roleExist = await findrole(projectid,member);
+    if (roleExist.length === 0){
+        var newListConsultants=project.consultant;
+        newListConsultants.push(consultant);
+        Project.updateOne({
+          _id: projectid
+        }, {
+          $set: {
+            consultant: newListConsultants
+          },
+        }, function() {});
+        setTimeout(() => {
+          // req.flash('success_msg', 'Data Project berhasil diubah!');
+          res.redirect('/project/'+projectid);
+        }, 1000);
+      } else{
+        req.flash('error_msg', 'Username has been assigned!');
+        res.redirect('/project/'+projectid);
+      }
   });
 
   router.delete('/consultant', async (req, res) => {
@@ -1077,19 +1093,25 @@ router.put('/addcontractor', async (req, res) => {
     .then(project => {
       return project
     });
-    var newListContractors=project.contractor;
-    newListContractors.push(contractor);
-    Project.updateOne({
-      _id: projectid
-    }, {
-      $set: {
-        contractor: newListContractors
-      },
-    }, function() {});
-    setTimeout(() => {
-      // req.flash('success_msg', 'Data Project berhasil diubah!');
-      res.redirect('/project/'+projectid);
-    }, 1000);
+    const roleExist = await findrole(projectid,member);
+    if (roleExist.length === 0){
+        var newListContractors=project.contractor;
+        newListContractors.push(contractor);
+        Project.updateOne({
+          _id: projectid
+        }, {
+          $set: {
+            contractor: newListContractors
+          },
+        }, function() {});
+        setTimeout(() => {
+          // req.flash('success_msg', 'Data Project berhasil diubah!');
+          res.redirect('/project/'+projectid);
+        }, 1000);
+      } else{
+        req.flash('error_msg', 'Username has been assigned!');
+        res.redirect('/project/'+projectid);
+      }
   });
 
   router.delete('/contractor', async (req, res) => {
@@ -1140,19 +1162,25 @@ router.put('/adddroneengineer', async (req, res) => {
     .then(project => {
       return project
     });
-    var newListDroneengineers=project.droneengineer;
-    newListDroneengineers.push(droneengineer);
-    Project.updateOne({
-      _id: projectid
-    }, {
-      $set: {
-        droneengineer: newListDroneengineers
-      },
-    }, function() {});
-    setTimeout(() => {
-      // req.flash('success_msg', 'Data Project berhasil diubah!');
-      res.redirect('/project/'+projectid);
-    }, 1000);
+    const roleExist = await findrole(projectid,member);
+    if (roleExist.length === 0){
+        var newListDroneengineers=project.droneengineer;
+        newListDroneengineers.push(droneengineer);
+        Project.updateOne({
+          _id: projectid
+        }, {
+          $set: {
+            droneengineer: newListDroneengineers
+          },
+        }, function() {});
+        setTimeout(() => {
+          // req.flash('success_msg', 'Data Project berhasil diubah!');
+          res.redirect('/project/'+projectid);
+        }, 1000);
+      } else{
+        req.flash('error_msg', 'Username has been assigned!');
+        res.redirect('/project/'+projectid);
+      }
   });
 
   router.delete('/droneengineer', async (req, res) => {
@@ -1203,19 +1231,25 @@ router.put('/addmember', async (req, res) => {
     .then(project => {
       return project
     });
-    var newListMembers=project.member;
-    newListMembers.push(member);
-    Project.updateOne({
-      _id: projectid
-    }, {
-      $set: {
-        member: newListMembers
-      },
-    }, function() {});
-    setTimeout(() => {
-      // req.flash('success_msg', 'Data Project berhasil diubah!');
-      res.redirect('/project/'+projectid);
-    }, 1000);
+    const roleExist = await findrole(projectid,member);
+    if (roleExist.length === 0){
+        var newListMembers=project.member;
+        newListMembers.push(member);
+        Project.updateOne({
+          _id: projectid
+        }, {
+          $set: {
+            member: newListMembers
+          },
+        }, function() {});
+        setTimeout(() => {
+          // req.flash('success_msg', 'Data Project berhasil diubah!');
+          res.redirect('/project/'+projectid);
+        }, 1000);
+      } else{
+        req.flash('error_msg', 'Username has been assigned!');
+        res.redirect('/project/'+projectid);
+      }
   });
 
   router.delete('/member', async (req, res) => {

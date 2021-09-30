@@ -34,10 +34,12 @@ rolediv.forEach(role => {
   //contractor
   if (role === 'Contractor') {}
 
-  //droneengineer
-  if (role === 'Drone Engineer') {
-    addButtonInsertDroneData();
-  }
+//droneengineer
+if (role === 'Drone Engineer') {
+  addButtonInsertDroneData();
+  addButtonInsertTimestamp();
+  addButtonInsertProjectZone();
+}
 
   //member
   if (role === 'Member') {
