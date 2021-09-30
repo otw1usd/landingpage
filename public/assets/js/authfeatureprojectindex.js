@@ -1,6 +1,5 @@
 //jshint esversion: 8
-const rolediv = [document.querySelector('.getRole').value];
-console.log(rolediv[1] + "acsac");
+const rolediv = document.querySelector('.getRole').value.split(",");
 
 //projectindex
 function addButtonInsertTimestamp() {
@@ -20,9 +19,6 @@ function addButtonInsertDroneData() {
 }
 
 rolediv.forEach(role => {
-
-  console.log(role);
-
   //owner
   if (role === 'Owner') {
 
@@ -47,4 +43,4 @@ rolediv.forEach(role => {
   if (role === 'Member') {
 
   }
-})
+});

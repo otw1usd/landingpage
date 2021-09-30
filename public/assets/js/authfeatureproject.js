@@ -1,7 +1,6 @@
 //jshint esversion: 8
-const rolediv = document.querySelector('.getRole');
-const role = rolediv.value;
-console.log(role);
+const rolediv = document.querySelector('.getRole').value.split(",");
+
 
 //project
 function addButtonAddUsername() {
@@ -19,26 +18,29 @@ function addButtonDeleteUsername() {
   });
 }
 
-//owner
-if (role === 'Owner') {
-  addButtonAddUsername();
-  addButtonDeleteUsername();
-}
 
-//consultant
-if (role === 'Consultant') {
+rolediv.forEach(role => {
+  //owner
+  if (role === 'Owner') {
+    addButtonAddUsername();
+    addButtonDeleteUsername();
+  }
 
-}
+  //consultant
+  if (role === 'Consultant') {
 
-//contractor
-if (role === 'Contractor') {}
+  }
 
-//droneengineer
-if (role === 'Drone Engineer') {
+  //contractor
+  if (role === 'Contractor') {}
 
-}
+  //droneengineer
+  if (role === 'Drone Engineer') {
 
-//member
-if (role === 'Member') {
+  }
 
-}
+  //member
+  if (role === 'Member') {
+
+  }
+});
