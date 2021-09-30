@@ -23,7 +23,14 @@ function removeButtonDeleteProject() {
 }
 
 function addButtonDeleteProject() {
-  document.getElementById('dom-deleteproject').innerHTML = '<div class="btn btn-outline-warning button-info-container row"><div class="col-1 logo"><i class="fas fa-database"></i></div><button type="submit" class="col-10 keterangan" style="border:0px; background-color: transparent;color:#ffc107;" onclick="return confirm(\'Are you sure to delete this project??\')">Delete Project</button>';
+  document.getElementById('dom-deleteproject').innerHTML = `
+    <a class="btn btn-outline-warning button-info-container row">
+      <div class="col-1 logo">
+        <i class="fas fa-trash-alt"></i>
+      </div>
+      <button type="submit" class="col-10 keterangan" style="border:0px; background-color: transparent;color:#ffc107;" onclick="return confirm(\'Are you sure to delete this project??\')">Delete Project</button>
+    </a>
+  `;
 
 }
 
