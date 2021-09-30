@@ -112,7 +112,7 @@
 
   <!-- Informasi Proyek -->
   <div class="div-informasi-proyek col-9">
-    <h2>Tahap: Konstruksi</h2>
+    <h3 class="bold">Tahap: Konstruksi</h3>
     <h6>Progress Total</h6>
     <div class="progress">
       <div class="progress-bar bg-dark" role="progressbar" style="width: <%= project.progrestotal %>%;" aria-valuenow="<%= project.progrestotal %>" aria-valuemin="0" aria-valuemax="100"><%= project.progrestotal %> %</div>
@@ -125,43 +125,45 @@
     <div class="div-utama row">
       <!-- Div Peta -->
       <div class="div-peta col-7">
-        <h4>AMATI kondisi Proyek</h4>
+        <h4 class="bold">AMATI kondisi Proyek</h4>
         <a href="/projectindex/<%= project.id %>"><img id="peta" data-src="/project/<%= project._id %>/peta.png" class="lazy" alt="" value="<%= project.id %>"></a>
-        <div class="daftar-proyek col-12">
-          <div class="div-data-proyek-besar">
-            <div class="row">
-              <h4>Informasi Umum</h4>
+
+        <h4 class="bold informasi-umum-heading">Informasi Umum</h4>
+
+        <div class="daftar-proyek informasi-umum-content">
+
+          <div class="div-data-proyek-besar row">
+
+
+            <div class="div-data-proyek col-4">
+              <p class="data-proyek">Project Duration: <%= project.startDate %> until <%= project.endDate %></p>
+              <p class="data-proyek">Project Cost: <%= project.nilaiProyek%></p>
+
             </div>
-            <div class="row">
-              <div class="div-data-proyek col-3">
-                <p class="data-proyek">Project Duration: <%= project.startDate %> until <%= project.endDate %></p>
-                <p class="data-proyek">Locaton: <%= project.location %></p>
-                <p class="data-proyek">Area: </p>
-              </div>
-              <div class="div-data-proyek col-3">
-                <p class="data-proyek">Project Cost: <%= project.nilaiProyek%></p>
-                <p class="data-proyek">Owner: <%= project.username %></p>
-                <p class="data-proyek">Consultant: <%= project.konsultan%></p>
-              </div>
-              <div class="div-data-proyek col-3">
-                <p class="data-proyek">Contractor: <%= project.kontraktor%></p>
-                <p class="data-proyek"></p>
-              </div>
-              <div class="div-data-proyek col-3">
-                <!-- <p class="data-proyek">Jabatan Anda: <%= jobs %> </p> -->
-                <!-- <button type="button" class="btn btn-warning btn-sm" id="link-invite">Link Invite</button> -->
-              </div>
+            <div class="div-data-proyek col-4">
+              <p class="data-proyek">Owner: <%= project.username %></p>
+              <p class="data-proyek">Consultant: <%= project.konsultan%></p>
+              <p class="data-proyek">Contractor: <%= project.kontraktor%></p>
             </div>
+            <div class="div-data-proyek col-4">
+              <p class="data-proyek">Location: <%= project.location %></p>
+              <p class="data-proyek">Area: </p>
+            </div>
+            <!-- <div class="div-data-proyek col-3">
+                <p class="data-proyek">Jabatan Anda: <%= jobs %> </p>
+                <button type="button" class="btn btn-warning btn-sm" id="link-invite">Link Invite</button>
+              </div> -->
+
           </div>
         </div>
 
         <div>
-          <h4> Daftar Username Proyek :</h4>
+          <h4 class="bold"> Daftar Username Proyek</h4>
           <div class="pihak-proyek">
-            <h5 class="data-proyek" alt="dapat view, comment, menanmbah foto lapangan, dan edit member proyek"><strong>Owner: </strong><%= project.username %></h5>
+            <h5 class="data-proyek bold" alt="dapat view, comment, menanmbah foto lapangan, dan edit member proyek">Owner: <%= project.username %></h5>
           </div>
           <div class="pihak-proyek">
-            <h5 class="data-proyek" alt="dapat view, comment, dan menanmbah foto lapangan"><strong>Consultant: </strong></h5>
+            <h5 class="data-proyek bold" alt="dapat view, comment, dan menanmbah foto lapangan">Consultant: </h5>
             <ol>
               <% consultants.forEach((username) => { %>
               <li><%= username %>
@@ -183,7 +185,7 @@
             </form>
           </div>
           <div class="pihak-proyek">
-            <h5 class="data-proyek" alt="dapat view, comment, dan menanmbah foto lapangan"><strong>Contractor: </strong></h5>
+            <h5 class="data-proyek bold" alt="dapat view, comment, dan menanmbah foto lapangan">Contractor: </h5>
             <ol>
               <% contractors.forEach((username) => { %>
               <li><%= username %>
@@ -205,7 +207,7 @@
             </form>
           </div>
           <div class="pihak-proyek">
-            <h5 class="data-proyek" alt="dapat edit foto drone"><strong>Engineer Drone: </strong></h5>
+            <h5 class="data-proyek bold" alt="dapat edit foto drone">Engineer Drone: </h5>
             <ol>
               <% droneengineers.forEach((username) => { %>
               <li><%= username %>
@@ -227,7 +229,7 @@
             </form>
           </div>
           <div class="pihak-proyek">
-            <h5 class="data-proyek" alt="dapat view , comment, dan menambah foto lapangan"><strong>Member Project: </strong></h5>
+            <h5 class="data-proyek bold" alt="dapat view , comment, dan menambah foto lapangan">Member Project: </h5>
             <ol>
               <% members.forEach((username) => { %>
               <li><%= username %>
@@ -259,7 +261,7 @@
 
       <!-- Div Notifikasi -->
       <div class="div-div-notifikasi col-4">
-        <h5>Notifikasi Terbaru</h5>
+        <h4 class="bold">Notifikasi Terbaru</h4>
         <!-- Template Notifikasi -->
         <form class="comment-form bg-light" action="/projectcomment" method="POST">
           <p class="nama">Beri Komentar</p>
