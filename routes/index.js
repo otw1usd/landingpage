@@ -610,6 +610,16 @@ router.post('/registerproject', uploadPeta, (req, res) => {
     });
 });
 
+router.delete('/deleteproject', async (req, res) => {
+  await Project.deleteOne({
+    _id: req.body.projectid
+    })
+    .then((result) => {
+      req.flash('success_msg', 'Project has been deleted!');
+      res.redirect('/daftarproyek');
+    });
+});
+
 //tambah zona
 router.post('/tambahzona', async (req, res, next) => {
   try {
