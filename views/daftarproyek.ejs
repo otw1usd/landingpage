@@ -6,8 +6,8 @@
 
   <!-- List of Own Project -->
   <div class="div-daftar-proyek col-9">
-    <h2>Project List</h2>
-    <h4>Contact <a href="/#contactUs">Admin AMATI</a> for more information </h4>
+    <h2 class="bold">Project List</h2>
+    <h4>Contact <a class="contact-admin bold" href="/#contactUs">AMATI Administrator</a> for more information </h4>
     <a href="/registerproject"><img class="col-1" id="icon-edit-data-proyek" src="images/tambah.jpg" alt="Create New Project"> </a>
 
     <% listprojects.forEach((listproject) => { %>
@@ -15,36 +15,56 @@
 
     <div class="daftar-proyek col-12 row">
       <div class="col-2">
-        <img class="logo-proyek" src="images/logo-kcic.png" alt="">
+        <img class="logo-proyek" src="images/amatilogo.png" alt="">
       </div>
       <div class="div-data-proyek-besar col-10">
         <div class="row">
           <h4>
-            <a href="/project/<%= listproject._id %>" class="nama-proyek text-dark">
+            <a href="/project/<%= listproject._id %>" class="nama-proyek text-dark bold">
               <%= listproject.projectName %>
             </a>
           </h4>
         </div>
         <div class="row">
-          <div class="div-data-proyek col-4">
-            <p class="data-proyek">Project Duration: <%= listproject.startDate %> until <%= listproject.endDate %></p>
-            <p class="data-proyek">Locaton: <%= listproject.location %></p>
-            <p class="data-proyek">Area: </p>
+          <div class="div-data-proyek col-6">
+            <ul>
+              <li>
+                <p class="data-proyek">Project Duration: <%= listproject.startDate %> until <%= listproject.endDate %></p>
+              </li>
+              <li>
+                <p class="data-proyek">Project Cost: <%= listproject.nilaiProyek%></p>
+              </li>
+              <li>
+                <p class="data-proyek">Project Progress: <%= listproject.progrestotal%>%</p>
+              </li>
+              <!-- <p class="data-proyek">Locaton: <%= listproject.location %></p>
+              <p class="data-proyek">Area: </p> -->
+            </ul>
+
           </div>
-          <div class="div-data-proyek col-3">
-            <p class="data-proyek">Project Cost: <%= listproject.nilaiProyek%></p>
-            <p class="data-proyek">Owner: <%= listproject.username %></p>
-            <p class="data-proyek">Consultant: <%= listproject.konsultan%></p>
+          <div class="div-data-proyek col-6">
+            <ul>
+              <!-- <p class="data-proyek">Project Cost: <%= listproject.nilaiProyek%></p> -->
+              <li>
+                <p class="data-proyek">Owner: <%= listproject.username %></p>
+              </li>
+              <li>
+                <p class="data-proyek">Consultant: <%= listproject.konsultan%></p>
+              </li>
+              <li>
+                <p class="data-proyek">Contractor: <%= listproject.kontraktor%></p>
+              </li>
+            </ul>
           </div>
-          <div class="div-data-proyek col-2">
+          <!-- <div class="div-data-proyek col-2">
             <p class="data-proyek">Contractor: <%= listproject.kontraktor%></p>
             <p class="data-proyek"></p>
-          </div>
-          <div class="div-data-proyek col-3">
-            <!-- <p class="data-proyek">Your Position: <%= jobs %></p> -->
+          </div> -->
+          <!-- <div class="div-data-proyek col-3">
+            <p class="data-proyek">Your Position: <%= jobs %></p>
             <a href="/project/<%= listproject._id %>" class="btn btn-warning btn-sm"> Notification</a>
             <a href="/project/<%= listproject._id %>" class="btn btn-warning btn-sm"> Link Invite</a>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

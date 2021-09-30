@@ -13,7 +13,7 @@ function addButtonAddUsername() {
 
 function addButtonDeleteUsername() {
   document.querySelectorAll('.domButtonDeleteUsername').forEach(domButtonDeleteUsername => {
-    domButtonDeleteUsername.innerHTML = '<button type="submit" class="btn btn-danger badge delete-username" onclick="return confirm(\'Are you sure you want to delete this username?\')">X</button>';
+    domButtonDeleteUsername.innerHTML = '<button type="submit" class="btn btn-danger badge delete-username" onclick="return confirm(\'Are you sure you want to delete this username?\')"><i class="fas fa-user-times"></i></button>';
     console.log('addButtonDeleteUsername success');
   });
 }
