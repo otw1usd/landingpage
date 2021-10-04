@@ -462,7 +462,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 /* Akhir Daftar Proyek */
-/* KCIC */
+/* PROJECT */
 .button-info-container {
   width: 100%;
   margin-top: 1rem;
@@ -506,7 +506,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   font-size: 0.75rem;
 }
 
-/* Informasi Proyek KCIC */
+/* Informasi Proyek */
 .div-informasi-proyek {
   position: absolute;
   left: 20%;
@@ -595,6 +595,13 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 /* Daftar Username Proyek */
+.daftar-username-proyek-div {
+  position: absolute;
+  left: 20%;
+  top: 6rem;
+  z-index: -1;
+}
+
 .pihak-proyek {
   padding-bottom: 1rem;
 }

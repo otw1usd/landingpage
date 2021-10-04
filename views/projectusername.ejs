@@ -1,0 +1,158 @@
+<div class="info-container col-2 bg-dark">
+  <input type="hidden" class="getRole" value="<%=role%>">
+  <!-- Info Container Ringkas -->
+  <div class="row">
+    <div class="col-1 space"> </div>
+    <div class="alert info-container-ringkas col-10">
+      <h5>Anda di Proyek Ini</h5>
+      <div class="row">
+        <div class="col-9 div-ringkas">
+          <p>Jabatan: <%= role %> </p>
+          <p>Perusahaan: <%= company %></p>
+        </div>
+        <div class="div-logo col-3">
+          <img class="logo" src="/project/<%= project._id %>/logo.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu kiri -->
+  <div class="row">
+    <div class="col-12">
+      <a class="btn btn-outline-warning button-info-container row" href="/project/<%= project._id %>">
+        <div class="col-1 logo">
+          <i class="fas fa-file-alt"></i>
+        </div>
+        <div class="col-10 keterangan">
+          Project Information
+        </div>
+      </a>
+      <a class="btn btn-outline-warning button-info-container row active" href="/projectusername/<%= project._id %>">
+        <div class="col-1 logo">
+          <i class="fas fa-user-friends"></i>
+        </div>
+        <div class="col-10 keterangan">
+          Project Members
+        </div>
+      </a>
+      <a class="btn btn-outline-warning button-info-container row" href="/project/<%= project._id %>">
+        <div class="col-1 logo">
+          <i class="fas fa-database"></i>
+        </div>
+        <div class="col-10 keterangan">
+          Database
+        </div>
+      </a>
+
+      <form method="POST" action="/deleteproject?_method=DELETE">
+        <input type="hidden" name="projectid" value="<%= project._id %>">
+        <div id="dom-deleteproject">
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<div class="daftar-username-proyek-div col-9">
+  <h4 class="bold">Daftar Username Proyek</h4>
+  <br>
+  <div class="pihak-proyek">
+    <h5 class="data-proyek bold" alt="dapat view, comment, menanmbah foto lapangan, dan edit member proyek">Owner: <%= project.username %></h5>
+  </div>
+  <div class="pihak-proyek">
+    <h5 class="data-proyek bold" alt="dapat view, comment, dan menanmbah foto lapangan">Consultant: </h5>
+    <ol>
+      <% consultants.forEach((username) => { %>
+      <li><%= username %>
+        <form class="inline-block" method="POST" action="/consultant?_method=DELETE">
+          <input type="hidden" name="projectid" value="<%= project._id %>">
+          <input type="hidden" name="consultant" value="<%= username %>">
+          <div class="domButtonDeleteUsername">
+          </div>
+        </form>
+      </li>
+      <% }) %>
+    </ol>
+    <div class="domButton" id="domButtonConsultant">
+    </div>
+    <form class="form-group add-username-form" action="/addconsultant?_method=PUT" method="POST">
+      <input type="hidden" name="projectid" value="<%= project._id %>">
+      <input class="form-control input-username" type="text" name="consultant" placeholder="Consultant Username" id="consultant" value="" required />
+      <button type="submit" class="btn btn-dark btn-sm">Add</button>
+    </form>
+  </div>
+  <div class="pihak-proyek">
+    <h5 class="data-proyek bold" alt="dapat view, comment, dan menanmbah foto lapangan">Contractor: </h5>
+    <ol>
+      <% contractors.forEach((username) => { %>
+      <li><%= username %>
+        <form class="inline-block" method="POST" action="/contractor?_method=DELETE">
+          <input type="hidden" name="projectid" value="<%= project._id %>">
+          <input type="hidden" name="contractor" value="<%= username %>">
+          <div class="domButtonDeleteUsername">
+          </div>
+        </form>
+      </li>
+      <% }) %>
+    </ol>
+    <div class="domButton" id="domButtonContractor">
+    </div>
+    <form class="form-group add-username-form" action="/addcontractor?_method=PUT" method="POST">
+      <input type="hidden" name="projectid" value="<%= project._id %>">
+      <input class="form-control input-username" type="text" name="contractor" placeholder="Contractor Username" id="contractor" value="" required />
+      <button type="submit" class="btn btn-dark btn-sm">Add</button>
+    </form>
+  </div>
+  <div class="pihak-proyek">
+    <h5 class="data-proyek bold" alt="dapat edit foto drone">Engineer Drone: </h5>
+    <ol>
+      <% droneengineers.forEach((username) => { %>
+      <li><%= username %>
+        <form class="inline-block" method="POST" action="/droneengineer?_method=DELETE">
+          <input type="hidden" name="projectid" value="<%= project._id %>">
+          <input type="hidden" name="droneengineer" value="<%= username %>">
+          <div class="domButtonDeleteUsername">
+          </div>
+        </form>
+      </li>
+      <% }) %>
+    </ol>
+    <div class="domButton" id="domButtonDroneEngineer">
+    </div>
+    <form class="form-group add-username-form" action="/adddroneengineer?_method=PUT" method="POST">
+      <input type="hidden" name="projectid" value="<%= project._id %>">
+      <input class="form-control input-username" type="text" name="droneengineer" placeholder="Drone Engineer Username" id="droneengineer" value="" required />
+      <button type="submit" class="btn btn-dark btn-sm">Add</button>
+    </form>
+  </div>
+  <div class="pihak-proyek">
+    <h5 class="data-proyek bold" alt="dapat view , comment, dan menambah foto lapangan">Member Project: </h5>
+    <ol>
+      <% members.forEach((username) => { %>
+      <li><%= username %>
+        <form class="inline-block" method="POST" action="/member?_method=DELETE">
+          <input type="hidden" name="projectid" value="<%= project._id %>">
+          <input type="hidden" name="member" value="<%= username %>">
+          <div class="domButtonDeleteUsername">
+          </div>
+        </form>
+      </li>
+      <% }) %>
+    </ol>
+    <div class="domButton" id="domButtonMember">
+    </div>
+    <form class="form-group add-username-form" action="/addmember?_method=PUT" method="POST">
+      <input type="hidden" name="projectid" value="<%= project._id %>">
+      <input class="form-control input-username" type="text" name="member" placeholder="Member Username" id="member" value="" required />
+      <button type="submit" class="btn btn-dark btn-sm">Add</button>
+    </form>
+  </div>
+</div>
+
+
+
+<!-- SPECIFIC SCRIPT FOR THIS EJS -->
+
+<script src="/assets/js/authfeatureprojectusername.js" charset="utf-8"></script>

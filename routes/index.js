@@ -170,6 +170,34 @@ router.get('/project/:oit', ensureAuthenticated, projectAuth, async (req, res, n
   }
 });
 
+
+router.get('/projectusername/:oit', ensureAuthenticated, projectAuth, async (req, res, next) => {
+  try {
+    var role = await findrole(req.params.oit, req.user.username);
+    console.log(role);
+    const project = await Project.findOne({
+      _id: req.params.oit
+    }).catch(error => {
+      throw error;
+    });
+    res.render('projectusername', {
+      name: req.user.name,
+      jobs: req.user.jobs,
+      company: req.user.company,
+      user: req.user,
+      project,
+      role,
+      consultants: project.consultant,
+      contractors: project.contractor,
+      droneengineers: project.droneengineer,
+      members: project.member,
+        layout: 'layout-account'
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
 //edit user profile
 
 router.get('/edituser', ensureAuthenticated, (req, res) => {
