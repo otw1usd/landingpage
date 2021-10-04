@@ -108,10 +108,14 @@ document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
     await socket.emit("fieldPhotoData", zoneid, timestamp);
 
     socket.on("fileNameArray", (fileNameArray, zoneid, timestamp) => {
+      document.querySelector('.field-photo-grid-div').innerHTML = `
+      <button onclick="" class="btn btn-dark btn-sm">
+        <i class="fas fa-filter"></i>Filter
+      </button>`;
       fileNameArray.forEach(fileName => {
         document.querySelector('.field-photo-grid-div').innerHTML += '<div class="col-4 field-photo-grid"><img onclick="fieldPhotoFullscreen(this)" style="height: auto; width: 100%;" src="/project/' + projectid + '/fieldphoto/' + zoneid + '/' + story + '/' + timestamp + '/compressedfieldphoto/' + fileName + '" alt="">';
       });
-      fileNameArray.length = 0;
+      // fileNameArray.length = 0;
     });
 
     document.querySelector(".field-photo-grid-bg").addEventListener("click", () => {
@@ -226,7 +230,7 @@ function viewVertical() {
 
     viewVerticalIndicator = 0;
   }
-} ;
+};
 
 
 // Bagian tampilin carousel field photo di project index

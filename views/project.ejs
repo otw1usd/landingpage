@@ -1,21 +1,16 @@
   <!-- info-container -->
   <div class="info-container col-2 bg-dark">
     <input type="hidden" class="getRole" value="<%=role%>">
-    <!-- Info Container Ringkas -->
-    <div class="row">
-      <div class="col-1 space"> </div>
-      <div class="alert info-container-ringkas col-10">
-        <h5>Anda di Proyek Ini</h5>
-        <div class="row">
-          <div class="col-9 div-ringkas">
-            <p>Jabatan: <%= role %> </p>
-            <p>Perusahaan: <%= company %></p>
-          </div>
-          <div class="div-logo col-3">
-            <img class="logo" src="/project/<%= project._id %>/logo.png" alt="">
-          </div>
-        </div>
-      </div>
+
+    <!-- Profile Container -->
+    <div class="profile-container">
+      <!-- <img class="foto-profile-container lazy" data-src="/user/uploads/<%= user.image %>" alt="">
+      <h5 class="bold"><%= user.name %></h5>
+      <p><%= role %></p>
+      <p><%= company %></p>
+      <h6 class="bold">at</h6> -->
+      <img class="logo-profile-container" src="/project/<%= project._id %>/logo.png" alt="Project Logo">
+      <p><%=project.projectName%></p>
     </div>
 
     <!-- Menu kiri -->
@@ -51,7 +46,7 @@
           <div id="dom-deleteproject">
           </div>
         </form>
-      
+
       </div>
     </div>
   </div>
