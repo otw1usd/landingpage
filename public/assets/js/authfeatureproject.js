@@ -9,7 +9,7 @@ function removeButtonDeleteProject() {
 
 function addButtonDeleteProject() {
   document.getElementById('dom-deleteproject').innerHTML = `
-    <button type="submit" class="btn btn-outline-warning button-info-container row">
+    <button type="submit" onclick="return confirm('Are you sure you want to delete this project??')" class="btn btn-outline-warning button-info-container row">
       <div class="col-1 logo">
         <i class="fas fa-trash-alt"></i>
       </div>
