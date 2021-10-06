@@ -67,8 +67,8 @@ async function initialize() {
   if (timestampDataLength===0) {var dateInitialObject = undefined }else{var dateInitialObject = {
     value:
     await getNumericValue(timestampDataNotPromise[timestampDataLength-1].timestampproject)
-  }}; 
-  
+  }};
+
   var options = {
     zoom: zoomInitDataNotPromise,
     center: new google.maps.LatLng(latInitDataNotPromise, lngInitDataNotPromise),
@@ -96,7 +96,7 @@ async function initialize() {
 
   await toggleOverlay(dateInitialObject);
   // console.log(dateInitialObject);
-  
+
   var vMarker = new google.maps.Marker({
     position: new google.maps.LatLng(latInitDataNotPromise, lngInitDataNotPromise),
     draggable: true
@@ -127,7 +127,7 @@ async function toggleOverlay(element) {
   }
 
   var path = "/project/"+projectid+"/drone/" + element.value + "/";
-  window.waktuOnScreen = element.value; 
+  window.waktuOnScreen = element.value;
   tutupfieldphoto();
   timestampOnScreen(element.value);
 
@@ -184,7 +184,7 @@ async function toggleOverlay(element) {
         "</tr>" +
 
         "<tr>" +
-        "<th><button onclick='bukatutupfieldphoto(\""+projectzoneDataEach.zoneid+"\", \""+waktuOnScreen+"\")'>Field Photo</button><button onclick='bukatutupuploadfieldphoto(\""+projectzoneDataEach.zoneid+"\", \""+waktuOnScreen+"\")'>+</button></th>" + "</tr>" +
+        "<th><button onclick='bukatutupfieldphoto(\""+projectzoneDataEach.zoneid+"\", \""+waktuOnScreen+"\")'>Field Photo</button><button onclick='bukatutupuploadfieldphoto(\""+projectzoneDataEach.zoneid+"\", \""+waktuOnScreen+"\",\""+storyIndicator+"\",\""+projectzoneDataEach.detailzona+"\")'>+</button></th>" + "</tr>" +
 
         "<tr>" +
         // "<th><button>Video</button></th>"+
@@ -296,35 +296,35 @@ async function toggleOverlay(element) {
 
         "</div>" +
         "</div>";
-      
+
       let angkacontent=[];
       await rolemaps.forEach(role => {
           //owner
           if (role === 'Owner') {
             angkacontent.push(2);
           }
-        
+
           //consultant
           if (role === 'Consultant') {
             angkacontent.push(3);
           }
-        
+
           //contractor
           if (role === 'Contractor') {angkacontent.push(2);}
-        
+
           //droneengineer
           if (role === 'Drone Engineer') {
             angkacontent.push(2);
           }
-        
+
           //member
           if (role === 'Member') {
             angkacontent.push(1);
-        
+
           }
         });
       var angkacontentmax = await Math.max(...angkacontent);
-      
+
       var content;
       if (angkacontentmax == 3){content = contentconsultant}else if (angkacontentmax == 2 ){content=contentlainnya} else {content = contentmember};
       console.log(content)
@@ -347,7 +347,7 @@ async function toggleOverlay(element) {
 
     const infowindow = new google.maps.InfoWindow({
       content: content,
-        
+
       maxWidth: 200,
     });
 

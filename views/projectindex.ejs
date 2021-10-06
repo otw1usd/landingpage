@@ -10,19 +10,14 @@
     </div>
 
     <div>
-      <h6 class="fitur"><strong>Project Information </strong></h6>
+      <h6 class="fitur text-center"><strong>Project Information </strong></h6>
 
       <div>
-        <h6> Total Project Progress: </h6>
-        <h3><span> <%= project.progrestotal %>% </span></h3>
+        <h6 class="text-center"> Total Project Progress: </h6>
+        <h3 class="text-center"><span> <%= project.progrestotal %>% </span></h3>
       </div>
-      <!-- <div>
-          <h6> Pengeluaran total: </h6>
-          <h6><span> dirahasiakan </span></h6>
-        </div> -->
 
-
-      <h6 class="fitur"><strong>Main Features</strong></h6>
+      <h6 class="fitur text-center"><strong>Main Features</strong></h6>
       <!-- Infocontainer Button -->
       <div class="row">
         <!-- Panel Tanggal -->
@@ -53,7 +48,7 @@
           <div class="dom-input-projectzone"></div>
           <div class="dom-input-dronedata"></div>
           <button class="btn btn-outline-warning btn-sm btn-block toggle-client-side-input-viewvertical" onclick="viewVertical()">View Vertical</button>
-          <div class="story-openfieldphotoclient" id="story-openfieldphotoclient" value="1"></div>
+          <input type="hidden" class="story-fieldphotoclient" value="1"/>
           <div class="view-vertical-div">
             <button type="button" class="btn btn-outline-warning btn-sm up-one-story">up</button>
             <h1 class="font-1-rem current-story">Lantai 1</h1>
@@ -168,32 +163,6 @@
     </div>
 
 
-    <div class="floating-panel add-field-photo add-field-photo-inactive">
-      <form class="sign-up-form" id="uploadFormFieldPhoto">
-        <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
-        <input type="hidden" id="zoneid-uploadfieldphotoclient" name="zoneid" value="" />
-        <input type="hidden" id="timestamp-uploadfieldphotoclient" name="timestamp" value="" />
-        <input type="hidden" id="story-uploadfieldphotoclient" name="story" value="1" />
-        <label for="image">Upload Field Photos :</label>
-        <div class="add-field-photo-button-div">
-          <input type="file" class="add-field-photo-button progress-bar-input" name="image" multiple />
-          <div class="btn-center">
-            <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Photos</button>
-          </div>
-        </div>
-      </form>
-      <div class="row flex-center progress-bar-fieldphoto">
-        <div class="progress-bar col-9" id="progressBar">
-          <div class="progress-bar-fill">
-          </div>
-        </div>
-        <span class="progress-bar-text col-2">0%</span>
-        <div class="upload-success-message">
-        </div>
-      </div>
-
-    </div>
-
     <div class="floating-panel add-gamtek add-gamtek-inactive">
 
 
@@ -271,6 +240,53 @@
   <div class="field-photo-fullscreen-super-div">
   </div>
 
+  <!-- Upload field photo -->
+  <div class="add-field-photo add-field-photo-inactive">
+    <div class="add-field-photo-child-div">
+      <form class="upload-form" id="uploadFormFieldPhoto">
+        <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
+        <input type="hidden" id="zoneid-uploadfieldphotoclient" name="zoneid" value="" />
+        <input type="hidden" id="timestamp-uploadfieldphotoclient" name="timestamp" value="" />
+        <input type="hidden" class="story-fieldphotoclient" name="story" value="1" />
+        <h4>Upload File</h4>
+        <br>
+        <span>Field Photo</span>
+        <hr>
+        <span class="upload-timestamp-indicator">bla bla bla</span>
+        <span> > Zone </span>
+        <span class="upload-zoneid-indicator">bla bla bla</span>
+        <span> > Story </span>
+        <span class="upload-story-indicator">1</span>
+
+        <div class="upload-zone">
+          <div class="upload-instruction">
+            Select files from <br>
+            your device
+          </div>
+          <input type="file" class="add-field-photo-button progress-bar-input" name="image" multiple />
+          <div class="row flex-center progress-bar-fieldphoto">
+            <div class="progress-bar col-9" id="progressBar">
+              <div class="progress-bar-fill">
+              </div>
+            </div>
+            <span class="progress-bar-text col-2">0%</span>
+            <div class="upload-success-message">
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="btn-center upload-btn">
+
+          <button type="submit" class="btn btn-warning btn-sm btn-padding">Upload</button>
+          <button type="button" class="btn btn-light btn-sm btn-padding cancel-upload-field-photo">Cancel</button>
+        </div>
+      </form>
+
+    </div>
+    <div class="add-field-photo-bg">
+
+    </div>
+  </div>
 
   <!-- View Gamtek -->
   <div class="zoomoutbefore"><img class="imgzoomgamtek zoomoutgambar" id="zoomoutgamtekfs" src="/images/z2out.png"></div>

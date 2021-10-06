@@ -11,10 +11,6 @@ h1 {
   font-weight: bold;
 }
 
-h3, h6 {
-  text-align: center;
-}
-
 /* GENERAL */
 .row {
   margin: 0;
@@ -44,6 +40,15 @@ h3, h6 {
   align-items: center;
   justify-content: space-between;
 }
+
+.display-block {
+  display: block;
+}
+
+.text-center {
+  text-align: center;
+}
+
 
 /* Navigation Bar */
 .logo-amati-navbar {
@@ -152,7 +157,6 @@ h3, h6 {
   padding-right: 0;
 }
 
-
 .profile-container {
   color: #ffc107;
   text-align: center;
@@ -199,38 +203,8 @@ h3, h6 {
   margin-top: 1rem;
 }
 
-.field-photo-heading-div {
-  margin-bottom: 0.5rem;
-}
-
-.field-photo-active {
-  max-height: 100%;
-}
-
-.field-photo {
-  max-height: 600px;
-}
-
-.add-field-photo {
-  max-height: 0;
-  overflow: hidden;
-}
-
-.add-field-photo-inactive {
-  border: 0;
-  padding: 0;
-}
-
-.add-field-photo-active {
-  max-height: 100%;
-}
-
 .btn-center {
   text-align: center;
-}
-
-.add-field-photo .add-field-photo-button {
-  margin: 0.5rem auto 0;
 }
 
 .btn-padding {
@@ -775,6 +749,92 @@ h3, h6 {
   bottom: 0;
   right: 0;
   left: 0;
+}
+
+/* Upload field photo client */
+.add-field-photo {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.add-field-photo-inactive {
+  border: 0;
+  padding: 0;
+}
+
+.add-field-photo-active {
+  max-height: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-field-photo-child-div {
+  height: 75%;
+  width: 50%;
+  background-color: #fff;
+  position: relative;
+  z-index: 2;
+  padding: 1rem;
+  border: solid 1px #aaa;
+  box-shadow: 0 0 10px #aaa;
+  border-radius: 1rem;
+}
+
+.add-field-photo-bg-active {
+  background-color: #fff;
+  opacity: 0.25;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.add-field-photo .add-field-photo-button {
+  margin: 0.5rem auto 0;
+}
+
+.upload-form {
+  height: 100%;
+  position: relative;
+}
+
+.upload-zone {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 0.25rem dashed #aaa;
+  margin-top: 1rem;
+}
+
+.upload-instruction {
+  color: #aaa;
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.upload-btn {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+}
+
+.progress-bar-fieldphoto {
+  width: 50%;
+  text-align: center;
 }
 
 /* Progress Bar */

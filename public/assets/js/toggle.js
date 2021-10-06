@@ -102,7 +102,7 @@ document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
     let zoneid = document.querySelector(".zoneid-openfieldphotoclient").value;
     let projectid = document.querySelector(".getProjectId").value;
     let timestamp = document.querySelector(".timestamp-openfieldphotoclient").value;
-    let story = document.querySelector(".story-openfieldphotoclient").getAttribute("value");
+    let story = document.querySelector(".story-fieldphotoclient").value;
     console.log('ini story ke ' + story);
 
     await socket.emit("fieldPhotoData", zoneid, timestamp);
@@ -153,12 +153,38 @@ function fieldPhotoFullscreen(img) {
   });
 }
 
-function bukatutupuploadfieldphoto(e, f) {
+function bukatutupuploadfieldphoto(zoneid, timestamp, story, zoneidrapih) {
 
   document.querySelector(".add-field-photo").classList.toggle("add-field-photo-active");
   document.querySelector(".add-field-photo").classList.toggle("add-field-photo-inactive");
-  document.getElementById("zoneid-uploadfieldphotoclient").value = e;
-  document.getElementById("timestamp-uploadfieldphotoclient").value = f;
+  document.querySelector(".add-field-photo-bg").classList.toggle("add-field-photo-bg-active");
+  document.getElementById("zoneid-uploadfieldphotoclient").value = zoneid;
+  document.getElementById("timestamp-uploadfieldphotoclient").value = timestamp;
+
+  const splitTimestamp = timestamp.split("_");
+  const date = new Date(Date.UTC(20 + splitTimestamp[2], Number(splitTimestamp[1]) - 1, splitTimestamp[0], 0, 0, 0));
+  const utcOffset = date.getTimezoneOffset();
+  date.setMinutes(
+    date.getMinutes() + utcOffset
+  );
+
+  function getMonthYear(date) {
+    const options = {
+      month: "long",
+      year: "numeric"
+    };
+    return date.toLocaleDateString("en-US", options);
+  }
+
+  document.querySelector(".upload-timestamp-indicator").innerHTML = getMonthYear(date);
+  document.querySelector(".upload-zoneid-indicator").innerHTML = zoneidrapih;
+  document.querySelector(".upload-story-indicator").innerHTML = story;
+
+  document.querySelector(".cancel-upload-field-photo").addEventListener("click", () => {
+    document.querySelector(".add-field-photo").classList.remove("add-field-photo-active");
+    document.querySelector(".add-field-photo").classList.add("add-field-photo-inactive");
+    document.querySelector(".add-field-photo-bg").classList.remove("add-field-photo-bg-active");
+  });
 
 }
 
@@ -201,8 +227,9 @@ function viewVertical() {
         value: waktuOnScreen
       };
       toggleOverlay(element);
-      document.querySelector(".story-openfieldphotoclient").setAttribute("value", storyIndicator);
-      document.querySelector("#story-uploadfieldphotoclient").value = storyIndicator;
+      document.querySelectorAll(".story-fieldphotoclient").forEach(storyFieldPhoto => {
+        storyFieldPhoto.value = storyIndicator;
+      });
       if (storyIndicator === storyIndicatorMax) {
         document.querySelector(".up-one-story").setAttribute("disabled", "");
         document.querySelector(".down-one-story").removeAttribute("disabled");
@@ -218,8 +245,9 @@ function viewVertical() {
         value: waktuOnScreen
       };
       toggleOverlay(element);
-      document.querySelector(".story-openfieldphotoclient").setAttribute("value", storyIndicator);
-      document.querySelector("#story-uploadfieldphotoclient").value = storyIndicator;
+      document.querySelectorAll(".story-fieldphotoclient").forEach(storyFieldPhoto => {
+        storyFieldPhoto.value = storyIndicator;
+      });
       if (storyIndicator === storyIndicatorMin) {
         document.querySelector(".down-one-story").setAttribute("disabled", "");
         document.querySelector(".up-one-story").removeAttribute("disabled");
@@ -230,7 +258,7 @@ function viewVertical() {
 
     viewVerticalIndicator = 0;
   }
-};
+}
 
 
 // Bagian tampilin carousel field photo di project index
