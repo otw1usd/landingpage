@@ -18,6 +18,20 @@ function addButtonInsertDroneData() {
 
 }
 
+function addButtonViewConstructionDrawing(){
+
+};
+
+function addButtonAddConstructionDrawing(){
+
+};
+
+function addButtonViewProjectMember(){
+
+
+};
+
+
 rolediv.forEach(role => {
   //owner
   if (role === 'Owner') {

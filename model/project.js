@@ -13,9 +13,7 @@ const projectschema = new mongoose.Schema({
         //tambah validasi
     },
     projectDescription : {
-        type: String,
-        required:true, //artinya harus diisi
-        //tambah validasi
+        type: String
     },
     startDate : {
         type: String,
@@ -25,10 +23,8 @@ const projectschema = new mongoose.Schema({
     },
 
     endDate : {
-        type: String,
-        // required:true, //artinya harus diisi
-        //tambah validasi
-        //next level pake api pupr
+        type: String
+        
     },
     projectUsername : {
         type: String, //artinya harus diisi

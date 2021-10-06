@@ -28,6 +28,7 @@ const {
 const multer = require('multer');
 // const sharp = require ('sharp');
 const bcrypt = require('bcryptjs');
+const hash = require('object-hash');
 
 //model
 const User = require('../model/user');
@@ -136,7 +137,6 @@ router.get('/daftarproyek', ensureAuthenticated, async (req, res) => {
 router.get('/project/:oit', ensureAuthenticated, projectAuth, async (req, res, next) => {
   try {
     var role = await findrole(req.params.oit, req.user.username);
-    console.log(role);
     const commentprojects = await Comment.find({
         projectid: req.params.oit
       })
@@ -174,7 +174,6 @@ router.get('/project/:oit', ensureAuthenticated, projectAuth, async (req, res, n
 router.get('/projectusername/:oit', ensureAuthenticated, projectAuth, async (req, res, next) => {
   try {
     var role = await findrole(req.params.oit, req.user.username);
-    console.log(role);
     const project = await Project.findOne({
       _id: req.params.oit
     }).catch(error => {
@@ -608,7 +607,6 @@ router.post('/registerproject', uploadPeta, (req, res) => {
     projectDescription,
     startDate,
     endDate,
-    projectUsername,
     projectPassword,
     username,
     progrestotal,
@@ -616,6 +614,7 @@ router.post('/registerproject', uploadPeta, (req, res) => {
     lngInit,
     consultant
   } = req.body;
+  const projectUsername = hash(projectName);
   let errors = [];
 
   //validation passed
@@ -700,12 +699,12 @@ router.post('/tambahzona', async (req, res, next) => {
       projectUsername,
       projectid,
       detailzona,
-      zoneid,
       zoneLat,
       zoneLng,
       storyMax,
       storyMin
     } = req.body;
+    const zoneid = hash(detailzona);
     await Project.findOne({
         _id: projectid
       })
@@ -1097,6 +1096,11 @@ router.put('/addconsultant', async (req, res) => {
     consultant
   } = req.body;
 
+  const checkUsernameExist = await User.findOne({
+    username : consultant
+  });
+  if (checkUsernameExist){
+
   const project = await Project.findOne({
       _id: projectid
     })
@@ -1118,8 +1122,14 @@ router.put('/addconsultant', async (req, res) => {
   }
   setTimeout(() => {
     // req.flash('success_msg', 'Data Project berhasil diubah!');
-    res.redirect('/project/' + projectid);
+    res.redirect('/projectusername/' + projectid);
   }, 1000);
+} else {
+  setTimeout(() => {
+    req.flash('error_msg', 'Username belum terdaftar!');
+    res.redirect('/projectusername/' + projectid);
+  }, 1000);
+}
   // } else {
   //   req.flash('error_msg', 'Username has been assigned!');
   //   res.redirect('/project/' + projectid);
@@ -1157,7 +1167,7 @@ router.delete('/consultant', async (req, res) => {
   }, function() {});
   setTimeout(() => {
     // req.flash('success_msg', 'Data Project berhasil diubah!');
-    res.redirect('/project/' + projectid);
+    res.redirect('/projectusername/' + projectid);
   }, 1000);
 });
 
@@ -1167,6 +1177,11 @@ router.put('/addcontractor', async (req, res) => {
     projectid,
     contractor
   } = req.body;
+
+  const checkUsernameExist = await User.findOne({
+    username : contractor
+  });
+  if (checkUsernameExist){
 
   const project = await Project.findOne({
       _id: projectid
@@ -1190,8 +1205,14 @@ router.put('/addcontractor', async (req, res) => {
   }
   setTimeout(() => {
     // req.flash('success_msg', 'Data Project berhasil diubah!');
-    res.redirect('/project/' + projectid);
+    res.redirect('/projectusername/' + projectid);
   }, 1000);
+} else {
+  setTimeout(() => {
+    req.flash('error_msg', 'Username belum terdaftar!');
+    res.redirect('/projectusername/' + projectid);
+  }, 1000);
+}
   // } else {
   //   req.flash('error_msg', 'Username has been assigned!');
   //   res.redirect('/project/' + projectid);
@@ -1229,7 +1250,7 @@ router.delete('/contractor', async (req, res) => {
   }, function() {});
   setTimeout(() => {
     // req.flash('success_msg', 'Data Project berhasil diubah!');
-    res.redirect('/project/' + projectid);
+    res.redirect('/projectusername/' + projectid);
   }, 1000);
 });
 
@@ -1239,6 +1260,10 @@ router.put('/adddroneengineer', async (req, res) => {
     projectid,
     droneengineer
   } = req.body;
+  const checkUsernameExist = await User.findOne({
+    username : droneengineer
+  });
+  if (checkUsernameExist){
 
   const project = await Project.findOne({
       _id: projectid
@@ -1262,8 +1287,14 @@ router.put('/adddroneengineer', async (req, res) => {
   }
   setTimeout(() => {
     // req.flash('success_msg', 'Data Project berhasil diubah!');
-    res.redirect('/project/' + projectid);
+    res.redirect('/projectusername/' + projectid);
   }, 1000);
+} else {
+  setTimeout(() => {
+    req.flash('error_msg', 'Username belum terdaftar!');
+    res.redirect('/projectusername/' + projectid);
+  }, 1000);
+}
   // } else {
   //   req.flash('error_msg', 'Username has been assigned!');
   //   res.redirect('/project/' + projectid);
@@ -1301,7 +1332,7 @@ router.delete('/droneengineer', async (req, res) => {
   }, function() {});
   setTimeout(() => {
     // req.flash('success_msg', 'Data Project berhasil diubah!');
-    res.redirect('/project/' + projectid);
+    res.redirect('/projectusername/' + projectid);
   }, 1000);
 });
 
@@ -1311,6 +1342,11 @@ router.put('/addmember', async (req, res) => {
     projectid,
     member
   } = req.body;
+
+  const checkUsernameExist = await User.findOne({
+    username : member,
+  });
+  if (checkUsernameExist){
 
   const project = await Project.findOne({
       _id: projectid
@@ -1334,8 +1370,14 @@ router.put('/addmember', async (req, res) => {
   }
   setTimeout(() => {
     // req.flash('success_msg', 'Data Project berhasil diubah!');
-    res.redirect('/project/' + projectid);
+    res.redirect('/projectusername/' + projectid);
   }, 1000);
+} else {
+  setTimeout(() => {
+    req.flash('error_msg', 'Username belum terdaftar!');
+    res.redirect('/projectusername/' + projectid);
+  }, 1000);
+}
   // } else {
   //   req.flash('error_msg', 'Username has been assigned!');
   //   res.redirect('/project/' + projectid);
@@ -1371,9 +1413,36 @@ router.delete('/member', async (req, res) => {
   }, function() {});
   setTimeout(() => {
     // req.flash('success_msg', 'Data Project berhasil diubah!');
-    res.redirect('/project/' + projectid);
+    res.redirect('/projectusername/' + projectid);
   }, 1000);
 });
+
+const LogoStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './public/project/'+req.body.projectid)
+  },
+  filename: (req, file, cb) => {
+    cb(null, 'logo.png');
+  }
+});
+
+const uploadLogo = multer({
+  storage: LogoStorage
+}).single('logo');
+
+router.put('/uploadlogo', uploadLogo,
+  async (req, res, next) => {
+    const files = req.file;
+    console.log(files);
+    const {
+      projectid
+    } = req.body;
+      // fieldphotoresize(element.destination, element.filename);
+      // console.log(req.file.filename);
+      console.log(req.body.projectid);
+    res.redirect('/project/' + req.body.projectid);
+    req.flash('success_msg', 'Logo Uploaded Successfully');
+  });
 
 
 module.exports = router;
