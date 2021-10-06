@@ -86,51 +86,74 @@ function timestampOnScreen(a) {
   });
 }
 
+//Olah date yang snake casing jadi month year
+function getMonthYear(timestamp) {
+  const splitTimestamp = timestamp.split("_");
+  const date = new Date(Date.UTC(20 + splitTimestamp[2], Number(splitTimestamp[1]) - 1, splitTimestamp[0], 0, 0, 0));
+  const utcOffset = date.getTimezoneOffset();
+  date.setMinutes(
+    date.getMinutes() + utcOffset
+  );
+  const options = {
+    month: "long",
+    year: "numeric"
+  };
+  return date.toLocaleDateString("en-US", options);
+}
+
 function bukatutupfieldphoto(e, f) {
 
-  document.querySelector('.filter-field-photo').classList.toggle("filter-field-photo-active");
-  document.querySelector('.filter-field-photo').classList.toggle("filter-field-photo-inactive");
-
-  document.querySelector(".filter-field-photo-heading").innerHTML = "Filter Field Photo Zone" + e;
   ambilzoneid(e);
   ambiltimestamp(f);
 
-}
+  let zoneid = document.querySelector(".zoneid-openfieldphotoclient").value;
+  let projectid = document.querySelector(".getProjectId").value;
+  let timestamp = document.querySelector(".timestamp-openfieldphotoclient").value;
+  let story = document.querySelector(".story-fieldphotoclient").value;
 
-document.querySelectorAll(".toggle-field-photo-grid").forEach(button => {
-  button.addEventListener("click", async () => {
-    let zoneid = document.querySelector(".zoneid-openfieldphotoclient").value;
-    let projectid = document.querySelector(".getProjectId").value;
-    let timestamp = document.querySelector(".timestamp-openfieldphotoclient").value;
-    let story = document.querySelector(".story-fieldphotoclient").value;
-    console.log('ini story ke ' + story);
+  socket.emit("fieldPhotoData", zoneid, timestamp);
 
-    await socket.emit("fieldPhotoData", zoneid, timestamp);
+  const timestampRapih = getMonthYear(timestamp);
 
-    socket.on("fileNameArray", (fileNameArray, zoneid, timestamp) => {
-      document.querySelector('.field-photo-grid-div').innerHTML = `
-      <button onclick="" class="btn btn-dark btn-sm">
-        <i class="fas fa-filter"></i>Filter
-      </button>`;
+  socket.on("fileNameArray", (fileNameArray, zoneid, timestamp, zoneRapih) => {
+    document.querySelector('.field-photo-grid-div').innerHTML = `
+      <div class="fieldphoto-grid-instruction-div">
+      <h4> Field Photo </h4>
+      <span class="marg-bot-1-rem">${timestampRapih} > Zone ${zoneRapih} > Story ${story}</span>
+      <br>
+      <span>
+      Filter:
+        <input type="checkbox" id="show-fieldphoto-filter-str" onclick="" value="STR">
+        <span for="show-fieldphoto-filter-str">Struktur</span>
+        <input type="checkbox" id="show-fieldphoto-filter-ars" onclick="" value="ARS">
+        <span for="show-fieldphoto-filter-ars-filter">Arsitektur</span>
+        <input type="checkbox" id="show-fieldphoto-filter-mep" onclick="" value="MEP">
+        <span for="show-fieldphoto-filter-mep">MEP</span>
+      </span>
+      </div>
+      `;
+    if (fileNameArray.length !== 0) {
       fileNameArray.forEach(fileName => {
         document.querySelector('.field-photo-grid-div').innerHTML += '<div class="col-4 field-photo-grid"><img onclick="fieldPhotoFullscreen(this)" style="height: auto; width: 100%;" src="/project/' + projectid + '/fieldphoto/' + zoneid + '/' + story + '/' + timestamp + '/compressedfieldphoto/' + fileName + '" alt="">';
       });
-      // fileNameArray.length = 0;
-    });
-
-    document.querySelector(".field-photo-grid-bg").addEventListener("click", () => {
-      document.querySelector('.field-photo-grid-div').innerHTML = "";
-      document.querySelector(".field-photo-grid-super-div").classList.remove("field-photo-grid-super-div-active");
-      document.querySelector(".field-photo-grid-div").classList.remove("field-photo-grid-div-active");
-      document.querySelector(".field-photo-grid-bg").classList.remove("field-photo-grid-bg-active");
-    });
-
-    document.querySelector(".field-photo-grid-super-div").classList.add("field-photo-grid-super-div-active");
-    document.querySelector(".field-photo-grid-div").classList.add("field-photo-grid-div-active");
-    document.querySelector(".field-photo-grid-bg").classList.add("field-photo-grid-bg-active");
-
+    } else {
+      document.querySelector('.field-photo-grid-div').innerHTML += `<h4 class="text-center"> No field photo uploaded </h4>`;
+    }
+    // fileNameArray.length = 0;
   });
-});
+
+  document.querySelector(".field-photo-grid-bg").addEventListener("click", () => {
+    document.querySelector('.field-photo-grid-div').innerHTML = "";
+    document.querySelector(".field-photo-grid-super-div").classList.remove("field-photo-grid-super-div-active");
+    document.querySelector(".field-photo-grid-div").classList.remove("field-photo-grid-div-active");
+    document.querySelector(".field-photo-grid-bg").classList.remove("field-photo-grid-bg-active");
+  });
+
+  document.querySelector(".field-photo-grid-super-div").classList.add("field-photo-grid-super-div-active");
+  document.querySelector(".field-photo-grid-div").classList.add("field-photo-grid-div-active");
+  document.querySelector(".field-photo-grid-bg").classList.add("field-photo-grid-bg-active");
+
+}
 
 //Buka foto jadi fullscreen
 function fieldPhotoFullscreen(img) {
@@ -153,6 +176,7 @@ function fieldPhotoFullscreen(img) {
   });
 }
 
+//Upload fieldphoto
 
 function bukatutupuploadfieldphoto(zoneid, timestamp, story, zoneidrapih) {
 
@@ -162,23 +186,8 @@ function bukatutupuploadfieldphoto(zoneid, timestamp, story, zoneidrapih) {
   document.getElementById("zoneid-uploadfieldphotoclient").value = zoneid;
   document.getElementById("timestamp-uploadfieldphotoclient").value = timestamp;
 
-  const splitTimestamp = timestamp.split("_");
-  const date = new Date(Date.UTC(20 + splitTimestamp[2], Number(splitTimestamp[1]) - 1, splitTimestamp[0], 0, 0, 0));
-  const utcOffset = date.getTimezoneOffset();
-  date.setMinutes(
-    date.getMinutes() + utcOffset
-  );
-
-  function getMonthYear(date) {
-    const options = {
-      month: "long",
-      year: "numeric"
-    };
-    return date.toLocaleDateString("en-US", options);
-  }
-
   document.querySelectorAll(".upload-timestamp-indicator").forEach(indicator => {
-    indicator.innerHTML = getMonthYear(date);
+    indicator.innerHTML = getMonthYear(timestamp);
   });
   document.querySelectorAll(".upload-zoneid-indicator").forEach(indicator => {
     indicator.innerHTML = zoneidrapih;
@@ -202,6 +211,8 @@ function bukatutupuploadfieldphoto(zoneid, timestamp, story, zoneidrapih) {
     bukatutupuploadgamtek(zoneid, timestamp, story, zoneidrapih);
   });
 }
+
+//Upload gamtek
 
 function bukatutupuploadgamtek(zoneid, timestamp, story, zoneidrapih) {
 

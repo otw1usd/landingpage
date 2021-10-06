@@ -27,6 +27,7 @@ const io = socketio(server);
 const fs = require('fs');
 
 const FieldPhoto = require(__dirname + '/model/fieldphoto.js');
+const ProjectZone = require(__dirname + '/model/projectzone.js');
 
 io.on('connection', socket => {
 
@@ -40,7 +41,14 @@ io.on('connection', socket => {
         fileNameArray.push(photo.fieldphoto);
       });
     });
-    socket.emit("fileNameArray", fileNameArray, zoneid, timestamp);
+    const zoneName = await ProjectZone.findOne({
+      zoneid: zoneid
+    }, function(err, zone) {
+    
+        const zoneRapih = zone.zonename;
+        socket.emit("fileNameArray", fileNameArray, zoneid, timestamp, zoneRapih);
+    });
+
   });
 
 

@@ -45,6 +45,10 @@ h1 {
   display: block;
 }
 
+.marg-bot-1-rem {
+  margin-bottom: 1rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -208,21 +212,6 @@ h1 {
 
 .btn-padding {
   margin: 0.5rem auto 1rem;
-}
-
-/* Filter field photo */
-.filter-field-photo {
-  max-height: 0;
-  overflow: hidden;
-}
-
-.filter-field-photo-inactive {
-  padding: 0;
-  border: 0;
-}
-
-.filter-field-photo-active {
-  max-height: 100%;
 }
 
 /* Input timestamp client-side */
@@ -697,6 +686,12 @@ h1 {
   bottom: 0;
   right: 0;
   left: 0;
+}
+
+
+/* Filter field photo */
+.fieldphoto-grid-instruction-div {
+  padding: 0.5rem;
 }
 
 /* Field Photo Fullscreen */
