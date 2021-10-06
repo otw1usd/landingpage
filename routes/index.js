@@ -1069,6 +1069,11 @@ router.put('/addconsultant', async (req, res) => {
     consultant
   } = req.body;
 
+  const checkUsernameExist = await User.findOne({
+    username : consultant
+  });
+  if (checkUsernameExist){
+
   const project = await Project.findOne({
       _id: projectid
     })
@@ -1092,6 +1097,12 @@ router.put('/addconsultant', async (req, res) => {
     // req.flash('success_msg', 'Data Project berhasil diubah!');
     res.redirect('/projectusername/' + projectid);
   }, 1000);
+} else {
+  setTimeout(() => {
+    req.flash('error_msg', 'Username belum terdaftar!');
+    res.redirect('/projectusername/' + projectid);
+  }, 1000);
+}
   // } else {
   //   req.flash('error_msg', 'Username has been assigned!');
   //   res.redirect('/project/' + projectid);
@@ -1140,6 +1151,11 @@ router.put('/addcontractor', async (req, res) => {
     contractor
   } = req.body;
 
+  const checkUsernameExist = await User.findOne({
+    username : contractor
+  });
+  if (checkUsernameExist){
+
   const project = await Project.findOne({
       _id: projectid
     })
@@ -1164,6 +1180,12 @@ router.put('/addcontractor', async (req, res) => {
     // req.flash('success_msg', 'Data Project berhasil diubah!');
     res.redirect('/projectusername/' + projectid);
   }, 1000);
+} else {
+  setTimeout(() => {
+    req.flash('error_msg', 'Username belum terdaftar!');
+    res.redirect('/projectusername/' + projectid);
+  }, 1000);
+}
   // } else {
   //   req.flash('error_msg', 'Username has been assigned!');
   //   res.redirect('/project/' + projectid);
@@ -1211,6 +1233,10 @@ router.put('/adddroneengineer', async (req, res) => {
     projectid,
     droneengineer
   } = req.body;
+  const checkUsernameExist = await User.findOne({
+    username : droneengineer
+  });
+  if (checkUsernameExist){
 
   const project = await Project.findOne({
       _id: projectid
@@ -1236,6 +1262,12 @@ router.put('/adddroneengineer', async (req, res) => {
     // req.flash('success_msg', 'Data Project berhasil diubah!');
     res.redirect('/projectusername/' + projectid);
   }, 1000);
+} else {
+  setTimeout(() => {
+    req.flash('error_msg', 'Username belum terdaftar!');
+    res.redirect('/projectusername/' + projectid);
+  }, 1000);
+}
   // } else {
   //   req.flash('error_msg', 'Username has been assigned!');
   //   res.redirect('/project/' + projectid);
@@ -1284,6 +1316,11 @@ router.put('/addmember', async (req, res) => {
     member
   } = req.body;
 
+  const checkUsernameExist = await User.findOne({
+    username : member,
+  });
+  if (checkUsernameExist){
+
   const project = await Project.findOne({
       _id: projectid
     })
@@ -1308,6 +1345,12 @@ router.put('/addmember', async (req, res) => {
     // req.flash('success_msg', 'Data Project berhasil diubah!');
     res.redirect('/projectusername/' + projectid);
   }, 1000);
+} else {
+  setTimeout(() => {
+    req.flash('error_msg', 'Username belum terdaftar!');
+    res.redirect('/projectusername/' + projectid);
+  }, 1000);
+}
   // } else {
   //   req.flash('error_msg', 'Username has been assigned!');
   //   res.redirect('/project/' + projectid);
