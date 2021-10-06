@@ -191,7 +191,7 @@ router.get('/projectusername/:oit', ensureAuthenticated, projectAuth, async (req
       contractors: project.contractor,
       droneengineers: project.droneengineer,
       members: project.member,
-        layout: 'layout-account'
+      layout: 'layout-account'
     });
   } catch (err) {
     next(err);
@@ -343,9 +343,10 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
       };
       filesArray.push(file);
       const multipleFieldPhotos = new FieldPhoto({
+        projectid: projectid,
         projectzone: zoneid,
         fieldphoto: element.filename,
-        timestamp
+        timestamp: timestamp
       });
       await multipleFieldPhotos.save();
       const fieldphotodest = element.destination + '/' + element.filename;
@@ -663,6 +664,26 @@ router.post('/registerproject', uploadPeta, (req, res) => {
 });
 
 router.delete('/deleteproject', async (req, res) => {
+
+  await CommentReply.deleteMany({
+    projectid: req.body.projectid
+  });
+
+  await Comment.deleteMany({
+    projectid: req.body.projectid
+  });
+
+  await ProjectZone.deleteMany({
+    projectid: req.body.projectid
+  });
+  await FieldPhoto.deleteMany({
+    projectid: req.body.projectid
+  });
+
+  await TimeStampProject.deleteMany({
+    projectid: req.body.projectid
+  });
+
   await Project.deleteOne({
       _id: req.body.projectid
     })
@@ -690,9 +711,11 @@ router.post('/tambahzona', async (req, res, next) => {
       })
       .then(project => {
         const newZone = new ProjectZone({
-          projectid,
+          projectid: projectid,
           zonename: detailzona,
-          zoneid
+          zoneid: zoneid,
+          storyMax: storyMax,
+          storyMin: storyMin
         });
         const newContentZoneData = {
           projectid,
@@ -1052,6 +1075,10 @@ router.delete('/comment', async (req, res) => {
     commentprojectid,
     projectid
   } = req.body;
+  await CommentReply.deleteMany({
+    commentprojectid: commentprojectid,
+  });
+
   await Comment.deleteOne({
       _id: commentprojectid
     })
