@@ -31,7 +31,6 @@ function addButtonDeleteProject() {
       <div class="col-10 keterangan">Delete Project</div>
     </button>
   `;
-
 }
 
 rolediv.forEach(role => {
