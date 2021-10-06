@@ -2,7 +2,6 @@
 
 //field photo
 const form1 = document.querySelector("#uploadFormFieldPhoto");
-const inputFile1 = document.querySelector(".progress-bar-fieldphoto .progress-bar-input");
 const progBarFill1 = document.querySelector(".progress-bar-fieldphoto .progress-bar-fill");
 const progBarText1 = document.querySelector(".progress-bar-fieldphoto .progress-bar-text");
 const successMsg1 = document.querySelector(".progress-bar-fieldphoto .upload-success-message");
@@ -36,7 +35,6 @@ function uploadFile1(e) {
 
 //gamtek
 const form2 = document.querySelector("#uploadFormGamtek");
-const inputFile2 = document.querySelector(".progress-bar-gamtek .progress-bar-input");
 const progBarFill2 = document.querySelector(".progress-bar-gamtek .progress-bar-fill");
 const progBarText2 = document.querySelector(".progress-bar-gamtek .progress-bar-text");
 const successMsg2 = document.querySelector(".progress-bar-gamtek .upload-success-message");
@@ -67,7 +65,6 @@ function uploadFile2(e) {
 
 //drone data
 const form3 = document.querySelector("#uploadFormDroneData");
-const inputFile3 = document.querySelector(".progress-bar-dronedata .progress-bar-input");
 const progBarFill3 = document.querySelector(".progress-bar-dronedata .progress-bar-fill");
 const progBarText3 = document.querySelector(".progress-bar-dronedata .progress-bar-text");
 const successMsg3 = document.querySelector(".progress-bar-dronedata .upload-success-message");

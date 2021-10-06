@@ -49,7 +49,6 @@ h1 {
   text-align: center;
 }
 
-
 /* Navigation Bar */
 .logo-amati-navbar {
   height: 52px;
@@ -224,25 +223,6 @@ h1 {
 
 .filter-field-photo-active {
   max-height: 100%;
-}
-
-/* Upload gamtek client-side */
-.add-gamtek {
-  max-height: 0;
-  overflow: hidden;
-}
-
-.add-gamtek-inactive {
-  border: 0;
-  padding: 0;
-}
-
-.add-gamtek-active {
-  max-height: 100%;
-}
-
-.filter-gamtek-upload {
-  padding-bottom: 0.5rem;
 }
 
 /* Input timestamp client-side */
@@ -809,6 +789,27 @@ h1 {
   position: relative;
 }
 
+.upload-category-fieldphoto {
+  border-bottom: 2px solid #ffc107;
+  display: inline-block;
+  width: 12.5%;
+  padding: 0 0 1rem;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.upload-category-gamtek-on-fieldphoto {
+  display: inline-block;
+  width: 25%;
+  padding: 0 0 1rem;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.hr-upload-category {
+  margin-top: 0;
+}
+
 .upload-zone {
   height: 50%;
   display: flex;
@@ -833,6 +834,86 @@ h1 {
 }
 
 .progress-bar-fieldphoto {
+  width: 50%;
+  text-align: center;
+}
+
+/* Upload Gamtek */
+.add-gamtek {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.add-gamtek-inactive {
+  border: 0;
+  padding: 0;
+}
+
+.add-gamtek-active {
+  max-height: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-gamtek-upload {
+  padding-left: 0.5rem;
+  display: inline-block;
+}
+
+.add-gamtek-child-div {
+  height: 75%;
+  width: 50%;
+  background-color: #fff;
+  position: relative;
+  z-index: 2;
+  padding: 1rem;
+  border: solid 1px #aaa;
+  box-shadow: 0 0 10px #aaa;
+  border-radius: 1rem;
+}
+
+.add-gamtek-bg-active {
+  background-color: #fff;
+  opacity: 0.25;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.add-gamtek .add-gamtek-button {
+  margin: 0.5rem auto 0;
+}
+
+.upload-category-gamtek {
+  border-bottom: 2px solid #ffc107;
+  display: inline-block;
+  width: 25%;
+  padding: 0 0 1rem;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.upload-category-fieldphoto-on-gamtek {
+  display: inline-block;
+  width: 12.5%;
+  padding: 0 0 1rem;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.progress-bar-gamtek {
   width: 50%;
   text-align: center;
 }

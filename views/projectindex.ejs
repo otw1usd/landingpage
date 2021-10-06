@@ -48,7 +48,7 @@
           <div class="dom-input-projectzone"></div>
           <div class="dom-input-dronedata"></div>
           <button class="btn btn-outline-warning btn-sm btn-block toggle-client-side-input-viewvertical" onclick="viewVertical()">View Vertical</button>
-          <input type="hidden" class="story-fieldphotoclient" value="1"/>
+          <input type="hidden" class="story-fieldphotoclient" value="1" />
           <div class="view-vertical-div">
             <button type="button" class="btn btn-outline-warning btn-sm up-one-story">up</button>
             <h1 class="font-1-rem current-story">Lantai 1</h1>
@@ -163,42 +163,6 @@
     </div>
 
 
-    <div class="floating-panel add-gamtek add-gamtek-inactive">
-
-
-      <form class="sign-up-form" id="uploadFormGamtek">
-        <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
-        <input type="hidden" id="zoneid-uploadgamtekclient" name="zoneid" value="" />
-        <input type="hidden" id="story-uploadgamtekclient" name="story" value="1" />
-        <input type="hidden" id="category-uploadgamtekclient" name="category" value="" />
-        <label>Upload Construction Drawing :</label>
-        <label class="font-small">Type :</label><br>
-        <div class="filter-gamtek-upload flex-space-between">
-          <input type="radio" id="str-drawing-filter" onclick="filterGamtek(this)" value="STR" name="filter-drawing">
-          <label class="font-small" for="str-drawing-filter">Struktur</label>
-          <input type="radio" id="ars-drawing-filter" onclick="filterGamtek(this)" value="ARS" name="filter-drawing">
-          <label class="font-small" for="ars-drawing-filter">Arsitektur</label>
-          <input type="radio" id="mep-drawing-filter" onclick="filterGamtek(this)" value="MEP" name="filter-drawing">
-          <label class="font-small" for="mep-drawing-filter">MEP</label>
-        </div>
-        <div class="add-gamtek-button-div">
-          <input type="file" class="add-gamtek-button" name="gamtek" />
-          <div class="btn-center">
-            <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Drawing</button>
-          </div>
-        </div>
-      </form>
-      <div class="row flex-center progress-bar-gamtek">
-        <div class="progress-bar col-9" id="progressBar">
-          <div class="progress-bar-fill">
-          </div>
-        </div>
-        <span class="progress-bar-text col-2">0%</span>
-        <div class="upload-success-message">
-        </div>
-      </div>
-    </div>
-
     <div class="close-foto-gamtek-button-div">
       <button type="button" name="button" class="btn btn-outline-warning close-foto-gamtek-button">CLOSE DRAWING</button>
     </div>
@@ -250,11 +214,12 @@
         <input type="hidden" class="story-fieldphotoclient" name="story" value="1" />
         <h4>Upload File</h4>
         <br>
-        <span>Field Photo</span>
-        <hr>
-        <span class="upload-timestamp-indicator">bla bla bla</span>
+        <div class="upload-category-fieldphoto">Field Photo</div>
+        <div class="upload-category-gamtek-on-fieldphoto">Construction Drawing</div>
+        <hr class="hr-upload-category">
+        <span class="upload-timestamp-indicator"></span>
         <span> > Zone </span>
-        <span class="upload-zoneid-indicator">bla bla bla</span>
+        <span class="upload-zoneid-indicator"></span>
         <span> > Story </span>
         <span class="upload-story-indicator">1</span>
 
@@ -263,7 +228,7 @@
             Select files from <br>
             your device
           </div>
-          <input type="file" class="add-field-photo-button progress-bar-input" name="image" multiple />
+          <input type="file" class="add-field-photo-button" name="image" multiple />
           <div class="row flex-center progress-bar-fieldphoto">
             <div class="progress-bar col-9" id="progressBar">
               <div class="progress-bar-fill">
@@ -276,17 +241,16 @@
         </div>
         <hr>
         <div class="btn-center upload-btn">
-
           <button type="submit" class="btn btn-warning btn-sm btn-padding">Upload</button>
           <button type="button" class="btn btn-light btn-sm btn-padding cancel-upload-field-photo">Cancel</button>
         </div>
       </form>
-
     </div>
     <div class="add-field-photo-bg">
-
     </div>
   </div>
+
+
 
   <!-- View Gamtek -->
   <div class="zoomoutbefore"><img class="imgzoomgamtek zoomoutgambar" id="zoomoutgamtekfs" src="/images/z2out.png"></div>
@@ -299,6 +263,98 @@
   <!-- ENG : GAMBAR IS DRAWING -->
   <!-- ENG: BUKATUTUP is OPEN and CLOSE -->
 
+
+  <!-- <div class="floating-panel ">
+    <form class="sign-up-form" id="uploadFormGamtek">
+      <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
+      <input type="hidden" id="zoneid-uploadgamtekclient" name="zoneid" value="" />
+      <input type="hidden" id="story-uploadgamtekclient" name="story" value="1" />
+      <input type="hidden" id="category-uploadgamtekclient" name="category" value="" />
+      <label>Upload Construction Drawing :</label>
+      <label class="font-small">Type :</label><br>
+      <div class="filter-gamtek-upload flex-space-between">
+        <input type="radio" id="str-drawing-filter" onclick="filterGamtek(this)" value="STR" name="filter-drawing">
+        <label class="font-small" for="str-drawing-filter">Struktur</label>
+        <input type="radio" id="ars-drawing-filter" onclick="filterGamtek(this)" value="ARS" name="filter-drawing">
+        <label class="font-small" for="ars-drawing-filter">Arsitektur</label>
+        <input type="radio" id="mep-drawing-filter" onclick="filterGamtek(this)" value="MEP" name="filter-drawing">
+        <label class="font-small" for="mep-drawing-filter">MEP</label>
+      </div>
+      <div class="add-gamtek-button-div">
+        <input type="file" class="add-gamtek-button" name="gamtek" />
+        <div class="btn-center">
+          <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Drawing</button>
+        </div>
+      </div>
+    </form>
+    <div class="row flex-center progress-bar-gamtek">
+      <div class="progress-bar col-9" id="progressBar">
+        <div class="progress-bar-fill">
+        </div>
+      </div>
+      <span class="progress-bar-text col-2">0%</span>
+      <div class="upload-success-message">
+      </div>
+    </div>
+  </div> -->
+
+  <!-- Upload gamtek -->
+  <div class="add-gamtek add-gamtek-inactive">
+    <div class="add-gamtek-child-div">
+      <form class="upload-form" id="uploadFormGamtek">
+        <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
+        <input type="hidden" id="zoneid-uploadgamtekclient" name="zoneid" value="" />
+        <input type="hidden" id="story-uploadgamtekclient" name="story" value="1" />
+        <input type="hidden" id="category-uploadgamtekclient" name="category" value="" />
+        <h4>Upload File</h4>
+        <br>
+        <div class="upload-category-fieldphoto-on-gamtek">Field Photo</div>
+        <div class="upload-category-gamtek">Construction Drawing</div>
+        <hr class="hr-upload-category">
+        <!-- <span class="upload-timestamp-indicator"></span> -->
+        <span> Zone </span>
+        <span class="upload-zoneid-indicator"></span>
+        <span> > Story </span>
+        <span class="upload-story-indicator">1</span>
+        <br>
+        <span>Drawing category:</span>
+        <div class="filter-gamtek-upload">
+          <input type="radio" id="str-drawing-filter" onclick="filterGamtek(this)" value="STR" name="filter-drawing">
+          <span for="str-drawing-filter">Struktur</span>
+          <input type="radio" id="ars-drawing-filter" onclick="filterGamtek(this)" value="ARS" name="filter-drawing">
+          <span for="ars-drawing-filter">Arsitektur</span>
+          <input type="radio" id="mep-drawing-filter" onclick="filterGamtek(this)" value="MEP" name="filter-drawing">
+          <span for="mep-drawing-filter">MEP</span>
+        </div>
+
+        <div class="upload-zone">
+          <div class="upload-instruction">
+            Select files from <br>
+            your device
+          </div>
+          <input type="file" class="add-gamtek-button" name="gamtek" multiple />
+
+          <div class="row flex-center progress-bar-gamtek">
+            <div class="progress-bar col-9" id="progressBar">
+              <div class="progress-bar-fill">
+              </div>
+            </div>
+            <span class="progress-bar-text col-2">0%</span>
+            <div class="upload-success-message">
+            </div>
+          </div>
+
+        </div>
+        <hr>
+        <div class="btn-center upload-btn">
+          <button type="submit" class="btn btn-warning btn-sm btn-padding">Upload</button>
+          <button type="button" class="btn btn-light btn-sm btn-padding cancel-upload-gamtek">Cancel</button>
+        </div>
+      </form>
+    </div>
+    <div class="add-gamtek-bg">
+    </div>
+  </div>
 
   <!-- View 360 Photo -->
   <div id="bukatutup" style="display: none;">

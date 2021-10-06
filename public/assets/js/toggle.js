@@ -153,11 +153,12 @@ function fieldPhotoFullscreen(img) {
   });
 }
 
+
 function bukatutupuploadfieldphoto(zoneid, timestamp, story, zoneidrapih) {
 
-  document.querySelector(".add-field-photo").classList.toggle("add-field-photo-active");
-  document.querySelector(".add-field-photo").classList.toggle("add-field-photo-inactive");
-  document.querySelector(".add-field-photo-bg").classList.toggle("add-field-photo-bg-active");
+  document.querySelector(".add-field-photo").classList.add("add-field-photo-active");
+  document.querySelector(".add-field-photo").classList.remove("add-field-photo-inactive");
+  document.querySelector(".add-field-photo-bg").classList.add("add-field-photo-bg-active");
   document.getElementById("zoneid-uploadfieldphotoclient").value = zoneid;
   document.getElementById("timestamp-uploadfieldphotoclient").value = timestamp;
 
@@ -176,9 +177,15 @@ function bukatutupuploadfieldphoto(zoneid, timestamp, story, zoneidrapih) {
     return date.toLocaleDateString("en-US", options);
   }
 
-  document.querySelector(".upload-timestamp-indicator").innerHTML = getMonthYear(date);
-  document.querySelector(".upload-zoneid-indicator").innerHTML = zoneidrapih;
-  document.querySelector(".upload-story-indicator").innerHTML = story;
+  document.querySelectorAll(".upload-timestamp-indicator").forEach(indicator => {
+    indicator.innerHTML = getMonthYear(date);
+  });
+  document.querySelectorAll(".upload-zoneid-indicator").forEach(indicator => {
+    indicator.innerHTML = zoneidrapih;
+  });
+  document.querySelectorAll(".upload-story-indicator").forEach(indicator => {
+    indicator.innerHTML = story;
+  });
 
   document.querySelector(".cancel-upload-field-photo").addEventListener("click", () => {
     document.querySelector(".add-field-photo").classList.remove("add-field-photo-active");
@@ -186,15 +193,44 @@ function bukatutupuploadfieldphoto(zoneid, timestamp, story, zoneidrapih) {
     document.querySelector(".add-field-photo-bg").classList.remove("add-field-photo-bg-active");
   });
 
+
+  document.querySelector(".upload-category-gamtek-on-fieldphoto").addEventListener("click", () => {
+    document.querySelector(".add-field-photo").classList.remove("add-field-photo-active");
+    document.querySelector(".add-field-photo").classList.add("add-field-photo-inactive");
+    document.querySelector(".add-field-photo-bg").classList.remove("add-field-photo-bg-active");
+
+    bukatutupuploadgamtek(zoneid, timestamp, story, zoneidrapih);
+  });
 }
 
-function bukatutupuploadgamtek(e, f) {
+function bukatutupuploadgamtek(zoneid, timestamp, story, zoneidrapih) {
 
-  document.querySelector(".add-gamtek").classList.toggle("add-gamtek-active");
-  document.querySelector(".add-gamtek").classList.toggle("add-gamtek-inactive");
-  document.getElementById("zoneid-uploadgamtekclient").value = e;
-  document.getElementById("story-uploadgamtekclient").value = f;
+  document.querySelector(".add-gamtek").classList.add("add-gamtek-active");
+  document.querySelector(".add-gamtek").classList.remove("add-gamtek-inactive");
+  document.querySelector(".add-gamtek-bg").classList.add("add-gamtek-bg-active");
+  document.getElementById("zoneid-uploadgamtekclient").value = zoneid;
+  document.getElementById("story-uploadgamtekclient").value = story;
 
+  document.querySelectorAll(".upload-zoneid-indicator").forEach(indicator => {
+    indicator.innerHTML = zoneidrapih;
+  });
+  document.querySelectorAll(".upload-story-indicator").forEach(indicator => {
+    indicator.innerHTML = story;
+  });
+
+  document.querySelector(".cancel-upload-gamtek").addEventListener("click", () => {
+    document.querySelector(".add-gamtek").classList.remove("add-gamtek-active");
+    document.querySelector(".add-gamtek").classList.add("add-gamtek-inactive");
+    document.querySelector(".add-gamtek-bg").classList.remove("add-gamtek-bg-active");
+  });
+
+  document.querySelector(".upload-category-fieldphoto-on-gamtek").addEventListener("click", () => {
+    document.querySelector(".add-gamtek").classList.remove("add-gamtek-active");
+    document.querySelector(".add-gamtek").classList.add("add-gamtek-inactive");
+    document.querySelector(".add-gamtek-bg").classList.remove("add-gamtek-bg-active");
+
+    bukatutupuploadfieldphoto(zoneid, timestamp, story, zoneidrapih);
+  });
 }
 
 
