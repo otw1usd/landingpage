@@ -1,4 +1,5 @@
 const projectid = document.getElementById("projectid").getAttribute("value");
+const rolemaps = document.querySelector('.getRole').value.split(",");
 
 const getMapsData = async () => {
   const response = await fetch('/project/'+projectid+'/mapsdata.json');
@@ -94,7 +95,7 @@ async function initialize() {
   });
 
   await toggleOverlay(dateInitialObject);
-  console.log(dateInitialObject);
+  // console.log(dateInitialObject);
   
   var vMarker = new google.maps.Marker({
     position: new google.maps.LatLng(latInitDataNotPromise, lngInitDataNotPromise),
@@ -152,12 +153,12 @@ async function toggleOverlay(element) {
 
   var projectzoneDataNotPromise = await getProjectZone();
   var projectzoneDataLength = projectzoneDataNotPromise.length;
-  console.log(storyIndicator);
+  // console.log(storyIndicator);
 
 
   for (let i = 0; i < projectzoneDataLength; i++) {
     const projectzoneDataEach = projectzoneDataNotPromise[i];
-    const content =
+    const contentconsultant =
         '<div id="content">' +
         '<div id="siteNotice">' +
         "</div>" +
@@ -204,6 +205,130 @@ async function toggleOverlay(element) {
         "</div>" +
         "</div>";
 
+        const contentlainnya =
+        '<div id="content">' +
+        '<div id="siteNotice">' +
+        "</div>" +
+        '<h2 id="firstHeading" class="firstHeading">'+projectzoneDataEach.detailzona+'</h1>' +
+        '<h1 id="firstHeading" class="firstHeading">Lantai '+storyIndicator+'</h1>' +
+
+        '<div id="bodyContent">' +
+
+        '<table style="width:100%">' +
+        "<tr>" +
+        "<th> <b> Progres </b></th>" +
+        "<th>:</th>" +
+        "<th>"+projectzoneDataEach.projectZoneProgres+"</th>" +
+        "</tr>" +
+        "</table>" +
+
+        '<h6></h6>' +
+
+        '<table style="width:100%">' +
+        "<tr>" +
+        // "<th> <button>Gantt Chart</button></th>"+
+        // "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>" +
+        "</tr>" +
+
+        "<tr>" +
+        "<th><button onclick='bukatutupfieldphoto(\""+projectzoneDataEach.zoneid+"\", \""+waktuOnScreen+"\")'>Field Photo</button><button onclick='bukatutupuploadfieldphoto(\""+projectzoneDataEach.zoneid+"\", \""+waktuOnScreen+"\")'>+</button></th>" + "</tr>" +
+
+        "<tr>" +
+        // "<th><button>Video</button></th>"+
+        "</tr>"+
+
+        "<tr>" +
+
+        "<th><button onclick='gamtekSaya(\""+projectzoneDataEach.zoneid+"\", \""+storyIndicator+"\")'>Construction Drawing</button></th>" +
+
+        "</tr>" +
+
+        "<tr>" +
+        // "<th><button onclick='reportSaya(\""+projectzoneDataEach.zoneid+"\")'>Progress Report</button></th>" +
+        "</tr>" +``
+
+        "</table>" +
+
+        "</div>" +
+        "</div>";
+
+        const contentmember =
+        '<div id="content">' +
+        '<div id="siteNotice">' +
+        "</div>" +
+        '<h2 id="firstHeading" class="firstHeading">'+projectzoneDataEach.detailzona+'</h1>' +
+        '<h1 id="firstHeading" class="firstHeading">Lantai '+storyIndicator+'</h1>' +
+
+        '<div id="bodyContent">' +
+
+        '<table style="width:100%">' +
+        "<tr>" +
+        "<th> <b> Progres </b></th>" +
+        "<th>:</th>" +
+        "<th>"+projectzoneDataEach.projectZoneProgres+"</th>" +
+        "</tr>" +
+        "</table>" +
+
+        '<h6></h6>' +
+
+        '<table style="width:100%">' +
+        "<tr>" +
+        // "<th> <button>Gantt Chart</button></th>"+
+        // "<th><button onclick='bukatutup()'>3D Virtual Tour</button></th>" +
+        "</tr>" +
+
+        "<tr>" +
+        "<th><button onclick='bukatutupfieldphoto(\""+projectzoneDataEach.zoneid+"\", \""+waktuOnScreen+"\")'>Field Photo</button><button onclick='bukatutupuploadfieldphoto(\""+projectzoneDataEach.zoneid+"\", \""+waktuOnScreen+"\")'>+</button></th>" + "</tr>" +
+
+        "<tr>" +
+        // "<th><button>Video</button></th>"+
+        "</tr>"+
+
+        "<tr>" +
+
+        "</tr>" +
+
+        "<tr>" +
+        // "<th><button onclick='reportSaya(\""+projectzoneDataEach.zoneid+"\")'>Progress Report</button></th>" +
+        "</tr>" +``
+
+        "</table>" +
+
+        "</div>" +
+        "</div>";
+      
+      let angkacontent=[];
+      await rolemaps.forEach(role => {
+          //owner
+          if (role === 'Owner') {
+            angkacontent.push(2);
+          }
+        
+          //consultant
+          if (role === 'Consultant') {
+            angkacontent.push(3);
+          }
+        
+          //contractor
+          if (role === 'Contractor') {angkacontent.push(2);}
+        
+          //droneengineer
+          if (role === 'Drone Engineer') {
+            angkacontent.push(2);
+          }
+        
+          //member
+          if (role === 'Member') {
+            angkacontent.push(1);
+        
+          }
+        });
+      var angkacontentmax = await Math.max(...angkacontent);
+      
+      var content;
+      if (angkacontentmax == 3){content = contentconsultant}else if (angkacontentmax == 2 ){content=contentlainnya} else {content = contentmember};
+      console.log(content)
+
 
     const marker = new google.maps.Marker({
       position: {
@@ -222,6 +347,7 @@ async function toggleOverlay(element) {
 
     const infowindow = new google.maps.InfoWindow({
       content: content,
+        
       maxWidth: 200,
     });
 
@@ -248,6 +374,8 @@ async function toggleOverlay(element) {
     });
 
   };
-}
+};
+
+
 
 google.maps.event.addDomListener(window, 'load', initialize);
