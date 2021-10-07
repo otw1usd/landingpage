@@ -345,7 +345,8 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
         projectid: projectid,
         projectzone: zoneid,
         fieldphoto: element.filename,
-        timestamp: timestamp
+        timestamp: timestamp,
+        story: story
       });
       await multipleFieldPhotos.save();
       const fieldphotodest = element.destination + '/' + element.filename;

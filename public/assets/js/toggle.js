@@ -110,12 +110,12 @@ function bukatutupfieldphoto(e, f) {
   let projectid = document.querySelector(".getProjectId").value;
   let timestamp = document.querySelector(".timestamp-openfieldphotoclient").value;
   let story = document.querySelector(".story-fieldphotoclient").value;
+const timestampRapih = getMonthYear(timestamp);
 
-  socket.emit("fieldPhotoData", zoneid, timestamp);
+  socket.emit("fieldPhotoData", zoneid, timestamp, story, function(response) {
+    const fileNameArray = response.fileNameArray;
+    const zoneRapih = response.zoneRapih;
 
-  const timestampRapih = getMonthYear(timestamp);
-
-  socket.on("fileNameArray", (fileNameArray, zoneid, timestamp, zoneRapih) => {
     document.querySelector('.field-photo-grid-div').innerHTML = `
       <div class="fieldphoto-grid-instruction-div">
       <h4> Field Photo </h4>
@@ -139,7 +139,6 @@ function bukatutupfieldphoto(e, f) {
     } else {
       document.querySelector('.field-photo-grid-div').innerHTML += `<h4 class="text-center"> No field photo uploaded </h4>`;
     }
-    // fileNameArray.length = 0;
   });
 
   document.querySelector(".field-photo-grid-bg").addEventListener("click", () => {
@@ -264,8 +263,10 @@ function viewVertical() {
 
   if (viewVerticalIndicator === 1) {
     const projectid = document.querySelector(".getProjectId").value;
-    socket.emit("storyMaxMin", projectid);
-    socket.on("storyMaxMinResult", (storyIndicatorMax, storyIndicatorMin) => {
+    socket.emit("storyMaxMin", projectid, function(response) {
+
+      let storyIndicatorMax = response.max;
+      let storyIndicatorMin = response.min;
       console.log("story max: " + storyIndicatorMax + ", story min: " + storyIndicatorMin);
 
       if (storyIndicatorMax === storyIndicator) {
@@ -311,6 +312,7 @@ function viewVertical() {
         }
       });
     });
+
     viewVerticalIndicator = 0;
   }
 

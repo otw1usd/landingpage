@@ -100,7 +100,6 @@ async function initialize() {
   });
 
   await toggleOverlay(dateInitialObject);
-  // console.log(dateInitialObject);
 
   var vMarker = new google.maps.Marker({
     position: new google.maps.LatLng(latInitDataNotPromise, lngInitDataNotPromise),
@@ -123,9 +122,20 @@ async function initialize() {
 
 }
 
+let markers = [];
 
 async function toggleOverlay(element) {
 
+
+  function setMapOnAll(map) {
+    for (let i = 0; i < markers.length; i++) {
+      markers[i].setMap(map);
+    }
+    markers = [];
+  }
+  // Removes the markers from the map, but keeps them in the array.
+  setMapOnAll(null);
+  
   if (element.value == "none") {
     map.overlayMapTypes.clear();
     return;
@@ -158,8 +168,6 @@ async function toggleOverlay(element) {
 
   var projectzoneDataNotPromise = await getProjectZone();
   var projectzoneDataLength = projectzoneDataNotPromise.length;
-  // console.log(storyIndicator);
-
 
   for (let i = 0; i < projectzoneDataLength; i++) {
     const projectzoneDataEach = projectzoneDataNotPromise[i];
@@ -340,7 +348,7 @@ async function toggleOverlay(element) {
     } else {
       content = contentmember;
     }
-console.log(storyIndicator);
+
     if (projectzoneDataEach.storyMax >= storyIndicator && projectzoneDataEach.storyMin <= storyIndicator) {
       const marker = new google.maps.Marker({
         position: {
@@ -364,7 +372,8 @@ console.log(storyIndicator);
           shouldFocus: false,
         });
       });
-      console.log("masok");
+
+      markers.push(marker);
     }
 
     const infowindow = new google.maps.InfoWindow({

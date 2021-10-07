@@ -31,11 +31,13 @@ const ProjectZone = require(__dirname + '/model/projectzone.js');
 
 io.on('connection', socket => {
 
-  socket.on("fieldPhotoData", async (zoneid, timestamp) => {
+//cari di database nama file fieldphoto untuk timestamp, zone, dan story tertentu
+  socket.on("fieldPhotoData", async (zoneid, timestamp, story, callback) => {
     let fileNameArray = [];
     await FieldPhoto.find({
       projectzone: zoneid,
-      timestamp: timestamp
+      timestamp: timestamp,
+      story: story
     }, function(err, photos) {
       photos.forEach(photo => {
         fileNameArray.push(photo.fieldphoto);
@@ -46,8 +48,12 @@ io.on('connection', socket => {
     }, function(err, zone) {
 
       const zoneRapih = zone.zonename;
-      socket.emit("fileNameArray", fileNameArray, zoneid, timestamp, zoneRapih);
+      callback({
+        fileNameArray: fileNameArray,
+        zoneRapih: zoneRapih
+      });
     });
+
   });
 
   //itung jumlah file gamtek dalam directory
@@ -61,11 +67,9 @@ io.on('connection', socket => {
   });
 
   //itung story max dan min di satu project
-  socket.on("storyMaxMin", async projectid => {
+  socket.on("storyMaxMin", async (projectid, callback) => {
     const storyMaxAll = [];
     const storyMinAll = [];
-    let max = 0;
-    let min = 0;
     await ProjectZone.find({
       projectid: projectid
     }, function(err, zones) {
@@ -73,11 +77,15 @@ io.on('connection', socket => {
         storyMaxAll.push(zone.storyMax);
         storyMinAll.push(zone.storyMin);
       });
-      max = Math.max(...storyMaxAll);
-      min = Math.min(...storyMinAll);
+      let max = Math.max(...storyMaxAll);
+      let min = Math.min(...storyMinAll);
+      console.log("ini max " + max + " ini min " + min);
+      callback({
+        max: max,
+        min: min
+      });
     });
 
-    socket.emit("storyMaxMinResult", max, min);
   });
 });
 
