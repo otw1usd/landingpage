@@ -775,8 +775,9 @@ h1 {
   left: 0;
 }
 
-.add-field-photo .add-field-photo-button {
+.add-field-photo-button {
   margin: 0.5rem auto 0;
+  width:50%;
 }
 
 .upload-form {
@@ -887,8 +888,9 @@ h1 {
   left: 0;
 }
 
-.add-gamtek .add-gamtek-button {
+.add-gamtek-button {
   margin: 0.5rem auto 0;
+  width: 50%;
 }
 
 .upload-category-gamtek {

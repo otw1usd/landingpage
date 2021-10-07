@@ -59,23 +59,26 @@
   <div class="container register-project-div">
 
     <form class="form-group" action="/registerproject" method="POST">
-      <h2 class="made-tommy-soft-bold register-project-heading">Register Project</h2>
+      <h2 class="register-project-heading bold">Register Project</h2>
       <%- include('./partials/messages.ejs') %>
 
       <input class="form-control" type="text" name="projectName" placeholder="Project Name" id="projectName" value="<%= typeof projectName != 'undefined' ? projectName : '' %>" required />
 
       <input class="form-control" type="text" name="location" placeholder="Location" id="location" value="<%= typeof location != 'undefined' ? location : '' %>" required />
 
-      <input class="form-control" type="text" name="projectDescription" placeholder="Project Description" id="projectDescription" value="<%= typeof projectDescription != 'undefined' ? projectDescription : '' %>"  />
+      <input class="form-control" type="text" name="projectDescription" placeholder="Project Description" id="projectDescription" value="<%= typeof projectDescription != 'undefined' ? projectDescription : '' %>" />
 
       <input class="form-control" type="date" name="startDate" placeholder="Start Date Project" id="startDate" value="<%= typeof startDate != 'undefined' ? startDate : '' %>" required />
 
-      <input class="form-control" type="date" name="endDate" placeholder="End Date Project" id="endDate" value="<%= typeof endDate != 'undefined' ? endDate : '' %>"  />
+      <input class="form-control" type="date" name="endDate" placeholder="End Date Project" id="endDate" value="<%= typeof endDate != 'undefined' ? endDate : '' %>" />
 
       <!-- <input class="form-control" type="text" name="projectUsername" placeholder="Project Username" id="projectUsername" value="<%= typeof projectUsername != 'undefined' ? projectUsername : '' %>" required /> -->
 
-      <input class="form-control" type="text" name="consultant" placeholder="Project Consultant" id="consultant" value="<%= typeof consultant != 'undefined' ? consultant : '' %>" required />
-      
+      <input class="form-control" type="text" name="consultant" placeholder="Project Consultant's Username" id="consultant" value="<%= typeof consultant != 'undefined' ? consultant : '' %>" required />
+
+      <label for="logo" class="pad-top-half-rem">Project Logo:</label>
+      <input type="file" class="form-control" name="logo" id="logo"/>
+
       <input class="form-control" type="hidden" name="username" placeholder="Owner Username" id="username" value="<%= user.username %>" required />
       <input id="latInit" type="hidden" style="color:red" name="latInit" value="-6.278253" />
       <input id="lngInit" type="hidden" style="color:red" name="lngInit" value="106.78604803863368" /><br />
@@ -85,6 +88,7 @@
       <button type="submit" class="btn btn-dark col-12">Register</button>
 
     </form>
+
   </div>
 
 </body>

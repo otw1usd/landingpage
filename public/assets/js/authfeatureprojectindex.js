@@ -18,24 +18,29 @@ function addButtonInsertDroneData() {
 
 }
 
-function addButtonViewConstructionDrawing(){
+function addButtonViewConstructionDrawing() {
 
-};
+}
 
-function addButtonAddConstructionDrawing(){
+function addButtonAddConstructionDrawing() {
+  document.querySelector(".add-gamtek").style.visibility = "visible";
+  document.querySelector(".upload-category-gamtek-on-fieldphoto").style.visibility = "visible";
+}
 
-};
+function removeButtonAddConstructionDrawing() {
+  document.querySelector(".add-gamtek").style.visibility = "hidden";
+  document.querySelector(".upload-category-gamtek-on-fieldphoto").style.visibility = "hidden";
+}
 
-function addButtonViewProjectMember(){
+function addButtonViewProjectMember() {
 
 
-};
+}
 
 
 rolediv.forEach(role => {
   //owner
-  if (role === 'Owner') {
-  }
+  if (role === 'Owner') {}
 
   //consultant
   if (role === 'Consultant') {
@@ -58,3 +63,11 @@ rolediv.forEach(role => {
 
   }
 });
+
+if (rolediv.includes("Consultant")) {
+  console.log("konsul");
+  addButtonAddConstructionDrawing();
+} else {
+  console.log("sisa");
+  removeButtonAddConstructionDrawing();
+}
