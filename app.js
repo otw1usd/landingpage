@@ -33,7 +33,7 @@ io.on('connection', socket => {
 
   socket.on("fieldPhotoData", async (zoneid, timestamp) => {
     let fileNameArray = [];
-    const fileName = await FieldPhoto.find({
+    await FieldPhoto.find({
       projectzone: zoneid,
       timestamp: timestamp
     }, function(err, photos) {
@@ -41,16 +41,14 @@ io.on('connection', socket => {
         fileNameArray.push(photo.fieldphoto);
       });
     });
-    const zoneName = await ProjectZone.findOne({
+    await ProjectZone.findOne({
       zoneid: zoneid
     }, function(err, zone) {
-    
-        const zoneRapih = zone.zonename;
-        socket.emit("fileNameArray", fileNameArray, zoneid, timestamp, zoneRapih);
+
+      const zoneRapih = zone.zonename;
+      socket.emit("fileNameArray", fileNameArray, zoneid, timestamp, zoneRapih);
     });
-
   });
-
 
   //itung jumlah file gamtek dalam directory
   socket.on("numOfFilesData", (projectid, zoneid, story) => {
@@ -62,6 +60,25 @@ io.on('connection', socket => {
     });
   });
 
+  //itung story max dan min di satu project
+  socket.on("storyMaxMin", async projectid => {
+    const storyMaxAll = [];
+    const storyMinAll = [];
+    let max = 0;
+    let min = 0;
+    await ProjectZone.find({
+      projectid: projectid
+    }, function(err, zones) {
+      zones.forEach(zone => {
+        storyMaxAll.push(zone.storyMax);
+        storyMinAll.push(zone.storyMin);
+      });
+      max = Math.max(...storyMaxAll);
+      min = Math.min(...storyMinAll);
+    });
+
+    socket.emit("storyMaxMinResult", max, min);
+  });
 });
 
 //setup method override
