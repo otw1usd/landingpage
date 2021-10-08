@@ -31,7 +31,7 @@ const ProjectZone = require(__dirname + '/model/projectzone.js');
 
 io.on('connection', socket => {
 
-//cari di database nama file fieldphoto untuk timestamp, zone, dan story tertentu
+  //cari di database nama file fieldphoto untuk timestamp, zone, dan story tertentu
   socket.on("fieldPhotoData", async (zoneid, timestamp, story, callback) => {
     let fileNameArray = [];
     await FieldPhoto.find({
@@ -57,12 +57,22 @@ io.on('connection', socket => {
   });
 
   //itung jumlah file gamtek dalam directory
-  socket.on("numOfFilesData", (projectid, zoneid, story) => {
+  socket.on("numOfFilesData", async (projectid, zoneid, story, callback) => {
     const dir = './public/project/' + projectid + '/drawing/' + zoneid + '/' + story;
+    const gamtekFileNameArray = [];
     fs.readdir(dir, (err, files) => {
-      const dirlength = files.length;
-      socket.emit("numOfFiles", dirlength);
-
+      files.forEach(file => {
+        gamtekFileNameArray.push(file);
+      });
+    });
+    await ProjectZone.findOne({
+      zoneid: zoneid
+    }, function(err, zone) {
+      const zoneRapih = zone.zonename;
+      callback({
+        gamtekFileNameArray: gamtekFileNameArray,
+        zoneRapih: zoneRapih
+      });
     });
   });
 
