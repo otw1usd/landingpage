@@ -26,7 +26,6 @@ const {
 
 //npm function
 const multer = require('multer');
-// const sharp = require ('sharp');
 const bcrypt = require('bcryptjs');
 const hash = require('object-hash');
 
@@ -56,7 +55,8 @@ const {
   watermarklogo,
   profilepictureresize,
   textOverlay,
-  fieldphotoresize
+  fieldphotoresize,
+  logoresize
 } = require('./imagessettings.js');
 const {
   PDFtoPNG
@@ -1432,12 +1432,14 @@ const uploadLogo = multer({
 
 router.put('/uploadlogo', uploadLogo,
   async (req, res, next) => {
-    const files = req.file;
-    console.log(files);
+    const dest = req.file.destination;
+    console.log(dest);
+    console.log(req.file);
+    const filename = req.file.filename;
     const {
       projectid
     } = req.body;
-      // fieldphotoresize(element.destination, element.filename);
+      logoresize(dest, filename);
       // console.log(req.file.filename);
       console.log(req.body.projectid);
     res.redirect('/project/' + req.body.projectid);

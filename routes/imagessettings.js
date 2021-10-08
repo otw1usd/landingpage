@@ -30,7 +30,7 @@ const main = async (ORIGINAL_IMAGE) => {
 const watermarklogo = async(a)=>{
   main(a).then(image => {
     image
-    .rotate(90)
+    // .rotate(90)
     .write(a);
   });
 };
@@ -52,11 +52,24 @@ const fieldphotoresize = async (a,b) => {
     if (err) throw err;
     lenna
       .resize(400, 520 ) // resize
-      .rotate(90)
+      // .rotate(90)
       .quality(60) // set JPEG quality
       .write(fieldphotocompresed); // save
   });
   };
+
+  const logoresize = async (a,b) => {
+    const fieldphotodest = a + '/' + b;
+    const fieldphotocompresed = a + '/compressedlogo/'+b
+    Jimp.read(fieldphotodest, (err, lenna) => {
+      if (err) throw err;
+      lenna
+        .resize(Jimp.AUTO, 350 ) // resize
+        // .rotate(90)
+        .quality(60) // set JPEG quality
+        .write(fieldphotocompresed); // save
+    });
+    };
 
 const textOverlay = async (a)=> {
   const font = await Jimp.loadFont('./node_modules/jimp/fonts/open-sans/open-sans-32-black/open-sans-32-black.fnt');
@@ -67,7 +80,7 @@ const textOverlay = async (a)=> {
 };
 
 
-module.exports={ watermarklogo, profilepictureresize, textOverlay, fieldphotoresize};
+module.exports={ watermarklogo, profilepictureresize, textOverlay, fieldphotoresize, logoresize};
 
 
 // window.onload=getExif;

@@ -9,7 +9,7 @@
       <p><%= role %></p>
       <p><%= company %></p>
       <h6 class="bold">at</h6> -->
-      <img class="logo-profile-container" src="/project/<%= project._id %>/logo.png" alt="Input Project Logo">
+      <img class="logo-profile-container" src="/project/<%= project._id %>/compressedlogo/logo.png" alt="Input Project Logo">
       <form method="POST" action="/uploadlogo?_method=PUT" enctype="multipart/form-data">
         <input type="hidden" name="projectid" value="<%= project._id %>">
         <input type="file" name="logo">
