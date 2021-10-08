@@ -21,7 +21,11 @@ const fieldphotoschema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  story: {
+    type: Number,
+    required: true,
+  },
 });
 
 

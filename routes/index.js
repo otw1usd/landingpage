@@ -209,7 +209,7 @@ router.get('/edituser', ensureAuthenticated, (req, res) => {
 
 const Storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './public/user/uploads')
+    cb(null, './public/user/uploads');
   },
   filename: (req, file, cb) => {
     const timeElapsed = Date.now();
@@ -345,7 +345,8 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
         projectid: projectid,
         projectzone: zoneid,
         fieldphoto: element.filename,
-        timestamp: timestamp
+        timestamp: timestamp,
+        story: story
       });
       await multipleFieldPhotos.save();
       const fieldphotodest = element.destination + '/' + element.filename;
@@ -589,18 +590,31 @@ router.post('/admin', (req, res) => {
 
 const PetaStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './public/project/' + newProject._id)
+    cb(null, './public/project/' + newProject._id);
   },
   filename: (req, file, cb) => {
-    cb(null, peta.png);
+    cb(null, 'peta.png');
+  }
+});
+
+const LogoStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './public/project/' + newProject._id);
+  },
+  filename: (req, file, cb) => {
+    cb(null, 'logo.png');
   }
 });
 
 const uploadPeta = multer({
-  storage: Storage
+  storage: PetaStorage
 }).single('image');
 
-router.post('/registerproject', uploadPeta, (req, res) => {
+const uploadLogo = multer({
+  storage: LogoStorage
+}).single('logo');
+
+router.post('/registerproject', uploadPeta, uploadLogo, (req, res, next) => {
   const {
     projectName,
     location,
@@ -612,7 +626,9 @@ router.post('/registerproject', uploadPeta, (req, res) => {
     progrestotal,
     latInit,
     lngInit,
-    consultant
+    consultant,
+    image,
+    logo
   } = req.body;
   const projectUsername = hash(projectName);
   let errors = [];
@@ -625,18 +641,7 @@ router.post('/registerproject', uploadPeta, (req, res) => {
       if (project) {
         // Project exists
         req.flash('error_msg', 'Project is Already Registered');
-        res.render('registerproject', {
-          projectName,
-          location,
-          projectDescription,
-          startDate,
-          endDate,
-          projectUsername,
-          projectPassword,
-          username,
-          progrestotal,
-          consultant
-        });
+        res.redirect('/registerproject');
       } else {
         const newProject = new Project({
           projectName,
@@ -650,7 +655,6 @@ router.post('/registerproject', uploadPeta, (req, res) => {
           progrestotal,
           consultant
         });
-
         newProject.save()
           .then(project => {
             req.flash('success_msg', 'Project are now registered');
@@ -1097,43 +1101,37 @@ router.put('/addconsultant', async (req, res) => {
   } = req.body;
 
   const checkUsernameExist = await User.findOne({
-    username : consultant
+    username: consultant
   });
-  if (checkUsernameExist){
+  if (checkUsernameExist) {
 
-  const project = await Project.findOne({
-      _id: projectid
-    })
-    .then(project => {
-      return project;
-    });
-  // const roleExist = await findrole(projectid, consultant);
-  // if (roleExist.length === 0) {
-  var newListConsultants = project.consultant;
-  if (newListConsultants.includes(consultant) === false) {
-    newListConsultants.push(consultant);
-    Project.updateOne({
-      _id: projectid
-    }, {
-      $set: {
-        consultant: newListConsultants
-      },
-    }, function() {});
+    const project = await Project.findOne({
+        _id: projectid
+      })
+      .then(project => {
+        return project;
+      });
+    var newListConsultants = project.consultant;
+    if (newListConsultants.includes(consultant) === false) {
+      newListConsultants.push(consultant);
+      Project.updateOne({
+        _id: projectid
+      }, {
+        $set: {
+          consultant: newListConsultants
+        },
+      }, function() {});
+    }
+    setTimeout(() => {
+      res.redirect('/projectusername/' + projectid);
+    }, 1000);
+  } else {
+    setTimeout(() => {
+      req.flash('error_msg', 'Username belum terdaftar!');
+      res.redirect('/projectusername/' + projectid);
+    }, 1000);
   }
-  setTimeout(() => {
-    // req.flash('success_msg', 'Data Project berhasil diubah!');
-    res.redirect('/projectusername/' + projectid);
-  }, 1000);
-} else {
-  setTimeout(() => {
-    req.flash('error_msg', 'Username belum terdaftar!');
-    res.redirect('/projectusername/' + projectid);
-  }, 1000);
-}
-  // } else {
-  //   req.flash('error_msg', 'Username has been assigned!');
-  //   res.redirect('/project/' + projectid);
-  // }
+
 });
 
 router.delete('/consultant', async (req, res) => {
@@ -1179,40 +1177,40 @@ router.put('/addcontractor', async (req, res) => {
   } = req.body;
 
   const checkUsernameExist = await User.findOne({
-    username : contractor
+    username: contractor
   });
-  if (checkUsernameExist){
+  if (checkUsernameExist) {
 
-  const project = await Project.findOne({
-      _id: projectid
-    })
-    .then(project => {
-      return project;
-    });
-  // const roleExist = await findrole(projectid, contractor);
-  // if (roleExist.length === 0) {
+    const project = await Project.findOne({
+        _id: projectid
+      })
+      .then(project => {
+        return project;
+      });
+    // const roleExist = await findrole(projectid, contractor);
+    // if (roleExist.length === 0) {
 
-  var newListContractors = project.contractor;
-  if (newListContractors.includes(contractor) === false) {
-    newListContractors.push(contractor);
-    Project.updateOne({
-      _id: projectid
-    }, {
-      $set: {
-        contractor: newListContractors
-      },
-    }, function() {});
+    var newListContractors = project.contractor;
+    if (newListContractors.includes(contractor) === false) {
+      newListContractors.push(contractor);
+      Project.updateOne({
+        _id: projectid
+      }, {
+        $set: {
+          contractor: newListContractors
+        },
+      }, function() {});
+    }
+    setTimeout(() => {
+      // req.flash('success_msg', 'Data Project berhasil diubah!');
+      res.redirect('/projectusername/' + projectid);
+    }, 1000);
+  } else {
+    setTimeout(() => {
+      req.flash('error_msg', 'Username belum terdaftar!');
+      res.redirect('/projectusername/' + projectid);
+    }, 1000);
   }
-  setTimeout(() => {
-    // req.flash('success_msg', 'Data Project berhasil diubah!');
-    res.redirect('/projectusername/' + projectid);
-  }, 1000);
-} else {
-  setTimeout(() => {
-    req.flash('error_msg', 'Username belum terdaftar!');
-    res.redirect('/projectusername/' + projectid);
-  }, 1000);
-}
   // } else {
   //   req.flash('error_msg', 'Username has been assigned!');
   //   res.redirect('/project/' + projectid);
@@ -1261,40 +1259,40 @@ router.put('/adddroneengineer', async (req, res) => {
     droneengineer
   } = req.body;
   const checkUsernameExist = await User.findOne({
-    username : droneengineer
+    username: droneengineer
   });
-  if (checkUsernameExist){
+  if (checkUsernameExist) {
 
-  const project = await Project.findOne({
-      _id: projectid
-    })
-    .then(project => {
-      return project;
-    });
-  // const roleExist = await findrole(projectid, droneengineer);
-  // if (roleExist.length === 0) {
+    const project = await Project.findOne({
+        _id: projectid
+      })
+      .then(project => {
+        return project;
+      });
+    // const roleExist = await findrole(projectid, droneengineer);
+    // if (roleExist.length === 0) {
 
-  var newListDroneengineers = project.droneengineer;
-  if (newListDroneengineers.includes(droneengineer) === false) {
-    newListDroneengineers.push(droneengineer);
-    Project.updateOne({
-      _id: projectid
-    }, {
-      $set: {
-        droneengineer: newListDroneengineers
-      },
-    }, function() {});
+    var newListDroneengineers = project.droneengineer;
+    if (newListDroneengineers.includes(droneengineer) === false) {
+      newListDroneengineers.push(droneengineer);
+      Project.updateOne({
+        _id: projectid
+      }, {
+        $set: {
+          droneengineer: newListDroneengineers
+        },
+      }, function() {});
+    }
+    setTimeout(() => {
+      // req.flash('success_msg', 'Data Project berhasil diubah!');
+      res.redirect('/projectusername/' + projectid);
+    }, 1000);
+  } else {
+    setTimeout(() => {
+      req.flash('error_msg', 'Username belum terdaftar!');
+      res.redirect('/projectusername/' + projectid);
+    }, 1000);
   }
-  setTimeout(() => {
-    // req.flash('success_msg', 'Data Project berhasil diubah!');
-    res.redirect('/projectusername/' + projectid);
-  }, 1000);
-} else {
-  setTimeout(() => {
-    req.flash('error_msg', 'Username belum terdaftar!');
-    res.redirect('/projectusername/' + projectid);
-  }, 1000);
-}
   // } else {
   //   req.flash('error_msg', 'Username has been assigned!');
   //   res.redirect('/project/' + projectid);
@@ -1344,40 +1342,40 @@ router.put('/addmember', async (req, res) => {
   } = req.body;
 
   const checkUsernameExist = await User.findOne({
-    username : member,
+    username: member,
   });
-  if (checkUsernameExist){
+  if (checkUsernameExist) {
 
-  const project = await Project.findOne({
-      _id: projectid
-    })
-    .then(project => {
-      return project;
-    });
-  // const roleExist = await findrole(projectid, member);
-  // if (roleExist.length === 0) {
+    const project = await Project.findOne({
+        _id: projectid
+      })
+      .then(project => {
+        return project;
+      });
+    // const roleExist = await findrole(projectid, member);
+    // if (roleExist.length === 0) {
 
-  var newListMembers = project.member;
-  if (newListMembers.includes(member) === false) {
-    newListMembers.push(member);
-    Project.updateOne({
-      _id: projectid
-    }, {
-      $set: {
-        member: newListMembers
-      },
-    }, function() {});
+    var newListMembers = project.member;
+    if (newListMembers.includes(member) === false) {
+      newListMembers.push(member);
+      Project.updateOne({
+        _id: projectid
+      }, {
+        $set: {
+          member: newListMembers
+        },
+      }, function() {});
+    }
+    setTimeout(() => {
+      // req.flash('success_msg', 'Data Project berhasil diubah!');
+      res.redirect('/projectusername/' + projectid);
+    }, 1000);
+  } else {
+    setTimeout(() => {
+      req.flash('error_msg', 'Username belum terdaftar!');
+      res.redirect('/projectusername/' + projectid);
+    }, 1000);
   }
-  setTimeout(() => {
-    // req.flash('success_msg', 'Data Project berhasil diubah!');
-    res.redirect('/projectusername/' + projectid);
-  }, 1000);
-} else {
-  setTimeout(() => {
-    req.flash('error_msg', 'Username belum terdaftar!');
-    res.redirect('/projectusername/' + projectid);
-  }, 1000);
-}
   // } else {
   //   req.flash('error_msg', 'Username has been assigned!');
   //   res.redirect('/project/' + projectid);
@@ -1445,6 +1443,7 @@ router.put('/uploadlogo', uploadLogo,
     res.redirect('/project/' + req.body.projectid);
     req.flash('success_msg', 'Logo Uploaded Successfully');
   });
+
 
 
 module.exports = router;
