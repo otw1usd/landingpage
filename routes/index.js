@@ -1415,34 +1415,34 @@ router.delete('/member', async (req, res) => {
   }, 1000);
 });
 
-const LogoStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, './public/project/'+req.body.projectid)
-  },
-  filename: (req, file, cb) => {
-    cb(null, 'logo.png');
-  }
-});
-
-const uploadLogo = multer({
-  storage: LogoStorage
-}).single('logo');
-
-router.put('/uploadlogo', uploadLogo,
-  async (req, res, next) => {
-    const dest = req.file.destination;
-    console.log(dest);
-    console.log(req.file);
-    const filename = req.file.filename;
-    const {
-      projectid
-    } = req.body;
-      logoresize(dest, filename);
-      // console.log(req.file.filename);
-      console.log(req.body.projectid);
-    res.redirect('/project/' + req.body.projectid);
-    req.flash('success_msg', 'Logo Uploaded Successfully');
-  });
+// const LogoStorage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, './public/project/'+req.body.projectid)
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, 'logo.png');
+//   }
+// });
+//
+// const uploadLogo = multer({
+//   storage: LogoStorage
+// }).single('logo');
+//
+// router.put('/uploadlogo', uploadLogo,
+//   async (req, res, next) => {
+//     const dest = req.file.destination;
+//     console.log(dest);
+//     console.log(req.file);
+//     const filename = req.file.filename;
+//     const {
+//       projectid
+//     } = req.body;
+//       logoresize(dest, filename);
+//       // console.log(req.file.filename);
+//       console.log(req.body.projectid);
+//     res.redirect('/project/' + req.body.projectid);
+//     req.flash('success_msg', 'Logo Uploaded Successfully');
+  // });
 
 
 
