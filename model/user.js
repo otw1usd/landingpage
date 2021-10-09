@@ -51,6 +51,11 @@ const userschema = new mongoose.Schema({
     
     image: {
         type: String,
+    },
+
+    confirmed : {
+        type: Boolean,
+        required:true
     }
 
 })

@@ -800,7 +800,6 @@ h1 {
 }
 
 .gamtek-fullscreen-content {
-  background-color: #fff;
   position: relative;
   z-index: 2;
 }
@@ -818,7 +817,21 @@ h1 {
   left: 0;
 }
 
-.zoominbefore {
+#zoom-img {
+  cursor: move;
+  position: relative;
+}
+
+.zoom-btn-gamtek {
+  z-index: 3;
+  position: absolute;
+  top: 5rem;
+  right: 3rem;
+  color: #ffc107;
+
+}
+
+/* .zoominbefore {
   visibility: hidden;
   position: absolute;
   width: 2rem;
@@ -849,9 +862,9 @@ h1 {
   top: 8rem;
   left: 16.6667%;
   cursor: pointer;
-}
+} */
 
-.imgzoomgamtek {
+/* .imgzoomgamtek {
   height: 2rem;
 }
 
@@ -868,12 +881,7 @@ h1 {
   cellpadding: 0;
   cellspacing: 0;
   background: white;
-}
-
-#zoom-img {
-  cursor: move;
-  position: relative;
-}
+} */
 
 /* Upload Gamtek */
 .add-gamtek {

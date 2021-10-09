@@ -1,8 +1,8 @@
 //jshint esversion:6
 
 const listGamtek = document.querySelector('.gamtek');
-const zoomin = document.querySelector('.zoominbefore');
-const zoomout = document.querySelector('.zoomoutbefore');
+// const zoomin = document.querySelector('.zoominbefore');
+// const zoomout = document.querySelector('.zoomoutbefore');
 
 var zoomOnScreen = 0; //0 = list, atau kosong, atau gamtek blom dibuka
 var locationOnScreen = 0;
@@ -21,22 +21,7 @@ function myFunction() {
 //untuk assign category gamtek dan ambil source gamtek
 function filterGamtek(btn) {
   const category = btn.value;
-  console.log(category);
   document.querySelector("#category-uploadgamtekclient").value = category;
-}
-
-function getSrc(gamtek) {
-  const src = gamtek.src;
-
-  munculinTabel(src);
-
-  document.querySelector(".gamtek-fullscreen-bg").addEventListener("click", () => {
-    document.querySelector("#zoom-img").remove();
-    document.querySelector(".zoomoutafter").classList.add("zoomoutbefore");
-    document.querySelector(".zoomoutafter").classList.remove("zoomoutafter");
-    document.querySelector(".zoominafter").classList.add("zoominbefore");
-    document.querySelector(".zoominafter").classList.remove("zoominafter");
-  });
 }
 
 //buka button construction drawing, nnti di upgrade ke location
@@ -71,12 +56,11 @@ function gamtekSaya(zoneid, story) {
     if (gamtekFileNameArray.length !== 0) {
       gamtekFileNameArray.forEach(file => {
         const drawingCategory = file.substring(0, 3);
-        console.log(drawingCategory);
 
         if (drawingCategory === "STR") {
           document.querySelector('.gamtek-grid-div').innerHTML += `
                   <div class="foto-gamtek col-4">
-                    <img onclick="getSrc(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${strDrawingIndicator}" id="Page${strDrawingIndicator}">
+                    <img onclick="gamtekFullscreen(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${strDrawingIndicator}" id="Page${strDrawingIndicator}">
                   </div>
                 `;
           strDrawingIndicator++;
@@ -85,7 +69,7 @@ function gamtekSaya(zoneid, story) {
         if (drawingCategory === "ARS") {
           document.querySelector('.gamtek-grid-div').innerHTML += `
                   <div class="foto-gamtek col-4">
-                    <img onclick="getSrc(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${arsDrawingIndicator}" id="Page${arsDrawingIndicator}">
+                    <img onclick="gamtekFullscreen(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${arsDrawingIndicator}" id="Page${arsDrawingIndicator}">
                   </div>
                 `;
           arsDrawingIndicator++;
@@ -94,7 +78,7 @@ function gamtekSaya(zoneid, story) {
         if (drawingCategory === "MEP") {
           document.querySelector('.gamtek-grid-div').innerHTML += `
                   <div class="foto-gamtek col-4">
-                    <img onclick="getSrc(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${mepDrawingIndicator}" id="Page${mepDrawingIndicator}">
+                    <img onclick="gamtekFullscreen(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${mepDrawingIndicator}" id="Page${mepDrawingIndicator}">
                   </div>
                 `;
           mepDrawingIndicator++;
@@ -126,7 +110,6 @@ function gamtekSaya(zoneid, story) {
 
 function filterGamtek(btn) {
   const category = btn.value;
-  console.log(category);
   document.querySelector("#category-uploadgamtekclient").value = category;
 }
 
@@ -152,18 +135,26 @@ function filterGamtek(btn) {
 // });
 
 //fungsi general munculin gamtek
-function munculinTabel(src) {
+function gamtekFullscreen(img) {
+
+  const src = img.src;
+
   // document.querySelector('.gamtekfsshow').remove();
   // document.querySelector('.gamtekfs').innerHTML += '<div class="gamtekfsshow"> </div>';
-  zoomout.classList.remove("zoomoutbefore");
-  zoomout.classList.add("zoomoutafter");
-  zoomin.classList.remove("zoominbefore");
-  zoomin.classList.add("zoominafter");
+  // zoomout.classList.remove("zoomoutbefore");
+  // zoomout.classList.add("zoomoutafter");
+  // zoomin.classList.remove("zoominbefore");
+  // zoomin.classList.add("zoominafter");
 
   document.querySelector(".gamtek-fullscreen-super-div").innerHTML = `
     <div class="gamtek-fullscreen-div">
-      <div class="gamtek-fullscreen-content">
-        <img ondragstart="return false" class="zoom-img" id="zoom-img" src="${src}" />
+      <div class="zoom-btn-gamtek">
+        <i class="fas fa-search-plus fa-3x zoomingambar"></i>
+        <br>
+        <i class="fas fa-search-minus fa-3x zoomoutgambar"></i>
+      </div>
+      <div class="gamtek-fullscreen-content" >
+        <img ondragstart="return false" class="zoom-img" id="zoom-img" src="${src}" style="width: auto; height: 600px;" />
       </div>
       <div class="gamtek-fullscreen-bg">
       </div>
@@ -195,13 +186,13 @@ function munculinTabel(src) {
     }
     var pre_width = img_ele.getBoundingClientRect().width,
       pre_height = img_ele.getBoundingClientRect().height;
-    console.log('prewidth=' + img_ele.getBoundingClientRect().width + '; pre_height =' + img_ele.getBoundingClientRect().height);
+    // console.log('prewidth=' + img_ele.getBoundingClientRect().width + '; pre_height =' + img_ele.getBoundingClientRect().height);
     //  img_ele.style.width = (pre_width * zoomincrement) + 'px';
     //  img_ele.style.height = (pre_height * zoomincrement) + 'px';
     var new_width = (orig_width * zoom_factor);
     var new_heigth = (orig_height * zoom_factor);
 
-    console.log('postwidth=' + img_ele.style.width + '; postheight =' + img_ele.style.height);
+    // console.log('postwidth=' + img_ele.style.width + '; postheight =' + img_ele.style.height);
 
     if (current_left < (orig_width - new_width)) {
       current_left = (orig_width - new_width);
@@ -224,8 +215,8 @@ function munculinTabel(src) {
     img_ele = this;
     x_img_ele = window.event.clientX - document.getElementById('zoom-img').offsetLeft;
     y_img_ele = window.event.clientY - document.getElementById('zoom-img').offsetTop;
-    console.log('img=' + img_ele.toString() + '; x_img_ele=' + x_img_ele + '; y_img_ele=' + y_img_ele + ';');
-    console.log('offLeft=' + document.getElementById('zoom-img').offsetLeft + '; offTop=' + document.getElementById('zoom-img').offsetTop);
+    // console.log('img=' + img_ele.toString() + '; x_img_ele=' + x_img_ele + '; y_img_ele=' + y_img_ele + ';');
+    // console.log('offLeft=' + document.getElementById('zoom-img').offsetLeft + '; offTop=' + document.getElementById('zoom-img').offsetTop);
   }
 
   function stop_drag() {
@@ -234,7 +225,7 @@ function munculinTabel(src) {
         img_ele.style.left = '0px';
         img_ele.style.top = '0px';
       }
-      console.log(img_ele.style.left + ' - ' + img_ele.style.top);
+      // console.log(img_ele.style.left + ' - ' + img_ele.style.top);
     }
     img_ele = null;
   }
@@ -262,23 +253,25 @@ function munculinTabel(src) {
       current_top = new_top;
       img_ele.style.top = new_top + 'px';
 
-      console.log(img_ele.style.left + ' - ' + img_ele.style.top);
+      // console.log(img_ele.style.left + ' - ' + img_ele.style.top);
     }
   }
 
   document.querySelector('.zoomoutgambar').addEventListener('click', function() {
     zoom(-0.25);
-    console.log('zoomed-out');
+    // console.log('zoomed-out');
   });
   document.querySelector('.zoomingambar').addEventListener('click', function() {
     zoom(0.25);
-    console.log('zoomed-in');
+    // console.log('zoomed-in');
   });
 
   document.querySelector('.zoom-img').addEventListener('mousedown', start_drag);
-  document.querySelector('.gamtekfsshow').addEventListener('mousemove', while_drag);
-  document.querySelector('.gamtekfsshow').addEventListener('mouseup', stop_drag);
-  document.querySelector('.gamtekfsshow').addEventListener('mouseout', stop_drag);
+  document.querySelector('.zoom-img').addEventListener('mousemove', while_drag);
+  document.querySelector('.zoom-img').addEventListener('mouseup', stop_drag);
+  document.querySelector('.zoom-img').addEventListener('mouseout', stop_drag);
+
+
 
   //       var table = document.createElement('table'), tr, td, row, cell;
   //       // table.setAttribute= ('border','0');
@@ -309,10 +302,10 @@ function munculinTabel(src) {
 // // });
 
 //fungsi general apusin gamtek
-function apusinTabel() {
-  document.querySelector('.gamtekfsshow').remove();
-  document.querySelector('.gamtekfs').innerHTML += '<div class="gamtekfsshow"></div>';
-}
+// function apusinTabel() {
+//   document.querySelector('.gamtekfsshow').remove();
+//   document.querySelector('.gamtekfs').innerHTML += '<div class="gamtekfsshow"></div>';
+// }
 
 // //fungsi zoom out
 //     zoomout.addEventListener('click', function(e){

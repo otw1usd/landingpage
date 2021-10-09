@@ -79,8 +79,27 @@ const textOverlay = async (a)=> {
   
 };
 
+const moveprojectlogo = async (a,b,c) => {
+  const projectlogodest = a + '/' + b;
+  const projectlogoreal = './public/project/'+c+'/logo.png';
+  const projectlogocompressed = './public/project/'+c+'/compressedlogo/logo.png';
+  Jimp.read(projectlogodest, (err, lenna) => {
+    if (err) throw err;
+    lenna
+      .resize(300, 200 ) // resize
+      // .rotate(90)
+      .quality(60) // set JPEG quality
+      .write(projectlogocompressed); // save
+  });
+  Jimp.read(projectlogodest, (err, lenna) => {
+    if (err) throw err;
+    lenna
+      .write(projectlogoreal); // save
+  });
+  };
 
-module.exports={ watermarklogo, profilepictureresize, textOverlay, fieldphotoresize, logoresize};
+
+module.exports={ moveprojectlogo, watermarklogo, profilepictureresize, textOverlay, fieldphotoresize, logoresize};
 
 
 // window.onload=getExif;

@@ -9,6 +9,7 @@ const {
 } = require('express-validator');
 
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
 // auth
 const {
@@ -56,7 +57,8 @@ const {
   profilepictureresize,
   textOverlay,
   fieldphotoresize,
-  logoresize
+  logoresize,
+  moveprojectlogo
 } = require('./imagessettings.js');
 const {
   PDFtoPNG
@@ -67,20 +69,39 @@ const {
 const {
   findrole
 } = require('../routes/findrole.js');
+const {
+  senduseremailverification
+} = require('../routes/userEmailVerification.js');
 
 //
 
 router.get('/', async (req, res) => {
-  const newTraction = new Traction({
-    traction: '1'
-  });
-  await newTraction.save();
+  // const newTraction = new Traction({
+  //   traction: '1'
+  // });
+  // await newTraction.save();
   res.render('index');
 });
 
 router.get('/login', (req, res) => res.render('login', {
   layout: 'layout-login',
 }));
+
+router.get('/confirmation/:token', async(req,res)=>{
+  try{
+    const pkpk = 'amatimaster';
+    const { userid : userid} = await jwt.verify(req.params.token, pkpk);
+    console.log(userid);
+    await User.updateOne({_id : userid}, {confirmed:true});
+    req.flash('success_msg', 'Your email has been successfully registered! ');
+    res.redirect('/login');
+  } catch (e) {
+    res.send(e);
+    req.flash('success_msg', e);
+    res.redirect('/login');
+  }
+})
+
 router.get('/beranda', ensureAuthenticated, async (req, res) => {
   const listprojects = await Project.find({
     username: 'contoh'
@@ -421,6 +442,7 @@ router.post('/', (req, res) => {
     company,
     jobs
   } = req.body;
+  const confirmed = false;
   let errors = [];
 
   //check pass length
@@ -491,7 +513,8 @@ router.post('/', (req, res) => {
                   password,
                   nohp,
                   company,
-                  jobs
+                  jobs,
+                  confirmed
                 });
                 //hash password
                 bcrypt.genSalt(10, (err, salt) => bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -501,7 +524,8 @@ router.post('/', (req, res) => {
                   //save user
                   newUser.save()
                     .then(user => {
-                      req.flash('success_msg', 'You are now registered and can log in');
+                      senduseremailverification(newUser._id, newUser.email);
+                      req.flash('success_msg', 'Please check your email for a link to verify your email address.');
                       res.redirect('/login');
                     })
                     .catch(err => console.log(err));
@@ -597,24 +621,25 @@ const PetaStorage = multer.diskStorage({
   }
 });
 
-const LogoStorage = multer.diskStorage({
+const uploadPeta = multer({
+  storage: PetaStorage
+}).single('petadisplay');
+
+
+const ProjectLogoStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './public/project/' + newProject._id);
+    cb(null, './public/project/logotomoved');
   },
   filename: (req, file, cb) => {
-    cb(null, 'logo.png');
+    cb(null, req.body.projectName+'.png');
   }
 });
 
-const uploadPeta = multer({
-  storage: PetaStorage
-}).single('image');
+const uploadProjectLogo = multer({
+  storage: ProjectLogoStorage
+}).single('projectlogo');
 
-const uploadLogo = multer({
-  storage: LogoStorage
-}).single('logo');
-
-router.post('/registerproject', uploadPeta, uploadLogo, (req, res, next) => {
+router.post('/registerproject', uploadProjectLogo, (req, res, next) => {
   const {
     projectName,
     location,
@@ -626,9 +651,7 @@ router.post('/registerproject', uploadPeta, uploadLogo, (req, res, next) => {
     progrestotal,
     latInit,
     lngInit,
-    consultant,
-    image,
-    logo
+    consultant
   } = req.body;
   const projectUsername = hash(projectName);
   let errors = [];
@@ -657,6 +680,7 @@ router.post('/registerproject', uploadPeta, uploadLogo, (req, res, next) => {
         });
         newProject.save()
           .then(project => {
+            moveprojectlogo(req.file.destination, req.file.filename, newProject._id);
             req.flash('success_msg', 'Project are now registered');
             res.redirect('/daftarproyek');
           });
@@ -1442,7 +1466,7 @@ router.delete('/member', async (req, res) => {
 //       console.log(req.body.projectid);
 //     res.redirect('/project/' + req.body.projectid);
 //     req.flash('success_msg', 'Logo Uploaded Successfully');
-  // });
+//   });
 
 
 

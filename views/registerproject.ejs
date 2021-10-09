@@ -46,8 +46,6 @@
     //Set the Google Map Type.
     staticMapUrlPhoto += "&maptype=" + mapp.mapTypeId;
 
-
-
     //Display the Image of Google Map.
     var imgMap = document.getElementById("image");
     imgMap.src = staticMapUrlPhoto;
@@ -76,13 +74,13 @@
 
       <input class="form-control" type="text" name="consultant" placeholder="Project Consultant's Username" id="consultant" value="<%= typeof consultant != 'undefined' ? consultant : '' %>" required />
 
-      <label for="logo" class="pad-top-half-rem">Project Logo:</label>
-      <input type="file" class="form-control" name="logo" id="logo"/>
+      <label for="projectlogo" class="pad-top-half-rem">Project Logo:</label>
+      <input type="file" class="form-control" name="projectlogo" id="projectlogo"/>
 
       <input class="form-control" type="hidden" name="username" placeholder="Owner Username" id="username" value="<%= user.username %>" required />
       <input id="latInit" type="hidden" style="color:red" name="latInit" value="-6.278253" />
       <input id="lngInit" type="hidden" style="color:red" name="lngInit" value="106.78604803863368" /><br />
-      <input type="hidden" id="image" name="image">
+      <input type="hidden" id="image" name="petadisplay">
       <h6> Please move the red point to your project location</h6>
       <div id="map_canvas"></div>
       <button type="submit" class="btn btn-dark col-12">Register</button>
