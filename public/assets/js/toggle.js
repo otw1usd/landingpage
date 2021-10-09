@@ -123,7 +123,6 @@ const timestampRapih = getMonthYear(timestamp);
       });
     } else {
       document.querySelector('.field-photo-grid-div').innerHTML += `<h4 class="text-center"> No field photo uploaded </h4>`;
-      console.log("tes");
     }
   });
 
@@ -253,7 +252,7 @@ function viewVertical() {
 
       let storyIndicatorMax = response.max;
       let storyIndicatorMin = response.min;
-      console.log("story max: " + storyIndicatorMax + ", story min: " + storyIndicatorMin);
+      // console.log("story max: " + storyIndicatorMax + ", story min: " + storyIndicatorMin);
 
       if (storyIndicatorMax === storyIndicator) {
         document.querySelector(".up-one-story").setAttribute("disabled", "");

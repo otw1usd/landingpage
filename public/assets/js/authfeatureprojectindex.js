@@ -65,9 +65,7 @@ rolediv.forEach(role => {
 });
 
 if (rolediv.includes("Consultant")) {
-  console.log("konsul");
   addButtonAddConstructionDrawing();
 } else {
-  console.log("sisa");
   removeButtonAddConstructionDrawing();
 }

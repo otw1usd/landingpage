@@ -9,6 +9,7 @@ const {
 } = require('express-validator');
 
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
 // auth
 const {
@@ -68,20 +69,39 @@ const {
 const {
   findrole
 } = require('../routes/findrole.js');
+const {
+  senduseremailverification
+} = require('../routes/userEmailVerification.js');
 
 //
 
 router.get('/', async (req, res) => {
-  const newTraction = new Traction({
-    traction: '1'
-  });
-  await newTraction.save();
+  // const newTraction = new Traction({
+  //   traction: '1'
+  // });
+  // await newTraction.save();
   res.render('index');
 });
 
 router.get('/login', (req, res) => res.render('login', {
   layout: 'layout-login',
 }));
+
+router.get('/confirmation/:token', async(req,res)=>{
+  try{
+    const pkpk = 'amatimaster';
+    const { userid : userid} = await jwt.verify(req.params.token, pkpk);
+    console.log(userid);
+    await User.updateOne({_id : userid}, {confirmed:true});
+    req.flash('success_msg', 'Your email has been successfully registered! ');
+    res.redirect('/login');
+  } catch (e) {
+    res.send(e);
+    req.flash('success_msg', e);
+    res.redirect('/login');
+  }
+})
+
 router.get('/beranda', ensureAuthenticated, async (req, res) => {
   const listprojects = await Project.find({
     username: 'contoh'
@@ -422,6 +442,7 @@ router.post('/', (req, res) => {
     company,
     jobs
   } = req.body;
+  const confirmed = false;
   let errors = [];
 
   //check pass length
@@ -492,7 +513,8 @@ router.post('/', (req, res) => {
                   password,
                   nohp,
                   company,
-                  jobs
+                  jobs,
+                  confirmed
                 });
                 //hash password
                 bcrypt.genSalt(10, (err, salt) => bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -502,7 +524,8 @@ router.post('/', (req, res) => {
                   //save user
                   newUser.save()
                     .then(user => {
-                      req.flash('success_msg', 'You are now registered and can log in');
+                      senduseremailverification(newUser._id, newUser.email);
+                      req.flash('success_msg', 'Please confirm your e-mail to login');
                       res.redirect('/login');
                     })
                     .catch(err => console.log(err));

@@ -21,7 +21,6 @@ function myFunction() {
 //untuk assign category gamtek dan ambil source gamtek
 function filterGamtek(btn) {
   const category = btn.value;
-  console.log(category);
   document.querySelector("#category-uploadgamtekclient").value = category;
 }
 
@@ -71,7 +70,6 @@ function gamtekSaya(zoneid, story) {
     if (gamtekFileNameArray.length !== 0) {
       gamtekFileNameArray.forEach(file => {
         const drawingCategory = file.substring(0, 3);
-        console.log(drawingCategory);
 
         if (drawingCategory === "STR") {
           document.querySelector('.gamtek-grid-div').innerHTML += `
@@ -126,7 +124,6 @@ function gamtekSaya(zoneid, story) {
 
 function filterGamtek(btn) {
   const category = btn.value;
-  console.log(category);
   document.querySelector("#category-uploadgamtekclient").value = category;
 }
 
@@ -195,13 +192,13 @@ function munculinTabel(src) {
     }
     var pre_width = img_ele.getBoundingClientRect().width,
       pre_height = img_ele.getBoundingClientRect().height;
-    console.log('prewidth=' + img_ele.getBoundingClientRect().width + '; pre_height =' + img_ele.getBoundingClientRect().height);
+    // console.log('prewidth=' + img_ele.getBoundingClientRect().width + '; pre_height =' + img_ele.getBoundingClientRect().height);
     //  img_ele.style.width = (pre_width * zoomincrement) + 'px';
     //  img_ele.style.height = (pre_height * zoomincrement) + 'px';
     var new_width = (orig_width * zoom_factor);
     var new_heigth = (orig_height * zoom_factor);
 
-    console.log('postwidth=' + img_ele.style.width + '; postheight =' + img_ele.style.height);
+    // console.log('postwidth=' + img_ele.style.width + '; postheight =' + img_ele.style.height);
 
     if (current_left < (orig_width - new_width)) {
       current_left = (orig_width - new_width);
@@ -224,8 +221,8 @@ function munculinTabel(src) {
     img_ele = this;
     x_img_ele = window.event.clientX - document.getElementById('zoom-img').offsetLeft;
     y_img_ele = window.event.clientY - document.getElementById('zoom-img').offsetTop;
-    console.log('img=' + img_ele.toString() + '; x_img_ele=' + x_img_ele + '; y_img_ele=' + y_img_ele + ';');
-    console.log('offLeft=' + document.getElementById('zoom-img').offsetLeft + '; offTop=' + document.getElementById('zoom-img').offsetTop);
+    // console.log('img=' + img_ele.toString() + '; x_img_ele=' + x_img_ele + '; y_img_ele=' + y_img_ele + ';');
+    // console.log('offLeft=' + document.getElementById('zoom-img').offsetLeft + '; offTop=' + document.getElementById('zoom-img').offsetTop);
   }
 
   function stop_drag() {
@@ -234,7 +231,7 @@ function munculinTabel(src) {
         img_ele.style.left = '0px';
         img_ele.style.top = '0px';
       }
-      console.log(img_ele.style.left + ' - ' + img_ele.style.top);
+      // console.log(img_ele.style.left + ' - ' + img_ele.style.top);
     }
     img_ele = null;
   }
@@ -262,17 +259,17 @@ function munculinTabel(src) {
       current_top = new_top;
       img_ele.style.top = new_top + 'px';
 
-      console.log(img_ele.style.left + ' - ' + img_ele.style.top);
+      // console.log(img_ele.style.left + ' - ' + img_ele.style.top);
     }
   }
 
   document.querySelector('.zoomoutgambar').addEventListener('click', function() {
     zoom(-0.25);
-    console.log('zoomed-out');
+    // console.log('zoomed-out');
   });
   document.querySelector('.zoomingambar').addEventListener('click', function() {
     zoom(0.25);
-    console.log('zoomed-in');
+    // console.log('zoomed-in');
   });
 
   document.querySelector('.zoom-img').addEventListener('mousedown', start_drag);
