@@ -26,8 +26,12 @@ function filterGamtek(btn) {
 
 function getSrc(gamtek) {
   const src = gamtek.src;
+  const srcsplitfirst = src.split("_");
+  console.log(srcsplitfirst);
+  const srcnotcompressed = srcsplitfirst[0] + '_z3_' + srcsplitfirst[2] + '_' + srcsplitfirst[3];
 
-  munculinTabel(src);
+
+  munculinTabel(srcnotcompressed);
 
   document.querySelector(".gamtek-fullscreen-bg").addEventListener("click", () => {
     document.querySelector("#zoom-img").remove();
@@ -69,9 +73,10 @@ function gamtekSaya(zoneid, story) {
       `;
     if (gamtekFileNameArray.length !== 0) {
       gamtekFileNameArray.forEach(file => {
-        const drawingCategory = file.substring(0, 3);
+        const drawingCategoryz0 = file.substring(0, 6);
 
-        if (drawingCategory === "STR") {
+        if (drawingCategoryz0 === "STR_z0") {
+          const drawingCategory = file.substring(0,3);
           document.querySelector('.gamtek-grid-div').innerHTML += `
                   <div class="foto-gamtek col-4">
                     <img onclick="getSrc(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${strDrawingIndicator}" id="Page${strDrawingIndicator}">
@@ -80,7 +85,8 @@ function gamtekSaya(zoneid, story) {
           strDrawingIndicator++;
         }
 
-        if (drawingCategory === "ARS") {
+        if (drawingCategoryz0 === "ARS_z0") {
+          const drawingCategory = file.substring(0,3);
           document.querySelector('.gamtek-grid-div').innerHTML += `
                   <div class="foto-gamtek col-4">
                     <img onclick="getSrc(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${arsDrawingIndicator}" id="Page${arsDrawingIndicator}">
@@ -89,7 +95,8 @@ function gamtekSaya(zoneid, story) {
           arsDrawingIndicator++;
         }
 
-        if (drawingCategory === "MEP") {
+        if (drawingCategoryz0 === "MEP_z0") {
+          const drawingCategory = file.substring(0,3);
           document.querySelector('.gamtek-grid-div').innerHTML += `
                   <div class="foto-gamtek col-4">
                     <img onclick="getSrc(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${mepDrawingIndicator}" id="Page${mepDrawingIndicator}">

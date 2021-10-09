@@ -72,6 +72,10 @@ const {
 const {
   senduseremailverification
 } = require('../routes/userEmailVerification.js');
+const {
+  sendemailclient
+} = require('../routes/emailsettings.js');
+
 
 //
 
@@ -125,7 +129,6 @@ router.get('/registerproject', ensureAuthenticated, async (req, res) => {
     jobs: req.user.jobs,
     company: req.user.company,
     user: req.user,
-    listprojects,
     layout: 'layout-account',
   });
 });
@@ -133,6 +136,11 @@ router.get('/registerproject', ensureAuthenticated, async (req, res) => {
 router.get('/daftarproyek', ensureAuthenticated, async (req, res) => {
 
   const messyListProjects = await findproject(req.user.username);
+  const contohprojects = await Project.find({
+    username: 'contoh'
+  });
+  contohprojects.forEach(a=>{
+    messyListProjects.push(a)});
   const listProjectIds = [];
   const listprojects = [];
 
@@ -144,6 +152,10 @@ router.get('/daftarproyek', ensureAuthenticated, async (req, res) => {
       }
     }
   });
+
+  
+
+ 
 
   res.render('daftarproyek', {
     name: req.user.name,
@@ -1468,6 +1480,17 @@ router.delete('/member', async (req, res) => {
 //     req.flash('success_msg', 'Logo Uploaded Successfully');
 //   });
 
+router.post('/sendemail', async (req, res, next) => {
+  const {
+    name,
+    email,
+    subject,
+    message
+  } = req.body;
+  await sendemailclient(name, email, subject, message);
+  req.flash('email_msg', 'Your email has been sent successfully');
+  res.redirect('/#contactUs');  
+});
 
 
 module.exports = router;

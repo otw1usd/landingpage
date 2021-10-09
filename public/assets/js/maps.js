@@ -119,14 +119,11 @@ async function initialize() {
   vMarker.setMap(map);
 
   map.overlayMapTypes.push(imageMapType);
-
 }
 
 let markers = [];
 
 async function toggleOverlay(element) {
-
-
   function setMapOnAll(map) {
     for (let i = 0; i < markers.length; i++) {
       markers[i].setMap(map);
@@ -384,7 +381,6 @@ async function toggleOverlay(element) {
 
 
 
-
     for (let x = 0; x < document.querySelectorAll(".time-stamp-button").length; x++) {
       document.querySelector("#radio-" + x).addEventListener("click", function() {
         infowindow.close();
@@ -400,7 +396,5 @@ async function toggleOverlay(element) {
 
   }
 }
-
-
 
 google.maps.event.addDomListener(window, 'load', initialize);

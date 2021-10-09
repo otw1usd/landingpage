@@ -133,6 +133,7 @@ app.use(flash());
 //global vars
 app.use((req, res, next) => {
   res.locals.success_msg = req.flash('success_msg');
+  res.locals.email_msg = req.flash('email_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
   next();
