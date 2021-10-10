@@ -1,8 +1,8 @@
 //jshint esversion:6
 
 const listGamtek = document.querySelector('.gamtek');
-const zoomin = document.querySelector('.zoominbefore');
-const zoomout = document.querySelector('.zoomoutbefore');
+// const zoomin = document.querySelector('.zoominbefore');
+// const zoomout = document.querySelector('.zoomoutbefore');
 
 var zoomOnScreen = 0; //0 = list, atau kosong, atau gamtek blom dibuka
 var locationOnScreen = 0;
@@ -42,6 +42,7 @@ function getSrc(gamtek) {
   });
 }
 
+
 //buka button construction drawing, nnti di upgrade ke location
 let strDrawingIndicator = 1;
 let arsDrawingIndicator = 1;
@@ -79,7 +80,7 @@ function gamtekSaya(zoneid, story) {
           const drawingCategory = file.substring(0,3);
           document.querySelector('.gamtek-grid-div').innerHTML += `
                   <div class="foto-gamtek col-4">
-                    <img onclick="getSrc(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${strDrawingIndicator}" id="Page${strDrawingIndicator}">
+                    <img onclick="gamtekFullscreen(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${strDrawingIndicator}" id="Page${strDrawingIndicator}">
                   </div>
                 `;
           strDrawingIndicator++;
@@ -89,7 +90,7 @@ function gamtekSaya(zoneid, story) {
           const drawingCategory = file.substring(0,3);
           document.querySelector('.gamtek-grid-div').innerHTML += `
                   <div class="foto-gamtek col-4">
-                    <img onclick="getSrc(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${arsDrawingIndicator}" id="Page${arsDrawingIndicator}">
+                    <img onclick="gamtekFullscreen(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${arsDrawingIndicator}" id="Page${arsDrawingIndicator}">
                   </div>
                 `;
           arsDrawingIndicator++;
@@ -99,7 +100,7 @@ function gamtekSaya(zoneid, story) {
           const drawingCategory = file.substring(0,3);
           document.querySelector('.gamtek-grid-div').innerHTML += `
                   <div class="foto-gamtek col-4">
-                    <img onclick="getSrc(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${mepDrawingIndicator}" id="Page${mepDrawingIndicator}">
+                    <img onclick="gamtekFullscreen(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${mepDrawingIndicator}" id="Page${mepDrawingIndicator}">
                   </div>
                 `;
           mepDrawingIndicator++;
@@ -156,18 +157,26 @@ function filterGamtek(btn) {
 // });
 
 //fungsi general munculin gamtek
-function munculinTabel(src) {
+function gamtekFullscreen(img) {
+
+  const src = img.src;
+
   // document.querySelector('.gamtekfsshow').remove();
   // document.querySelector('.gamtekfs').innerHTML += '<div class="gamtekfsshow"> </div>';
-  zoomout.classList.remove("zoomoutbefore");
-  zoomout.classList.add("zoomoutafter");
-  zoomin.classList.remove("zoominbefore");
-  zoomin.classList.add("zoominafter");
+  // zoomout.classList.remove("zoomoutbefore");
+  // zoomout.classList.add("zoomoutafter");
+  // zoomin.classList.remove("zoominbefore");
+  // zoomin.classList.add("zoominafter");
 
   document.querySelector(".gamtek-fullscreen-super-div").innerHTML = `
     <div class="gamtek-fullscreen-div">
-      <div class="gamtek-fullscreen-content">
-        <img ondragstart="return false" class="zoom-img" id="zoom-img" src="${src}" />
+      <div class="zoom-btn-gamtek">
+        <i class="fas fa-search-plus fa-3x zoomingambar"></i>
+        <br>
+        <i class="fas fa-search-minus fa-3x zoomoutgambar"></i>
+      </div>
+      <div class="gamtek-fullscreen-content" >
+        <img ondragstart="return false" class="zoom-img" id="zoom-img" src="${src}" style="width: auto; height: 600px;" />
       </div>
       <div class="gamtek-fullscreen-bg">
       </div>
@@ -280,9 +289,11 @@ function munculinTabel(src) {
   });
 
   document.querySelector('.zoom-img').addEventListener('mousedown', start_drag);
-  document.querySelector('.gamtekfsshow').addEventListener('mousemove', while_drag);
-  document.querySelector('.gamtekfsshow').addEventListener('mouseup', stop_drag);
-  document.querySelector('.gamtekfsshow').addEventListener('mouseout', stop_drag);
+  document.querySelector('.zoom-img').addEventListener('mousemove', while_drag);
+  document.querySelector('.zoom-img').addEventListener('mouseup', stop_drag);
+  document.querySelector('.zoom-img').addEventListener('mouseout', stop_drag);
+
+
 
   //       var table = document.createElement('table'), tr, td, row, cell;
   //       // table.setAttribute= ('border','0');
@@ -313,10 +324,10 @@ function munculinTabel(src) {
 // // });
 
 //fungsi general apusin gamtek
-function apusinTabel() {
-  document.querySelector('.gamtekfsshow').remove();
-  document.querySelector('.gamtekfs').innerHTML += '<div class="gamtekfsshow"></div>';
-}
+// function apusinTabel() {
+//   document.querySelector('.gamtekfsshow').remove();
+//   document.querySelector('.gamtekfs').innerHTML += '<div class="gamtekfsshow"></div>';
+// }
 
 // //fungsi zoom out
 //     zoomout.addEventListener('click', function(e){

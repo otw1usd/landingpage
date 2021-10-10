@@ -537,7 +537,7 @@ router.post('/', (req, res) => {
                   newUser.save()
                     .then(user => {
                       senduseremailverification(newUser._id, newUser.email);
-                      req.flash('success_msg', 'Please confirm your e-mail to login');
+                      req.flash('success_msg', 'Please check your email for a link to verify your email address.');
                       res.redirect('/login');
                     })
                     .catch(err => console.log(err));
@@ -1459,11 +1459,11 @@ router.delete('/member', async (req, res) => {
 //     cb(null, 'logo.png');
 //   }
 // });
-
+//
 // const uploadLogo = multer({
 //   storage: LogoStorage
 // }).single('logo');
-
+//
 // router.put('/uploadlogo', uploadLogo,
 //   async (req, res, next) => {
 //     const dest = req.file.destination;
