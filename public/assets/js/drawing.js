@@ -24,23 +24,6 @@ function filterGamtek(btn) {
   document.querySelector("#category-uploadgamtekclient").value = category;
 }
 
-function getSrc(gamtek) {
-  const src = gamtek.src;
-  const srcsplitfirst = src.split("_");
-  console.log(srcsplitfirst);
-  const srcnotcompressed = srcsplitfirst[0] + '_z3_' + srcsplitfirst[2] + '_' + srcsplitfirst[3];
-  munculinTabel(srcnotcompressed);
-
-  document.querySelector(".gamtek-fullscreen-bg").addEventListener("click", () => {
-    document.querySelector("#zoom-img").remove();
-    document.querySelector(".zoomoutafter").classList.add("zoomoutbefore");
-    document.querySelector(".zoomoutafter").classList.remove("zoomoutafter");
-    document.querySelector(".zoominafter").classList.add("zoominbefore");
-    document.querySelector(".zoominafter").classList.remove("zoominafter");
-  });
-}
-
-
 //buka button construction drawing, nnti di upgrade ke location
 let strDrawingIndicator = 1;
 let arsDrawingIndicator = 1;
@@ -75,7 +58,7 @@ function gamtekSaya(zoneid, story) {
         const drawingCategoryz0 = file.substring(0, 6);
 
         if (drawingCategoryz0 === "STR_z0") {
-          const drawingCategory = file.substring(0,3);
+          const drawingCategory = file.substring(0, 3);
           document.querySelector('.gamtek-grid-div').innerHTML += `
                   <div class="foto-gamtek col-4">
                     <img onclick="gamtekFullscreen(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${strDrawingIndicator}" id="Page${strDrawingIndicator}">
@@ -85,7 +68,7 @@ function gamtekSaya(zoneid, story) {
         }
 
         if (drawingCategoryz0 === "ARS_z0") {
-          const drawingCategory = file.substring(0,3);
+          const drawingCategory = file.substring(0, 3);
           document.querySelector('.gamtek-grid-div').innerHTML += `
                   <div class="foto-gamtek col-4">
                     <img onclick="gamtekFullscreen(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${arsDrawingIndicator}" id="Page${arsDrawingIndicator}">
@@ -95,7 +78,7 @@ function gamtekSaya(zoneid, story) {
         }
 
         if (drawingCategoryz0 === "MEP_z0") {
-          const drawingCategory = file.substring(0,3);
+          const drawingCategory = file.substring(0, 3);
           document.querySelector('.gamtek-grid-div').innerHTML += `
                   <div class="foto-gamtek col-4">
                     <img onclick="gamtekFullscreen(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${mepDrawingIndicator}" id="Page${mepDrawingIndicator}">
@@ -159,15 +142,7 @@ function gamtekFullscreen(img) {
 
   const srccompressed = img.src;
   const srcsplitfirst = srccompressed.split("_");
-  console.log(srcsplitfirst);
   const src = srcsplitfirst[0] + '_z3_' + srcsplitfirst[2] + '_' + srcsplitfirst[3];
-
-  // document.querySelector('.gamtekfsshow').remove();
-  // document.querySelector('.gamtekfs').innerHTML += '<div class="gamtekfsshow"> </div>';
-  // zoomout.classList.remove("zoomoutbefore");
-  // zoomout.classList.add("zoomoutafter");
-  // zoomin.classList.remove("zoominbefore");
-  // zoomin.classList.add("zoominafter");
 
   document.querySelector(".gamtek-fullscreen-super-div").innerHTML = `
     <div class="gamtek-fullscreen-div">
@@ -175,6 +150,8 @@ function gamtekFullscreen(img) {
         <i class="fas fa-search-plus fa-3x zoomingambar"></i>
         <br>
         <i class="fas fa-search-minus fa-3x zoomoutgambar"></i>
+        <br>
+        <i class="far fa-times-circle fa-3x close-gamtek-fullscreen-btn"></i>
       </div>
       <div class="gamtek-fullscreen-content" >
         <img ondragstart="return false" class="zoom-img" id="zoom-img" src="${src}" style="width: auto; height: 600px;" />
@@ -187,6 +164,10 @@ function gamtekFullscreen(img) {
   document.querySelector(".gamtek-fullscreen-bg").addEventListener("click", () => {
     document.querySelector(".gamtek-fullscreen-div").remove();
   });
+  document.querySelector(".close-gamtek-fullscreen-btn").addEventListener("click", () => {
+    document.querySelector(".gamtek-fullscreen-div").remove();
+  });
+  
 
   var img_ele = null,
     x_cursor = 0,
@@ -209,13 +190,9 @@ function gamtekFullscreen(img) {
     }
     var pre_width = img_ele.getBoundingClientRect().width,
       pre_height = img_ele.getBoundingClientRect().height;
-    // console.log('prewidth=' + img_ele.getBoundingClientRect().width + '; pre_height =' + img_ele.getBoundingClientRect().height);
-    //  img_ele.style.width = (pre_width * zoomincrement) + 'px';
-    //  img_ele.style.height = (pre_height * zoomincrement) + 'px';
+
     var new_width = (orig_width * zoom_factor);
     var new_heigth = (orig_height * zoom_factor);
-
-    // console.log('postwidth=' + img_ele.style.width + '; postheight =' + img_ele.style.height);
 
     if (current_left < (orig_width - new_width)) {
       current_left = (orig_width - new_width);
@@ -289,10 +266,10 @@ function gamtekFullscreen(img) {
     // console.log('zoomed-in');
   });
 
-  document.querySelector('.zoom-img').addEventListener('mousedown', start_drag);
-  document.querySelector('.zoom-img').addEventListener('mousemove', while_drag);
-  document.querySelector('.zoom-img').addEventListener('mouseup', stop_drag);
-  document.querySelector('.zoom-img').addEventListener('mouseout', stop_drag);
+  document.querySelector('.gamtek-fullscreen-content').addEventListener('mousedown', start_drag);
+  document.querySelector('.gamtek-fullscreen-content').addEventListener('mousemove', while_drag);
+  document.querySelector('.gamtek-fullscreen-content').addEventListener('mouseup', stop_drag);
+  document.querySelector('.gamtek-fullscreen-content').addEventListener('mouseout', stop_drag);
 
 
 

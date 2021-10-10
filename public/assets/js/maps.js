@@ -132,7 +132,7 @@ async function toggleOverlay(element) {
   }
   // Removes the markers from the map, but keeps them in the array.
   setMapOnAll(null);
-  
+
   if (element.value == "none") {
     map.overlayMapTypes.clear();
     return;
@@ -140,6 +140,7 @@ async function toggleOverlay(element) {
 
   var path = "/project/" + projectid + "/drone/" + element.value + "/";
   window.waktuOnScreen = element.value;
+  document.querySelector(".getTimestamp").value = element.value;
   tutupfieldphoto();
   timestampOnScreen(element.value);
 
@@ -241,7 +242,7 @@ async function toggleOverlay(element) {
       "</tr>" +
 
       "<tr>" +
-      "<th><button onclick='bukatutupfieldphoto(\"" + projectzoneDataEach.zoneid + "\", \"" + waktuOnScreen + "\")'>Field Photo</button><button onclick='bukatutupuploadfieldphoto(\"" + projectzoneDataEach.zoneid + "\", \"" + waktuOnScreen + "\")'>+</button></th>" + "</tr>" +
+      "<th><button onclick='bukatutupfieldphoto(\"" + projectzoneDataEach.zoneid + "\", \"" + waktuOnScreen + "\")'>Field Photo</button><button onclick='bukatutupuploadfieldphoto(\"" + projectzoneDataEach.zoneid + "\", \"" + waktuOnScreen + "\",\"" + storyIndicator + "\",\"" + projectzoneDataEach.detailzona + "\")'>+</button></th>" + "</tr>" +
 
       "<tr>" +
       // "<th><button>Video</button></th>"+
@@ -288,7 +289,7 @@ async function toggleOverlay(element) {
       "</tr>" +
 
       "<tr>" +
-      "<th><button onclick='bukatutupfieldphoto(\"" + projectzoneDataEach.zoneid + "\", \"" + waktuOnScreen + "\")'>Field Photo</button><button onclick='bukatutupuploadfieldphoto(\"" + projectzoneDataEach.zoneid + "\", \"" + waktuOnScreen + "\")'>+</button></th>" + "</tr>" +
+      "<th><button onclick='bukatutupfieldphoto(\"" + projectzoneDataEach.zoneid + "\", \"" + waktuOnScreen + "\")'>Field Photo</button><button onclick='bukatutupuploadfieldphoto(\"" + projectzoneDataEach.zoneid + "\", \"" + waktuOnScreen + "\",\"" + storyIndicator + "\",\"" + projectzoneDataEach.detailzona + "\")'>+</button></th>" + "</tr>" +
 
       "<tr>" +
       // "<th><button>Video</button></th>"+

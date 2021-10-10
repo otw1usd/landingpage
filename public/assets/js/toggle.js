@@ -95,7 +95,7 @@ function bukatutupfieldphoto(e, f) {
   let projectid = document.querySelector(".getProjectId").value;
   let timestamp = document.querySelector(".timestamp-openfieldphotoclient").value;
   let story = document.querySelector(".story-fieldphotoclient").value;
-const timestampRapih = getMonthYear(timestamp);
+  const timestampRapih = getMonthYear(timestamp);
 
   socket.emit("fieldPhotoData", zoneid, timestamp, story, function(response) {
     const fileNameArray = response.fileNameArray;
@@ -181,9 +181,18 @@ function bukatutupuploadfieldphoto(zoneid, timestamp, story, zoneidrapih) {
   });
 
   document.querySelector(".cancel-upload-field-photo").addEventListener("click", () => {
+    const progBarFill1 = document.querySelector(".progress-bar-fieldphoto .progress-bar-fill");
+    const progBarText1 = document.querySelector(".progress-bar-fieldphoto .progress-bar-text");
+    const successMsg1 = document.querySelector(".progress-bar-fieldphoto .upload-success-message");
+
     document.querySelector(".add-field-photo").classList.remove("add-field-photo-active");
     document.querySelector(".add-field-photo").classList.add("add-field-photo-inactive");
     document.querySelector(".add-field-photo-bg").classList.remove("add-field-photo-bg-active");
+    document.querySelector(".add-field-photo-button").value = "";
+
+    progBarFill1.style.width = "0%";
+    progBarText1.textContent = "0%";
+    successMsg1.innerHTML = ``;
   });
 
 
@@ -214,9 +223,18 @@ function bukatutupuploadgamtek(zoneid, timestamp, story, zoneidrapih) {
   });
 
   document.querySelector(".cancel-upload-gamtek").addEventListener("click", () => {
+    const progBarFill2 = document.querySelector(".progress-bar-gamtek .progress-bar-fill");
+    const progBarText2 = document.querySelector(".progress-bar-gamtek .progress-bar-text");
+    const successMsg2 = document.querySelector(".progress-bar-gamtek .upload-success-message");
+
     document.querySelector(".add-gamtek").classList.remove("add-gamtek-active");
     document.querySelector(".add-gamtek").classList.add("add-gamtek-inactive");
     document.querySelector(".add-gamtek-bg").classList.remove("add-gamtek-bg-active");
+    document.querySelector(".add-gamtek-button").value = "";
+
+    progBarFill2.style.width = "0%";
+    progBarText2.textContent = "0%";
+    successMsg2.innerHTML = ``;
   });
 
   document.querySelector(".upload-category-fieldphoto-on-gamtek").addEventListener("click", () => {
@@ -231,6 +249,10 @@ function bukatutupuploadgamtek(zoneid, timestamp, story, zoneidrapih) {
 
 //input drone data
 function toggleClientSideInputDroneData() {
+  const timestamp = document.querySelector(".getTimestamp").value;
+  const timestampRapih = getMonthYear(timestamp);
+  document.querySelector(".upload-drone-timestamp").innerHTML = "For " + timestampRapih;
+
   document.querySelector(".input-drone-data-div").classList.toggle("input-drone-data-inactive");
   document.querySelector(".input-drone-data-div").classList.toggle("input-drone-data-active");
 }
