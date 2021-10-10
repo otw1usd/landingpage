@@ -167,18 +167,27 @@ function gamtekFullscreen(img) {
   document.querySelector(".close-gamtek-fullscreen-btn").addEventListener("click", () => {
     document.querySelector(".gamtek-fullscreen-div").remove();
   });
-  
 
-  var img_ele = null,
+  let img_ele = null,
     x_cursor = 0,
     y_cursor = 0,
     x_img_ele = 0,
     y_img_ele = 0,
-    orig_width = document.getElementById('zoom-img').getBoundingClientRect().width,
-    orig_height = document.getElementById('zoom-img').getBoundingClientRect().height,
-    current_top = 0,
+    x_img_ele2 = 0,
+    y_img_ele2 = 0,
+    orig_width = 0,
+    orig_height = 0,
     current_left = 0,
+    current_right = 0,
+    current_top = 0,
+    current_bottom = 0,
     zoom_factor = 1.0;
+
+  document.getElementById('zoom-img').onload = function() {
+    orig_width = document.getElementById('zoom-img').clientWidth;
+    orig_height = document.getElementById('zoom-img').clientHeight;
+  };
+
 
   function zoom(zoomincrement) {
     img_ele = document.getElementById('zoom-img');
@@ -186,7 +195,9 @@ function gamtekFullscreen(img) {
     if (zoom_factor <= 1.0) {
       zoom_factor = 1.0;
       img_ele.style.top = '0px';
+      img_ele.style.bottom = '0px';
       img_ele.style.left = '0px';
+      img_ele.style.right = '0px';
     }
     var pre_width = img_ele.getBoundingClientRect().width,
       pre_height = img_ele.getBoundingClientRect().height;
@@ -197,11 +208,19 @@ function gamtekFullscreen(img) {
     if (current_left < (orig_width - new_width)) {
       current_left = (orig_width - new_width);
     }
+    if (current_right < (orig_width + new_width)) {
+      current_right = (orig_width + new_width);
+    }
     if (current_top < (orig_height - new_heigth)) {
       current_top = (orig_height - new_heigth);
     }
+    if (current_bottom < (orig_height + new_heigth)) {
+      current_bottom = (orig_height + new_heigth);
+    }
     img_ele.style.left = current_left + 'px';
+    img_ele.style.right = current_right + 'px';
     img_ele.style.top = current_top + 'px';
+    img_ele.style.bottom = current_bottom + 'px';
     img_ele.style.width = new_width + 'px';
     img_ele.style.height = new_heigth + 'px';
 
@@ -215,6 +234,16 @@ function gamtekFullscreen(img) {
     img_ele = this;
     x_img_ele = window.event.clientX - document.getElementById('zoom-img').offsetLeft;
     y_img_ele = window.event.clientY - document.getElementById('zoom-img').offsetTop;
+    x_img_ele2 = window.event.clientX + (window.innerWidth - document.getElementById('zoom-img').offsetLeft - document.getElementById('zoom-img').offsetWidth);
+    y_img_ele2 = window.event.clientY + (window.innerWidth - document.getElementById('zoom-img').offsetTop - document.getElementById('zoom-img').offsetWidth);
+
+    console.log(window.event.clientX);
+    console.log(window.event.clientY);
+    console.log(x_img_ele);
+    console.log(x_img_ele2);
+    console.log(y_img_ele);
+    console.log(y_img_ele2);
+
     // console.log('img=' + img_ele.toString() + '; x_img_ele=' + x_img_ele + '; y_img_ele=' + y_img_ele + ';');
     // console.log('offLeft=' + document.getElementById('zoom-img').offsetLeft + '; offTop=' + document.getElementById('zoom-img').offsetTop);
   }
@@ -241,6 +270,15 @@ function gamtekFullscreen(img) {
       if (new_left < (orig_width - img_ele.width)) {
         new_left = (orig_width - img_ele.width);
       }
+
+      var new_right = (x_cursor - x_img_ele2);
+      if (new_right > 0) {
+        new_right = 0;
+      }
+      if (new_right < (orig_width + img_ele.width)) {
+        new_right = (orig_width + img_ele.width);
+      }
+
       var new_top = (y_cursor - y_img_ele);
       if (new_top > 0) {
         new_top = 0;
@@ -248,10 +286,22 @@ function gamtekFullscreen(img) {
       if (new_top < (orig_height - img_ele.height)) {
         new_top = (orig_height - img_ele.height);
       }
+
+      var new_bottom = (y_cursor - y_img_ele2);
+      if (new_bottom > 0) {
+        new_bottom = 0;
+      }
+      if (new_bottom < (orig_height + img_ele.height)) {
+        new_bottom = (orig_height + img_ele.height);
+      }
       current_left = new_left;
       img_ele.style.left = new_left + 'px';
+      current_right = new_right;
+      img_ele.style.right = new_right + 'px';
       current_top = new_top;
       img_ele.style.top = new_top + 'px';
+      current_bottom = new_bottom;
+      img_ele.style.bottom = new_bottom + 'px';
 
       // console.log(img_ele.style.left + ' - ' + img_ele.style.top);
     }
