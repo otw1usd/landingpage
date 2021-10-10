@@ -29,8 +29,6 @@ function getSrc(gamtek) {
   const srcsplitfirst = src.split("_");
   console.log(srcsplitfirst);
   const srcnotcompressed = srcsplitfirst[0] + '_z3_' + srcsplitfirst[2] + '_' + srcsplitfirst[3];
-
-
   munculinTabel(srcnotcompressed);
 
   document.querySelector(".gamtek-fullscreen-bg").addEventListener("click", () => {
@@ -159,7 +157,10 @@ function filterGamtek(btn) {
 //fungsi general munculin gamtek
 function gamtekFullscreen(img) {
 
-  const src = img.src;
+  const srccompressed = img.src;
+  const srcsplitfirst = srccompressed.split("_");
+  console.log(srcsplitfirst);
+  const src = srcsplitfirst[0] + '_z3_' + srcsplitfirst[2] + '_' + srcsplitfirst[3];
 
   // document.querySelector('.gamtekfsshow').remove();
   // document.querySelector('.gamtekfs').innerHTML += '<div class="gamtekfsshow"> </div>';
