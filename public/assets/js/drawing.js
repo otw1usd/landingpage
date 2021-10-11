@@ -1,9 +1,5 @@
 //jshint esversion:6
 
-const listGamtek = document.querySelector('.gamtek');
-// const zoomin = document.querySelector('.zoominbefore');
-// const zoomout = document.querySelector('.zoomoutbefore');
-
 var zoomOnScreen = 0; //0 = list, atau kosong, atau gamtek blom dibuka
 var locationOnScreen = 0;
 window.listGamtekSaya = 0;
@@ -18,12 +14,11 @@ function myFunction() {
   popup.classList.toggle("show");
 }
 
-//untuk assign category gamtek dan ambil source gamtek
+//untuk assign category gamtek
 function filterGamtek(btn) {
   const category = btn.value;
   document.querySelector("#category-uploadgamtekclient").value = category;
 }
-
 
 //buka button construction drawing, nnti di upgrade ke location
 let strDrawingIndicator = 1;
@@ -41,20 +36,20 @@ function gamtekSaya(zoneid, story) {
     const zoneRapih = response.zoneRapih;
 
     document.querySelector('.gamtek-grid-div').innerHTML = `
-          <div class="gamtek-grid-instruction-div">
-            <h4> Construction Drawing </h4>
-            <span class="marg-bot-1-rem">Zone ${zoneRapih} > Story ${story}</span>
-            <br>
-            <span>
-              Filter:
-                <input type="checkbox" name="show-gamtek-filter" id="show-gamtek-filter-str" class="show-gamtek-filter-str" onclick="showGamtekFiltered(this)" value="STR">
-                <span for="show-gamtek-filter-str">Struktur</span>
-                <input type="checkbox" name="show-gamtek-filter" id="show-gamtek-filter-ars" class="show-gamtek-filter-ars" onclick="showGamtekFiltered(this)" value="ARS">
-                <span for="show-gamtek-filter-ars-filter">Arsitektur</span>
-                <input type="checkbox" name="show-gamtek-filter" id="show-gamtek-filter-mep" class="show-gamtek-filter-mep" onclick="showGamtekFiltered(this)" value="MEP">
-                <span for="show-gamtek-filter-mep">MEP</span>
-            </span>
-          </div>
+      <div class="gamtek-grid-instruction-div">
+        <h4> Construction Drawing </h4>
+        <span class="marg-bot-1-rem">Zone ${zoneRapih} > Story ${story}</span>
+        <br>
+        <span>
+          Filter:
+            <input type="checkbox" checked="checked" name="show-gamtek-filter" id="show-gamtek-filter-str" class="show-gamtek-filter-str" onclick="showGamtekFiltered(this)" value="STR">
+            <span for="show-gamtek-filter-str">Struktur</span>
+            <input type="checkbox" checked="checked" name="show-gamtek-filter" id="show-gamtek-filter-ars" class="show-gamtek-filter-ars" onclick="showGamtekFiltered(this)" value="ARS">
+            <span for="show-gamtek-filter-ars-filter">Arsitektur</span>
+            <input type="checkbox" checked="checked" name="show-gamtek-filter" id="show-gamtek-filter-mep" class="show-gamtek-filter-mep" onclick="showGamtekFiltered(this)" value="MEP">
+            <span for="show-gamtek-filter-mep">MEP</span>
+        </span>
+      </div>
       `;
     if (gamtekFileNameArray.length !== 0) {
       gamtekFileNameArray.forEach(file => {
@@ -63,7 +58,7 @@ function gamtekSaya(zoneid, story) {
         if (drawingCategoryz0 === "STR_z0") {
           const drawingCategory = file.substring(0, 3);
           document.querySelector('.gamtek-grid-div').innerHTML += `
-                  <div class="foto-gamtek col-4">
+                  <div class="foto-gamtek col-4 foto-gamtek-str">
                     <img onclick="gamtekFullscreen(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${strDrawingIndicator}" id="Page${strDrawingIndicator}">
                   </div>
                 `;
@@ -73,7 +68,7 @@ function gamtekSaya(zoneid, story) {
         if (drawingCategoryz0 === "ARS_z0") {
           const drawingCategory = file.substring(0, 3);
           document.querySelector('.gamtek-grid-div').innerHTML += `
-                  <div class="foto-gamtek col-4">
+                  <div class="foto-gamtek col-4 foto-gamtek-ars">
                     <img onclick="gamtekFullscreen(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${arsDrawingIndicator}" id="Page${arsDrawingIndicator}">
                   </div>
                 `;
@@ -83,7 +78,7 @@ function gamtekSaya(zoneid, story) {
         if (drawingCategoryz0 === "MEP_z0") {
           const drawingCategory = file.substring(0, 3);
           document.querySelector('.gamtek-grid-div').innerHTML += `
-                  <div class="foto-gamtek col-4">
+                  <div class="foto-gamtek col-4 foto-gamtek-mep">
                     <img onclick="gamtekFullscreen(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${mepDrawingIndicator}" id="Page${mepDrawingIndicator}">
                   </div>
                 `;
@@ -96,46 +91,7 @@ function gamtekSaya(zoneid, story) {
             <h4 class="text-center"> No construction drawing uploaded </h4>
           `;
     }
-
-
   });
-
-
-
-  // document.querySelector(".show-gamtek-filter-str").addEventListener("click", ()=> {
-  //
-  // });
-
-
-  //   if (category.value === "ARS") {
-  //     gamtekFileNameArray.forEach(file => {
-  //       const drawingCategoryz0 = file.substring(0, 6);
-  //       if (drawingCategoryz0 === "ARS_z0") {
-  //         const drawingCategory = file.substring(0, 3);
-  //         document.querySelector('.gamtek-grid-div').innerHTML += `
-  //                 <div class="foto-gamtek col-4">
-  //                   <img onclick="gamtekFullscreen(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${arsDrawingIndicator}" id="Page${arsDrawingIndicator}">
-  //                 </div>
-  //               `;
-  //         arsDrawingIndicator++;
-  //       }
-  //     });
-  //   }
-  //   if (category.value === "MEP") {
-  //     gamtekFileNameArray.forEach(file => {
-  //       const drawingCategoryz0 = file.substring(0, 6);
-  //       if (drawingCategoryz0 === "MEP_z0") {
-  //         const drawingCategory = file.substring(0, 3);
-  //         document.querySelector('.gamtek-grid-div').innerHTML += `
-  //                   <div class="foto-gamtek col-4">
-  //                     <img onclick="gamtekFullscreen(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${mepDrawingIndicator}" id="Page${mepDrawingIndicator}">
-  //                   </div>
-  //                 `;
-  //         mepDrawingIndicator++;
-  //       }
-  //     });
-  //   }
-  // }
 
   document.querySelector(".gamtek-grid-bg").addEventListener("click", () => {
     document.querySelector('.gamtek-grid-div').innerHTML = "";
@@ -153,70 +109,59 @@ function gamtekSaya(zoneid, story) {
 }
 
 //untuk show gamtek sesuai filter
-// let showGamtekFilteredIndicator = 0;
+let showGamtekFilteredIndicatorStr = true;
+let showGamtekFilteredIndicatorArs = true;
+let showGamtekFilteredIndicatorMep = true;
 //
-// function showGamtekFiltered(category) {
-//   if (category.value === "STR") {
-    // console.log("masuk gamtek saaya");
-    // document.querySelector(".show-gamtek-filter-str").addEventListener("click", ()=> {
+function showGamtekFiltered(category) {
 
-    // if (showGamtekFilteredIndicator === 0) {
+  if (category.value === "STR") {
+    if (showGamtekFilteredIndicatorStr === false) {
+      document.querySelectorAll(".foto-gamtek-str").forEach(foto => {
+        foto.style.display = "inline-block";
+      });
+      showGamtekFilteredIndicatorStr = true;
+    } else {
+      document.querySelectorAll(".foto-gamtek-str").forEach(foto => {
+        foto.style.display = "none";
+      });
+      showGamtekFilteredIndicatorStr = false;
+    }
+  }
 
+  if (category.value === "ARS") {
+    if (showGamtekFilteredIndicatorArs === false) {
+      document.querySelectorAll(".foto-gamtek-ars").forEach(foto => {
+        foto.style.display = "inline-block";
+      });
+      showGamtekFilteredIndicatorArs = true;
+    } else {
+      document.querySelectorAll(".foto-gamtek-ars").forEach(foto => {
+        foto.style.display = "none";
+      });
+      showGamtekFilteredIndicatorArs = false;
+    }
+  }
 
-      // gamtekFileNameArray.forEach(file => {
-      //   const drawingCategoryz0 = file.substring(0, 6);
-      //
-      //   if (drawingCategoryz0 === "STR_z0") {
-      //
-      //     const drawingCategory = file.substring(0, 3);
-      //     document.querySelector('.gamtek-grid-div').innerHTML += `
-      //         <div class="foto-gamtek col-4">
-      //           <img onclick="gamtekFullscreen(this)" class="gamtek-grid list" name="" src="/images/amatilogo.png" alt="Page" id="Page">
-      //         </div>
-      //       `;
-      //     strDrawingIndicator++;
-      //     console.log("masuk dong struktur");
-      //     console.log(strDrawingIndicator);
-      //     document.querySelector(".show-gamtek-filter-str").setAttribute("checked", "checked");
-      //     showGamtekFilteredIndicator = 1;
-      //
-      //   }
-      // });
-    // } else {
-    //   document.querySelector(".show-gamtek-filter-str").removeAttribute("checked");
-    //   showGamtekFilteredIndicator = 0;
-    // }
-    // });
-    // <img onclick="gamtekFullscreen(this)" class="gamtek-grid list" name="${drawingCategory}" src="/project/${projectid}/drawing/${zoneid}/${story}/${file}" alt="Page${strDrawingIndicator}" id="Page${strDrawingIndicator}">
-
-//   }
-// }
+  if (category.value === "MEP") {
+    if (showGamtekFilteredIndicatorMep === false) {
+      document.querySelectorAll(".foto-gamtek-mep").forEach(foto => {
+        foto.style.display = "inline-block";
+      });
+      showGamtekFilteredIndicatorMep = true;
+    } else {
+      document.querySelectorAll(".foto-gamtek-mep").forEach(foto => {
+        foto.style.display = "none";
+      });
+      showGamtekFilteredIndicatorMep = false;
+    }
+  }
+}
 
 function filterGamtek(btn) {
   const category = btn.value;
   document.querySelector("#category-uploadgamtekclient").value = category;
 }
-
-//kalo pencet dari list gamtek
-// listGamtek.addEventListener('click', function(e) {
-//   window.idOnScreen = e.target.id;
-//
-//   if (window.zoomOnScreen === 0) {
-//     zoomout.classList.remove("zoomoutbefore");
-//     zoomout.classList.add("zoomoutafter");
-//     zoomin.classList.remove("zoominbefore");
-//     zoomin.classList.add("zoominafter");
-//     // window.zoomOnScreen = +1;
-//
-//     munculinTabel();
-//   }
-
-// kalo list dipencet tpi udah ada yang kebuka
-//   else {
-//     munculinTabel();
-//   }
-//
-// });
 
 //fungsi general munculin gamtek
 function gamtekFullscreen(img) {
@@ -254,14 +199,10 @@ function gamtekFullscreen(img) {
     y_cursor = 0,
     x_img_ele = 0,
     y_img_ele = 0,
-    // x_img_ele2 = 0,
-    // y_img_ele2 = 0,
     orig_width = 0,
     orig_height = 0,
     current_left = 0,
-    // current_right = 0,
     current_top = 0,
-    // current_bottom = 0,
     zoom_factor = 1.0;
 
   document.getElementById('zoom-img').onload = function() {
@@ -269,16 +210,13 @@ function gamtekFullscreen(img) {
     orig_height = document.getElementById('zoom-img').clientHeight;
   };
 
-
   function zoom(zoomincrement) {
     img_ele = document.getElementById('zoom-img');
     zoom_factor = zoom_factor + zoomincrement;
     if (zoom_factor <= 1.0) {
       zoom_factor = 1.0;
       img_ele.style.top = '0px';
-      // img_ele.style.bottom = '0px';
       img_ele.style.left = '0px';
-      // img_ele.style.right = '0px';
     }
     var pre_width = img_ele.getBoundingClientRect().width,
       pre_height = img_ele.getBoundingClientRect().height;
@@ -289,19 +227,11 @@ function gamtekFullscreen(img) {
     if (current_left < (orig_width - new_width)) {
       current_left = (orig_width - new_width);
     }
-    // if (current_right < (orig_width + new_width)) {
-    //   current_right = (orig_width + new_width);
-    // }
     if (current_top < (orig_height - new_heigth)) {
       current_top = (orig_height - new_heigth);
     }
-    // if (current_bottom < (orig_height + new_heigth)) {
-    //   current_bottom = (orig_height + new_heigth);
-    // }
     img_ele.style.left = current_left + 'px';
-    // img_ele.style.right = current_right + 'px';
     img_ele.style.top = current_top + 'px';
-    // img_ele.style.bottom = current_bottom + 'px';
     img_ele.style.width = new_width + 'px';
     img_ele.style.height = new_heigth + 'px';
 
@@ -315,18 +245,6 @@ function gamtekFullscreen(img) {
     img_ele = this;
     x_img_ele = window.event.clientX - document.getElementById('zoom-img').offsetLeft;
     y_img_ele = window.event.clientY - document.getElementById('zoom-img').offsetTop;
-    // x_img_ele2 = window.event.clientX - (window.innerWidth - document.getElementById('zoom-img').offsetLeft - document.getElementById('zoom-img').offsetWidth);
-    // y_img_ele2 = window.event.clientY - (window.innerWidth - document.getElementById('zoom-img').offsetTop - document.getElementById('zoom-img').offsetWidth);
-
-    console.log(window.event.clientX);
-    console.log(window.event.clientY);
-    console.log(x_img_ele);
-    console.log(x_img_ele2);
-    console.log(y_img_ele);
-    console.log(y_img_ele2);
-
-    // console.log('img=' + img_ele.toString() + '; x_img_ele=' + x_img_ele + '; y_img_ele=' + y_img_ele + ';');
-    // console.log('offLeft=' + document.getElementById('zoom-img').offsetLeft + '; offTop=' + document.getElementById('zoom-img').offsetTop);
   }
 
   function stop_drag() {
@@ -335,7 +253,6 @@ function gamtekFullscreen(img) {
         img_ele.style.left = '0px';
         img_ele.style.top = '0px';
       }
-      // console.log(img_ele.style.left + ' - ' + img_ele.style.top);
     }
     img_ele = null;
   }
@@ -344,57 +261,29 @@ function gamtekFullscreen(img) {
     if (img_ele !== null) {
       var x_cursor = window.event.clientX;
       var y_cursor = window.event.clientY;
+
       var new_left = (x_cursor - x_img_ele);
-      // if (new_left > 0) {
-      //   new_left = 0;
-      // }
       if (new_left < (orig_width - img_ele.width)) {
         new_left = (orig_width - img_ele.width);
       }
 
-      // var new_right = (x_cursor - x_img_ele2);
-      // if (new_right > 0) {
-      //   new_right = 0;
-      // }
-      // if (new_right < (orig_width + img_ele.width)) {
-      //   new_right = (orig_width + img_ele.width);
-      // }
-
       var new_top = (y_cursor - y_img_ele);
-      // if (new_top > 0) {
-      //   new_top = 0;
-      // }
       if (new_top < (orig_height - img_ele.height)) {
         new_top = (orig_height - img_ele.height);
       }
 
-      // var new_bottom = (y_cursor - y_img_ele2);
-      // if (new_bottom > 0) {
-      //   new_bottom = 0;
-      // }
-      // if (new_bottom < (orig_height + img_ele.height)) {
-      //   new_bottom = (orig_height + img_ele.height);
-      // }
       current_left = new_left;
       img_ele.style.left = new_left + 'px';
-      // current_right = new_right;
-      // img_ele.style.right = new_right + 'px';
       current_top = new_top;
       img_ele.style.top = new_top + 'px';
-      // current_bottom = new_bottom;
-      // img_ele.style.bottom = new_bottom + 'px';
-
-      // console.log(img_ele.style.left + ' - ' + img_ele.style.top);
     }
   }
 
   document.querySelector('.zoomoutgambar').addEventListener('click', function() {
     zoom(-0.25);
-    // console.log('zoomed-out');
   });
   document.querySelector('.zoomingambar').addEventListener('click', function() {
     zoom(0.25);
-    // console.log('zoomed-in');
   });
 
   document.querySelector('.zoom-img').addEventListener('mousedown', start_drag);

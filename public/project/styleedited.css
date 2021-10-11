@@ -729,6 +729,11 @@ h1 {
   text-align: center;
 }
 
+.filter-field-photo-upload {
+  padding-left: 0.5rem;
+  display: inline-block;
+}
+
 /* Bagian foto gamtek */
 .gamtek-grid-super-div {}
 

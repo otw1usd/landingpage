@@ -15,14 +15,14 @@ function togglePlay() {
   }
 }
 
-circlePlayButton.addEventListener('click', togglePlay);
-video.addEventListener('playing', function () {
-  circlePlayButton.style.opacity = 0;
-});
-video.addEventListener('pause', function () {
-  circlePlayButton.style.opacity = 1;
-  video.removeAttribute('controls');
-});
+// circlePlayButton.addEventListener('click', togglePlay);
+// video.addEventListener('playing', function () {
+//   circlePlayButton.style.opacity = 0;
+// });
+// video.addEventListener('pause', function () {
+//   circlePlayButton.style.opacity = 1;
+//   video.removeAttribute('controls');
+// });
 
 // Google Map
 

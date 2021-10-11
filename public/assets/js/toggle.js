@@ -108,18 +108,43 @@ function bukatutupfieldphoto(e, f) {
       <br>
       <span>
       Filter:
-        <input type="checkbox" id="show-fieldphoto-filter-str" onclick="" value="STR">
+        <input type="checkbox" id="show-fieldphoto-filter-str" onclick="showFieldPhotoFiltered(this)" value="STR" checked="checked">
         <span for="show-fieldphoto-filter-str">Struktur</span>
-        <input type="checkbox" id="show-fieldphoto-filter-ars" onclick="" value="ARS">
+        <input type="checkbox" id="show-fieldphoto-filter-ars" onclick="showFieldPhotoFiltered(this)" value="ARS" checked="checked">
         <span for="show-fieldphoto-filter-ars-filter">Arsitektur</span>
-        <input type="checkbox" id="show-fieldphoto-filter-mep" onclick="" value="MEP">
+        <input type="checkbox" id="show-fieldphoto-filter-mep" onclick="showFieldPhotoFiltered(this)" value="MEP" checked="checked">
         <span for="show-fieldphoto-filter-mep">MEP</span>
       </span>
       </div>
       `;
     if (fileNameArray.length !== 0) {
       fileNameArray.forEach(fileName => {
-        document.querySelector('.field-photo-grid-div').innerHTML += '<div class="col-4 field-photo-grid"><img onclick="fieldPhotoFullscreen(this)" style="height: auto; width: 100%;" src="/project/' + projectid + '/fieldphoto/' + zoneid + '/' + story + '/' + timestamp + '/compressedfieldphoto/' + fileName + '" alt="">';
+        const fieldPhotoCategory = fileName.substring(0, 3);
+
+        if (fieldPhotoCategory === "STR") {
+          document.querySelector('.field-photo-grid-div').innerHTML += `
+            <div class="col-4 field-photo-grid field-photo-str">
+              <img onclick="fieldPhotoFullscreen(this)" style="height: auto; width: 100%;" src="/project/${projectid}/fieldphoto/${zoneid}/${story}/${timestamp}/compressedfieldphoto/${fileName}" alt="">
+            </div>
+          `;
+        }
+
+        if (fieldPhotoCategory === "ARS") {
+          document.querySelector('.field-photo-grid-div').innerHTML += `
+            <div class="col-4 field-photo-grid field-photo-ars">
+              <img onclick="fieldPhotoFullscreen(this)" style="height: auto; width: 100%;" src="/project/${projectid}/fieldphoto/${zoneid}/${story}/${timestamp}/compressedfieldphoto/${fileName}" alt="">
+            </div>
+          `;
+        }
+
+        if (fieldPhotoCategory === "MEP") {
+          document.querySelector('.field-photo-grid-div').innerHTML += `
+            <div class="col-4 field-photo-grid field-photo-mep">
+              <img onclick="fieldPhotoFullscreen(this)" style="height: auto; width: 100%;" src="/project/${projectid}/fieldphoto/${zoneid}/${story}/${timestamp}/compressedfieldphoto/${fileName}" alt="">
+            </div>
+          `;
+        }
+
       });
     } else {
       document.querySelector('.field-photo-grid-div').innerHTML += `<h4 class="text-center"> No field photo uploaded </h4>`;
@@ -138,6 +163,57 @@ function bukatutupfieldphoto(e, f) {
   document.querySelector(".field-photo-grid-bg").classList.add("field-photo-grid-bg-active");
 
 }
+
+//untuk show gamtek sesuai filter
+let showFieldPhotoFilteredIndicatorStr = true;
+let showFieldPhotoFilteredIndicatorArs = true;
+let showFieldPhotoFilteredIndicatorMep = true;
+//
+function showFieldPhotoFiltered(category) {
+
+  if (category.value === "STR") {
+    if (showFieldPhotoFilteredIndicatorStr === false) {
+      document.querySelectorAll(".field-photo-str").forEach(foto => {
+        foto.style.display = "inline-block";
+      });
+      showFieldPhotoFilteredIndicatorStr = true;
+    } else {
+      document.querySelectorAll(".field-photo-str").forEach(foto => {
+        foto.style.display = "none";
+      });
+      showFieldPhotoFilteredIndicatorStr = false;
+    }
+  }
+
+  if (category.value === "ARS") {
+    if (showFieldPhotoFilteredIndicatorArs === false) {
+      document.querySelectorAll(".field-photo-ars").forEach(foto => {
+        foto.style.display = "inline-block";
+      });
+      showFieldPhotoFilteredIndicatorArs = true;
+    } else {
+      document.querySelectorAll(".field-photo-ars").forEach(foto => {
+        foto.style.display = "none";
+      });
+      showFieldPhotoFilteredIndicatorArs = false;
+    }
+  }
+
+  if (category.value === "MEP") {
+    if (showFieldPhotoFilteredIndicatorMep === false) {
+      document.querySelectorAll(".field-photo-mep").forEach(foto => {
+        foto.style.display = "inline-block";
+      });
+      showFieldPhotoFilteredIndicatorMep = true;
+    } else {
+      document.querySelectorAll(".field-photo-mep").forEach(foto => {
+        foto.style.display = "none";
+      });
+      showFieldPhotoFilteredIndicatorMep = false;
+    }
+  }
+}
+
 
 //Buka foto jadi fullscreen
 function fieldPhotoFullscreen(img) {
@@ -203,6 +279,12 @@ function bukatutupuploadfieldphoto(zoneid, timestamp, story, zoneidrapih) {
 
     bukatutupuploadgamtek(zoneid, timestamp, story, zoneidrapih);
   });
+}
+
+//untuk assign category field photo
+function filterFieldPhoto(btn) {
+  const category = btn.value;
+  document.querySelector("#category-uploadfieldphotoclient").value = category;
 }
 
 //Upload gamtek

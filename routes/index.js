@@ -153,9 +153,9 @@ router.get('/daftarproyek', ensureAuthenticated, async (req, res) => {
     }
   });
 
-  
 
- 
+
+
 
   res.render('daftarproyek', {
     name: req.user.name,
@@ -337,18 +337,16 @@ router.get('/admin/:name', adminEnsureAuthenticated, async (req, res) => {
 //field photo zone
 const FieldPhotoStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './public/project/' + req.body.projectid + '/fieldphoto/' + req.body.zoneid + '/' + req.body.story + '/' + req.body.timestamp)
+    cb(null, './public/project/' + req.body.projectid + '/fieldphoto/' + req.body.zoneid + '/' + req.body.story + '/' + req.body.timestamp);
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + req.body.zoneid + '-' + file.originalname);
+    cb(null, req.body.category + '_' + Date.now() + '-' + file.originalname);
   },
 });
 
 const uploadFieldPhoto = multer({
   storage: FieldPhotoStorage
 }).array('image', 100);
-
-
 
 //tambahfieldphoto client
 router.put('/tambahfieldphotoclient', uploadFieldPhoto,
@@ -359,7 +357,8 @@ router.put('/tambahfieldphotoclient', uploadFieldPhoto,
       zoneid,
       projectid,
       timestamp,
-      story
+      story,
+      category
     } = req.body;
 
     var listzonanows = await ProjectZone.findOne({
@@ -1489,7 +1488,7 @@ router.post('/sendemail', async (req, res, next) => {
   } = req.body;
   await sendemailclient(name, email, subject, message);
   req.flash('email_msg', 'Your email has been sent successfully');
-  res.redirect('/#contactUs');  
+  res.redirect('/#contactUs');
 });
 
 

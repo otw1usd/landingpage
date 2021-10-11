@@ -176,6 +176,7 @@
         <input type="hidden" id="zoneid-uploadfieldphotoclient" name="zoneid" value="" />
         <input type="hidden" id="timestamp-uploadfieldphotoclient" name="timestamp" value="" />
         <input type="hidden" class="story-fieldphotoclient" name="story" value="1" />
+        <input type="hidden" id="category-uploadfieldphotoclient" name="category" value="" />
         <h4>Upload File</h4>
         <br>
         <div class="upload-category-fieldphoto">Field Photo</div>
@@ -186,6 +187,16 @@
         <span class="upload-zoneid-indicator"></span>
         <span> > Story </span>
         <span class="upload-story-indicator">1</span>
+        <br>
+        <span>Photo category:</span>
+        <div class="filter-field-photo-upload">
+          <input type="radio" id="str-field-photo-filter" onclick="filterFieldPhoto(this)" value="STR" name="filter-field-photo" required>
+          <span for="str-field-photo-filter">Struktur</span>
+          <input type="radio" id="ars-field-photo-filter" onclick="filterFieldPhoto(this)" value="ARS" name="filter-field-photo" required>
+          <span for="ars-field-photo-filter">Arsitektur</span>
+          <input type="radio" id="mep-field-photo-filter" onclick="filterFieldPhoto(this)" value="MEP" name="filter-field-photo" required>
+          <span for="mep-field-photo-filter">MEP</span>
+        </div>
 
         <div class="upload-zone">
           <div class="upload-instruction">
@@ -216,7 +227,6 @@
 
 
   <!-- View Gamtek Grid -->
-
   <div class="gamtek-grid-super-div">
     <div class="gamtek-grid-div row">
     </div>
@@ -226,53 +236,12 @@
 
 
   <!-- View Gamtek Fullscreen-->
-
-  <!-- <div class="gamtekfs">
-    <div class="gamtekfsshow">
-    </div>
-  </div> -->
-
   <div class="gamtek-fullscreen-super-div">
   </div>
 
   <!-- ENG: GAMTEK IS CONSTRUCTION DRAWING -->
   <!-- ENG : GAMBAR IS DRAWING -->
   <!-- ENG: BUKATUTUP is OPEN and CLOSE -->
-
-
-  <!-- <div class="floating-panel ">
-    <form class="sign-up-form" id="uploadFormGamtek">
-      <input type="hidden" id="projectid" name="projectid" value="<%= project._id %>" />
-      <input type="hidden" id="zoneid-uploadgamtekclient" name="zoneid" value="" />
-      <input type="hidden" id="story-uploadgamtekclient" name="story" value="1" />
-      <input type="hidden" id="category-uploadgamtekclient" name="category" value="" />
-      <label>Upload Construction Drawing :</label>
-      <label class="font-small">Type :</label><br>
-      <div class="filter-gamtek-upload flex-space-between">
-        <input type="radio" id="str-drawing-filter" onclick="filterGamtek(this)" value="STR" name="filter-drawing">
-        <label class="font-small" for="str-drawing-filter">Struktur</label>
-        <input type="radio" id="ars-drawing-filter" onclick="filterGamtek(this)" value="ARS" name="filter-drawing">
-        <label class="font-small" for="ars-drawing-filter">Arsitektur</label>
-        <input type="radio" id="mep-drawing-filter" onclick="filterGamtek(this)" value="MEP" name="filter-drawing">
-        <label class="font-small" for="mep-drawing-filter">MEP</label>
-      </div>
-      <div class="add-gamtek-button-div">
-        <input type="file" class="add-gamtek-button" name="gamtek" />
-        <div class="btn-center">
-          <button type="submit" class="btn btn-outline-warning btn-sm btn-padding">Insert Drawing</button>
-        </div>
-      </div>
-    </form>
-    <div class="row flex-center progress-bar-gamtek">
-      <div class="progress-bar col-9" id="progressBar">
-        <div class="progress-bar-fill">
-        </div>
-      </div>
-      <span class="progress-bar-text col-2">0%</span>
-      <div class="upload-success-message">
-      </div>
-    </div>
-  </div> -->
 
   <!-- Upload gamtek -->
   <div class="add-gamtek add-gamtek-inactive">
