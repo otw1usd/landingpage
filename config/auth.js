@@ -5,7 +5,6 @@ module.exports={
         }
         req.flash('error_msg','Please log in !');
         res.redirect('/login');
-        console.log(req.isAuthenticated());
     },
 
 };
