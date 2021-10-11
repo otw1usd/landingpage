@@ -67,7 +67,7 @@ async function initialize() {
   var timestampDataNotPromise = await getTimestamp();
   var timestampDataLength = await timestampDataNotPromise.length;
   if (timestampDataLength === 0) {
-    var dateInitialObject = undefined
+    var dateInitialObject = undefined;
   } else {
     var dateInitialObject = {
       value: await getNumericValue(timestampDataNotPromise[timestampDataLength - 1].timestampproject)
@@ -116,22 +116,39 @@ async function initialize() {
   // centers the map on markers coords
   map.setCenter(vMarker.position);
   // adds the marker on the map
-  vMarker.setMap(map);
+  vMarker.setMap(null);
+  let toggleClientSideInputProjectZoneIndicator = 0;
+  document.querySelector(".toggle-client-side-input-projectzone").addEventListener("click", () => {
+    if (toggleClientSideInputProjectZoneIndicator === 0) {
+      vMarker.setMap(map);
+      toggleClientSideInputProjectZoneIndicator = 1;
+    } else {
+      vMarker.setMap(null);
+      toggleClientSideInputProjectZoneIndicator = 0;
+    }
+  });
+
 
   map.overlayMapTypes.push(imageMapType);
+
 }
+
+
 
 let markers = [];
 
-async function toggleOverlay(element) {
-  function setMapOnAll(map) {
-    for (let i = 0; i < markers.length; i++) {
-      markers[i].setMap(map);
-    }
-    markers = [];
+function setMapOnAll(map) {
+  for (let i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
   }
+}
+
+async function toggleOverlay(element) {
+
   // Removes the markers from the map, but keeps them in the array.
   setMapOnAll(null);
+
+  markers = [];
 
   if (element.value == "none") {
     map.overlayMapTypes.clear();

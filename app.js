@@ -61,9 +61,11 @@ io.on('connection', socket => {
     const dir = './public/project/' + projectid + '/drawing/' + zoneid + '/' + story;
     const gamtekFileNameArray = [];
     fs.readdir(dir, (err, files) => {
-      files.forEach(file => {
-        gamtekFileNameArray.push(file);
-      });
+      if (files !== undefined) {
+        files.forEach(file => {
+          gamtekFileNameArray.push(file);
+        });
+      }
     });
     await ProjectZone.findOne({
       zoneid: zoneid

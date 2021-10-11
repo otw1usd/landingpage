@@ -503,8 +503,6 @@ h1 {
   background: #2f2f2f;
 }
 
-
-
 .backpano {
   position: fixed;
   cursor: pointer;
@@ -789,7 +787,7 @@ h1 {
 /* Gamtek fullscreen */
 .gamtek-fullscreen-div {
   position: fixed;
-  height:100%;
+  height: 100%;
   width: 100%;
   top: 0;
   bottom: 0;
@@ -802,7 +800,6 @@ h1 {
 }
 
 .gamtek-fullscreen-content {
-  background-color: #fff;
   position: relative;
   z-index: 998;
 }
@@ -823,6 +820,7 @@ h1 {
 #zoom-img {
   cursor: move;
   position: relative;
+  background-color: #fff;
 }
 
 .zoom-btn-gamtek {
