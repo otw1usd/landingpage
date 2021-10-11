@@ -230,20 +230,22 @@ function gamtekFullscreen(img) {
   function start_drag() {
     if (zoom_factor <= 1.0) {
       return;
-    }
+    };
+    console.log(document.querySelector('.zoom-img'));
     img_ele = this;
+    // const offsetleft = document.getElementById('zoom-img').clientWidth - img_ele.width + img_ele.width/2
     x_img_ele = window.event.clientX - document.getElementById('zoom-img').offsetLeft;
     y_img_ele = window.event.clientY - document.getElementById('zoom-img').offsetTop;
 
     x_img_ele2 = window.event.clientX + (window.innerWidth - document.getElementById('zoom-img').offsetLeft - document.getElementById('zoom-img').offsetWidth);
-    y_img_ele2 = window.event.clientY + (window.innerWidth - document.getElementById('zoom-img').offsetTop - document.getElementById('zoom-img').offsetWidth);
+    y_img_ele2 = window.event.clientY + (window.innerWidth - document.getElementById('zoom-img').offsetTop - document.getElementById('zoom-img').offsetHeight);
 
     console.log(window.event.clientX);
     console.log(window.event.clientY);
     console.log(x_img_ele);
-    console.log(x_img_ele2);
-    console.log(y_img_ele);
-    console.log(y_img_ele2);
+    // console.log(x_img_ele2);
+    // console.log(y_img_ele);
+    // console.log(y_img_ele2);
 
     // console.log('img=' + img_ele.toString() + '; x_img_ele=' + x_img_ele + '; y_img_ele=' + y_img_ele + ';');
     // console.log('offLeft=' + document.getElementById('zoom-img').offsetLeft + '; offTop=' + document.getElementById('zoom-img').offsetTop);
@@ -266,35 +268,35 @@ function gamtekFullscreen(img) {
       var x_cursor = window.event.clientX;
       var y_cursor = window.event.clientY;
       var new_left = (x_cursor - x_img_ele);
-      if (new_left > 0) {
+      if (new_left < -img_ele.width/2) {
         new_left = 0;
       }
-      if (new_left < (orig_width - img_ele.width)) {
-        new_left = (orig_width - img_ele.width);
+      if (new_left > (orig_width - img_ele.width)) {
+        new_left = (orig_width - img_ele.width + img_ele.width/2);
       }
 
       var new_right = (x_cursor - x_img_ele2);
-      if (new_right > 0) {
+      if (new_right > -img_ele.width/2) {
         new_right = 0;
       }
       if (new_right < (orig_width + img_ele.width)) {
-        new_right = (orig_width + img_ele.width);
+        new_right = (orig_width + img_ele.width - img_ele.width/2);
       }
 
       var new_top = (y_cursor - y_img_ele);
-      if (new_top > 0) {
+      if (new_top > - img_ele.height/2) {
         new_top = 0;
       }
       if (new_top < (orig_height - img_ele.height)) {
-        new_top = (orig_height - img_ele.height);
+        new_top = (orig_height - img_ele.height + img_ele.height/2);
       }
 
       var new_bottom = (y_cursor - y_img_ele2);
-      if (new_bottom > 0) {
+      if (new_bottom > - img_ele.height/2) {
         new_bottom = 0;
       }
       if (new_bottom < (orig_height + img_ele.height)) {
-        new_bottom = (orig_height + img_ele.height);
+        new_bottom = (orig_height + img_ele.height - img_ele.height/2);
       }
       current_left = new_left;
       img_ele.style.left = new_left + 'px';
