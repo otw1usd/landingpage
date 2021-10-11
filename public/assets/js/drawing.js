@@ -154,11 +154,11 @@ function gamtekFullscreen(img) {
         <i class="far fa-times-circle fa-3x close-gamtek-fullscreen-btn"></i>
       </div>
       <div class="gamtek-fullscreen-content" >
-        <img ondragstart="return false" class="zoom-img" id="zoom-img" src="${src}" style="width: auto; height: 600px;" />
+        <img ondragstart="return false" class="zoom-img" id="zoom-img" src="${src}" style="width: auto; height: 600px;"/>
       </div>
       <div class="gamtek-fullscreen-bg">
       </div>
-    </div>
+   </div>
   `;
 
   document.querySelector(".gamtek-fullscreen-bg").addEventListener("click", () => {
@@ -215,8 +215,9 @@ function gamtekFullscreen(img) {
     img_ele = this;
     x_img_ele = window.event.clientX - document.getElementById('zoom-img').offsetLeft;
     y_img_ele = window.event.clientY - document.getElementById('zoom-img').offsetTop;
-    // console.log('img=' + img_ele.toString() + '; x_img_ele=' + x_img_ele + '; y_img_ele=' + y_img_ele + ';');
-    // console.log('offLeft=' + document.getElementById('zoom-img').offsetLeft + '; offTop=' + document.getElementById('zoom-img').offsetTop);
+    console.log(document.getElementById('zoom-img'));
+    console.log('img=' + img_ele.toString() + '; x_img_ele=' + x_img_ele + '; y_img_ele=' + y_img_ele + ';');
+    console.log('offLeft=' + document.getElementById('zoom-img').offsetLeft + '; offTop=' + document.getElementById('zoom-img').offsetTop);
   }
 
   function stop_drag() {
